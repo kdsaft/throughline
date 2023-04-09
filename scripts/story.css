@@ -5,7 +5,6 @@
         top: 112px;
         height: 400px;
         width: 400px;
-        padding-left: 4px;
     }
 
     div.text-area {
@@ -14,6 +13,18 @@
         top: 0px;
         height: 400px;
         width: 400px;
+        overflow: scroll;
+    }
+
+    div.text-headline {
+        font-size: 27px;
+        line-height: 48px;
+        padding-left: 2px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    div.text-paragraph {
+        padding-bottom: 32px;
     }
 
     div.line-of-text {
@@ -29,13 +40,7 @@
         width: 400px;
         z-index: 3;
         height: 400px;
-    }
-
-    #highlight-viewport {
-        width: 400px;
-        height: 400px;
-    }
-    
+    }    
 
     .unread {
         font-family: SF-Mono-Regular;
