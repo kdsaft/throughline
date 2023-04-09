@@ -22,13 +22,20 @@
         font-family: "SF-Mono-Regular";
     }
 
-    div.svg-line-area {
+    div.highlight-area {
         top: 0px;
         left: 0px;
         width: 400px;
         z-index: 3;
         height: 400px;
     }
+
+    #highlight-viewport {
+        width: 400px;
+        height: 400px;
+        viewBox: "-2 -2 400 400";
+    }
+    
 
     .unread {
         font-family: SF-Mono-Regular;

@@ -1,4 +1,4 @@
-        // Button in Bubble functions
+ // Button in Bubble functions
 
         function resetStory() {
             const wordElements = document.querySelectorAll('[class^="word-"]');
@@ -19,7 +19,7 @@
         function readingCurrentWord() {
             const wordNumber = parseInt(document.getElementById("word-number").value);
             const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
-            const svg = document.getElementById("sine-wave");
+            const svg = document.getElementById("highlight-viewport");
 
             // Hide the pre-existing line if it exists
             if (pathElement) {
@@ -59,7 +59,7 @@
                 document.getElementById("word-number").value = nextWordNumber;
                 const nextWordElement = document.querySelector(".word-" + nextWordNumber);
                 const { startX, endX, yCoordinate } = getWordProperties(nextWordNumber);
-                const svg = document.getElementById("sine-wave");
+                const svg = document.getElementById("highlight-viewport");
                 pathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7');
                 updateWordStyle(nextWordElement, "reading");
                 if (pathElement) {
