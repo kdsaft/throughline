@@ -5,13 +5,12 @@
         top: 0px;
         padding-top: 120px;
         height: 100%;
-        min-height: 800px;
         width: 700px;
         overflow: scroll;
     }
 
     div.text-area {
-        position: absolute;
+        position: fixed;
         left: 0px;
         top: 0px;
         height: 100%;
