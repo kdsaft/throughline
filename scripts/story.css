@@ -5,6 +5,7 @@
         top: 112px;
         height: 400px;
         width: 400px;
+        padding-left: 4px;
     }
 
     div.text-area {
@@ -33,7 +34,6 @@
     #highlight-viewport {
         width: 400px;
         height: 400px;
-        viewBox: "-4 -4 400 400";
     }
     
 
