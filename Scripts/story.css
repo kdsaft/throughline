@@ -1,0 +1,52 @@
+<style>
+    div.content {
+        position: relative;
+        left: 24px;
+        top: 112px;
+        height: 400px;
+        width: 400px;
+    }
+
+    div.text-area {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        height: 400px;
+        width: 400px;
+    }
+
+    div.line-of-text {
+        font-size: 18px;
+        line-height: 48px;
+        padding-left: 2px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    div.svg-line-area {
+        top: 0px;
+        left: 0px;
+        width: 400px;
+        z-index: 3;
+        height: 400px;
+    }
+
+    .unread {
+        font-family: SF-Mono-Regular;
+        color: #0E0E0E;
+    }
+
+    .reading {
+        font-family: SF-Mono-Bold;
+        color: #0E0E0E;
+    }
+
+    .trouble {
+        font-family: SF-Mono-Bold;
+        color: #0E0E0E;
+    }
+
+    .read {
+        font-family: SF-Mono-Regular;
+        color: #9D9EA0;
+    }
+</style>
