@@ -55,7 +55,7 @@
 
             // Update the word number by 1 and activate the reading mode
             let nextWordNumber = wordNumber + 1;
-            if (nextWordNumber <= 10) {
+            if (nextWordNumber <= 97) {
                 document.getElementById("word-number").value = nextWordNumber;
                 const nextWordElement = document.querySelector(".word-" + nextWordNumber);
                 const { startX, endX, yCoordinate } = getWordProperties(nextWordNumber);
