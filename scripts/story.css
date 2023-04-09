@@ -5,6 +5,7 @@
         top: 112px;
         height: 400px;
         width: 700px;
+        overflow: scroll;
     }
 
     div.text-area {
@@ -13,7 +14,6 @@
         top: 0px;
         height: 400px;
         width: 700px;
-        overflow: scroll;
     }
 
     div.text-headline {
