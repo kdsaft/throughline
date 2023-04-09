@@ -3,7 +3,9 @@
         position: relative;
         left: 0px;
         top: 0px;
+        padding-top: 120px;
         height: 100%;
+        min-height: 800px;
         width: 700px;
         overflow: scroll;
     }
@@ -13,7 +15,7 @@
         left: 0px;
         top: 0px;
         height: 100%;
-        width: 700px;
+        width: 100%;
     }
 
     div.text-headline {
@@ -40,7 +42,7 @@
         left: 0px;
         width: 700px;
         z-index: 3;
-        height: 100%;
+        height: 800px;
     }    
 
     .unread {
