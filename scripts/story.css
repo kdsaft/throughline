@@ -28,7 +28,7 @@ body {
 }
   
 
-div.content {
+.content {
     position: relative;
     overflow-y: scroll;
     height: 100vh;
@@ -37,7 +37,7 @@ div.content {
     box-sizing: border-box;  
 }
 
-div.reference {
+.reference {
     position: absolute;
     right: 0;
     bottom: 100px;
@@ -45,7 +45,7 @@ div.reference {
 
 }
 
-div.text-area {
+.text-area {
     position: absolute;
     z-index: 1;
     left: 0;
@@ -54,7 +54,7 @@ div.text-area {
     box-sizing: border-box;
 }
 
-div.text-headline {
+.text-headline {
     font-size: 27px;
     line-height: 48px;
     padding-left: 2px;
@@ -62,21 +62,21 @@ div.text-headline {
     font-family: "SF-Mono-Regular";
 }
 
-div.text-paragraph {
+.text-paragraph {
     padding-bottom: 32px;
 }
 
-div.line-of-text {
+.line-of-text {
     font-size: 18px;
     line-height: 48px;
     padding-left: 2px;
     font-family: "SF-Mono-Regular";
 }
 
-div.highlight-area {
+.highlight-area {
     position: absolute;
   left: 0;
-  top: 120px;
+  top: 0;
   width: 700px;
   height: 2000px;
 
