@@ -31,8 +31,8 @@ body {
 div.content {
     position: relative;
     overflow-y: scroll;
-    height: calc(100vh - 192px);
-    width: 700px;
+    height: 100vh;
+    width: 710px;
     padding-right: 20px;
     box-sizing: border-box;  
 }
