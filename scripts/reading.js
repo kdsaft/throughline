@@ -89,12 +89,10 @@ function getWordProperties(wordNumber) {
 
     // Determine yCoordinate based on the parent div's class
     let yOffset;
-    if (parentDiv.classList.contains("text-paragraph")) {
-        yOffset = 24;
-    } else if (parentDiv.classList.contains("text-headline")) {
+    if (parentDiv.classList.contains("text-headline")) {
         yOffset = 36;
     } else {
-        yOffset = 0; // Default value if the parent div has none of the specified classes
+        yOffset = 24; // Default value paragraphs
     }
 
     const yCoordinate = wordRect.top - parentRect.top + parentRect.top - contentRect.top + yOffset;
