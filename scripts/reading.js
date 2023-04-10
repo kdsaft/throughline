@@ -2,20 +2,20 @@
 
 function resetStory() {
     const wordElements = document.querySelectorAll('[class^="word-"]');
-    const numOfSpans = wordElements.length;
-
-    // Loop through all the words and set their style to "unread"
-    for (let i = 1; i <= numOfSpans; i++) {
-        const wordElement = document.querySelector(".word-" + i);
-        updateWordStyle(wordElement, "unread");
-    }
+    const numOfSpans = document.getElementById("word-number").value;
 
     // Reset the counter to 1
-    document.getElementById("word-number").value = 1
+    document.getElementById("word-number").value = 1;
 
     // Hide the line if it exists
     if (pathElement) {
         hideLine(pathElement);
+    }
+
+   // Loop through all the words and set their style to "unread"
+       for (let i = 1; i <= numOfSpans; i++) {
+        const wordElement = document.querySelector(".word-" + i);
+        updateWordStyle(wordElement, "unread");
     }
 }
 
