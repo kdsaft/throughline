@@ -12,12 +12,14 @@ body {
     box-shadow: 0 0 10px rgba(26, 121, 199, .01) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     backdrop-filter: blur(8px) !important;
+    z-index: 10 !important;
 }
 
 #bottomPanel {
     background-color: rgba(255, 255, 255, 0.8) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     backdrop-filter: blur(8px) !important;
+    z-index: 10 !important;
 }
 
 #html-content {
@@ -28,32 +30,28 @@ body {
 
 div.content {
     position: relative;
-    height: 100%;
+    overflow-y: scroll;
+    height: calc(100vh - 192px);
     width: 700px;
+    padding-right: 20px;
+    box-sizing: border-box;  
 }
 
 div.reference {
     position: absolute;
     left: 0;
     bottom: 100px;
+    z-index: 2;
 
 }
 
 div.text-area {
     position: absolute;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 700px;
-  padding-top: 120px;
-  padding-bottom: 120px;
-  padding-right: 20px;
-  box-sizing: border-box;
-  margin-top: -96px;
-  margin-bottom: -96px;
-  overflow-y: scroll;
-
+    z-index: 1;
+    left: 0;
+    top: 120px;
+    width: 700px;
+    box-sizing: border-box;
 }
 
 div.text-headline {
