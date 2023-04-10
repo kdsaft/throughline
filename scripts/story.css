@@ -11,25 +11,44 @@
     backdrop-filter: blur(8px) !important;
 }
 
+#html-content {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 100%;
+}
 
 
 div.content {
     position: relative;
-    left: 0px;
-    top: 0px;
-    padding-top: 120px;
-    padding-bottom: 120px;
     height: 100%;
     width: 700px;
 }
 
-div.text-area {
+div.reference {
     position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 800px;
+    left: 0;
+    bottom: 100px;
+
+}
+
+div.text-area {
+    position: relative;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
     width: 700px;
-    overflow: scroll;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    margin-top: -96px;
+    margin-bottom: -96px;
+    overflow-y: scroll;
+
 }
 
 div.text-headline {
