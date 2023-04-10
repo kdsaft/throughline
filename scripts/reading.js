@@ -10,6 +10,9 @@
                 updateWordStyle(wordElement, "unread");
             }
 
+            // Reset the counter to 1
+            document.getElementById("word-number").value = 1
+            
             // Hide the line if it exists
             if (pathElement) {
                 hideLine(pathElement);
@@ -55,7 +58,7 @@
 
             // Update the word number by 1 and activate the reading mode
             let nextWordNumber = wordNumber + 1;
-            if (nextWordNumber <= 97) {
+            if (nextWordNumber <= 341) {
                 document.getElementById("word-number").value = nextWordNumber;
                 const nextWordElement = document.querySelector(".word-" + nextWordNumber);
                 const { startX, endX, yCoordinate } = getWordProperties(nextWordNumber);
