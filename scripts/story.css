@@ -39,7 +39,7 @@ div.content {
 
 div.reference {
     position: absolute;
-    left: 0;
+    right: 0;
     bottom: 100px;
     z-index: 2;
 
@@ -78,7 +78,7 @@ div.highlight-area {
   left: 0;
   top: 120px;
   width: 700px;
-  height: calc(100% - 240px);
+  height: 2000px;
 
 }
 
