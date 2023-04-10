@@ -1,3 +1,12 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+
 #topPanel {
     background-color: rgba(255, 255, 255, 0.8) !important;
     box-shadow: 0 0 10px rgba(26, 121, 199, .01) !important;
@@ -12,14 +21,10 @@
 }
 
 #html-content {
-    position: relative;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     width: 700px;
     height: 100%;
 }
-
+  
 
 div.content {
     position: relative;
@@ -35,19 +40,19 @@ div.reference {
 }
 
 div.text-area {
-    position: relative;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 700px;
-    padding-top: 120px;
-    padding-bottom: 120px;
-    padding-right: 20px;
-    box-sizing: border-box;
-    margin-top: -96px;
-    margin-bottom: -96px;
-    overflow-y: scroll;
+    position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 700px;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-top: -96px;
+  margin-bottom: -96px;
+  overflow-y: scroll;
 
 }
 
@@ -71,11 +76,12 @@ div.line-of-text {
 }
 
 div.highlight-area {
-    top: 0px;
-    left: 0px;
-    width: 700px;
-    z-index: 3;
-    height: 800px;
+    position: absolute;
+  left: 0;
+  top: 120px;
+  width: 700px;
+  height: calc(100% - 240px);
+
 }
 
 
