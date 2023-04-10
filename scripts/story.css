@@ -84,7 +84,7 @@ body {
 
 
 
-.unread {
+.unread, .unread .punctuation {
     font-family: SF-Mono-Regular;
     color: #0E0E0E;
 }
@@ -99,7 +99,7 @@ body {
     color: #0E0E0E;
 }
 
-.read {
+.read, .read .punctuation {
     font-family: SF-Mono-Regular;
     color: #9D9EA0;
 }
