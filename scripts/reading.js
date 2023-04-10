@@ -12,8 +12,8 @@ function resetStory() {
         hideLine(pathElement);
     }
 
-   // Loop through all the words and set their style to "unread"
-       for (let i = 1; i <= numOfSpans; i++) {
+    // Loop through all the words and set their style to "unread"
+    for (let i = 1; i <= numOfSpans; i++) {
         const wordElement = document.querySelector(".word-" + i);
         updateWordStyle(wordElement, "unread");
     }
@@ -84,8 +84,17 @@ function getWordProperties(wordNumber) {
     const parentDiv = wordElement.parentNode;
     const parentRect = parentDiv.getBoundingClientRect();
     const contentRect = document.querySelector(".content").getBoundingClientRect();
+
+    // Get the position and size of the punctuation element (if exists)
+    const punctuation = wordElement.querySelector('.punctuation');
+    let punctuationWidth = 0;
+    if (punctuation) {
+        const punctuationRect = punctuation.getBoundingClientRect();
+        punctuationWidth = punctuationRect.width;
+    }
+
     const startX = wordRect.left - contentRect.left - 2;
-    const endX = wordRect.right - contentRect.left - 1;
+    const endX = wordRect.right - contentRect.left - 1 - punctuationWidth;
 
     // Determine yCoordinate based on the parent div's class
     let yOffset;
@@ -99,6 +108,7 @@ function getWordProperties(wordNumber) {
 
     return { wordElement, startX, endX, yCoordinate };
 }
+
 
 function drawLine(svg, startX, endX, yCoordinate, color) {
     let length = endX - startX;
