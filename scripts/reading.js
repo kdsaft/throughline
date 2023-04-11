@@ -87,7 +87,7 @@ function playCurrentWord() {
 
     const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
   
-    audioPlayer.currentTime = 0;
+    audioPlayer.currentTime = start_time;
     audioPlayer.play();
   
     setTimeout(() => {
