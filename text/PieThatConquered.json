@@ -6,8 +6,8 @@
         {
             "id": 1,
             "word": "The",
-            "start_time": 0.68,
-            "stop_time": 0.71,
+            "start_time": 0.13,
+            "stop_time": 0.24,
             "syllables": [
                 {
                     "syllable": "The",
@@ -21,8 +21,8 @@
         {
             "id": 2,
             "word": "Pie",
-            "start_time": 0.71,
-            "stop_time": 0.74,
+            "start_time": 0.25,
+            "stop_time": 0.68,
             "syllables": [
                 {
                     "syllable": "Pie",
@@ -36,8 +36,8 @@
         {
             "id": 3,
             "word": "That",
-            "start_time": 0.74,
-            "stop_time": 0.78,
+            "start_time": 0.65,
+            "stop_time": 0.81,
             "syllables": [
                 {
                     "syllable": "That",
@@ -53,7 +53,7 @@
             "id": 4,
             "word": "conquered",
             "start_time": 0.78,
-            "stop_time": 1.22,
+            "stop_time": 1.21.252,
             "syllables": [
                 {
                     "syllable": "con",
@@ -78,8 +78,8 @@
         {
             "id": 5,
             "word": "the",
-            "start_time": 1.22,
-            "stop_time": 1.32,
+            "start_time": 1.21,
+            "stop_time": 1.36,
             "syllables": [
                 {
                     "syllable": "the",
@@ -94,7 +94,7 @@
             "id": 6,
             "word": "canopy",
             "start_time": 1.32,
-            "stop_time": 1.82,
+            "stop_time": 1.88,
             "syllables": [
                 {
                     "syllable": "can",
