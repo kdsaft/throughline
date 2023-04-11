@@ -1,0 +1,6639 @@
+{
+    "id": "071e85ae-3952-4dd8-a269-2762ecbe3b8c",
+    "update": "10-April-2022",
+    "filename": "PieThatConquered.mp3",
+    "words": [
+        {
+            "id": 1,
+            "word": "The",
+            "start_time": 0.68,
+            "stop_time": 0.71,
+            "syllables": [
+                {
+                    "syllable": "The",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "word": "Pie",
+            "start_time": 0.71,
+            "stop_time": 0.74,
+            "syllables": [
+                {
+                    "syllable": "Pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "word": "That",
+            "start_time": 0.74,
+            "stop_time": 0.78,
+            "syllables": [
+                {
+                    "syllable": "That",
+                    "phonemes": [
+                        "ð",
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "word": "conquered",
+            "start_time": 0.78,
+            "stop_time": 1.22,
+            "syllables": [
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ɒ",
+                        "ŋ"
+                    ]
+                },
+                {
+                    "syllable": "quered",
+                    "phonemes": [
+                        "k",
+                        "w",
+                        "ɛ",
+                        "r",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "word": "the",
+            "start_time": 1.22,
+            "stop_time": 1.32,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "word": "canopy",
+            "start_time": 1.32,
+            "stop_time": 1.82,
+            "syllables": [
+                {
+                    "syllable": "can",
+                    "phonemes": [
+                        "k",
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "o",
+                    "phonemes": [
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "py",
+                    "phonemes": [
+                        "p",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "word": "Deep",
+            "start_time": 1.82,
+            "stop_time": 4.16,
+            "syllables": [
+                {
+                    "syllable": "Deep",
+                    "phonemes": [
+                        "d",
+                        "i",
+                        "p"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "word": "within",
+            "start_time": 4.16,
+            "stop_time": 4.44,
+            "syllables": [
+                {
+                    "syllable": "with",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "ð"
+                    ]
+                },
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "word": "the",
+            "start_time": 4.44,
+            "stop_time": 4.56,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "word": "heart",
+            "start_time": 4.56,
+            "stop_time": 4.8,
+            "syllables": [
+                {
+                    "syllable": "heart",
+                    "phonemes": [
+                        "h",
+                        "ɑ",
+                        "r",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "word": "of",
+            "start_time": 4.8,
+            "stop_time": 4.88,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "word": "the",
+            "start_time": 4.88,
+            "stop_time": 5,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "word": "jungle,",
+            "start_time": 5,
+            "stop_time": 5.38,
+            "syllables": [
+                {
+                    "syllable": "jun",
+                    "phonemes": [
+                        "ʤ",
+                        "ʌ",
+                        "ŋ"
+                    ]
+                },
+                {
+                    "syllable": "gle",
+                    "phonemes": [
+                        "g",
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "word": "a",
+            "start_time": 5.38,
+            "stop_time": 5.82,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "word": "hierarchical",
+            "start_time": 5.82,
+            "stop_time": 6.54,
+            "syllables": [
+                {
+                    "syllable": "hi",
+                    "phonemes": [
+                        "h",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "er",
+                    "phonemes": [
+                        "ɛ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "arch",
+                    "phonemes": [
+                        "ɑ",
+                        "r",
+                        "ʧ"
+                    ]
+                },
+                {
+                    "syllable": "ical",
+                    "phonemes": [
+                        "ɪ",
+                        "k",
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "word": "society",
+            "start_time": 6.54,
+            "stop_time": 7.1,
+            "syllables": [
+                {
+                    "syllable": "so",
+                    "phonemes": [
+                        "s",
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "ci",
+                    "phonemes": [
+                        "s",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "ety",
+                    "phonemes": [
+                        "ɛ",
+                        "t",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "word": "of",
+            "start_time": 7.1,
+            "stop_time": 7.22,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "word": "big-eyed",
+            "start_time": 7.22,
+            "stop_time": 7.72,
+            "syllables": [
+                {
+                    "syllable": "big",
+                    "phonemes": [
+                        "b",
+                        "ɪ",
+                        "g"
+                    ]
+                },
+                {
+                    "syllable": "eyed",
+                    "phonemes": [
+                        "aɪ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "word": "birds",
+            "start_time": 7.72,
+            "stop_time": 8.08,
+            "syllables": [
+                {
+                    "syllable": "birds",
+                    "phonemes": [
+                        "b",
+                        "ɝ",
+                        "d",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "word": "thrived",
+            "start_time": 8.08,
+            "stop_time": 8.66,
+            "syllables": [
+                {
+                    "syllable": "thrived",
+                    "phonemes": [
+                        "θ",
+                        "r",
+                        "aɪ",
+                        "v",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "word": "in",
+            "start_time": 8.66,
+            "stop_time": 8.76,
+            "syllables": [
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "word": "the",
+            "start_time": 8.76,
+            "stop_time": 8.86,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "word": "dense",
+            "start_time": 8.86,
+            "stop_time": 9.14,
+            "syllables": [
+                {
+                    "syllable": "dense",
+                    "phonemes": [
+                        "d",
+                        "ɛ",
+                        "n",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "word": "canopy.",
+            "start_time": 9.14,
+            "stop_time": 9.6,
+            "syllables": [
+                {
+                    "syllable": "can",
+                    "phonemes": [
+                        "k",
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "o",
+                    "phonemes": [
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "py",
+                    "phonemes": [
+                        "p",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "word": "Among",
+            "start_time": 9.6,
+            "stop_time": 10.77,
+            "syllables": [
+                {
+                    "syllable": "A",
+                    "phonemes": [
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "mong",
+                    "phonemes": [
+                        "m",
+                        "ʌ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "word": "these",
+            "start_time": 10.77,
+            "stop_time": 10.99,
+            "syllables": [
+                {
+                    "syllable": "these",
+                    "phonemes": [
+                        "ð",
+                        "i",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "word": "birds,",
+            "start_time": 10.99,
+            "stop_time": 11.39,
+            "syllables": [
+                {
+                    "syllable": "birds",
+                    "phonemes": [
+                        "b",
+                        "ɝ",
+                        "d",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "word": "an",
+            "start_time": 11.39,
+            "stop_time": 11.89,
+            "syllables": [
+                {
+                    "syllable": "an",
+                    "phonemes": [
+                        "æ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "word": "annual",
+            "start_time": 11.89,
+            "stop_time": 12.33,
+            "syllables": [
+                {
+                    "syllable": "an",
+                    "phonemes": [
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "nu",
+                    "phonemes": [
+                        "n",
+                        "u"
+                    ]
+                },
+                {
+                    "syllable": "al",
+                    "phonemes": [
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "word": "pie-making",
+            "start_time": 12.33,
+            "stop_time": 12.95,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "mak",
+                    "phonemes": [
+                        "m",
+                        "eɪ",
+                        "k"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "word": "contest",
+            "start_time": 12.95,
+            "stop_time": 13.47,
+            "syllables": [
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ɒ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "test",
+                    "phonemes": [
+                        "t",
+                        "ɛ",
+                        "s",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "word": "determined",
+            "start_time": 13.47,
+            "stop_time": 13.93,
+            "syllables": [
+                {
+                    "syllable": "de",
+                    "phonemes": [
+                        "d",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "ter",
+                    "phonemes": [
+                        "t",
+                        "ɝ"
+                    ]
+                },
+                {
+                    "syllable": "mined",
+                    "phonemes": [
+                        "m",
+                        "aɪ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "word": "the",
+            "start_time": 13.93,
+            "stop_time": 14.03,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "word": "social",
+            "start_time": 14.03,
+            "stop_time": 14.41,
+            "syllables": [
+                {
+                    "syllable": "so",
+                    "phonemes": [
+                        "s",
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "cial",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "word": "standing",
+            "start_time": 14.41,
+            "stop_time": 14.83,
+            "syllables": [
+                {
+                    "syllable": "stand",
+                    "phonemes": [
+                        "s",
+                        "t",
+                        "æ",
+                        "n",
+                        "d"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "word": "of",
+            "start_time": 14.83,
+            "stop_time": 14.93,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "word": "each",
+            "start_time": 15.13,
+            "stop_time": 15.13,
+            "syllables": [
+                {
+                    "syllable": "each",
+                    "phonemes": [
+                        "i",
+                        "ʧ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "word": "family.",
+            "start_time": 15.13,
+            "stop_time": 15.57,
+            "syllables": [
+                {
+                    "syllable": "fam",
+                    "phonemes": [
+                        "f",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "ily",
+                    "phonemes": [
+                        "ɪ",
+                        "l",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "word": "Those",
+            "start_time": 16.24,
+            "stop_time": 16.58,
+            "syllables": [
+                {
+                    "syllable": "Those",
+                    "phonemes": [
+                        "ð",
+                        "oʊ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "word": "who",
+            "start_time": 16.58,
+            "stop_time": 16.74,
+            "syllables": [
+                {
+                    "syllable": "who",
+                    "phonemes": [
+                        "h",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "word": "ranked",
+            "start_time": 16.74,
+            "stop_time": 17.07,
+            "syllables": [
+                {
+                    "syllable": "ranked",
+                    "phonemes": [
+                        "r",
+                        "æ",
+                        "ŋ",
+                        "k",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "word": "higher",
+            "start_time": 17.07,
+            "stop_time": 17.49,
+            "syllables": [
+                {
+                    "syllable": "high",
+                    "phonemes": [
+                        "h",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "er",
+                    "phonemes": [
+                        "ə",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "word": "gained",
+            "start_time": 17.49,
+            "stop_time": 18.11,
+            "syllables": [
+                {
+                    "syllable": "gained",
+                    "phonemes": [
+                        "g",
+                        "eɪ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "word": "access",
+            "start_time": 18.11,
+            "stop_time": 18.57,
+            "syllables": [
+                {
+                    "syllable": "ac",
+                    "phonemes": [
+                        "æ",
+                        "k"
+                    ]
+                },
+                {
+                    "syllable": "cess",
+                    "phonemes": [
+                        "s",
+                        "ɛ",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "word": "to",
+            "start_time": 18.57,
+            "stop_time": 18.69,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "word": "better",
+            "start_time": 18.69,
+            "stop_time": 18.97,
+            "syllables": [
+                {
+                    "syllable": "bet",
+                    "phonemes": [
+                        "b",
+                        "ɛ",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ter",
+                    "phonemes": [
+                        "t",
+                        "ə",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 47,
+            "word": "resources,",
+            "start_time": 18.97,
+            "stop_time": 19.65,
+            "syllables": [
+                {
+                    "syllable": "re",
+                    "phonemes": [
+                        "r",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "sour",
+                    "phonemes": [
+                        "s",
+                        "ɔ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ces",
+                    "phonemes": [
+                        "s",
+                        "ɛ",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "word": "education",
+            "start_time": 19.65,
+            "stop_time": 20.5,
+            "syllables": [
+                {
+                    "syllable": "ed",
+                    "phonemes": [
+                        "ɛ",
+                        "d"
+                    ]
+                },
+                {
+                    "syllable": "u",
+                    "phonemes": [
+                        "j",
+                        "u"
+                    ]
+                },
+                {
+                    "syllable": "ca",
+                    "phonemes": [
+                        "k",
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "tion",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 49,
+            "word": "and",
+            "start_time": 20.5,
+            "stop_time": 20.92,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "æ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "word": "opportunities.",
+            "start_time": 20.92,
+            "stop_time": 21.6,
+            "syllables": [
+                {
+                    "syllable": "op",
+                    "phonemes": [
+                        "ɒ",
+                        "p"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 51,
+            "word": "The",
+            "start_time": 22.33,
+            "stop_time": 22.49,
+            "syllables": [
+                {
+                    "syllable": "The",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 52,
+            "word": "competition",
+            "start_time": 22.49,
+            "stop_time": 23.11,
+            "syllables": [
+                {
+                    "syllable": "com",
+                    "phonemes": [
+                        "k",
+                        "ə",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "pe",
+                    "phonemes": [
+                        "p",
+                        "ɛ"
+                    ]
+                },
+                {
+                    "syllable": "ti",
+                    "phonemes": [
+                        "t",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "tion",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 53,
+            "word": "was",
+            "start_time": 23.11,
+            "stop_time": 23.28,
+            "syllables": [
+                {
+                    "syllable": "was",
+                    "phonemes": [
+                        "w",
+                        "ə",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 54,
+            "word": "fierce,",
+            "start_time": 23.28,
+            "stop_time": 23.72,
+            "syllables": [
+                {
+                    "syllable": "fierce",
+                    "phonemes": [
+                        "f",
+                        "ɪ",
+                        "ə",
+                        "r",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 55,
+            "word": "with",
+            "start_time": 23.72,
+            "stop_time": 24.2,
+            "syllables": [
+                {
+                    "syllable": "with",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "ð"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 56,
+            "word": "families",
+            "start_time": 24.2,
+            "stop_time": 24.64,
+            "syllables": [
+                {
+                    "syllable": "fam",
+                    "phonemes": [
+                        "f",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "i",
+                    "phonemes": [
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "lies",
+                    "phonemes": [
+                        "l",
+                        "aɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "word": "gathering",
+            "start_time": 24.64,
+            "stop_time": 25.14,
+            "syllables": [
+                {
+                    "syllable": "gath",
+                    "phonemes": [
+                        "g",
+                        "æ",
+                        "ð"
+                    ]
+                },
+                {
+                    "syllable": "er",
+                    "phonemes": [
+                        "ə",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 58,
+            "word": "in",
+            "start_time": 25.14,
+            "stop_time": 25.22,
+            "syllables": [
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 59,
+            "word": "the",
+            "start_time": 25.22,
+            "stop_time": 25.34,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 60,
+            "word": "Great",
+            "start_time": 25.34,
+            "stop_time": 25.6,
+            "syllables": [
+                {
+                    "syllable": "Great",
+                    "phonemes": [
+                        "g",
+                        "r",
+                        "eɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 61,
+            "word": "Banion",
+            "start_time": 25.6,
+            "stop_time": 26.04,
+            "syllables": [
+                {
+                    "syllable": "Ba",
+                    "phonemes": [
+                        "b",
+                        "æ"
+                    ]
+                },
+                {
+                    "syllable": "nion",
+                    "phonemes": [
+                        "n",
+                        "i",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 62,
+            "word": "Clearing",
+            "start_time": 26.04,
+            "stop_time": 26.42,
+            "syllables": [
+                {
+                    "syllable": "Clear",
+                    "phonemes": [
+                        "k",
+                        "l",
+                        "ɪ",
+                        "ə",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 63,
+            "word": "to",
+            "start_time": 26.42,
+            "stop_time": 26.54,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 64,
+            "word": "present",
+            "start_time": 26.54,
+            "stop_time": 26.86,
+            "syllables": [
+                {
+                    "syllable": "pre",
+                    "phonemes": [
+                        "p",
+                        "r",
+                        "ɛ"
+                    ]
+                },
+                {
+                    "syllable": "sent",
+                    "phonemes": [
+                        "s",
+                        "ɛ",
+                        "n",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 65,
+            "word": "their",
+            "start_time": 27.04,
+            "stop_time": 27.44,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 66,
+            "word": "pies.",
+            "start_time": 27.44,
+            "stop_time": 28.3,
+            "syllables": [
+                {
+                    "syllable": "pies",
+                    "phonemes": [
+                        "p",
+                        "aɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 67,
+            "word": "The",
+            "start_time": 28.3,
+            "stop_time": 28.66,
+            "syllables": [
+                {
+                    "syllable": "The",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 68,
+            "word": "goal",
+            "start_time": 28.66,
+            "stop_time": 28.82,
+            "syllables": [
+                {
+                    "syllable": "goal",
+                    "phonemes": [
+                        "g",
+                        "oʊ",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 69,
+            "word": "was",
+            "start_time": 28.82,
+            "stop_time": 28.96,
+            "syllables": [
+                {
+                    "syllable": "was",
+                    "phonemes": [
+                        "w",
+                        "ə",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 70,
+            "word": "to",
+            "start_time": 28.96,
+            "stop_time": 29.36,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 71,
+            "word": "impress",
+            "start_time": 29.36,
+            "stop_time": 29.52,
+            "syllables": [
+                {
+                    "syllable": "im",
+                    "phonemes": [
+                        "ɪ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "press",
+                    "phonemes": [
+                        "p",
+                        "r",
+                        "ɛ",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 72,
+            "word": "the",
+            "start_time": 29.52,
+            "stop_time": 29.96,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 73,
+            "word": "judges",
+            "start_time": 29.96,
+            "stop_time": 30.32,
+            "syllables": [
+                {
+                    "syllable": "judg",
+                    "phonemes": [
+                        "ʤ",
+                        "ʌ",
+                        "ʤ"
+                    ]
+                },
+                {
+                    "syllable": "es",
+                    "phonemes": [
+                        "ɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 74,
+            "word": "and",
+            "start_time": 30.32,
+            "stop_time": 30.64,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "æ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 75,
+            "word": "claim",
+            "start_time": 30.64,
+            "stop_time": 30.64,
+            "syllables": [
+                {
+                    "syllable": "claim",
+                    "phonemes": [
+                        "k",
+                        "l",
+                        "eɪ",
+                        "m"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 76,
+            "word": "the",
+            "start_time": 30.64,
+            "stop_time": 30.78,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 77,
+            "word": "esteemed",
+            "start_time": 30.78,
+            "stop_time": 31.19,
+            "syllables": [
+                {
+                    "syllable": "es",
+                    "phonemes": [
+                        "ɛ",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "teem",
+                    "phonemes": [
+                        "t",
+                        "i",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "ed",
+                    "phonemes": [
+                        "ɪ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 78,
+            "word": "title",
+            "start_time": 31.19,
+            "stop_time": 31.57,
+            "syllables": [
+                {
+                    "syllable": "ti",
+                    "phonemes": [
+                        "t",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "tle",
+                    "phonemes": [
+                        "t",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 79,
+            "word": "of",
+            "start_time": 31.57,
+            "stop_time": 31.65,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌv"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 80,
+            "word": "pie",
+            "start_time": 31.65,
+            "stop_time": 31.97,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 81,
+            "word": "master,",
+            "start_time": 31.97,
+            "stop_time": 32.35,
+            "syllables": [
+                {
+                    "syllable": "mas",
+                    "phonemes": [
+                        "m",
+                        "æ",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "ter",
+                    "phonemes": [
+                        "t",
+                        "ər"
+                    ]
+                },
+                {
+                    "syllable": ",",
+                    "phonemes": [
+                        ","
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 82,
+            "word": "which",
+            "start_time": 32.35,
+            "stop_time": 32.99,
+            "syllables": [
+                {
+                    "syllable": "which",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "tʃ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 83,
+            "word": "granted",
+            "start_time": 32.99,
+            "stop_time": 33.35,
+            "syllables": [
+                {
+                    "syllable": "grant",
+                    "phonemes": [
+                        "ɡ",
+                        "r",
+                        "æ",
+                        "n",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ed",
+                    "phonemes": [
+                        "ɪ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 84,
+            "word": "the",
+            "start_time": 33.35,
+            "stop_time": 33.47,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 85,
+            "word": "winners",
+            "start_time": 33.47,
+            "stop_time": 33.85,
+            "syllables": [
+                {
+                    "syllable": "win",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "ners",
+                    "phonemes": [
+                        "n",
+                        "ər",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 86,
+            "word": "the",
+            "start_time": 33.85,
+            "stop_time": 33.99,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 87,
+            "word": "most",
+            "start_time": 33.99,
+            "stop_time": 34.21,
+            "syllables": [
+                {
+                    "syllable": "most",
+                    "phonemes": [
+                        "m",
+                        "oʊ",
+                        "s",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 88,
+            "word": "luxurious",
+            "start_time": 34.21,
+            "stop_time": 34.87,
+            "syllables": [
+                {
+                    "syllable": "lux",
+                    "phonemes": [
+                        "l",
+                        "ʌ",
+                        "ɡ",
+                        "z"
+                    ]
+                },
+                {
+                    "syllable": "u",
+                    "phonemes": [
+                        "ʊ"
+                    ]
+                },
+                {
+                    "syllable": "ri",
+                    "phonemes": [
+                        "r",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "ous",
+                    "phonemes": [
+                        "əs"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 89,
+            "word": "nests",
+            "start_time": 34.87,
+            "stop_time": 35.33,
+            "syllables": [
+                {
+                    "syllable": "nests",
+                    "phonemes": [
+                        "n",
+                        "ɛ",
+                        "s",
+                        "t",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 90,
+            "word": "in",
+            "start_time": 35.33,
+            "stop_time": 35.45,
+            "syllables": [
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 91,
+            "word": "the",
+            "start_time": 35.45,
+            "stop_time": 35.57,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 92,
+            "word": "highest",
+            "start_time": 35.57,
+            "stop_time": 35.93,
+            "syllables": [
+                {
+                    "syllable": "high",
+                    "phonemes": [
+                        "h",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "est",
+                    "phonemes": [
+                        "ɛ",
+                        "s",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 93,
+            "word": "branches.",
+            "start_time": 35.93,
+            "stop_time": 36.39,
+            "syllables": [
+                {
+                    "syllable": "branch",
+                    "phonemes": [
+                        "b",
+                        "r",
+                        "æ",
+                        "n",
+                        "tʃ"
+                    ]
+                },
+                {
+                    "syllable": "es",
+                    "phonemes": [
+                        "ɪ",
+                        "z"
+                    ]
+                },
+                {
+                    "syllable": ".",
+                    "phonemes": [
+                        "."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 94,
+            "word": "One",
+            "start_time": 37.27,
+            "stop_time": 37.51,
+            "syllables": [
+                {
+                    "syllable": "One",
+                    "phonemes": [
+                        "w",
+                        "ʌ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 95,
+            "word": "day,",
+            "start_time": 37.51,
+            "stop_time": 37.75,
+            "syllables": [
+                {
+                    "syllable": "day",
+                    "phonemes": [
+                        "d",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": ",",
+                    "phonemes": [
+                        ","
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 96,
+            "word": "a",
+            "start_time": 37.75,
+            "stop_time": 38.25,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 97,
+            "word": "young",
+            "start_time": 38.25,
+            "stop_time": 38.63,
+            "syllables": [
+                {
+                    "syllable": "young",
+                    "phonemes": [
+                        "j",
+                        "ʌ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 98,
+            "word": "and",
+            "start_time": 38.63,
+            "stop_time": 38.81,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ænd"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 99,
+            "word": "ambitious",
+            "start_time": 38.81,
+            "stop_time": 39.35,
+            "syllables": [
+                {
+                    "syllable": "am",
+                    "phonemes": [
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "bi",
+                    "phonemes": [
+                        "b",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "tious",
+                    "phonemes": [
+                        "t",
+                        "ʃ",
+                        "u",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 100,
+            "word": "bird",
+            "start_time": 39.35,
+            "stop_time": 39.71,
+            "syllables": [
+                {
+                    "syllable": "bird",
+                    "phonemes": [
+                        "b",
+                        "ɝ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 101,
+            "word": "named",
+            "start_time": 39.71,
+            "stop_time": 39.95,
+            "syllables": [
+                {
+                    "syllable": "named",
+                    "phonemes": [
+                        "n",
+                        "eɪ",
+                        "m",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 102,
+            "word": "Sammy",
+            "start_time": 39.95,
+            "stop_time": 40.41,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 103,
+            "word": "fluttered",
+            "start_time": 40.41,
+            "stop_time": 40.99,
+            "syllables": [
+                {
+                    "syllable": "flut",
+                    "phonemes": [
+                        "f",
+                        "l",
+                        "ʌ",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "tered",
+                    "phonemes": [
+                        "t",
+                        "ɛ",
+                        "r",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 104,
+            "word": "through",
+            "start_time": 40.99,
+            "stop_time": 41.25,
+            "syllables": [
+                {
+                    "syllable": "through",
+                    "phonemes": [
+                        "θ",
+                        "r",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 105,
+            "word": "the",
+            "start_time": 41.25,
+            "stop_time": 41.37,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 106,
+            "word": "lush",
+            "start_time": 41.37,
+            "stop_time": 41.67,
+            "syllables": [
+                {
+                    "syllable": "lush",
+                    "phonemes": [
+                        "l",
+                        "ʌ",
+                        "ʃ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 107,
+            "word": "jungle",
+            "start_time": 41.67,
+            "stop_time": 42.09,
+            "syllables": [
+                {
+                    "syllable": "jun",
+                    "phonemes": [
+                        "dʒ",
+                        "ʌ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "gle",
+                    "phonemes": [
+                        "ɡ",
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 108,
+            "word": "carrying",
+            "start_time": 42.09,
+            "stop_time": 42.89,
+            "syllables": [
+                {
+                    "syllable": "car",
+                    "phonemes": [
+                        "k",
+                        "ɑ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ry",
+                    "phonemes": [
+                        "r",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 109,
+            "word": "a",
+            "start_time": 42.89,
+            "stop_time": 42.95,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 110,
+            "word": "piece",
+            "start_time": 42.95,
+            "stop_time": 43.17,
+            "syllables": [
+                {
+                    "syllable": "piece",
+                    "phonemes": [
+                        "p",
+                        "i",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 111,
+            "word": "of",
+            "start_time": 43.17,
+            "stop_time": 43.25,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 112,
+            "word": "pie",
+            "start_time": 43.25,
+            "stop_time": 43.59,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 113,
+            "word": "that",
+            "start_time": 43.59,
+            "stop_time": 43.71,
+            "syllables": [
+                {
+                    "syllable": "that",
+                    "phonemes": [
+                        "ð",
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 114,
+            "word": "he",
+            "start_time": 43.71,
+            "stop_time": 43.79,
+            "syllables": [
+                {
+                    "syllable": "he",
+                    "phonemes": [
+                        "hi"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 115,
+            "word": "had",
+            "start_time": 43.79,
+            "stop_time": 43.91,
+            "syllables": [
+                {
+                    "syllable": "had",
+                    "phonemes": [
+                        "h",
+                        "æ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 116,
+            "word": "spent",
+            "start_time": 43.91,
+            "stop_time": 44.21,
+            "syllables": [
+                {
+                    "syllable": "spent",
+                    "phonemes": [
+                        "s",
+                        "p",
+                        "ɛ",
+                        "n",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 117,
+            "word": "days",
+            "start_time": 44.21,
+            "stop_time": 44.63,
+            "syllables": [
+                {
+                    "syllable": "days",
+                    "phonemes": [
+                        "d",
+                        "eɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 118,
+            "word": "perfecting.",
+            "start_time": 44.63,
+            "stop_time": 45.23,
+            "syllables": [
+                {
+                    "syllable": "per",
+                    "phonemes": [
+                        "p",
+                        "ɝ"
+                    ]
+                },
+                {
+                    "syllable": "fect",
+                    "phonemes": [
+                        "f",
+                        "ɛ",
+                        "k",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 119,
+            "word": "His",
+            "start_time": 45.23,
+            "stop_time": 46.43,
+            "syllables": [
+                {
+                    "syllable": "His",
+                    "phonemes": [
+                        "h",
+                        "ɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 120,
+            "word": "best",
+            "start_time": 46.43,
+            "stop_time": 46.69,
+            "syllables": [
+                {
+                    "syllable": "best",
+                    "phonemes": [
+                        "b",
+                        "ɛ",
+                        "s",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 121,
+            "word": "friend",
+            "start_time": 46.69,
+            "stop_time": 46.93,
+            "syllables": [
+                {
+                    "syllable": "friend",
+                    "phonemes": [
+                        "f",
+                        "r",
+                        "ɛ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 122,
+            "word": "Daisy",
+            "start_time": 46.93,
+            "stop_time": 47.35,
+            "syllables": [
+                {
+                    "syllable": "Dai",
+                    "phonemes": [
+                        "d",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "sy",
+                    "phonemes": [
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 123,
+            "word": "was",
+            "start_time": 47.35,
+            "stop_time": 47.67,
+            "syllables": [
+                {
+                    "syllable": "was",
+                    "phonemes": [
+                        "w",
+                        "ʌ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 124,
+            "word": "waiting",
+            "start_time": 47.67,
+            "stop_time": 47.97,
+            "syllables": [
+                {
+                    "syllable": "wait",
+                    "phonemes": [
+                        "w",
+                        "eɪ",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 125,
+            "word": "for",
+            "start_time": 47.97,
+            "stop_time": 48.11,
+            "syllables": [
+                {
+                    "syllable": "for",
+                    "phonemes": [
+                        "f",
+                        "ɔ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 126,
+            "word": "him",
+            "start_time": 48.11,
+            "stop_time": 48.23,
+            "syllables": [
+                {
+                    "syllable": "him",
+                    "phonemes": [
+                        "h",
+                        "ɪ",
+                        "m"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 127,
+            "word": "at",
+            "start_time": 48.23,
+            "stop_time": 48.33,
+            "syllables": [
+                {
+                    "syllable": "at",
+                    "phonemes": [
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 128,
+            "word": "the",
+            "start_time": 48.33,
+            "stop_time": 48.43,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 129,
+            "word": "riverbank",
+            "start_time": 48.43,
+            "stop_time": 48.97,
+            "syllables": [
+                {
+                    "syllable": "riv",
+                    "phonemes": [
+                        "r",
+                        "ɪ",
+                        "v"
+                    ]
+                },
+                {
+                    "syllable": "er",
+                    "phonemes": [
+                        "ə",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "bank",
+                    "phonemes": [
+                        "b",
+                        "æ",
+                        "ŋ",
+                        "k"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 130,
+            "word": "She",
+            "start_time": 48.97,
+            "stop_time": 49.67,
+            "syllables": [
+                {
+                    "syllable": "She",
+                    "phonemes": [
+                        "ʃ",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 131,
+            "word": "had",
+            "start_time": 49.67,
+            "stop_time": 49.81,
+            "syllables": [
+                {
+                    "syllable": "had",
+                    "phonemes": [
+                        "h",
+                        "æ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 132,
+            "word": "a",
+            "start_time": 49.81,
+            "stop_time": 49.85,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 133,
+            "word": "boat",
+            "start_time": 49.85,
+            "stop_time": 50.09,
+            "syllables": [
+                {
+                    "syllable": "boat",
+                    "phonemes": [
+                        "b",
+                        "oʊ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 134,
+            "word": "ready",
+            "start_time": 50.09,
+            "stop_time": 50.33,
+            "syllables": [
+                {
+                    "syllable": "read",
+                    "phonemes": [
+                        "r",
+                        "ɛ",
+                        "d"
+                    ]
+                },
+                {
+                    "syllable": "y",
+                    "phonemes": [
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 135,
+            "word": "to",
+            "start_time": 50.33,
+            "stop_time": 50.45,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 136,
+            "word": "take",
+            "start_time": 50.45,
+            "stop_time": 50.65,
+            "syllables": [
+                {
+                    "syllable": "take",
+                    "phonemes": [
+                        "t",
+                        "eɪ",
+                        "k"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 137,
+            "word": "them",
+            "start_time": 50.65,
+            "stop_time": 50.81,
+            "syllables": [
+                {
+                    "syllable": "them",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "m"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 138,
+            "word": "to",
+            "start_time": 50.81,
+            "stop_time": 50.91,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 139,
+            "word": "the",
+            "start_time": 50.91,
+            "stop_time": 51.03,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 140,
+            "word": "Great",
+            "start_time": 51.03,
+            "stop_time": 51.29,
+            "syllables": [
+                {
+                    "syllable": "Great",
+                    "phonemes": [
+                        "ɡ",
+                        "r",
+                        "eɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 141,
+            "word": "Banyan",
+            "start_time": 51.29,
+            "stop_time": 51.71,
+            "syllables": [
+                {
+                    "syllable": "Ban",
+                    "phonemes": [
+                        "b",
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "yan",
+                    "phonemes": [
+                        "j",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 142,
+            "word": "clearing.",
+            "start_time": 51.71,
+            "stop_time": 52.13,
+            "syllables": [
+                {
+                    "syllable": "clear",
+                    "phonemes": [
+                        "k",
+                        "l",
+                        "ɪ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 143,
+            "word": "Hurry",
+            "start_time": 52.88,
+            "stop_time": 53.22,
+            "syllables": [
+                {
+                    "syllable": "Hur",
+                    "phonemes": [
+                        "h",
+                        "ʌ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ry",
+                    "phonemes": [
+                        "r",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 144,
+            "word": "up,",
+            "start_time": 53.22,
+            "stop_time": 53.38,
+            "syllables": [
+                {
+                    "syllable": "up",
+                    "phonemes": [
+                        "ʌ",
+                        "p"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 145,
+            "word": "Sammy,",
+            "start_time": 53.38,
+            "stop_time": 53.82,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 146,
+            "word": "we",
+            "start_time": 53.82,
+            "stop_time": 54.28,
+            "syllables": [
+                {
+                    "syllable": "we",
+                    "phonemes": [
+                        "w",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 147,
+            "word": "don't",
+            "start_time": 54.28,
+            "stop_time": 54.42,
+            "syllables": [
+                {
+                    "syllable": "don't",
+                    "phonemes": [
+                        "d",
+                        "oʊ",
+                        "n",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 148,
+            "word": "want",
+            "start_time": 54.42,
+            "stop_time": 54.54,
+            "syllables": [
+                {
+                    "syllable": "want",
+                    "phonemes": [
+                        "w",
+                        "ɑ",
+                        "n",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 149,
+            "word": "to",
+            "start_time": 54.54,
+            "stop_time": 54.6,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 150,
+            "word": "be",
+            "start_time": 54.6,
+            "stop_time": 54.72,
+            "syllables": [
+                {
+                    "syllable": "be",
+                    "phonemes": [
+                        "b",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 151,
+            "word": "late,",
+            "start_time": 54.72,
+            "stop_time": 55.02,
+            "syllables": [
+                {
+                    "syllable": "late",
+                    "phonemes": [
+                        "l",
+                        "eɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 152,
+            "word": "Daisy",
+            "start_time": 55.02,
+            "stop_time": 55.72,
+            "syllables": [
+                {
+                    "syllable": "Dai",
+                    "phonemes": [
+                        "d",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "sy",
+                    "phonemes": [
+                        "s",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 153,
+            "word": "said",
+            "start_time": 55.72,
+            "stop_time": 56.03,
+            "syllables": [
+                {
+                    "syllable": "said",
+                    "phonemes": [
+                        "s",
+                        "ɛ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 154,
+            "word": "her",
+            "start_time": 56.03,
+            "stop_time": 56.53,
+            "syllables": [
+                {
+                    "syllable": "her",
+                    "phonemes": [
+                        "h",
+                        "ɜ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 155,
+            "word": "voice",
+            "start_time": 56.53,
+            "stop_time": 56.81,
+            "syllables": [
+                {
+                    "syllable": "voice",
+                    "phonemes": [
+                        "v",
+                        "ɔɪ",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 156,
+            "word": "filled",
+            "start_time": 56.81,
+            "stop_time": 57.07,
+            "syllables": [
+                {
+                    "syllable": "filled",
+                    "phonemes": [
+                        "f",
+                        "ɪ",
+                        "l",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 157,
+            "word": "with",
+            "start_time": 57.07,
+            "stop_time": 57.19,
+            "syllables": [
+                {
+                    "syllable": "with",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "ð"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 158,
+            "word": "determination,",
+            "start_time": 57.19,
+            "stop_time": 57.99,
+            "syllables": [
+                {
+                    "syllable": "de",
+                    "phonemes": [
+                        "d",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "ter",
+                    "phonemes": [
+                        "t",
+                        "ər"
+                    ]
+                },
+                {
+                    "syllable": "mi",
+                    "phonemes": [
+                        "m",
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "na",
+                    "phonemes": [
+                        "n",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "tion",
+                    "phonemes": [
+                        "ʃ",
+                        "ən"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 159,
+            "word": "Sammy",
+            "start_time": 57.99,
+            "stop_time": 59.21,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 160,
+            "word": "hopped",
+            "start_time": 59.21,
+            "stop_time": 59.51,
+            "syllables": [
+                {
+                    "syllable": "hopped",
+                    "phonemes": [
+                        "h",
+                        "ɑ",
+                        "p",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 161,
+            "word": "onto",
+            "start_time": 59.51,
+            "stop_time": 59.73,
+            "syllables": [
+                {
+                    "syllable": "on",
+                    "phonemes": [
+                        "ɑ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 162,
+            "word": "the",
+            "start_time": 59.73,
+            "stop_time": 59.83,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 163,
+            "word": "boat",
+            "start_time": 59.83,
+            "stop_time": 60.11,
+            "syllables": [
+                {
+                    "syllable": "boat",
+                    "phonemes": [
+                        "b",
+                        "oʊ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 164,
+            "word": "and",
+            "start_time": 60.11,
+            "stop_time": 60.54,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "æ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 165,
+            "word": "off",
+            "start_time": 60.54,
+            "stop_time": 60.74,
+            "syllables": [
+                {
+                    "syllable": "off",
+                    "phonemes": [
+                        "ɑ",
+                        "f"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 166,
+            "word": "they",
+            "start_time": 60.74,
+            "stop_time": 60.9,
+            "syllables": [
+                {
+                    "syllable": "they",
+                    "phonemes": [
+                        "ð",
+                        "eɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 167,
+            "word": "went",
+            "start_time": 60.9,
+            "stop_time": 61.18,
+            "syllables": [
+                {
+                    "syllable": "went",
+                    "phonemes": [
+                        "w",
+                        "ɛ",
+                        "n",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 168,
+            "word": "sailing",
+            "start_time": 61.18,
+            "stop_time": 61.92,
+            "syllables": [
+                {
+                    "syllable": "sail",
+                    "phonemes": [
+                        "s",
+                        "eɪ",
+                        "l"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 169,
+            "word": "across",
+            "start_time": 61.92,
+            "stop_time": 62.26,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "cross",
+                    "phonemes": [
+                        "k",
+                        "r",
+                        "ɔ",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 170,
+            "word": "the",
+            "start_time": 62.26,
+            "stop_time": 62.42,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 171,
+            "word": "river,",
+            "start_time": 62.42,
+            "stop_time": 62.72,
+            "syllables": [
+                {
+                    "syllable": "riv",
+                    "phonemes": [
+                        "r",
+                        "ɪ",
+                        "v"
+                    ]
+                },
+                {
+                    "syllable": "er",
+                    "phonemes": [
+                        "ər"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 172,
+            "word": "discussing",
+            "start_time": 62.72,
+            "stop_time": 63.66,
+            "syllables": [
+                {
+                    "syllable": "dis",
+                    "phonemes": [
+                        "d",
+                        "ɪ",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "cus",
+                    "phonemes": [
+                        "k",
+                        "ʌ",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "sing",
+                    "phonemes": [
+                        "s",
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 173,
+            "word": "their",
+            "start_time": 63.66,
+            "stop_time": 63.82,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 174,
+            "word": "strategy",
+            "start_time": 63.82,
+            "stop_time": 64.36,
+            "syllables": [
+                {
+                    "syllable": "stra",
+                    "phonemes": [
+                        "s",
+                        "t",
+                        "r",
+                        "ɑ"
+                    ]
+                },
+                {
+                    "syllable": "tegy",
+                    "phonemes": [
+                        "t",
+                        "ɛ",
+                        "dʒ",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 175,
+            "word": "for",
+            "start_time": 64.36,
+            "stop_time": 64.5,
+            "syllables": [
+                {
+                    "syllable": "for",
+                    "phonemes": [
+                        "f",
+                        "ɔ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 176,
+            "word": "the",
+            "start_time": 64.5,
+            "stop_time": 64.62,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 177,
+            "word": "contest",
+            "start_time": 64.62,
+            "stop_time": 65.17,
+            "syllables": [
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ɑ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "test",
+                    "phonemes": [
+                        "t",
+                        "ɛ",
+                        "s",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 178,
+            "word": "and",
+            "start_time": 65.17,
+            "stop_time": 65.65,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ə",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 179,
+            "word": "the",
+            "start_time": 65.65,
+            "stop_time": 65.77,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 180,
+            "word": "potential",
+            "start_time": 65.77,
+            "stop_time": 66.21,
+            "syllables": [
+                {
+                    "syllable": "po",
+                    "phonemes": [
+                        "p",
+                        "əʊ"
+                    ]
+                },
+                {
+                    "syllable": "ten",
+                    "phonemes": [
+                        "t",
+                        "ɛ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "tial",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 181,
+            "word": "implications",
+            "start_time": 66.21,
+            "stop_time": 66.93,
+            "syllables": [
+                {
+                    "syllable": "im",
+                    "phonemes": [
+                        "ɪ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "pli",
+                    "phonemes": [
+                        "p",
+                        "l",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "ca",
+                    "phonemes": [
+                        "k",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "tions",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "n",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 182,
+            "word": "for",
+            "start_time": 66.93,
+            "stop_time": 67.09,
+            "syllables": [
+                {
+                    "syllable": "for",
+                    "phonemes": [
+                        "f",
+                        "ɔ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 183,
+            "word": "their",
+            "start_time": 67.09,
+            "stop_time": 67.27,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 184,
+            "word": "future",
+            "start_time": 67.27,
+            "stop_time": 67.75,
+            "syllables": [
+                {
+                    "syllable": "fu",
+                    "phonemes": [
+                        "f",
+                        "j",
+                        "u"
+                    ]
+                },
+                {
+                    "syllable": "ture",
+                    "phonemes": [
+                        "t",
+                        "ʃ",
+                        "ʊə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 185,
+            "word": "in",
+            "start_time": 67.75,
+            "stop_time": 67.83,
+            "syllables": [
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 186,
+            "word": "the",
+            "start_time": 67.83,
+            "stop_time": 67.95,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 187,
+            "word": "bird",
+            "start_time": 67.95,
+            "stop_time": 68.21,
+            "syllables": [
+                {
+                    "syllable": "bird",
+                    "phonemes": [
+                        "b",
+                        "ɜ",
+                        "rd"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 188,
+            "word": "hierarchy",
+            "start_time": 68.21,
+            "stop_time": 68.85,
+            "syllables": [
+                {
+                    "syllable": "hi",
+                    "phonemes": [
+                        "h",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "er",
+                    "phonemes": [
+                        "ə",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ar",
+                    "phonemes": [
+                        "ɑ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "chy",
+                    "phonemes": [
+                        "k",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 189,
+            "word": "as",
+            "start_time": 68.85,
+            "stop_time": 69.8,
+            "syllables": [
+                {
+                    "syllable": "as",
+                    "phonemes": [
+                        "ə",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 190,
+            "word": "they,",
+            "start_time": 69.8,
+            "stop_time": 69.98,
+            "syllables": [
+                {
+                    "syllable": "they,",
+                    "phonemes": [
+                        "ð",
+                        "eɪ",
+                        ","
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 191,
+            "word": "rowed",
+            "start_time": 69.98,
+            "stop_time": 70.4,
+            "syllables": [
+                {
+                    "syllable": "rowed",
+                    "phonemes": [
+                        "r",
+                        "oʊ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 192,
+            "word": "Daisy",
+            "start_time": 70.4,
+            "stop_time": 71.12,
+            "syllables": [
+                {
+                    "syllable": "Dai",
+                    "phonemes": [
+                        "d",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "sy",
+                    "phonemes": [
+                        "s",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 193,
+            "word": "shared",
+            "start_time": 71.12,
+            "stop_time": 71.42,
+            "syllables": [
+                {
+                    "syllable": "shared",
+                    "phonemes": [
+                        "ʃ",
+                        "ɛ",
+                        "r",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 194,
+            "word": "her",
+            "start_time": 71.42,
+            "stop_time": 71.54,
+            "syllables": [
+                {
+                    "syllable": "her",
+                    "phonemes": [
+                        "h",
+                        "ɜr"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 195,
+            "word": "psychology-based",
+            "start_time": 71.54,
+            "stop_time": 72.54,
+            "syllables": [
+                {
+                    "syllable": "psy",
+                    "phonemes": [
+                        "saɪ"
+                    ]
+                },
+                {
+                    "syllable": "cho",
+                    "phonemes": [
+                        "k",
+                        "ɑ"
+                    ]
+                },
+                {
+                    "syllable": "lo",
+                    "phonemes": [
+                        "l",
+                        "əʊ"
+                    ]
+                },
+                {
+                    "syllable": "gy",
+                    "phonemes": [
+                        "dʒ",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "based",
+                    "phonemes": [
+                        "beɪst"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 196,
+            "word": "pie",
+            "start_time": 72.54,
+            "stop_time": 72.9,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 197,
+            "word": "theory",
+            "start_time": 72.9,
+            "stop_time": 73.24,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "o",
+                    "phonemes": [
+                        "ɹ",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 198,
+            "word": "with",
+            "start_time": 73.24,
+            "stop_time": 73.4,
+            "syllables": [
+                {
+                    "syllable": "with",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "ð"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 199,
+            "word": "Sammy.",
+            "start_time": 73.4,
+            "stop_time": 73.82,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 200,
+            "word": "You",
+            "start_time": 74.53,
+            "stop_time": 74.71,
+            "syllables": [
+                {
+                    "syllable": "You",
+                    "phonemes": [
+                        "ju"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 201,
+            "word": "see,",
+            "start_time": 74.71,
+            "stop_time": 74.97,
+            "syllables": [
+                {
+                    "syllable": "see",
+                    "phonemes": [
+                        "s",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 202,
+            "word": "she",
+            "start_time": 74.97,
+            "stop_time": 75.43,
+            "syllables": [
+                {
+                    "syllable": "she",
+                    "phonemes": [
+                        "ʃ",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 203,
+            "word": "explained",
+            "start_time": 75.43,
+            "stop_time": 75.85,
+            "syllables": [
+                {
+                    "syllable": "ex",
+                    "phonemes": [
+                        "ɪ",
+                        "k",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "plained",
+                    "phonemes": [
+                        "p",
+                        "l",
+                        "eɪ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 204,
+            "word": "the",
+            "start_time": 75.85,
+            "stop_time": 76.49,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 205,
+            "word": "judges",
+            "start_time": 76.49,
+            "stop_time": 76.83,
+            "syllables": [
+                {
+                    "syllable": "judg",
+                    "phonemes": [
+                        "dʒ",
+                        "ʌ",
+                        "dʒ"
+                    ]
+                },
+                {
+                    "syllable": "es",
+                    "phonemes": [
+                        "ɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 206,
+            "word": "have",
+            "start_time": 76.83,
+            "stop_time": 76.97,
+            "syllables": [
+                {
+                    "syllable": "have",
+                    "phonemes": [
+                        "h",
+                        "æ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 207,
+            "word": "had",
+            "start_time": 76.97,
+            "stop_time": 77.11,
+            "syllables": [
+                {
+                    "syllable": "had",
+                    "phonemes": [
+                        "h",
+                        "æ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 208,
+            "word": "enough",
+            "start_time": 77.11,
+            "stop_time": 77.41,
+            "syllables": [
+                {
+                    "syllable": "en",
+                    "phonemes": [
+                        "ɛ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "ough",
+                    "phonemes": [
+                        "ʌf"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 209,
+            "word": "of",
+            "start_time": 77.41,
+            "stop_time": 77.49,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 210,
+            "word": "the",
+            "start_time": 77.49,
+            "stop_time": 77.61,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 211,
+            "word": "same",
+            "start_time": 77.61,
+            "stop_time": 77.91,
+            "syllables": [
+                {
+                    "syllable": "same",
+                    "phonemes": [
+                        "s",
+                        "eɪ",
+                        "m"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 212,
+            "word": "old",
+            "start_time": 77.91,
+            "stop_time": 78.11,
+            "syllables": [
+                {
+                    "syllable": "old",
+                    "phonemes": [
+                        "oʊ",
+                        "l",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 213,
+            "word": "fruit",
+            "start_time": 78.11,
+            "stop_time": 78.37,
+            "syllables": [
+                {
+                    "syllable": "fruit",
+                    "phonemes": [
+                        "f",
+                        "r",
+                        "uː",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 214,
+            "word": "pies.",
+            "start_time": 78.37,
+            "stop_time": 78.75,
+            "syllables": [
+                {
+                    "syllable": "pies",
+                    "phonemes": [
+                        "p",
+                        "aɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 215,
+            "word": "We",
+            "start_time": 78.75,
+            "stop_time": 79.47,
+            "syllables": [
+                {
+                    "syllable": "We",
+                    "phonemes": [
+                        "w",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 216,
+            "word": "need",
+            "start_time": 79.47,
+            "stop_time": 79.63,
+            "syllables": [
+                {
+                    "syllable": "need",
+                    "phonemes": [
+                        "n",
+                        "iː",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 217,
+            "word": "to",
+            "start_time": 79.63,
+            "stop_time": 79.71,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "uː"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 218,
+            "word": "make",
+            "start_time": 79.71,
+            "stop_time": 79.87,
+            "syllables": [
+                {
+                    "syllable": "make",
+                    "phonemes": [
+                        "m",
+                        "eɪ",
+                        "k"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 219,
+            "word": "a",
+            "start_time": 79.87,
+            "stop_time": 79.93,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 220,
+            "word": "pie",
+            "start_time": 79.93,
+            "stop_time": 80.29,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 221,
+            "word": "that",
+            "start_time": 80.29,
+            "stop_time": 80.43,
+            "syllables": [
+                {
+                    "syllable": "that",
+                    "phonemes": [
+                        "ð",
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 222,
+            "word": "captures",
+            "start_time": 80.43,
+            "stop_time": 80.91,
+            "syllables": [
+                {
+                    "syllable": "cap",
+                    "phonemes": [
+                        "k",
+                        "æ",
+                        "p"
+                    ]
+                },
+                {
+                    "syllable": "tures",
+                    "phonemes": [
+                        "tʃ",
+                        "ə",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 223,
+            "word": "their",
+            "start_time": 80.91,
+            "stop_time": 81.1,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛər"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 224,
+            "word": "hearts",
+            "start_time": 81.1,
+            "stop_time": 81.42,
+            "syllables": [
+                {
+                    "syllable": "hearts",
+                    "phonemes": [
+                        "h",
+                        "ɑː",
+                        "rts"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 225,
+            "word": "and",
+            "start_time": 81.42,
+            "stop_time": 81.9,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ænd"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 226,
+            "word": "conquers",
+            "start_time": 81.9,
+            "stop_time": 82.4,
+            "syllables": [
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ɑː",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "quers",
+                    "phonemes": [
+                        "k",
+                        "w",
+                        "ə",
+                        "rz"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 227,
+            "word": "the",
+            "start_time": 82.4,
+            "stop_time": 82.52,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 228,
+            "word": "canopy",
+            "start_time": 82.52,
+            "stop_time": 83.02,
+            "syllables": [
+                {
+                    "syllable": "can",
+                    "phonemes": [
+                        "k",
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "o",
+                    "phonemes": [
+                        "oʊ"
+                    ]
+                },
+                {
+                    "syllable": "py",
+                    "phonemes": [
+                        "p",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 229,
+            "word": "with",
+            "start_time": 83.02,
+            "stop_time": 83.18,
+            "syllables": [
+                {
+                    "syllable": "with",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "ð"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 230,
+            "word": "its",
+            "start_time": 83.18,
+            "stop_time": 83.34,
+            "syllables": [
+                {
+                    "syllable": "its",
+                    "phonemes": [
+                        "ɪ",
+                        "ts"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 231,
+            "word": "taste",
+            "start_time": 83.34,
+            "stop_time": 83.78,
+            "syllables": [
+                {
+                    "syllable": "taste",
+                    "phonemes": [
+                        "t",
+                        "eɪ",
+                        "s",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 232,
+            "word": "and",
+            "start_time": 83.78,
+            "stop_time": 83.88,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ə",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 233,
+            "word": "creativity",
+            "start_time": 83.88,
+            "stop_time": 84.58,
+            "syllables": [
+                {
+                    "syllable": "cre",
+                    "phonemes": [
+                        "k",
+                        "ɹ",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "tiv",
+                    "phonemes": [
+                        "t",
+                        "ɪ",
+                        "v"
+                    ]
+                },
+                {
+                    "syllable": "i",
+                    "phonemes": [
+                        "ˈt",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "ty",
+                    "phonemes": [
+                        "t",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 234,
+            "word": "Sammy",
+            "start_time": 85.65,
+            "stop_time": 86.07,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 235,
+            "word": "agreed",
+            "start_time": 86.07,
+            "stop_time": 86.41,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "greed",
+                    "phonemes": [
+                        "ɡ",
+                        "ɹ",
+                        "iː",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 236,
+            "word": "whole-heartedly",
+            "start_time": 86.41,
+            "stop_time": 87.11,
+            "syllables": [
+                {
+                    "syllable": "whole",
+                    "phonemes": [
+                        "h",
+                        "oʊ",
+                        "l"
+                    ]
+                },
+                {
+                    "syllable": "heart",
+                    "phonemes": [
+                        "h",
+                        "ɑ",
+                        "ɹ",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ed",
+                    "phonemes": [
+                        "ɛ",
+                        "d"
+                    ]
+                },
+                {
+                    "syllable": "ly",
+                    "phonemes": [
+                        "l",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 237,
+            "word": "and",
+            "start_time": 87.11,
+            "stop_time": 87.53,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ə",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 238,
+            "word": "they",
+            "start_time": 87.53,
+            "stop_time": 87.69,
+            "syllables": [
+                {
+                    "syllable": "they",
+                    "phonemes": [
+                        "ð",
+                        "eɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 239,
+            "word": "continued",
+            "start_time": 87.69,
+            "stop_time": 88.19,
+            "syllables": [
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ə",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "tin",
+                    "phonemes": [
+                        "t",
+                        "ɪ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "ued",
+                    "phonemes": [
+                        "j",
+                        "u",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 240,
+            "word": "to",
+            "start_time": 88.19,
+            "stop_time": 88.29,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 241,
+            "word": "brainstorm",
+            "start_time": 88.29,
+            "stop_time": 88.85,
+            "syllables": [
+                {
+                    "syllable": "brain",
+                    "phonemes": [
+                        "b",
+                        "ɹ",
+                        "eɪ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "storm",
+                    "phonemes": [
+                        "s",
+                        "t",
+                        "ɔ",
+                        "ɹ",
+                        "m"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 242,
+            "word": "ideas",
+            "start_time": 88.85,
+            "stop_time": 89.37,
+            "syllables": [
+                {
+                    "syllable": "i",
+                    "phonemes": [
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "deas",
+                    "phonemes": [
+                        "d",
+                        "iː",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 243,
+            "word": "for",
+            "start_time": 89.37,
+            "stop_time": 89.53,
+            "syllables": [
+                {
+                    "syllable": "for",
+                    "phonemes": [
+                        "f",
+                        "ɔ",
+                        "ɹ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 244,
+            "word": "their",
+            "start_time": 89.53,
+            "stop_time": 89.75,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "ɹ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 245,
+            "word": "unique",
+            "start_time": 89.75,
+            "stop_time": 90.14,
+            "syllables": [
+                {
+                    "syllable": "u",
+                    "phonemes": [
+                        "j",
+                        "u"
+                    ]
+                },
+                {
+                    "syllable": "nique",
+                    "phonemes": [
+                        "n",
+                        "iː",
+                        "k"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 246,
+            "word": "pie",
+            "start_time": 90.14,
+            "stop_time": 90.38,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 247,
+            "word": "creation",
+            "start_time": 90.38,
+            "stop_time": 90.92,
+            "syllables": [
+                {
+                    "syllable": "cre",
+                    "phonemes": [
+                        "k",
+                        "ɹ",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ˈt",
+                        "i"
+                    ]
+                },
+                {
+                    "syllable": "tion",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 248,
+            "word": "Upon",
+            "start_time": 90.92,
+            "stop_time": 91.98,
+            "syllables": [
+                {
+                    "syllable": "Up",
+                    "phonemes": [
+                        "ʌ",
+                        "p"
+                    ]
+                },
+                {
+                    "syllable": "on",
+                    "phonemes": [
+                        "ˈɑ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 249,
+            "word": "arriving",
+            "start_time": 91.98,
+            "stop_time": 92.42,
+            "syllables": [
+                {
+                    "syllable": "ar",
+                    "phonemes": [
+                        "ə",
+                        "ɹ"
+                    ]
+                },
+                {
+                    "syllable": "riv",
+                    "phonemes": [
+                        "ɹ",
+                        "ɪ",
+                        "v"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 250,
+            "word": "at",
+            "start_time": 92.42,
+            "stop_time": 92.5,
+            "syllables": [
+                {
+                    "syllable": "at",
+                    "phonemes": [
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 251,
+            "word": "the",
+            "start_time": 92.5,
+            "stop_time": 92.62,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 252,
+            "word": "Great",
+            "start_time": 92.62,
+            "stop_time": 92.92,
+            "syllables": [
+                {
+                    "syllable": "Great",
+                    "phonemes": [
+                        "ɡ",
+                        "r",
+                        "eɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 253,
+            "word": "Banyan",
+            "start_time": 92.92,
+            "stop_time": 93.32,
+            "syllables": [
+                {
+                    "syllable": "Ban",
+                    "phonemes": [
+                        "b",
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "yan",
+                    "phonemes": [
+                        "j",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 254,
+            "word": "Clearing,",
+            "start_time": 93.32,
+            "stop_time": 93.74,
+            "syllables": [
+                {
+                    "syllable": "Clear",
+                    "phonemes": [
+                        "k",
+                        "l",
+                        "ɪ",
+                        "r"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 255,
+            "word": "Sammy",
+            "start_time": 93.74,
+            "stop_time": 94.5,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 256,
+            "word": "and",
+            "start_time": 94.5,
+            "stop_time": 94.6,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ə",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 257,
+            "word": "Daisy",
+            "start_time": 94.6,
+            "stop_time": 94.96,
+            "syllables": [
+                {
+                    "syllable": "Dai",
+                    "phonemes": [
+                        "d",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "sy",
+                    "phonemes": [
+                        "z",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 258,
+            "word": "presented",
+            "start_time": 94.96,
+            "stop_time": 95.4,
+            "syllables": [
+                {
+                    "syllable": "pre",
+                    "phonemes": [
+                        "p",
+                        "r",
+                        "ɛ"
+                    ]
+                },
+                {
+                    "syllable": "sent",
+                    "phonemes": [
+                        "s",
+                        "ɛ",
+                        "n",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ed",
+                    "phonemes": [
+                        "ɛ",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 259,
+            "word": "their",
+            "start_time": 95.4,
+            "stop_time": 95.58,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛr"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 260,
+            "word": "innovative",
+            "start_time": 95.58,
+            "stop_time": 96.1,
+            "syllables": [
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "no",
+                    "phonemes": [
+                        "n",
+                        "oʊ"
+                    ]
+                },
+                {
+                    "syllable": "va",
+                    "phonemes": [
+                        "v",
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "tive",
+                    "phonemes": [
+                        "t",
+                        "ɪ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 261,
+            "word": "pie,",
+            "start_time": 96.1,
+            "stop_time": 96.46,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 262,
+            "word": "which",
+            "start_time": 96.46,
+            "stop_time": 97.03,
+            "syllables": [
+                {
+                    "syllable": "which",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "tʃ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 263,
+            "word": "combined",
+            "start_time": 97.03,
+            "stop_time": 97.55,
+            "syllables": [
+                {
+                    "syllable": "com",
+                    "phonemes": [
+                        "k",
+                        "ə",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "bined",
+                    "phonemes": [
+                        "b",
+                        "aɪ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 264,
+            "word": "exotic",
+            "start_time": 97.55,
+            "stop_time": 98.07,
+            "syllables": [
+                {
+                    "syllable": "ex",
+                    "phonemes": [
+                        "ɛ",
+                        "k",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "ot",
+                    "phonemes": [
+                        "ɑ",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ic",
+                    "phonemes": [
+                        "ɪ",
+                        "k"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 265,
+            "word": "fruits",
+            "start_time": 98.07,
+            "stop_time": 98.45,
+            "syllables": [
+                {
+                    "syllable": "fruits",
+                    "phonemes": [
+                        "f",
+                        "r",
+                        "u",
+                        "t",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 266,
+            "word": "with",
+            "start_time": 98.45,
+            "stop_time": 98.79,
+            "syllables": [
+                {
+                    "syllable": "with",
+                    "phonemes": [
+                        "w",
+                        "ɪ",
+                        "ð"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 267,
+            "word": "a",
+            "start_time": 98.79,
+            "stop_time": 98.85,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 268,
+            "word": "hint",
+            "start_time": 98.85,
+            "stop_time": 99.09,
+            "syllables": [
+                {
+                    "syllable": "hint",
+                    "phonemes": [
+                        "h",
+                        "ɪ",
+                        "n",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 269,
+            "word": "of",
+            "start_time": 99.09,
+            "stop_time": 99.19,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌv"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 270,
+            "word": "jungle",
+            "start_time": 99.19,
+            "stop_time": 99.57,
+            "syllables": [
+                {
+                    "syllable": "jun",
+                    "phonemes": [
+                        "dʒ",
+                        "ʌ",
+                        "ŋ"
+                    ]
+                },
+                {
+                    "syllable": "gle",
+                    "phonemes": [
+                        "ɡ",
+                        "ə",
+                        "l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 271,
+            "word": "spice.",
+            "start_time": 99.57,
+            "stop_time": 99.95,
+            "syllables": [
+                {
+                    "syllable": "spice",
+                    "phonemes": [
+                        "s",
+                        "p",
+                        "aɪ",
+                        "s"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 272,
+            "word": "The",
+            "start_time": 100.73,
+            "stop_time": 100.9,
+            "syllables": [
+                {
+                    "syllable": "The",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 273,
+            "word": "judges",
+            "start_time": 100.9,
+            "stop_time": 101.32,
+            "syllables": [
+                {
+                    "syllable": "jud",
+                    "phonemes": [
+                        "dʒ",
+                        "ʌ",
+                        "dʒ"
+                    ]
+                },
+                {
+                    "syllable": "ges",
+                    "phonemes": [
+                        "dʒ",
+                        "ɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 274,
+            "word": "were",
+            "start_time": 101.32,
+            "stop_time": 101.5,
+            "syllables": [
+                {
+                    "syllable": "were",
+                    "phonemes": [
+                        "w",
+                        "ər"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 275,
+            "word": "intrigued",
+            "start_time": 101.5,
+            "stop_time": 102.08,
+            "syllables": [
+                {
+                    "syllable": "in",
+                    "phonemes": [
+                        "ɪ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "tri",
+                    "phonemes": [
+                        "t",
+                        "r",
+                        "aɪ"
+                    ]
+                },
+                {
+                    "syllable": "gued",
+                    "phonemes": [
+                        "ɡ",
+                        "j",
+                        "u",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 276,
+            "word": "by",
+            "start_time": 102.08,
+            "stop_time": 102.24,
+            "syllables": [
+                {
+                    "syllable": "by",
+                    "phonemes": [
+                        "b",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 277,
+            "word": "the",
+            "start_time": 102.24,
+            "stop_time": 102.4,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 278,
+            "word": "unusual",
+            "start_time": 102.4,
+            "stop_time": 102.94,
+            "syllables": [
+                {
+                    "syllable": "un",
+                    "phonemes": [
+                        "ʌ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "u",
+                    "phonemes": [
+                        "juː"
+                    ]
+                },
+                {
+                    "syllable": "su",
+                    "phonemes": [
+                        "ʒ",
+                        "ʊ",
+                        "əl"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 279,
+            "word": "flavours",
+            "start_time": 102.94,
+            "stop_time": 103.5,
+            "syllables": [
+                {
+                    "syllable": "fla",
+                    "phonemes": [
+                        "f",
+                        "l",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "vours",
+                    "phonemes": [
+                        "v",
+                        "ɔː",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 280,
+            "word": "and",
+            "start_time": 103.5,
+            "stop_time": 103.62,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ænd"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 281,
+            "word": "creativity",
+            "start_time": 103.62,
+            "stop_time": 104.34,
+            "syllables": [
+                {
+                    "syllable": "cre",
+                    "phonemes": [
+                        "k",
+                        "r",
+                        "iː"
+                    ]
+                },
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "ti",
+                    "phonemes": [
+                        "t",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "vi",
+                    "phonemes": [
+                        "v",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "ty",
+                    "phonemes": [
+                        "t",
+                        "iː"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 282,
+            "word": "of",
+            "start_time": 104.34,
+            "stop_time": 104.44,
+            "syllables": [
+                {
+                    "syllable": "of",
+                    "phonemes": [
+                        "ʌ",
+                        "v"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 283,
+            "word": "the",
+            "start_time": 104.44,
+            "stop_time": 104.58,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 284,
+            "word": "delectable",
+            "start_time": 104.58,
+            "stop_time": 105.1,
+            "syllables": [
+                {
+                    "syllable": "de",
+                    "phonemes": [
+                        "d",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "lec",
+                    "phonemes": [
+                        "l",
+                        "ɛ",
+                        "k"
+                    ]
+                },
+                {
+                    "syllable": "ta",
+                    "phonemes": [
+                        "b",
+                        "əl"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 285,
+            "word": "desert.",
+            "start_time": 105.1,
+            "stop_time": 105.54,
+            "syllables": [
+                {
+                    "syllable": "des",
+                    "phonemes": [
+                        "d",
+                        "ɛ",
+                        "s"
+                    ]
+                },
+                {
+                    "syllable": "ert",
+                    "phonemes": [
+                        "ɜː",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": ".",
+                    "phonemes": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 286,
+            "word": "As",
+            "start_time": 105.54,
+            "stop_time": 106.28,
+            "syllables": [
+                {
+                    "syllable": "As",
+                    "phonemes": [
+                        "æ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 287,
+            "word": "the",
+            "start_time": 106.28,
+            "stop_time": 106.44,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 288,
+            "word": "results",
+            "start_time": 106.44,
+            "stop_time": 106.84,
+            "syllables": [
+                {
+                    "syllable": "re",
+                    "phonemes": [
+                        "r",
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "sults",
+                    "phonemes": [
+                        "s",
+                        "ʌ",
+                        "l",
+                        "ts"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 289,
+            "word": "were",
+            "start_time": 106.84,
+            "stop_time": 106.98,
+            "syllables": [
+                {
+                    "syllable": "were",
+                    "phonemes": [
+                        "w",
+                        "ər"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 290,
+            "word": "announced,",
+            "start_time": 106.98,
+            "stop_time": 107.47,
+            "syllables": [
+                {
+                    "syllable": "an",
+                    "phonemes": [
+                        "ən"
+                    ]
+                },
+                {
+                    "syllable": "nounced",
+                    "phonemes": [
+                        "naʊnst"
+                    ]
+                },
+                {
+                    "syllable": ",",
+                    "phonemes": [
+                        ","
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 291,
+            "word": "Sammy",
+            "start_time": 107.47,
+            "stop_time": 108.33,
+            "syllables": [
+                {
+                    "syllable": "Sam",
+                    "phonemes": [
+                        "s",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "my",
+                    "phonemes": [
+                        "m",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 292,
+            "word": "and",
+            "start_time": 108.33,
+            "stop_time": 108.45,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "æ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 293,
+            "word": "Daisy",
+            "start_time": 108.45,
+            "stop_time": 108.83,
+            "syllables": [
+                {
+                    "syllable": "Dai",
+                    "phonemes": [
+                        "d",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "sy",
+                    "phonemes": [
+                        "s",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 294,
+            "word": "held",
+            "start_time": 108.83,
+            "stop_time": 109.09,
+            "syllables": [
+                {
+                    "syllable": "held",
+                    "phonemes": [
+                        "h",
+                        "ɛ",
+                        "l",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 295,
+            "word": "their",
+            "start_time": 109.09,
+            "stop_time": 109.27,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 296,
+            "word": "breath,",
+            "start_time": 109.27,
+            "stop_time": 109.59,
+            "syllables": [
+                {
+                    "syllable": "breath",
+                    "phonemes": [
+                        "b",
+                        "r",
+                        "ɛ",
+                        "θ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 297,
+            "word": "waiting",
+            "start_time": 109.59,
+            "stop_time": 110.29,
+            "syllables": [
+                {
+                    "syllable": "wait",
+                    "phonemes": [
+                        "w",
+                        "eɪ",
+                        "t"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 298,
+            "word": "to",
+            "start_time": 110.29,
+            "stop_time": 110.43,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 299,
+            "word": "hear",
+            "start_time": 110.43,
+            "stop_time": 110.63,
+            "syllables": [
+                {
+                    "syllable": "hear",
+                    "phonemes": [
+                        "h",
+                        "ɪ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 300,
+            "word": "their",
+            "start_time": 110.63,
+            "stop_time": 110.79,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 301,
+            "word": "fate.",
+            "start_time": 110.79,
+            "stop_time": 111.11,
+            "syllables": [
+                {
+                    "syllable": "fate",
+                    "phonemes": [
+                        "f",
+                        "eɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 302,
+            "word": "To",
+            "start_time": 112.03,
+            "stop_time": 112.17,
+            "syllables": [
+                {
+                    "syllable": "To",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 303,
+            "word": "their",
+            "start_time": 112.17,
+            "stop_time": 112.35,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 304,
+            "word": "delight,",
+            "start_time": 112.35,
+            "stop_time": 112.75,
+            "syllables": [
+                {
+                    "syllable": "de",
+                    "phonemes": [
+                        "d",
+                        "ɛ"
+                    ]
+                },
+                {
+                    "syllable": "light",
+                    "phonemes": [
+                        "l",
+                        "aɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 305,
+            "word": "their",
+            "start_time": 112.75,
+            "stop_time": 113.29,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛ",
+                        "r"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 306,
+            "word": "creation",
+            "start_time": 113.29,
+            "stop_time": 113.81,
+            "syllables": [
+                {
+                    "syllable": "cre",
+                    "phonemes": [
+                        "k",
+                        "r",
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "eɪ"
+                    ]
+                },
+                {
+                    "syllable": "tion",
+                    "phonemes": [
+                        "ʃ",
+                        "ə",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 307,
+            "word": "was",
+            "start_time": 113.81,
+            "stop_time": 113.97,
+            "syllables": [
+                {
+                    "syllable": "was",
+                    "phonemes": [
+                        "w",
+                        "ə",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 308,
+            "word": "crowned",
+            "start_time": 113.97,
+            "stop_time": 114.39,
+            "syllables": [
+                {
+                    "syllable": "crowned",
+                    "phonemes": [
+                        "k",
+                        "r",
+                        "aʊ",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 309,
+            "word": "as",
+            "start_time": 114.39,
+            "stop_time": 114.59,
+            "syllables": [
+                {
+                    "syllable": "as",
+                    "phonemes": [
+                        "æ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 310,
+            "word": "the",
+            "start_time": 114.59,
+            "stop_time": 115.11,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 311,
+            "word": "pie",
+            "start_time": 115.11,
+            "stop_time": 115.53,
+            "syllables": [
+                {
+                    "syllable": "pie",
+                    "phonemes": [
+                        "p",
+                        "aɪ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 312,
+            "word": "that",
+            "start_time": 115.53,
+            "stop_time": 115.71,
+            "syllables": [
+                {
+                    "syllable": "that",
+                    "phonemes": [
+                        "ð",
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 313,
+            "word": "conquered",
+            "start_time": 115.71,
+            "stop_time": 116.13,
+            "syllables": [
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ɑ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "quered",
+                    "phonemes": [
+                        "kw",
+                        "ɛr",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 314,
+            "word": "the",
+            "start_time": 116.13,
+            "stop_time": 116.23,
+            "syllables": [
+                {
+                    "syllable": "the",
+                    "phonemes": [
+                        "ð",
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 315,
+            "word": "canopy,",
+            "start_time": 116.23,
+            "stop_time": 116.71,
+            "syllables": [
+                {
+                    "syllable": "can",
+                    "phonemes": [
+                        "k",
+                        "æ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "o",
+                    "phonemes": [
+                        "ɑ"
+                    ]
+                },
+                {
+                    "syllable": "py",
+                    "phonemes": [
+                        "p",
+                        "i"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 316,
+            "word": "securing",
+            "start_time": 116.71,
+            "stop_time": 117.85,
+            "syllables": [
+                {
+                    "syllable": "se",
+                    "phonemes": [
+                        "s",
+                        "ə"
+                    ]
+                },
+                {
+                    "syllable": "cur",
+                    "phonemes": [
+                        "k",
+                        "j",
+                        "ʊr"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 317,
+            "word": "a",
+            "start_time": 117.85,
+            "stop_time": 117.91,
+            "syllables": [
+                {
+                    "syllable": "a",
+                    "phonemes": [
+                        "ə"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 318,
+            "word": "bright",
+            "start_time": 117.91,
+            "stop_time": 118.27,
+            "syllables": [
+                {
+                    "syllable": "bright",
+                    "phonemes": [
+                        "b",
+                        "r",
+                        "aɪ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 319,
+            "word": "future",
+            "start_time": 118.27,
+            "stop_time": 118.69,
+            "syllables": [
+                {
+                    "syllable": "fu",
+                    "phonemes": [
+                        "f",
+                        "j",
+                        "u"
+                    ]
+                },
+                {
+                    "syllable": "ture",
+                    "phonemes": [
+                        "t",
+                        "ʃ",
+                        "ər"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 320,
+            "word": "for",
+            "start_time": 118.69,
+            "stop_time": 118.81,
+            "syllables": [
+                {
+                    "syllable": "for",
+                    "phonemes": [
+                        "f",
+                        "ɔr"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 321,
+            "word": "their",
+            "start_time": 118.81,
+            "stop_time": 118.99,
+            "syllables": [
+                {
+                    "syllable": "their",
+                    "phonemes": [
+                        "ð",
+                        "ɛr"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 322,
+            "word": "families",
+            "start_time": 118.99,
+            "stop_time": 119.52,
+            "syllables": [
+                {
+                    "syllable": "fam",
+                    "phonemes": [
+                        "f",
+                        "æ",
+                        "m"
+                    ]
+                },
+                {
+                    "syllable": "i",
+                    "phonemes": [
+                        "ɪ"
+                    ]
+                },
+                {
+                    "syllable": "lies",
+                    "phonemes": [
+                        "l",
+                        "aɪ",
+                        "z"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 323,
+            "word": "and",
+            "start_time": 119.52,
+            "stop_time": 119.8,
+            "syllables": [
+                {
+                    "syllable": "and",
+                    "phonemes": [
+                        "ə",
+                        "n",
+                        "d"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 324,
+            "word": "proving",
+            "start_time": 119.8,
+            "stop_time": 120.18,
+            "syllables": [
+                {
+                    "syllable": "prov",
+                    "phonemes": [
+                        "p",
+                        "r",
+                        "ɑ",
+                        "v"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 325,
+            "word": "that",
+            "start_time": 120.18,
+            "stop_time": 120.34,
+            "syllables": [
+                {
+                    "syllable": "that",
+                    "phonemes": [
+                        "ð",
+                        "æ",
+                        "t"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 326,
+            "word": "unconventional",
+            "start_time": 120.34,
+            "stop_time": 121.18,
+            "syllables": [
+                {
+                    "syllable": "un",
+                    "phonemes": [
+                        "ʌ",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "con",
+                    "phonemes": [
+                        "k",
+                        "ə",
+                        "n"
+                    ]
+                },
+                {
+                    "syllable": "ven",
+                    "phonemes": [
+                        "v",
+                        "ən"
+                    ]
+                },
+                {
+                    "syllable": "tion",
+                    "phonemes": [
+                        "t",
+                        "ʃ",
+                        "ən"
+                    ]
+                },
+                {
+                    "syllable": "al",
+                    "phonemes": [
+                        "əl"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 327,
+            "word": "thinking",
+            "start_time": 121.18,
+            "stop_time": 121.6,
+            "syllables": [
+                {
+                    "syllable": "think",
+                    "phonemes": [
+                        "θ",
+                        "ɪ",
+                        "ŋ",
+                        "k"
+                    ]
+                },
+                {
+                    "syllable": "ing",
+                    "phonemes": [
+                        "ɪ",
+                        "ŋ"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 328,
+            "word": "can",
+            "start_time": 121.6,
+            "stop_time": 121.8,
+            "syllables": [
+                {
+                    "syllable": "can",
+                    "phonemes": [
+                        "k",
+                        "æ",
+                        "n"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 329,
+            "word": "lead",
+            "start_time": 121.8,
+            "stop_time": 122,
+            "syllables": [
+                {
+                    "syllable": "lead",
+                    "phonemes": [
+                        "l",
+                        "ɛd"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 330,
+            "word": "to",
+            "start_time": 122,
+            "stop_time": 122.12,
+            "syllables": [
+                {
+                    "syllable": "to",
+                    "phonemes": [
+                        "t",
+                        "u"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 331,
+            "word": "success",
+            "start_time": 122.12,
+            "stop_time": 122.64,
+            "syllables": [
+              {
+                "syllable": "suc",
+                "phonemes": ["s", "ə", "k"]
+              },
+              {
+                "syllable": "cess",
+                "phonemes": ["s", "ɛ", "s"]
+              }
+            ]
+          },
+          {
+            "id": 332,
+            "word": "in",
+            "start_time": 122.64,
+            "stop_time": 122.78,
+            "syllables": [
+              {
+                "syllable": "in",
+                "phonemes": ["ɪ", "n"]
+              }
+            ]
+          },
+          {
+            "id": 333,
+            "word": "even",
+            "start_time": 122.78,
+            "stop_time": 123.04,
+            "syllables": [
+              {
+                "syllable": "e",
+                "phonemes": ["i"]
+              },
+              {
+                "syllable": "ven",
+                "phonemes": ["v", "ə", "n"]
+              }
+            ]
+          },
+          {
+            "id": 334,
+            "word": "the",
+            "start_time": 123.04,
+            "stop_time": 123.16,
+            "syllables": [
+              {
+                "syllable": "the",
+                "phonemes": ["ð", "ə"]
+              }
+            ]
+          },
+          {
+            "id": 335,
+            "word": "most",
+            "start_time": 123.16,
+            "stop_time": 123.38,
+            "syllables": [
+              {
+                "syllable": "most",
+                "phonemes": ["m", "oʊ", "s", "t"]
+              }
+            ]
+          },
+          {
+            "id": 336,
+            "word": "traditional",
+            "start_time": 123.38,
+            "stop_time": 123.98,
+            "syllables": [
+              {
+                "syllable": "tra",
+                "phonemes": ["t", "ɹ", "æ"]
+              },
+              {
+                "syllable": "di",
+                "phonemes": ["d", "ɪ"]
+              },
+              {
+                "syllable": "tion",
+                "phonemes": ["ʃ", "ə", "n"]
+              },
+              {
+                "syllable": "al",
+                "phonemes": ["ə", "l"]
+              }
+            ]
+          },
+          {
+            "id": 331,
+            "word": "societies.",
+            "start_time": 123.98,
+            "stop_time": 124.46,
+            "syllables": [
+              {
+                "syllable": "so",
+                "phonemes": ["s", "oʊ"]
+              },
+              {
+                "syllable": "ci",
+                "phonemes": ["s", "ɪ"]
+              },
+              {
+                "syllable": "e",
+                "phonemes": ["ɪ"]
+              },
+              {
+                "syllable": "ties",
+                "phonemes": ["t", "aɪ", "z"]
+              }
+            ]
+          }
+    ]
+}
