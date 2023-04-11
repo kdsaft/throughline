@@ -12,7 +12,8 @@ init();
 
 function resetStory() {
     const wordElements = document.querySelectorAll('[class^="word-"]');
-    const numOfSpans = document.getElementById("word-number").value;
+    const numOfSpans = document.getElementById("word-number").value; 
+    const wordsRead = parseInt(document.getElementById("word-number").value);
 
     // Reset the counter to 1
     document.getElementById("word-number").value = 1;
@@ -23,7 +24,7 @@ function resetStory() {
     }
 
     // Loop through all the words and set their style to "unread"
-    for (let i = 1; i <= numOfSpans; i++) {
+    for (let i = 1; i <= wordsRead; i++) {
         const wordElement = document.querySelector(".word-" + i);
         updateWordStyle(wordElement, "unread");
     }
