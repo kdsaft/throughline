@@ -92,7 +92,7 @@ function playCurrentWord() {
   
     setTimeout(() => {
       audioPlayer.pause();
-    }, (10) * 1000);
+    }, (stop_time - start_time) * 1000);
   }
   
 
