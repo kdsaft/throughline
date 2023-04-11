@@ -87,12 +87,12 @@ function playCurrentWord() {
 
     const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
   
-    audioPlayer.currentTime = start_time;
+    audioPlayer.currentTime = 0;
     audioPlayer.play();
   
     setTimeout(() => {
       audioPlayer.pause();
-    }, (stop_time - start_time) * 1000);
+    }, (10) * 1000);
   }
   
 
