@@ -1,4 +1,14 @@
-// Button in Bubble functions
+// Opening code
+
+let jsonData;
+let pathElement;
+let animateElements;
+
+init();
+
+
+
+// Button for Bubble functions
 
 function resetStory() {
     const wordElements = document.querySelectorAll('[class^="word-"]');
@@ -71,6 +81,20 @@ function readNextWord() {
     }
 }
 
+function playCurrentWord() {
+    const audioPlayer = document.getElementById("audio-player");
+    const wordId = parseInt(document.getElementById("word-number").value);
+
+    const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
+  
+    audioPlayer.currentTime = start_time;
+    audioPlayer.play();
+  
+    setTimeout(() => {
+      audioPlayer.pause();
+    }, (stop_time - start_time) * 1000);
+  }
+  
 
 // Funcation to update the display
 function updateWordStyle(wordElement, mode) {
@@ -108,7 +132,6 @@ function getWordProperties(wordNumber) {
 
     return { wordElement, startX, endX, yCoordinate };
 }
-
 
 function drawLine(svg, startX, endX, yCoordinate, color) {
     let length = endX - startX;
@@ -168,6 +191,42 @@ function hideLine(pathElement) {
     pathElement.style.display = 'none';
 }
 
-let pathElement;
-let animateElements;
+// Funcations to handle JSON data
 
+async function init() {
+    jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
+  }
+
+  
+async function readJsonFile(url) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error reading JSON file:", error);
+    }
+  }
+  
+
+  function getStartAndEndTime(data, id) {
+    const word = data.words.find((word) => word.id === id);
+    if (word) {
+      return {
+        start_time: word.start_time,
+        stop_time: word.stop_time,
+      };
+    } else {
+      console.error("Word not found with given ID:", id);
+    }
+  }
+  
+  function getSyllablesAsString(data, id) {
+    const word = data.words.find((word) => word.id === id);
+    if (word) {
+      return word.syllables.map((syllable) => syllable.syllable).join("-");
+    } else {
+      console.error("Word not found with given ID:", id);
+    }
+  }
+  
