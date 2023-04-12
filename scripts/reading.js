@@ -102,7 +102,7 @@ function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
   const wordId = parseInt(document.getElementById("word-number").value);
 
-  const wordElement = document.querySelector(`.word-${wordId}`);
+  const wordElement = document.querySelector(`[class^="word-"][class$="${wordId}"]`);
   if (!wordElement) {
     console.error('Word not found');
     return;
@@ -114,16 +114,9 @@ function playCurrentLine() {
     return;
   }
 
-  const firstWordElement = lineElement.querySelector('.word-X');
-  const lastWordElement = lineElement.querySelector('.word-X:last-child');
-
-  if (!firstWordElement || !lastWordElement) {
-    console.error('Words not found in the line');
-    return;
-  }
-
-  const firstWordId = parseInt(firstWordElement.className.match(/word-(\d+)/)[1]);
-  const lastWordId = parseInt(lastWordElement.className.match(/word-(\d+)/)[1]);
+  const wordElements = Array.from(lineElement.querySelectorAll('[class^="word-"]'));
+  const firstWordId = parseInt(wordElements[0].className.match(/word-(\d+)/)[1]);
+  const lastWordId = parseInt(wordElements[wordElements.length - 1].className.match(/word-(\d+)/)[1]);
 
   const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordId);
   const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordId);
@@ -136,6 +129,7 @@ function playCurrentLine() {
     resetPlaybutton();
   }, (endTime - startTime) * 1000);
 }
+
 
 
 // Funcation to update the display
