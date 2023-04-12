@@ -136,6 +136,24 @@ function playCurrentLine() {
   }, (endTime - startTime) * 1000);
 }
 
+function logSiblingClasses() {
+  const wordId = parseInt(document.getElementById("word-number").value);
+
+  const wordElement = document.querySelector(`[class^="word-"][class$="${wordId}"]`);
+  if (!wordElement) {
+    console.error('Word not found');
+    return;
+  }
+
+  const siblings = getSiblings(wordElement);
+  siblings.forEach((sibling) => console.log(sibling.className));
+}
+
+function getSiblings(element) {
+  const parentElement = element.parentNode;
+  const siblings = Array.from(parentElement.children).filter((child) => child !== element);
+  return siblings;
+}
 
 
 // Funcation to update the display
