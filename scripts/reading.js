@@ -3,7 +3,6 @@
 let jsonData;
 let pathElement;
 let animateElements;
-const audioPlayer = document.getElementById("audio-player");
 
 
 init();
@@ -85,6 +84,7 @@ function readNextWord() {
 }
 
 function playCurrentWord() {
+  const audioPlayer = document.getElementById("audio-player");
     const wordId = parseInt(document.getElementById("word-number").value);
 
     const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
