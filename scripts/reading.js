@@ -102,7 +102,7 @@ function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
   const wordId = parseInt(document.getElementById("word-number").value);
 
-  const wordElement = document.querySelector(`[class^="word-"][class$="${wordId}"]`);
+  const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
   if (!wordElement) {
     console.error('Word not found');
     return;
