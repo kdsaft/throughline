@@ -103,7 +103,7 @@ function playCurrentLine() {
   const wordId = parseInt(document.getElementById("word-number").value);
 
   const wordElement = document.querySelector(`.word-${wordId}`);
-  if (!wordElement) {
+  if (!wordElement) {ƒ
     console.error('Word not found');
     return;
   }
