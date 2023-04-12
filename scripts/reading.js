@@ -138,8 +138,9 @@ function playCurrentLine() {
 
 function logSiblingClasses() {
   const wordId = parseInt(document.getElementById("word-number").value);
+  console.log(wordId);
 
-  const wordElement = document.querySelector(`[class^="word-"][class$="${wordId}"]`);
+  const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
   if (!wordElement) {
     console.error('Word not found');
     return;
@@ -148,6 +149,7 @@ function logSiblingClasses() {
   const siblings = getSiblings(wordElement);
   siblings.forEach((sibling) => console.log(sibling.className));
 }
+
 
 function getSiblings(element) {
   const parentElement = element.parentNode;
