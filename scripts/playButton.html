@@ -1,0 +1,49 @@
+<script>
+    const playButton = document.getElementById("playButton");
+    const buttonIcon = document.getElementById("buttonIcon");
+
+    let timer = null;
+    let longPress = false;
+
+    playButton.addEventListener("mousedown", () => {
+        longPress = false;
+        buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-word.svg";
+        timer = setTimeout(() => {
+            longPress = true;
+            buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-line.svg";
+        }, 1000); // 1000ms = 1 second, you can adjust this value for long press duration
+    });
+
+    playButton.addEventListener("mouseup", () => {
+        clearTimeout(timer);
+        if (longPress) {
+            playCurrentWord();
+            longPress = false;
+        } else {
+            playCurrentWord();
+        }
+        buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-normal.svg";
+    });
+
+    function resetPlaybutton() {
+        buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-normal.svg";
+    };
+
+</script>
+
+<style>
+    button {
+        width: 64px;
+        height: 64px;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <button id="playButton">
+        <img id="buttonIcon" src="https://kdsaft.github.io/throughline/icons/Read-normal.svg" width="64" height="64" />
+    </button>
+</body>
