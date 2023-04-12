@@ -125,7 +125,7 @@ function getWordProperties(wordNumber) {
         punctuationWidth = endPunctuationRect.width - punctuationStartWidth;
     }
 
-    const startX = wordRect.left - contentRect.left - 2 - punctuationStartWidth;
+    const startX = wordRect.left - contentRect.left - 2 + punctuationStartWidth;
     const endX = wordRect.right - contentRect.left - 1 - punctuationWidth;
 
     // Determine yCoordinate based on the parent div's class
