@@ -111,14 +111,21 @@ function getWordProperties(wordNumber) {
     const contentRect = document.querySelector(".content").getBoundingClientRect();
 
     // Get the position and size of the punctuation element (if exists)
-    const punctuation = wordElement.querySelector('.punctuation');
+    const endPunctuation = wordElement.querySelector('.endPunctuation');
+    const startPunctuation = wordElement.querySelector('.startPunctuation');
+
+    let punctuationStartWidth = 0;
+    if (startPunctuation) {
+      const startPunctuationRect = startPunctuation.getBoundingClientRect();
+      punctuationStartWidth = startPunctuationRect.width;
+  }
     let punctuationWidth = 0;
-    if (punctuation) {
-        const punctuationRect = punctuation.getBoundingClientRect();
-        punctuationWidth = punctuationRect.width;
+    if (endPunctuation) {
+        const endPunctuationRect = endPunctuation.getBoundingClientRect();
+        punctuationWidth = endPunctuationRect.width - punctuationStartWidth;
     }
 
-    const startX = wordRect.left - contentRect.left - 2;
+    const startX = wordRect.left - contentRect.left - 2 - punctuationStartWidth;
     const endX = wordRect.right - contentRect.left - 1 - punctuationWidth;
 
     // Determine yCoordinate based on the parent div's class
