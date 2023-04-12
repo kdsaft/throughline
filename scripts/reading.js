@@ -98,6 +98,45 @@ function playCurrentWord() {
   }, (stop_time - start_time) * 1000);
 }
 
+function playCurrentLine() {
+  const audioPlayer = document.getElementById("audio-player");
+  const wordId = parseInt(document.getElementById("word-number").value);
+
+  const wordElement = document.querySelector(`.word-${wordId}`);
+  if (!wordElement) {
+    console.error('Word not found');
+    return;
+  }
+
+  const lineElement = wordElement.closest('.text-line');
+  if (!lineElement) {
+    console.error('Line not found');
+    return;
+  }
+
+  const firstWordElement = lineElement.querySelector('.word-X');
+  const lastWordElement = lineElement.querySelector('.word-X:last-child');
+
+  if (!firstWordElement || !lastWordElement) {
+    console.error('Words not found in the line');
+    return;
+  }
+
+  const firstWordId = parseInt(firstWordElement.className.match(/word-(\d+)/)[1]);
+  const lastWordId = parseInt(lastWordElement.className.match(/word-(\d+)/)[1]);
+
+  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordId);
+  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordId);
+
+  audioPlayer.currentTime = startTime;
+  audioPlayer.play();
+
+  setTimeout(() => {
+    audioPlayer.pause();
+    resetPlaybutton();
+  }, (endTime - startTime) * 1000);
+}
+
 
 // Funcation to update the display
 function updateWordStyle(wordElement, mode) {
