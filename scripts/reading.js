@@ -115,8 +115,14 @@ function playCurrentLine() {
   }
 
   const wordElements = Array.from(lineElement.querySelectorAll('[class^="word-"]'));
-  const firstWordId = parseInt(wordElements[0].className.match(/word-(\d+)/)[1]);
-  const lastWordId = parseInt(wordElements[wordElements.length - 1].className.match(/word-(\d+)/)[1]);
+  const sortedWordElements = wordElements.sort((a, b) => {
+    const aId = parseInt(a.className.match(/word-(\d+)/)[1]);
+    const bId = parseInt(b.className.match(/word-(\d+)/)[1]);
+    return aId - bId;
+  });
+
+  const firstWordId = parseInt(sortedWordElements[0].className.match(/word-(\d+)/)[1]);
+  const lastWordId = parseInt(sortedWordElements[sortedWordElements.length - 1].className.match(/word-(\d+)/)[1]);
 
   const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordId);
   const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordId);
