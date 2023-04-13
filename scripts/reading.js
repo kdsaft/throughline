@@ -151,6 +151,8 @@ function playCurrentLine() {
 
 
 
+
+
   audioPlayer.currentTime = startTime;
   audioPlayer.play();
 
