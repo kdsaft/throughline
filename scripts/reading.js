@@ -146,15 +146,15 @@ function logSiblingClasses() {
     return;
   }
 
-  const siblings = getSiblings(wordElement);
-  siblings.forEach((sibling) => console.log(sibling.className));
+  const wordElements = getWordsOnCurrentLine(wordElement);
+  wordElements.forEach((wordElement) => console.log(wordElement.className));
 }
 
 
-function getSiblings(element) {
+function getWordsOnCurrentLine(element) {
   const parentElement = element.parentNode;
-  const siblings = Array.from(parentElement.children).filter((child) => child !== element);
-  return siblings;
+  const words = Array.from(parentElement.children);
+  return words;
 }
 
 
