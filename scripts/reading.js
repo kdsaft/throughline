@@ -151,29 +151,13 @@ function playCurrentLine() {
 
 
 
-
-
-  audioPlayer.currentTime = startTime;
-  audioPlayer.play();
-
-  setTimeout(() => {
-    audioPlayer.pause();
-    resetPlaybutton();
-
-    // Reset word elements to their original classes
-    wordElements.forEach((element, index) => {
-      element.className = originalClasses[index];
-    });
-  }, (endTime - startTime) * 1000);
-}
-
-
-
 function getWordsOnCurrentLine(element) {
   const parentElement = element.parentNode;
   const words = Array.from(parentElement.children);
   return words;
 }
+
+
 
 
 function getWordsOnCurrentLine(element) {
