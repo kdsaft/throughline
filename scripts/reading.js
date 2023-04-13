@@ -101,7 +101,6 @@ function playCurrentWord() {
 function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
   const wordId = parseInt(document.getElementById("word-number").value);
-  console.log(wordId);
 
   const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
   if (!wordElement) {
@@ -110,12 +109,18 @@ function playCurrentLine() {
   }
 
   const wordElements = getWordsOnCurrentLine(wordElement);
-  wordElements.forEach((wordElement) => console.log(wordElement.className));
 
-  /** 
+  const firstWordId = () => {
+    const className = wordElements[0].className;
+    const wordNumber = className.split('-')[1].split(' ')[0];
+    return parseInt(wordNumber);
+  };
 
-  const firstWordId = parseInt(sortedWordElements[0].className.match(/word-(\d+)/)[1]);
-  const lastWordId = parseInt(sortedWordElements[sortedWordElements.length - 1].className.match(/word-(\d+)/)[1]);
+  const lastWordId = () => {
+    const className = wordElements[wordElements.length - 1].className;
+    const wordNumber = className.split('-')[1].split(' ')[0];
+    return parseInt(wordNumber);
+  };
 
   const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordId);
   const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordId);
@@ -127,7 +132,6 @@ function playCurrentLine() {
     audioPlayer.pause();
     resetPlaybutton();
   }, (endTime - startTime) * 1000);
-  */
 }
 
 function logSiblingClasses() {
