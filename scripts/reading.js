@@ -110,20 +110,14 @@ function playCurrentLine() {
 
   const wordElements = getWordsOnCurrentLine(wordElement);
 
-  const firstWordId = () => {
-    const className = wordElements[0].className;
-    const wordNumber = className.split('-')[1].split(' ')[0];
-    return parseInt(wordNumber);
-  };
+  const firstWordClassName = wordElements[0].className;
+  const firstWordNumber = parseInt(firstWordClassName.split('-')[1].split(' ')[0]);
 
-  const lastWordId = () => {
-    const className = wordElements[wordElements.length - 1].className;
-    const wordNumber = className.split('-')[1].split(' ')[0];
-    return parseInt(wordNumber);
-  };
+  const lastWordClassName = wordElements[wordElements.length - 1].className;
+  const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
 
-  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordId);
-  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordId);
+  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordNumber);
+  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordNumber);
 
   audioPlayer.currentTime = startTime;
   audioPlayer.play();
@@ -132,6 +126,12 @@ function playCurrentLine() {
     audioPlayer.pause();
     resetPlaybutton();
   }, (endTime - startTime) * 1000);
+}
+
+function getWordsOnCurrentLine(element) {
+  const parentElement = element.parentNode;
+  const words = Array.from(parentElement.children);
+  return words;
 }
 
 function logSiblingClasses() {
