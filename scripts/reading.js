@@ -101,6 +101,7 @@ function playCurrentWord() {
 function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
   const wordId = parseInt(document.getElementById("word-number").value);
+  console.log(wordId);
 
   const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
   if (!wordElement) {
@@ -108,18 +109,10 @@ function playCurrentLine() {
     return;
   }
 
-  const lineElement = wordElement.closest('.text-line');
-  if (!lineElement) {
-    console.error('Line not found');
-    return;
-  }
+  const wordElements = getWordsOnCurrentLine(wordElement);
+  wordElements.forEach((wordElement) => console.log(wordElement.className));
 
-  const wordElements = Array.from(lineElement.querySelectorAll('[class^="word-"]'));
-  const sortedWordElements = wordElements.sort((a, b) => {
-    const aId = parseInt(a.className.match(/word-(\d+)/)[1]);
-    const bId = parseInt(b.className.match(/word-(\d+)/)[1]);
-    return aId - bId;
-  });
+  /** 
 
   const firstWordId = parseInt(sortedWordElements[0].className.match(/word-(\d+)/)[1]);
   const lastWordId = parseInt(sortedWordElements[sortedWordElements.length - 1].className.match(/word-(\d+)/)[1]);
@@ -134,6 +127,7 @@ function playCurrentLine() {
     audioPlayer.pause();
     resetPlaybutton();
   }, (endTime - startTime) * 1000);
+  */
 }
 
 function logSiblingClasses() {
