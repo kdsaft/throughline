@@ -128,12 +128,28 @@ function playCurrentLine() {
 
     setTimeout(() => {
       element.className = element.className.replace(/(unread|trouble|read)/, 'reading');
-    }, (startWordTime - startTime) * 1000);
+    }, (startWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 1
 
     setTimeout(() => {
       element.className = element.className.replace('reading', 'read');
-    }, (endWordTime - startTime) * 1000);
+    }, (endWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 2
   });
+
+  audioPlayer.currentTime = startTime;
+  audioPlayer.play();
+
+  setTimeout(() => {
+    audioPlayer.pause();
+    resetPlaybutton();
+
+    // Reset word elements to their original classes
+    wordElements.forEach((element, index) => {
+      element.className = originalClasses[index];
+    });
+  }, (endTime - startTime) * 1000);
+}
+
+
 
   audioPlayer.currentTime = startTime;
   audioPlayer.play();
