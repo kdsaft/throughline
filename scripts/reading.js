@@ -185,13 +185,13 @@ async function playCurrentWord() {
   }
 
   // Use the timeupdate event to pause the audio when the current time reaches the end time
-  audioPlayer.addEventListener("seeked", function () {
+  audioPlayer.addEventListener("timeupdate", function () {
     console.log("Current time:", audioPlayer.currentTime);
     if (audioPlayer.currentTime >= stop_time) {
       audioPlayer.pause();
       resetPlaybutton();
       // Remove the event listener to avoid multiple listeners being added
-      audioPlayer.removeEventListener("seeked", arguments.callee);
+      audioPlayer.removeEventListener("timeupdate", arguments.callee);
     }
   });
 }
