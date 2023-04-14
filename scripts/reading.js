@@ -3,10 +3,29 @@
 let jsonData;
 let pathElement;
 let animateElements;
+let audioLoaded = false;
 
 
-init();
+initTimingData();
+window.addEventListener('DOMContentLoaded', initAudioPlayer);
 
+
+// Preload audio
+function initAudioPlayer() {
+  const audioPlayer = document.getElementById("audio-player");
+
+  audioPlayer.addEventListener('canplay', () => {
+    console.log('The audio can be played, but it might need to buffer more data for smooth playback');
+  });
+
+  audioPlayer.addEventListener('canplaythrough', () => {
+    console.log('The audio can be played without interruption');
+    audioLoaded = true; // Set the audioLoaded flag to true
+  });
+
+  // Load the audio to trigger the canplay and canplaythrough events
+  audioPlayer.load();
+}
 
 
 // Button for Bubble functions
@@ -89,13 +108,22 @@ function playCurrentWord() {
 
   const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
 
-  audioPlayer.currentTime = start_time;
-  audioPlayer.play();
+  // Check if the audio is loaded and ready for playback
+  if (audioLoaded) {
+    if (audioPlayer.fastSeek) {
+      audioPlayer.fastSeek(start_time);
+    } else {
+      audioPlayer.currentTime = start_time;
+    }
+    audioPlayer.play();
 
-  setTimeout(() => {
-    audioPlayer.pause();
-    resetPlaybutton();
-  }, (stop_time - start_time) * 1000);
+    setTimeout(() => {
+      audioPlayer.pause();
+      resetPlaybutton();
+    }, (stop_time - start_time) * 1000);
+  } else {
+    console.log('Audio is not loaded yet');
+  }
 }
 
 function playCurrentLine() {
@@ -147,31 +175,30 @@ function playCurrentLine() {
   });
 
 
+  // Play the audio
+  // Check if the audio is loaded and ready for playback
+  if (audioLoaded) {
+    if (audioPlayer.fastSeek) {
+      audioPlayer.fastSeek(start_time);
+    } else {
+      audioPlayer.currentTime = start_time;
+    }
+    audioPlayer.play();
 
-  audioPlayer.currentTime = startTime;
-  audioPlayer.play();
+    setTimeout(() => {
+      audioPlayer.pause();
+      resetPlaybutton();
 
-  setTimeout(() => {
-    audioPlayer.pause();
-    resetPlaybutton();
-
-    // Reset word elements to their original classes
-    pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
-    wordElements.forEach((element, index) => {
-      element.className = originalClasses[index];
-    });
-  }, (endTime - startTime) * 1000);
+      // Reset word elements to their original classes
+      pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
+      wordElements.forEach((element, index) => {
+        element.className = originalClasses[index];
+      });
+    }, (endTime - startTime) * 1000);
+  } else {
+    console.log('Audio is not loaded yet');
+  }
 }
-
-
-
-function getWordsOnCurrentLine(element) {
-  const parentElement = element.parentNode;
-  const words = Array.from(parentElement.children);
-  return words;
-}
-
-
 
 
 function getWordsOnCurrentLine(element) {
@@ -285,7 +312,7 @@ function hideLine(pathElement) {
 
 // Funcations to handle JSON data
 
-async function init() {
+async function initTimingData() {
   jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
 }
 
