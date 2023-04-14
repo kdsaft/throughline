@@ -9,7 +9,14 @@
     let timer = null;
     let longPress = false;
 
-    playButton.addEventListener("mousedown", () => {
+    playButton.addEventListener("mousedown", handleInteractionStart);
+    playButton.addEventListener("mouseup", handelInteractionEnd);
+
+    playButton.addEventListener("touchstart", handleInteractionStart);
+    playButton.addEventListener("touchend", handelInteractionEnd);
+
+    function handleInteractionStart(event){
+        event.preventDefault(); // Prevent default behavior like scrolling on touch devices
         longPress = false;
         buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-word.svg";
         buttonDownSound.play();
@@ -24,20 +31,19 @@
             document.getElementById('longPressFeedback').style.display = 'block';
             playCurrentLine();
         }, 1500); // 1000ms = 1 second, you can adjust this value for long press duration
-    });
+    };
 
-    playButton.addEventListener("mouseup", () => {
+    function handelInteractionEnd(event) {
+        event.preventDefault(); // Prevent default behavior like scrolling on touch devices
         clearTimeout(timer);
         buttonIcon.setAttribute('aria-label', 'Play button');
-
-
 
         if (longPress) {
             longPress = false;
         } else {
             playCurrentWord();
         }
-    });
+    };
 
     function resetPlaybutton() {
         buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-normal.svg";

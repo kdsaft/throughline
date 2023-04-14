@@ -170,10 +170,15 @@ async function playCurrentWord() {
     }, 1000);
   }
 
-  setTimeout(() => {
-    audioPlayer.pause();
-    resetPlaybutton();
-  }, (stop_time - start_time) * 1000);
+  // Use the timeupdate event to pause the audio when the current time reaches the end time
+  audioPlayer.addEventListener("timeupdate", function () {
+    if (audioPlayer.currentTime >= stop_time) {
+      audioPlayer.pause();
+      resetPlaybutton();
+      // Remove the event listener to avoid multiple listeners being added
+      audioPlayer.removeEventListener("timeupdate", arguments.callee);
+    }
+  });
 }
 
 
