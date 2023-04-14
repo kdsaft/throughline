@@ -127,9 +127,9 @@ function playCurrentLine() {
 
 
   // Set the first element to 'reading' and all other elements to 'unread'
-  wordElements[0].className = wordElements[0].className.replace(/(unread|trouble|read|reading)/, 'reading');
+  updateWordStyle(wordElements[0], 'reading');
   for (let i = 1; i < wordElements.length; i++) {
-    wordElements[i].className = wordElements[i].className.replace(/(unread|trouble|read|reading)/, 'unread');
+    updateWordStyle(wordElements[i], 'unread');
   }
 
   wordElements.forEach((element, index) => {
@@ -137,12 +137,12 @@ function playCurrentLine() {
     const endWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).stop_time;
 
     setTimeout(() => {
-      element.className = element.className.replace(/(unread|trouble|read)/, 'reading');
-    }, (startWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 1
+      updateWordStyle(element, 'reading');
+    }, (startWordTime - startTime) * 1000);
 
     setTimeout(() => {
-      element.className = element.className.replace('reading', 'read');
-    }, (endWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 2
+      updateWordStyle(element, 'read');
+    }, (endWordTime - startTime) * 1000);
   });
 
 
