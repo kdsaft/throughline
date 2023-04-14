@@ -36,6 +36,13 @@ function initAudioPlayer() {
     audioLoaded = true; // Set the audioLoaded flag to true
   });
 
+    // Add the loadeddata event listener
+    audioPlayer.addEventListener('loadeddata', () => {
+      console.log('The audio data has been loaded');
+      audioLoaded = true; // Set the audioLoaded flag to true
+    });
+  
+
   // Load the audio to trigger the canplay and canplaythrough events
   audioPlayer.load();
 }
@@ -152,6 +159,10 @@ async function playCurrentWord() {
 
   console.log("Start time:", start_time);
   console.log("Stop time:", stop_time);
+  if (!audioLoaded) {
+    console.log('Audio is not loaded yet');
+    return;
+  }
 
   if (audioPlayer.fastSeek) {
     audioPlayer.fastSeek(start_time);
@@ -170,17 +181,17 @@ async function playCurrentWord() {
       } catch (error) {
         console.error("Error retrying audio playback:", error);
       }
-    }, 1000);
+    }, 2000);
   }
 
   // Use the timeupdate event to pause the audio when the current time reaches the end time
-  audioPlayer.addEventListener("timeupdate", function () {
+  audioPlayer.addEventListener("seeked", function () {
     console.log("Current time:", audioPlayer.currentTime);
     if (audioPlayer.currentTime >= stop_time) {
       audioPlayer.pause();
       resetPlaybutton();
       // Remove the event listener to avoid multiple listeners being added
-      audioPlayer.removeEventListener("timeupdate", arguments.callee);
+      audioPlayer.removeEventListener("seeked", arguments.callee);
     }
   });
 }
