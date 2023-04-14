@@ -3,11 +3,9 @@
 let jsonData;
 let pathElement;
 let animateElements;
-let audioLoaded = false;
 
 
 initTimingData();
-onDocumentReady(initAudioPlayer);
 
 
 
@@ -20,32 +18,6 @@ function onDocumentReady(callback) {
 }
 
 
-
-
-// Preload audio
-function initAudioPlayer() {
-  const audioPlayer = document.getElementById("audio-player");
-
-  audioPlayer.addEventListener('canplay', () => {
-    console.log('The audio can be played, but it might need to buffer more data for smooth playback');
-    audioLoaded = true; // Set the audioLoaded flag to true
-  });
-
-  audioPlayer.addEventListener('canplaythrough', () => {
-    console.log('The audio can be played without interruption');
-    audioLoaded = true; // Set the audioLoaded flag to true
-  });
-
-    // Add the loadeddata event listener
-    audioPlayer.addEventListener('loadeddata', () => {
-      console.log('The audio data has been loaded');
-      audioLoaded = true; // Set the audioLoaded flag to true
-    });
-  
-
-  // Load the audio to trigger the canplay and canplaythrough events
-  audioPlayer.load();
-}
 
 // Button for Bubble functions
 
@@ -122,80 +94,6 @@ function readNextWord() {
 }
 
 
-
-
-/**
-function playCurrentWord() {
-  const audioPlayer = document.getElementById("audio-player");
-  const wordId = parseInt(document.getElementById("word-number").value);
-
-  const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
-
-  
-  // Check if the audio is loaded and ready for playback
-  if (audioLoaded) {
-    if (audioPlayer.fastSeek) {
-      audioPlayer.fastSeek(start_time);
-    } else {
-      audioPlayer.currentTime = start_time;
-    }
-    audioPlayer.play();
-
-    setTimeout(() => {
-      audioPlayer.pause();
-      resetPlaybutton();
-    }, (stop_time - start_time) * 1000);
-  } else {
-    console.log('Audio is not loaded yet');
-  }
-}
-
-
-async function playCurrentWord() {
-  const audioPlayer = document.getElementById("audio-player");
-  const wordId = parseInt(document.getElementById("word-number").value);
-
-  const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
-
-  console.log("Start time:", start_time);
-  console.log("Stop time:", stop_time);
-  if (!audioLoaded) {
-    console.log('Audio is not loaded yet');
-    return;
-  }
-
-  if (audioPlayer.fastSeek) {
-    audioPlayer.fastSeek(start_time);
-  } else {
-    audioPlayer.currentTime = start_time;
-  }
-
-  try {
-    await audioPlayer.play();
-  } catch (error) {
-    console.error("Error playing audio:", error);
-    // Retry playing the audio after a short delay
-    setTimeout(async () => {
-      try {
-        await audioPlayer.play();
-      } catch (error) {
-        console.error("Error retrying audio playback:", error);
-      }
-    }, 2000);
-  }
-
-  // Use the timeupdate event to pause the audio when the current time reaches the end time
-  audioPlayer.addEventListener("timeupdate", function () {
-    console.log("Current time:", audioPlayer.currentTime);
-    if (audioPlayer.currentTime >= stop_time) {
-      audioPlayer.pause();
-      resetPlaybutton();
-      // Remove the event listener to avoid multiple listeners being added
-      audioPlayer.removeEventListener("timeupdate", arguments.callee);
-    }
-  });
-}
-*/
 function playCurrentWord() {
   const wordId = parseInt(document.getElementById("word-number").value);
   const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
@@ -215,6 +113,75 @@ function playCurrentWord() {
   });
 }
 
+function playCurrentLine() {
+  const wordId = parseInt(document.getElementById("word-number").value);
+
+  const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
+  if (!wordElement) {
+    console.error('Word not found');
+    return;
+  }
+
+  const wordElements = getWordsOnCurrentLine(wordElement);
+
+  const firstWordClassName = wordElements[0].className;
+  const firstWordNumber = parseInt(firstWordClassName.split('-')[1].split(' ')[0]);
+
+  const lastWordClassName = wordElements[wordElements.length - 1].className;
+  const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
+
+  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordNumber);
+  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordNumber);
+
+  // Save original classes and set reading class
+  const originalClasses = [];
+  wordElements.forEach((element, index) => {
+    originalClasses[index] = element.className;
+  });
+
+  // Set the first element to 'reading' and all other elements to 'unread'
+  pathElement.style.opacity = 0.1; // Set highlight line's opacity to 20%
+  updateWordStyle(wordElements[0], 'reading');
+  for (let i = 1; i < wordElements.length; i++) {
+    updateWordStyle(wordElements[i], 'unread');
+  }
+
+  const sound = new Howl({
+    src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
+    sprite: {
+      line: [startTime * 1000, (endTime - startTime) * 1000]
+    }
+  });
+
+  sound.play('line');
+
+  wordElements.forEach((element, index) => {
+    const startWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).start_time;
+    const endWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).stop_time;
+
+    setTimeout(() => {
+      updateWordStyle(element, 'reading');
+    }, (startWordTime - startTime) * 1000);
+
+    setTimeout(() => {
+      updateWordStyle(element, 'read');
+    }, (endWordTime - startTime) * 1000);
+  });
+
+  sound.once('end', () => {
+    resetPlaybutton();
+
+    // Reset word elements to their original classes
+    pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
+    wordElements.forEach((element, index) => {
+      element.className = originalClasses[index];
+    });
+
+    sound.unload();
+  });
+}
+
+/** 
 function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
   const wordId = parseInt(document.getElementById("word-number").value);
@@ -289,7 +256,7 @@ function playCurrentLine() {
   }
 }
 
-
+*/
 function getWordsOnCurrentLine(element) {
   const parentElement = element.parentNode;
   const words = Array.from(parentElement.children);
