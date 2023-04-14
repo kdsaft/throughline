@@ -149,7 +149,7 @@ function playCurrentWord() {
     console.log('Audio is not loaded yet');
   }
 }
-*/
+
 
 async function playCurrentWord() {
   const audioPlayer = document.getElementById("audio-player");
@@ -195,7 +195,25 @@ async function playCurrentWord() {
     }
   });
 }
+*/
+function playCurrentWord() {
+  const wordId = parseInt(document.getElementById("word-number").value);
+  const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
 
+  const sound = new Howl({
+    src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
+    sprite: {
+      word: [start_time * 1000, (stop_time - start_time) * 1000]
+    }
+  });
+
+  sound.play('word');
+
+  sound.once('end', () => {
+    resetPlaybutton();
+    sound.unload();
+  });
+}
 
 function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
