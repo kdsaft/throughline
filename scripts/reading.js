@@ -7,7 +7,19 @@ let audioLoaded = false;
 
 
 initTimingData();
-window.addEventListener('DOMContentLoaded', initAudioPlayer);
+onDocumentReady(initAudioPlayer);
+
+
+
+function onDocumentReady(callback) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', callback);
+  } else {
+    callback();
+  }
+}
+
+
 
 
 // Preload audio
@@ -108,6 +120,7 @@ function playCurrentWord() {
 
   const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
 
+  
   // Check if the audio is loaded and ready for playback
   if (audioLoaded) {
     if (audioPlayer.fastSeek) {
