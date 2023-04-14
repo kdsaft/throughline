@@ -119,30 +119,35 @@ function playCurrentLine() {
   const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordNumber);
   const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordNumber);
 
-  // Save original classes and set reading class
-  const originalClasses = [];
-  wordElements.forEach((element, index) => {
-    originalClasses[index] = element.className;
-  });
-
-  // Set the first element to 'reading' and all other elements to 'unread'
-  wordElements[0].className = wordElements[0].className.replace(/(unread|trouble|read|reading)/, 'reading');
-  for (let i = 1; i < wordElements.length; i++) {
-    wordElements[i].className = wordElements[i].className.replace(/(unread|trouble|read|reading)/, 'unread');
-  }
-
-  wordElements.forEach((element, index) => {
-    const startWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).start_time;
-    const endWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).stop_time;
-
-    setTimeout(() => {
-      element.className = element.className.replace(/(unread|trouble|read)/, 'reading');
-    }, (startWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 1
-
-    setTimeout(() => {
-      element.className = element.className.replace('reading', 'read');
-    }, (endWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 2
-  });
+  function playCurrentLine() {
+    // ... (rest of the code remains the same)
+  
+    // Save original classes and set reading class
+    const originalClasses = [];
+    wordElements.forEach((element, index) => {
+      originalClasses[index] = element.className;
+    });
+  
+    // Set the first element to 'reading' and all other elements to 'unread'
+    wordElements[0].className = wordElements[0].className.replace(/(unread|trouble|read|reading)/, 'reading');
+    for (let i = 1; i < wordElements.length; i++) {
+      wordElements[i].className = wordElements[i].className.replace(/(unread|trouble|read|reading)/, 'unread');
+    }
+  
+    wordElements.forEach((element, index) => {
+      const startWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).start_time;
+      const endWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).stop_time;
+  
+      setTimeout(() => {
+        if (originalClasses[index] !== 'read') {
+          element.className = element.className.replace(/(unread|trouble|read)/, 'reading');
+        }
+      }, (startWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 1
+  
+      setTimeout(() => {
+        element.className = originalClasses[index];
+      }, (endWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 2
+    });
 
 
   audioPlayer.currentTime = startTime;
