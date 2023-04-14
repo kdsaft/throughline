@@ -125,6 +125,7 @@ function playCurrentLine() {
     originalClasses[index] = element.className;
   });
 
+
   // Set the first element to 'reading' and all other elements to 'unread'
   wordElements[0].className = wordElements[0].className.replace(/(unread|trouble|read|reading)/, 'reading');
   for (let i = 1; i < wordElements.length; i++) {
@@ -143,6 +144,7 @@ function playCurrentLine() {
       element.className = element.className.replace('reading', 'read');
     }, (endWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 2
   });
+
 
 
   audioPlayer.currentTime = startTime;
