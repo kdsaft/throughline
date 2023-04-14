@@ -114,6 +114,10 @@ function readNextWord() {
   }
 }
 
+
+
+
+/**
 function playCurrentWord() {
   const audioPlayer = document.getElementById("audio-player");
   const wordId = parseInt(document.getElementById("word-number").value);
@@ -138,6 +142,40 @@ function playCurrentWord() {
     console.log('Audio is not loaded yet');
   }
 }
+*/
+
+async function playCurrentWord() {
+  const audioPlayer = document.getElementById("audio-player");
+  const wordId = parseInt(document.getElementById("word-number").value);
+
+  const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
+
+  if (audioPlayer.fastSeek) {
+    audioPlayer.fastSeek(start_time);
+  } else {
+    audioPlayer.currentTime = start_time;
+  }
+
+  try {
+    await audioPlayer.play();
+  } catch (error) {
+    console.error("Error playing audio:", error);
+    // Retry playing the audio after a short delay
+    setTimeout(async () => {
+      try {
+        await audioPlayer.play();
+      } catch (error) {
+        console.error("Error retrying audio playback:", error);
+      }
+    }, 1000);
+  }
+
+  setTimeout(() => {
+    audioPlayer.pause();
+    resetPlaybutton();
+  }, (stop_time - start_time) * 1000);
+}
+
 
 function playCurrentLine() {
   const audioPlayer = document.getElementById("audio-player");
