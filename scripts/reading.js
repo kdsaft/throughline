@@ -16,6 +16,7 @@ function initAudioPlayer() {
 
   audioPlayer.addEventListener('canplay', () => {
     console.log('The audio can be played, but it might need to buffer more data for smooth playback');
+    audioLoaded = true; // Set the audioLoaded flag to true
   });
 
   audioPlayer.addEventListener('canplaythrough', () => {
@@ -26,7 +27,6 @@ function initAudioPlayer() {
   // Load the audio to trigger the canplay and canplaythrough events
   audioPlayer.load();
 }
-
 
 // Button for Bubble functions
 
