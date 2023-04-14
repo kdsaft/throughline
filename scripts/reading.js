@@ -99,7 +99,25 @@ function playCurrentWord() {
 }
 
 function playCurrentLine() {
-  // ... (rest of the code remains the same)
+  const audioPlayer = document.getElementById("audio-player");
+  const wordId = parseInt(document.getElementById("word-number").value);
+
+  const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
+  if (!wordElement) {
+    console.error('Word not found');
+    return;
+  }
+
+  const wordElements = getWordsOnCurrentLine(wordElement);
+
+  const firstWordClassName = wordElements[0].className;
+  const firstWordNumber = parseInt(firstWordClassName.split('-')[1].split(' ')[0]);
+
+  const lastWordClassName = wordElements[wordElements.length - 1].className;
+  const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
+
+  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordNumber);
+  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordNumber);
 
   // Save original classes and set reading class
   const originalClasses = [];
