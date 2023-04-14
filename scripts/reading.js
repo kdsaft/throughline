@@ -99,25 +99,7 @@ function playCurrentWord() {
 }
 
 function playCurrentLine() {
-  const audioPlayer = document.getElementById("audio-player");
-  const wordId = parseInt(document.getElementById("word-number").value);
-
-  const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
-  if (!wordElement) {
-    console.error('Word not found');
-    return;
-  }
-
-  const wordElements = getWordsOnCurrentLine(wordElement);
-
-  const firstWordClassName = wordElements[0].className;
-  const firstWordNumber = parseInt(firstWordClassName.split('-')[1].split(' ')[0]);
-
-  const lastWordClassName = wordElements[wordElements.length - 1].className;
-  const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
-
-  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordNumber);
-  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordNumber);
+  // ... (rest of the code remains the same)
 
   // Save original classes and set reading class
   const originalClasses = [];
@@ -127,12 +109,14 @@ function playCurrentLine() {
     const endWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).stop_time;
 
     setTimeout(() => {
+      // Replace 'reading' class with 'unread' before setting the new class
+      element.className = element.className.replace(/(unread|trouble|read|reading)/, 'unread');
       element.className = element.className.replace(/(unread|trouble|read)/, 'reading');
-    }, (startWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 1
+    }, (startWordTime - startTime) * 1000 + 100); // Add a small delay
 
     setTimeout(() => {
       element.className = element.className.replace('reading', 'read');
-    }, (endWordTime - startTime) * 1000 + 100); // Add a small delay to fix issue 2
+    }, (endWordTime - startTime) * 1000 + 100); // Add a small delay
   });
 
   audioPlayer.currentTime = startTime;
