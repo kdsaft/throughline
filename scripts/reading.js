@@ -192,9 +192,9 @@ function playCurrentLine() {
   // Check if the audio is loaded and ready for playback
   if (audioLoaded) {
     if (audioPlayer.fastSeek) {
-      audioPlayer.fastSeek(start_time);
+      audioPlayer.fastSeek(startTime);
     } else {
-      audioPlayer.currentTime = start_time;
+      audioPlayer.currentTime = startTime;
     }
     audioPlayer.play();
 
