@@ -127,6 +127,7 @@ function playCurrentLine() {
 
 
   // Set the first element to 'reading' and all other elements to 'unread'
+  pathElement.style.opacity = 0.2; // Set highlight line's opacity to 20%
   updateWordStyle(wordElements[0], 'reading');
   for (let i = 1; i < wordElements.length; i++) {
     updateWordStyle(wordElements[i], 'unread');
@@ -155,6 +156,7 @@ function playCurrentLine() {
     resetPlaybutton();
 
     // Reset word elements to their original classes
+    pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
     wordElements.forEach((element, index) => {
       element.className = originalClasses[index];
     });
