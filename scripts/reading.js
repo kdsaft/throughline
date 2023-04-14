@@ -127,7 +127,7 @@ function playCurrentLine() {
 
 
   // Set the first element to 'reading' and all other elements to 'unread'
-  pathElement.style.opacity = 0.2; // Set highlight line's opacity to 20%
+  pathElement.style.opacity = 0.1; // Set highlight line's opacity to 20%
   updateWordStyle(wordElements[0], 'reading');
   for (let i = 1; i < wordElements.length; i++) {
     updateWordStyle(wordElements[i], 'unread');
