@@ -2,8 +2,8 @@
     const playButton = document.getElementById("playButton");
     const buttonIcon = document.getElementById("buttonIcon");
 
-     // Create the audio objects for the sound effects
-     const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
+    // Create the audio objects for the sound effects
+    const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
     const pressAndHoldSound = new Audio('https://kdsaft.github.io/throughline/audio/PressAndHold.m4a');
 
     let timer = null;
@@ -13,17 +13,26 @@
         longPress = false;
         buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-word.svg";
         buttonDownSound.play();
+        document.getElementById('shortPressFeedback').style.display = 'block';
+
         timer = setTimeout(() => {
             longPress = true;
             buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-line.svg";
             pressAndHoldSound.play();
-        }, 2000); // 1000ms = 1 second, you can adjust this value for long press duration
+            buttonIcon.setAttribute('aria-label', 'Long press activated');
+            document.getElementById('shortPressFeedback').style.display = 'none';
+            document.getElementById('longPressFeedback').style.display = 'block';
+            playCurrentLine();
+        }, 1500); // 1000ms = 1 second, you can adjust this value for long press duration
     });
 
     playButton.addEventListener("mouseup", () => {
         clearTimeout(timer);
+        buttonIcon.setAttribute('aria-label', 'Play button');
+
+
+
         if (longPress) {
-            playCurrentLine();
             longPress = false;
         } else {
             playCurrentWord();
@@ -32,6 +41,8 @@
 
     function resetPlaybutton() {
         buttonIcon.src = "https://kdsaft.github.io/throughline/icons/Read-normal.svg";
+        document.getElementById('longPressFeedback').style.display = 'none';
+        document.getElementById('shortPressFeedback').style.display = 'none';
     };
 
 </script>
@@ -48,7 +59,16 @@
 </style>
 
 <body>
-    <button id="playButton">
-        <img id="buttonIcon" src="https://kdsaft.github.io/throughline/icons/Read-normal.svg" width="64" height="64" />
+    <button id="playButton" style="position: relative;">
+        <img id="buttonIcon" src="https://kdsaft.github.io/throughline/icons/Read-normal.svg" width="64" height="64"
+            style="position: absolute; top: 4px; left: 4px" aria-label="Play button" />
+        <svg id="shortPressFeedback" width="68" height="68"
+            style="position: absolute; top: 2px; left: 2px; display: none;">
+            <circle cx="34" cy="34" r="32" stroke="#1A79C7" stroke-width="2" fill="transparent" />
+        </svg>
+        <svg id="longPressFeedback" width="68" height="68"
+            style="position: absolute; top: 2px; left: 2px; display: none;">
+            <circle cx="34" cy="34" r="32" stroke="#1A79C7" stroke-width="4" fill="transparent" />
+        </svg>
     </button>
 </body>
