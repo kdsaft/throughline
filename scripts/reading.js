@@ -150,6 +150,9 @@ async function playCurrentWord() {
 
   const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
 
+  console.log("Start time:", start_time);
+  console.log("Stop time:", stop_time);
+
   if (audioPlayer.fastSeek) {
     audioPlayer.fastSeek(start_time);
   } else {
@@ -172,6 +175,7 @@ async function playCurrentWord() {
 
   // Use the timeupdate event to pause the audio when the current time reaches the end time
   audioPlayer.addEventListener("timeupdate", function () {
+    console.log("Current time:", audioPlayer.currentTime);
     if (audioPlayer.currentTime >= stop_time) {
       audioPlayer.pause();
       resetPlaybutton();
