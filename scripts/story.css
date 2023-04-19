@@ -25,6 +25,8 @@ body {
 #html-content {
     width: 725px !important;
     height: 100vh !important;
+    box-sizing: border-box  !important;  
+    border: 1px solid #e38fed  !important;
 }
   
 :: -webkit-scrollbar {
@@ -47,6 +49,7 @@ body {
     width: 710px;
     padding-right: 20px;
     box-sizing: border-box;  
+    border: 1px solid #8fafed;
 }
 
 .reference {
