@@ -27,7 +27,9 @@ body {
     height: 100%;
 }
   
-
+:: -webkit-scrollbar {
+    width: 2em;
+}
 .content {
     position: relative;
     overflow-y: scroll;
