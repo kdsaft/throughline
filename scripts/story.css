@@ -26,7 +26,6 @@ body {
     width: 710px !important;
     height: 100vh !important;
     box-sizing: border-box  !important;  
-    border: 1px solid #e38fed  !important;
 }
   
 
@@ -37,7 +36,6 @@ body {
     width: 710px;
     padding-right: 20px;
     box-sizing: border-box;  
-    border: 1px solid #8fafed;
 }
 
 .content::-webkit-scrollbar {
@@ -50,7 +48,7 @@ body {
     margin-block: 96px;
 }
 .content::-webkit-scrollbar-thumb {
-    background: #333436;
+    background: #EBEFF9;
     border-radius: 100vw;
 }
 
