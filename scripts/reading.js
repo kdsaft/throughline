@@ -30,14 +30,10 @@ content.addEventListener('scroll', () => {
 });
 
 function updateSVGViewBox() {
-  const highlightViewport = document.getElementById('highlight-viewport');
-  const viewBoxValues = highlightViewport.getAttribute('viewBox').split(' ');
+  const linesContainer = document.getElementById('lines-container');
 
-  // Update the y-coordinate of the viewBox based on the scroll position
-  viewBoxValues[1] = content.scrollTop;
-
-  // Set the new viewBox attribute
-  highlightViewport.setAttribute('viewBox', viewBoxValues.join(' '));
+  // Update the transform attribute based on the scroll position
+  linesContainer.setAttribute('transform', `translate(0, ${-content.scrollTop})`);
 }
 
 function handleScrollbarFade() {
@@ -278,8 +274,11 @@ function drawLine(svg, startX, endX, yCoordinate, color) {
   pathElement.setAttribute('stroke-linecap', 'round');
   pathElement.setAttribute('stroke-linejoin', 'round');
 
-  svg.appendChild(pathElement);
+  const linesContainer = document.getElementById('lines-container');
+  linesContainer.appendChild(pathElement);
+
   return pathElement;
+
 }
 
 function animateSineWave(pathElement, startX, endX, yCoordinate, referenceLength, referenceFrequency, duration, startColor, endColor) {
