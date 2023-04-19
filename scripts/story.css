@@ -30,6 +30,12 @@ body {
 :: -webkit-scrollbar {
     width: 2em;
 }
+
+:: -webkit-scrollbar-track {
+    background: #a19d9d;
+    border-radius: 100vw;
+    margin-block: 1em;
+}
 .content {
     position: relative;
     overflow-y: scroll;
