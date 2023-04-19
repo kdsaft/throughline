@@ -7,7 +7,7 @@ let animateElements;
 
 
 initTimingData();
-
+updateSVGViewBox();
 
 
 function onDocumentReady(callback) {
@@ -18,19 +18,36 @@ function onDocumentReady(callback) {
   }
 }
 
-// handling the scrollbar effects
+// handling content scrolling
 const content = document.querySelector('.content');
 let scrollingTimeout;
 
-
-content.addEventListener('scroll', () => {
-    clearTimeout(scrollingTimeout);
-    content.classList.add('scrolling');
-
-    scrollingTimeout = setTimeout(() => {
-        content.classList.remove('scrolling');
-    }, 1000); // Adjust the timeout value to control how long the scrollbar stays visible after scrolling stops
+content.addEventListener('scroll', (event) => {
+  updateSVGViewBox(event);
+  handleScrollbarFade(event);
 });
+
+function updateSVGViewBox(event) {
+  const highlightViewport = document.getElementById('highlight-viewport');
+  const viewBoxValues = highlightViewport.getAttribute('viewBox').split(' ');
+
+  // Update the y-coordinate of the viewBox based on the scroll position
+  viewBoxValues[1] = content.scrollTop;
+
+  // Set the new viewBox attribute
+  highlightViewport.setAttribute('viewBox', viewBoxValues.join(' '));
+
+}
+
+function handleScrollbarFade(event) {
+  clearTimeout(scrollingTimeout);
+  content.classList.add('scrolling');
+
+  scrollingTimeout = setTimeout(() => {
+    content.classList.remove('scrolling');
+  }, 1000); // Adjust the timeout value to control how long the scrollbar stays visible after scrolling stops
+}
+
 
 
 // Button for Bubble functions
