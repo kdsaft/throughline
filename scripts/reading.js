@@ -23,6 +23,7 @@ const content = document.querySelector('.content');
 let scrollingTimeout;
 
 content.addEventListener('scroll', () => {
+  console.log('scrolling');
   updateSVGViewBox();
   handleScrollbarFade();
 });
