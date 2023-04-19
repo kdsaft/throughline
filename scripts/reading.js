@@ -20,16 +20,19 @@ function onDocumentReady(callback) {
 function updateSVGViewBox() {
   const svg = document.getElementById("highlight-viewport");
   const textArea = document.querySelector(".text-area");
+  const highlightArea = document.querySelector(".highlight-area");
   
   // Get the height and width of the text-area div
   const height = textArea.clientHeight;
   const width = textArea.clientWidth;
   
-  // Set the SVG element's height and width to match the text-area div
+  // Set the highlight-area div's height to match the text-area div
+  highlightArea.style.height = `${height}px`;
+
+  // Set the SVG element's width to match the text-area div
   svg.setAttribute("width", width);
-  svg.setAttribute("height", height);
   
-  // Update the viewBox
+  // Update the viewBox with the correct dimensions
   svg.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
 }
 
@@ -38,6 +41,7 @@ updateSVGViewBox();
 
 // Call the function when the window is resized
 window.addEventListener("resize", updateSVGViewBox);
+
 
 
 
