@@ -21,20 +21,9 @@ function onDocumentReady(callback) {
 const content = document.querySelector('.content');
 let scrollingTimeout;
 
-updateSVGViewBox();
-
 content.addEventListener('scroll', () => {
-  console.log('scrolling');
-  updateSVGViewBox();
   handleScrollbarFade();
 });
-
-function updateSVGViewBox() {
-  const linesContainer = document.getElementById('lines-container');
-
-  // Update the transform attribute based on the scroll position
-  linesContainer.setAttribute('transform', `translate(0, ${-content.scrollTop})`);
-}
 
 function handleScrollbarFade() {
   clearTimeout(scrollingTimeout);
