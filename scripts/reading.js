@@ -19,8 +19,17 @@ function onDocumentReady(callback) {
 
 function updateSVGViewBox() {
   const svg = document.getElementById("highlight-viewport");
-  const height = svg.clientHeight;
-  const width = svg.clientWidth;
+  const textArea = document.querySelector(".text-area");
+  
+  // Get the height and width of the text-area div
+  const height = textArea.clientHeight;
+  const width = textArea.clientWidth;
+  
+  // Set the SVG element's height and width to match the text-area div
+  svg.setAttribute("width", width);
+  svg.setAttribute("height", height);
+  
+  // Update the viewBox
   svg.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
 }
 
