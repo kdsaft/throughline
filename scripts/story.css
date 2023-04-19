@@ -24,7 +24,8 @@ body {
 
 #html-content {
     width: 700px;
-    height: 100%;
+    height: 100vh;
+    overflow-y: scroll;
 }
   
 :: -webkit-scrollbar {
@@ -35,6 +36,10 @@ body {
     background: #a19d9d;
     border-radius: 100vw;
     margin-block: 1em;
+}
+:: -webkit-scrollbar-thumb {
+    background: #0e0e0e;
+    border-radius: 100vw;
 }
 .content {
     position: relative;
