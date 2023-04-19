@@ -41,22 +41,22 @@ body {
 }
 
 .content::-webkit-scrollbar {
-    width: 1em;
+    width: 7px;
 }
 
 .content::-webkit-scrollbar-track {
-    background: #a19d9d;
+    background: rgba(255,255,255,0.1);
     border-radius: 100vw;
     margin-block: 96px;
 }
 .content::-webkit-scrollbar-thumb {
-    background: #0e0e0e;
+    background: #333436;
     border-radius: 100vw;
 }
 
 .reference {
     position: absolute;
-    right: 0;
+    right: 10px;
     bottom: 100px;
     z-index: 2;
 
