@@ -23,9 +23,9 @@ body {
 }
 
 #html-content {
-    width: 725px;
-    height: 100vh;
-    overflow-y: scroll;
+    width: 725px !important;
+    height: 100vh !important;
+    overflow-y: scroll !important;
 }
   
 :: -webkit-scrollbar {
