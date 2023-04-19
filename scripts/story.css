@@ -23,9 +23,8 @@ body {
 }
 
 #html-content {
-    width: 700px !important;
+    width: 725px !important;
     height: 100vh !important;
-    overflow-y: scroll !important;
 }
   
 :: -webkit-scrollbar {
@@ -45,7 +44,7 @@ body {
     position: relative;
     overflow-y: scroll;
     height: 100vh;
-    width: 675px;
+    width: 710px;
     padding-right: 20px;
     box-sizing: border-box;  
 }
