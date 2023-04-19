@@ -29,7 +29,7 @@ content.addEventListener('scroll', () => {
 
     scrollingTimeout = setTimeout(() => {
         content.classList.remove('scrolling');
-    }, 300); // Adjust the timeout value to control how long the scrollbar stays visible after scrolling stops
+    }, 1000); // Adjust the timeout value to control how long the scrollbar stays visible after scrolling stops
 });
 
 
