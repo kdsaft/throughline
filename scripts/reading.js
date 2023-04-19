@@ -21,7 +21,7 @@ function updateSVGViewBox() {
   const svg = document.getElementById("highlight-viewport");
   const height = svg.clientHeight;
   const width = svg.clientWidth;
-  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
 }
 
 // Call the function to update the viewBox initially
