@@ -17,6 +17,21 @@ function onDocumentReady(callback) {
   }
 }
 
+function updateSVGViewBox() {
+  const svg = document.getElementById("highlight-viewport");
+  const height = svg.clientHeight;
+  const width = svg.clientWidth;
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+}
+
+// Call the function to update the viewBox initially
+updateSVGViewBox();
+
+// Call the function when the window is resized
+window.addEventListener("resize", updateSVGViewBox);
+
+
+
 // handling content scrolling
 const content = document.querySelector('.content');
 let scrollingTimeout;
@@ -263,12 +278,11 @@ function drawLine(svg, startX, endX, yCoordinate, color) {
   pathElement.setAttribute('stroke-linecap', 'round');
   pathElement.setAttribute('stroke-linejoin', 'round');
 
-  const linesContainer = document.getElementById('lines-container');
-  linesContainer.appendChild(pathElement);
-
+  svg.appendChild(pathElement);
   return pathElement;
 
 }
+
 
 function animateSineWave(pathElement, startX, endX, yCoordinate, referenceLength, referenceFrequency, duration, startColor, endColor) {
   let length = endX - startX;

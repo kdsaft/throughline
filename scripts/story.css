@@ -109,6 +109,9 @@ body {
 
 }
 
+#highlight-viewport {
+    height: 100%;
+  }
 
 
 .unread, .unread .punctuation {
