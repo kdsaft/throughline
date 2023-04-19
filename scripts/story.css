@@ -41,13 +41,13 @@ body {
 }
 
 .content::-webkit-scrollbar {
-    width: 2em;
+    width: 1em;
 }
 
 .content::-webkit-scrollbar-track {
     background: #a19d9d;
     border-radius: 100vw;
-    margin-block: 1em;
+    margin-block: 96px;
 }
 .content::-webkit-scrollbar-thumb {
     background: #0e0e0e;
