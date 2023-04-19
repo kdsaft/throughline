@@ -5,6 +5,7 @@ let pathElement;
 let animateElements;
 
 
+
 initTimingData();
 
 
@@ -17,6 +18,19 @@ function onDocumentReady(callback) {
   }
 }
 
+// handling the scrollbar effects
+const content = document.querySelector('.content');
+let scrollingTimeout;
+
+
+content.addEventListener('scroll', () => {
+    clearTimeout(scrollingTimeout);
+    content.classList.add('scrolling');
+
+    scrollingTimeout = setTimeout(() => {
+        content.classList.remove('scrolling');
+    }, 300); // Adjust the timeout value to control how long the scrollbar stays visible after scrolling stops
+});
 
 
 // Button for Bubble functions
