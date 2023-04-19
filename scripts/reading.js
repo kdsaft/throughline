@@ -230,7 +230,9 @@ function getWordProperties(wordNumber) {
   const wordRect = wordElement.getBoundingClientRect();
   const parentDiv = wordElement.parentNode;
   const parentRect = parentDiv.getBoundingClientRect();
-  const contentRect = document.querySelector(".content").getBoundingClientRect();
+  const contentElement = document.querySelector(".content");
+  const contentRect = contentElement.getBoundingClientRect();
+
 
   // Get the position and size of the punctuation element (if exists)
   const endPunctuation = wordElement.querySelector('.endPunctuation');
@@ -250,7 +252,7 @@ function getWordProperties(wordNumber) {
   const startX = wordRect.left - contentRect.left - 2 + punctuationStartWidth;
   const endX = wordRect.right - contentRect.left - 1 - punctuationWidth;
 
-  // Determine yCoordinate based on the parent div's class
+  // Determine yCoordinate offset based on the parent div's class
   let yOffset;
   if (parentDiv.classList.contains("text-headline")) {
     yOffset = 36;
@@ -258,7 +260,8 @@ function getWordProperties(wordNumber) {
     yOffset = 24; // Default value paragraphs
   }
 
-  const yCoordinate = wordRect.top - parentRect.top + parentRect.top - contentRect.top + yOffset;
+  const yCoordinate = wordRect.top - parentRect.top + parentRect.top - contentRect.top + yOffset + contentElement.scrollTop;
+
 
   return { wordElement, startX, endX, yCoordinate };
 }
