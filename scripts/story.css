@@ -23,25 +23,13 @@ body {
 }
 
 #html-content {
-    width: 725px !important;
+    width: 710px !important;
     height: 100vh !important;
     box-sizing: border-box  !important;  
     border: 1px solid #e38fed  !important;
 }
   
-:: -webkit-scrollbar {
-    width: 2em;
-}
 
-:: -webkit-scrollbar-track {
-    background: #a19d9d;
-    border-radius: 100vw;
-    margin-block: 1em;
-}
-:: -webkit-scrollbar-thumb {
-    background: #0e0e0e;
-    border-radius: 100vw;
-}
 .content {
     position: relative;
     overflow-y: scroll;
@@ -50,6 +38,20 @@ body {
     padding-right: 20px;
     box-sizing: border-box;  
     border: 1px solid #8fafed;
+}
+
+.content::-webkit-scrollbar {
+    width: 2em;
+}
+
+.content::-webkit-scrollbar-track {
+    background: #a19d9d;
+    border-radius: 100vw;
+    margin-block: 1em;
+}
+.content::-webkit-scrollbar-thumb {
+    background: #0e0e0e;
+    border-radius: 100vw;
 }
 
 .reference {
