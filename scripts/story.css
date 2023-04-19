@@ -102,7 +102,8 @@ body {
 .highlight-area {
     position: sticky;
   left: 0;
-  top: 0;
+  top: 120px; /* Match the top value of .text-area */
+  z-index: 0;
   width: 700px;
   height: 2000px;
 
