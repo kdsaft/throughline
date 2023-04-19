@@ -7,7 +7,6 @@ let animateElements;
 
 
 initTimingData();
-updateSVGViewBox();
 
 
 function onDocumentReady(callback) {
@@ -21,6 +20,8 @@ function onDocumentReady(callback) {
 // handling content scrolling
 const content = document.querySelector('.content');
 let scrollingTimeout;
+
+updateSVGViewBox();
 
 content.addEventListener('scroll', () => {
   console.log('scrolling');
