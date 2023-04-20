@@ -45,30 +45,30 @@ function drawBars(canvas, analyser, canvasContext) {
     const rightPadding = 148; // Add the right padding value here
     let x = leftPadding; // Set the starting position based on the left padding
 
-    // Define the canvasContainer variable
     const canvasContainer = document.getElementById("canvas-container");
-  
+
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
-    const minBarIndex = Math.floor((contentRect.left - canvas.getBoundingClientRect().left) / (barWidth + 4));
-    const maxBarIndex = Math.ceil((contentRect.right - canvas.getBoundingClientRect().left) / (barWidth + 4));
-  
-    // Calculate the number of bars that can fit within the available width, considering the left and right padding
-    const availableWidth = canvasContainer.clientWidth - leftPadding - rightPadding;
-    const maxBars = Math.floor(availableWidth / (barWidth + 4));
-  
-    for (let i = 0; i < maxBars; i++) {
-      if (i >= minBarIndex && i <= maxBarIndex) {
+
+    // Calculate the frequency step
+    const frequencyStep = (audioContext.sampleRate / 2) / bufferLength;
+
+    // Set the minFrequency and maxFrequency values based on the desired frequency range
+    const minFrequency = 300; // Adjust this value as needed
+    const maxFrequency = 3400; // Adjust this value as needed
+
+    // Calculate the minBarIndex and maxBarIndex based on the minFrequency and maxFrequency values
+    const minBarIndex = Math.floor(minFrequency / frequencyStep);
+    const maxBarIndex = Math.ceil(maxFrequency / frequencyStep);
+
+    for (let i = minBarIndex; i <= maxBarIndex; i++) {
         barHeight = 4 + (dataArray[i] / 255) * (48 - 4);
-      } else {
-        barHeight = 4; // Set the default height for non-animated bars
-      }
-  
-      const y = 36 - barHeight / 2;
-      canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-  
-      x += barWidth + 4;
+
+        const y = 36 - barHeight / 2;
+        canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
+        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
+
+        x += barWidth + 4;
     }
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
 }
