@@ -46,14 +46,14 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const barWidth = 8;
     let barHeight;
     const leftPadding = 88; // Add the left padding value here
-    const fixedLengthAfterContent = 96; // Add the fixed length after the content width
     const devicePixelRatio = window.devicePixelRatio || 1;
+    const fixedLengthAfterContent = (96 / devicePixelRatio);
     const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - fixedLengthAfterContent;
     
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
     const contentStart = contentRect.left - leftPadding;
-    const contentWidth = 704; // Set the width of the animated area
+    const contentWidth = 712; // Set the width of the animated area
   
     const minFrequency = 300; // Adjust this value as needed
     const maxFrequency = 3400; // Adjust this value as needed
@@ -68,13 +68,14 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     let x = leftPadding;
   
     for (let i = 0; i < numBars; i++) {
-      if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
-        const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
-        barHeight = 4 + (dataArray[dataIndex] / 255) * (48 - 4);
-      } else {
-        barHeight = 4;
-      }
-  
+        if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
+          const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
+          const logValue = Math.log10(dataArray[dataIndex] + 1); // Add 1 to avoid log(0)
+          barHeight = 4 + (logValue / Math.log10(256)) * (48 - 4); // Divide by log10(256) to normalize the value
+        } else {
+          barHeight = 4;
+        }
+        
       const y = 36 - barHeight / 2;
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
       drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
