@@ -70,9 +70,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     console.log(numBarsAfterContent);
     const numBars = numBarsBeforeContent + numAnimatedBars + numBarsAfterContent;
     console.log(numBars);
-  
-    for (let i = 0; i < numBars; i++) {
-  
+    
     let x = leftPadding;
   
 
