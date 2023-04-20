@@ -44,6 +44,9 @@ function drawBars(canvas, analyser, canvasContext) {
     const leftPadding = 88; // Add the left padding value here
     const rightPadding = 148; // Add the right padding value here
     let x = leftPadding; // Set the starting position based on the left padding
+
+    // Define the canvasContainer variable
+    const canvasContainer = document.getElementById("canvas-container");
   
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
