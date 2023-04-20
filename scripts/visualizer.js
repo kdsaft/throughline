@@ -70,7 +70,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
 
         x += barWidth + 4;
     }
-    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
+    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext)); 
 }
 
     
