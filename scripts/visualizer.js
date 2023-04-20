@@ -1,7 +1,7 @@
 // Opening code
 
-canvasContext.lineWidth = 0.5;
-canvasContext.strokeStyle = "rgba(0, 0, 0, 0.2)";
+// canvasContext.lineWidth = 0.5;
+// canvasContext.strokeStyle = "rgba(0, 0, 0, 0.2)";
 
 
 
