@@ -41,19 +41,17 @@ function drawBars(canvas, analyser, canvasContext) {
   
     const barWidth = 8;
     let barHeight;
-    const parentDivPadding = 148; // Add the padding value here
-    let x = parentDivPadding; // Add the padding value to the starting position
-
-    // Define the canvasContainer variable
-    const canvasContainer = document.getElementById("canvas-container");
+    const leftPadding = 88; // Add the left padding value here
+    const rightPadding = 148; // Add the right padding value here
+    let x = leftPadding; // Set the starting position based on the left padding
   
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
     const minBarIndex = Math.floor((contentRect.left - canvas.getBoundingClientRect().left) / (barWidth + 4));
     const maxBarIndex = Math.ceil((contentRect.right - canvas.getBoundingClientRect().left) / (barWidth + 4));
   
-    // Calculate the number of bars that can fit within the available width, considering the padding
-    const availableWidth = canvasContainer.clientWidth - parentDivPadding * 2;
+    // Calculate the number of bars that can fit within the available width, considering the left and right padding
+    const availableWidth = canvasContainer.clientWidth - leftPadding - rightPadding;
     const maxBars = Math.floor(availableWidth / (barWidth + 4));
   
     for (let i = 0; i < maxBars; i++) {
@@ -95,8 +93,11 @@ function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
   
-    // Set the canvas width and height to the parent's width and height
-    canvas.style.width = canvasContainer.clientWidth + "px";
+    const leftPadding = 88; // Add the left padding value here
+    const rightPadding = 148; // Add the right padding value here
+  
+    // Set the canvas width and height to the parent's width and height, subtracting the left and right padding values
+    canvas.style.width = canvasContainer.clientWidth - leftPadding - rightPadding + "px";
     canvas.style.height = canvasContainer.clientHeight + "px";
   
     // Adjust the canvas resolution based on the device pixel ratio
