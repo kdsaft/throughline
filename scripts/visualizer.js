@@ -37,23 +37,24 @@ function drawBars(canvas, analyser, canvasContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
-
+  
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-
-    const barWidth = (canvas.width / bufferLength) * 2.5;
+  
+    const barWidth = 8;
     let barHeight;
     let x = 0;
-
+  
     for (let i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i] / 2;
-
-        canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-        canvasContext.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-        x += barWidth + 1;
+      barHeight = 3 + (dataArray[i] / 255) * (36 - 3);
+      const y = (canvas.height - barHeight) / 2;
+  
+      canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
+      canvasContext.fillRect(x, y, barWidth, barHeight);
+  
+      x += barWidth + 4;
     }
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
-}
+  }
 
 
 // Funcation to set the canvas size to the bottom bar
