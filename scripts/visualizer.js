@@ -88,17 +88,18 @@ function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
   
-    // Set the canvas width and height to the parent's width and height
-    canvas.style.width = canvasContainer.clientWidth - 296 + "px";
+    const parentDivPadding = 148; // Add the padding value here
+  
+    // Set the canvas width and height to the parent's width and height, subtracting the padding value
+    canvas.style.width = canvasContainer.clientWidth - parentDivPadding * 2 + "px";
     canvas.style.height = canvasContainer.clientHeight + "px";
   
     // Adjust the canvas resolution based on the device pixel ratio
     const devicePixelRatio = window.devicePixelRatio || 1;
-    canvas.width = canvasContainer.clientWidth * devicePixelRatio;
+    canvas.width = (canvasContainer.clientWidth - parentDivPadding * 2) * devicePixelRatio;
     canvas.height = canvasContainer.clientHeight * devicePixelRatio;
   
     // Scale the canvas context to match the device pixel ratio
     const canvasContext = canvas.getContext("2d");
     canvasContext.scale(devicePixelRatio, devicePixelRatio);
-  }
-  
+}  
