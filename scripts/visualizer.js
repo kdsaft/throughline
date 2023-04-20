@@ -61,21 +61,22 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const minBarIndex = Math.floor(minFrequency / frequencyStep);
     const maxBarIndex = Math.ceil(maxFrequency / frequencyStep);
   
-    const numBars = Math.floor(totalWidth / (barWidth + 4));
+    const numBars = Math.floor((totalWidth - contentWidth - fixedLengthAfterContent) / (barWidth + 4)) + numAnimatedBars;
     const numAnimatedBars = Math.floor(contentWidth / (barWidth + 4));
     const animatedBarStartIndex = Math.floor(contentStart / (barWidth + 4));
   
     let x = leftPadding;
   
+
     for (let i = 0; i < numBars; i++) {
-        if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
-          const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
-          const logValue = Math.log10(dataArray[dataIndex] + 1); // Add 1 to avoid log(0)
-          barHeight = 4 + (logValue / Math.log10(256)) * (48 - 4); // Divide by log10(256) to normalize the value
-        } else {
-          barHeight = 4;
-        }
-        
+      if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
+        const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
+        const scaledValue = Math.pow(dataArray[dataIndex] / 255, 0.5); // Raise the value to a power less than 1
+        barHeight = 4 + scaledValue * (48 - 4);
+      } else {
+        barHeight = 4;
+      }
+          
       const y = 36 - barHeight / 2;
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
       drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
