@@ -31,7 +31,11 @@ navigator.mediaDevices.getUserMedia({ audio: true })
       console.error("Error accessing the microphone:", error);
     });
 
-// Function to draw the bars on the canvas
+
+
+// Functions to draw the bars 
+
+
 function drawBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
@@ -42,13 +46,13 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const barWidth = 8;
     let barHeight;
     const leftPadding = 88; // Add the left padding value here
-    const rightPadding = 148; // Add the right padding value here
-    const totalWidth = canvas.width - leftPadding - rightPadding;
+    const fixedLengthAfterContent = 96; // Add the fixed length after the content width
+    const totalWidth = canvas.width - leftPadding - fixedLengthAfterContent;
   
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
     const contentStart = contentRect.left - leftPadding;
-    const contentWidth = 700; // Set the width of the animated area
+    const contentWidth = 704; // Set the width of the animated area
   
     const minFrequency = 300; // Adjust this value as needed
     const maxFrequency = 3400; // Adjust this value as needed
@@ -76,10 +80,9 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
   
       x += barWidth + 4;
     }
-  
+
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
   }
-
     
   function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
@@ -97,6 +100,8 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     ctx.closePath();
     ctx.fill();
   }
+
+
 
 // Funcation to set the canvas size to the bottom bar
 function updateCanvasSize() {
