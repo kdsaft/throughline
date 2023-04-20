@@ -56,7 +56,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const minBarIndex = Math.floor(minFrequency / frequencyStep);
     const maxBarIndex = Math.ceil(maxFrequency / frequencyStep);
   
-    const numBars = maxBarIndex - minBarIndex + 1;
+    const numBars = Math.floor(totalWidth / (barWidth + 4));
     const numAnimatedBars = Math.floor(contentWidth / (barWidth + 4));
     const animatedBarStartIndex = Math.floor(contentStart / (barWidth + 4));
   
@@ -64,7 +64,8 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
   
     for (let i = 0; i < numBars; i++) {
       if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
-        barHeight = 4 + (dataArray[minBarIndex + i] / 255) * (48 - 4);
+        const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
+        barHeight = 4 + (dataArray[dataIndex] / 255) * (48 - 4);
       } else {
         barHeight = 4;
       }
