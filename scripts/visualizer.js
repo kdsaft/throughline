@@ -32,7 +32,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     });
 
 // Function to draw the bars on the canvas
-function drawBars(canvas, analyser, canvasContext, audioContext) { 
+function drawBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
@@ -43,35 +43,41 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     let barHeight;
     const leftPadding = 88; // Add the left padding value here
     const rightPadding = 148; // Add the right padding value here
-    let x = leftPadding; // Set the starting position based on the left padding
-
-    const canvasContainer = document.getElementById("canvas-container");
-
+    const totalWidth = canvas.width - leftPadding - rightPadding;
+  
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
-
-    // Calculate the frequency step
-    const frequencyStep = (audioContext.sampleRate / 2) / bufferLength;
-
-    // Set the minFrequency and maxFrequency values based on the desired frequency range
+    const contentStart = contentRect.left - leftPadding;
+    const contentWidth = 700; // Set the width of the animated area
+  
     const minFrequency = 300; // Adjust this value as needed
     const maxFrequency = 3400; // Adjust this value as needed
-
-    // Calculate the minBarIndex and maxBarIndex based on the minFrequency and maxFrequency values
+    const frequencyStep = (audioContext.sampleRate / 2) / bufferLength;
     const minBarIndex = Math.floor(minFrequency / frequencyStep);
     const maxBarIndex = Math.ceil(maxFrequency / frequencyStep);
-
-    for (let i = minBarIndex; i <= maxBarIndex; i++) {
-        barHeight = 4 + (dataArray[i] / 255) * (48 - 4);
-
-        const y = 36 - barHeight / 2;
-        canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-
-        x += barWidth + 4;
+  
+    const numBars = maxBarIndex - minBarIndex + 1;
+    const numAnimatedBars = Math.floor(contentWidth / (barWidth + 4));
+    const animatedBarStartIndex = Math.floor(contentStart / (barWidth + 4));
+  
+    let x = leftPadding;
+  
+    for (let i = 0; i < numBars; i++) {
+      if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
+        barHeight = 4 + (dataArray[minBarIndex + i] / 255) * (48 - 4);
+      } else {
+        barHeight = 4;
+      }
+  
+      const y = 36 - barHeight / 2;
+      canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
+      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
+  
+      x += barWidth + 4;
     }
-    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext)); 
-}
+  
+    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
+  }
 
     
   function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
