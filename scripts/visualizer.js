@@ -64,8 +64,15 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const numAnimatedBars = Math.floor(contentWidth / (barWidth + 4));
     const animatedBarStartIndex = Math.floor(contentStart / (barWidth + 4));
   
-    const numBars = Math.floor((totalWidth - contentWidth - fixedLengthAfterContent) / (barWidth + 4)) + numAnimatedBars;
-
+    const numBarsBeforeContent = Math.floor(contentStart / (barWidth + 4));
+    console.log(numBarsBeforeContent);
+    const numBarsAfterContent = Math.floor((totalWidth - contentWidth - contentStart) / (barWidth + 4));
+    console.log(numBarsAfterContent);
+    const numBars = numBarsBeforeContent + numAnimatedBars + numBarsAfterContent;
+    console.log(numBars);
+  
+    for (let i = 0; i < numBars; i++) {
+  
     let x = leftPadding;
   
 
