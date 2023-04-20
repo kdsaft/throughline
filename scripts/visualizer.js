@@ -1,8 +1,5 @@
 // Opening code
 
-// canvasContext.lineWidth = 0.5;
-// canvasContext.strokeStyle = "rgba(0, 0, 0, 0.2)";
-
 
 
 // When the window is resized...
@@ -61,7 +58,9 @@ function drawBars(canvas, analyser, canvasContext) {
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
   }
   
-  function drawRoundedRect(ctx, x, y, width, height, radius) {
+  function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
+    const radius = Math.min(maxRadius, height / 2);
+  
     ctx.beginPath();
     ctx.moveTo(x + radius, y);
     ctx.lineTo(x + width - radius, y);
@@ -74,9 +73,8 @@ function drawBars(canvas, analyser, canvasContext) {
     ctx.arcTo(x, y, x + radius, y, radius);
     ctx.closePath();
     ctx.fill();
-    // ctx.stroke();
   }
-  
+
 // Funcation to set the canvas size to the bottom bar
 function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
