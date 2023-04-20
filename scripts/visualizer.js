@@ -43,6 +43,9 @@ function drawBars(canvas, analyser, canvasContext) {
     let barHeight;
     const parentDivPadding = 148; // Add the padding value here
     let x = parentDivPadding; // Add the padding value to the starting position
+
+    // Define the canvasContainer variable
+    const canvasContainer = document.getElementById("canvas-container");
   
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
