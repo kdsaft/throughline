@@ -49,7 +49,11 @@ function drawBars(canvas, analyser, canvasContext) {
     const minBarIndex = Math.floor((contentRect.left - canvas.getBoundingClientRect().left) / (barWidth + 4));
     const maxBarIndex = Math.ceil((contentRect.right - canvas.getBoundingClientRect().left) / (barWidth + 4));
   
-    for (let i = 0; i < bufferLength; i++) {
+    // Calculate the number of bars that can fit within the available width, considering the padding
+    const availableWidth = canvasContainer.clientWidth - parentDivPadding * 2;
+    const maxBars = Math.floor(availableWidth / (barWidth + 4));
+  
+    for (let i = 0; i < maxBars; i++) {
       if (i >= minBarIndex && i <= maxBarIndex) {
         barHeight = 4 + (dataArray[i] / 255) * (48 - 4);
       } else {
@@ -88,10 +92,8 @@ function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
   
-    const parentDivPadding = 148; // Add the padding value here
-  
-    // Set the canvas width and height to the parent's width and height, subtracting the padding value
-    canvas.style.width = canvasContainer.clientWidth - parentDivPadding * 2 + "px";
+    // Set the canvas width and height to the parent's width and height
+    canvas.style.width = canvasContainer.clientWidth + "px";
     canvas.style.height = canvasContainer.clientHeight + "px";
   
     // Adjust the canvas resolution based on the device pixel ratio
