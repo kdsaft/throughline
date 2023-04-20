@@ -30,9 +30,6 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(error => {
       console.error("Error accessing the microphone:", error);
     });
-  
-   
-      
 
 // Function to draw the bars on the canvas
 function drawBars(canvas, analyser, canvasContext) {
@@ -58,7 +55,7 @@ function drawBars(canvas, analyser, canvasContext) {
         barHeight = 4; // Set the default height for non-animated bars
       }
   
-      const y = 24 - barHeight / 2;
+      const y = 36 - barHeight / 2;
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
       drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
   
