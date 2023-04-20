@@ -32,7 +32,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     });
 
 // Function to draw the bars on the canvas
-function drawBars(canvas, analyser, canvasContext, audioContext) {
+function drawBars(canvas, analyser, canvasContext, audioContext) { 
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
