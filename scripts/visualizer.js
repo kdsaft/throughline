@@ -47,8 +47,8 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     let barHeight;
     const leftPadding = 88; // Add the left padding value here
     const devicePixelRatio = window.devicePixelRatio || 1;
-    const fixedLengthAfterContent = (96 / devicePixelRatio);
-    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - fixedLengthAfterContent;
+    const rightPadding = 148;
+    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
     
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
@@ -66,7 +66,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
   
     const numBarsBeforeContent = Math.floor(contentStart / (barWidth + 4));
     console.log(numBarsBeforeContent);
-    const numBarsAfterContent = 4;
+    const numBarsAfterContent = Math.floor((totalWidth - contentWidth - contentStart) / (barWidth + 4));
     console.log(numBarsAfterContent);
     const numBars = numBarsBeforeContent + numAnimatedBars + numBarsAfterContent;
     console.log(numBars);
