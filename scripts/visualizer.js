@@ -96,11 +96,8 @@ function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
   
-    const leftPadding = 88; // Add the left padding value here
-    const rightPadding = 148; // Add the right padding value here
-  
-    // Set the canvas width and height to the parent's width and height, subtracting the left and right padding values
-    canvas.style.width = canvasContainer.clientWidth - leftPadding - rightPadding + "px";
+    // Set the canvas width and height to the parent's width and height
+    canvas.style.width = canvasContainer.clientWidth + "px";
     canvas.style.height = canvasContainer.clientHeight + "px";
   
     // Adjust the canvas resolution based on the device pixel ratio
