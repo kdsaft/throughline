@@ -1,6 +1,9 @@
 // Opening code
 updateCanvasSize()
 
+canvasContext.lineWidth = 0.5;
+canvasContext.strokeStyle = "rgba(0, 0, 0, 0.2)";
+
 
 
 // When the window is resized...
@@ -69,6 +72,7 @@ function drawBars(canvas, analyser, canvasContext) {
     ctx.arcTo(x, y, x + radius, y, radius);
     ctx.closePath();
     ctx.fill();
+    ctx.stroke();
   }
   
 // Funcation to set the canvas size to the bottom bar
