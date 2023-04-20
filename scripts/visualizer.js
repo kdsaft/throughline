@@ -61,10 +61,11 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const minBarIndex = Math.floor(minFrequency / frequencyStep);
     const maxBarIndex = Math.ceil(maxFrequency / frequencyStep);
   
-    const numBars = Math.floor((totalWidth - contentWidth - fixedLengthAfterContent) / (barWidth + 4)) + numAnimatedBars;
     const numAnimatedBars = Math.floor(contentWidth / (barWidth + 4));
     const animatedBarStartIndex = Math.floor(contentStart / (barWidth + 4));
   
+    const numBars = Math.floor((totalWidth - contentWidth - fixedLengthAfterContent) / (barWidth + 4)) + numAnimatedBars;
+
     let x = leftPadding;
   
 
@@ -78,7 +79,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
       }
           
       const y = 36 - barHeight / 2;
-      canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
+      canvasContext.fillStyle = "#EBEFF9";
       drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
   
       x += barWidth + 4;
