@@ -46,16 +46,30 @@ function drawBars(canvas, analyser, canvasContext) {
   
     for (let i = 0; i < bufferLength; i++) {
       barHeight = 3 + (dataArray[i] / 255) * (36 - 3);
-      const y = (canvas.height - barHeight) / 2;
+      const y = 18 - barHeight / 2;
   
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-      canvasContext.fillRect(x, y, barWidth, barHeight);
+      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
   
       x += barWidth + 4;
     }
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
   }
-
+  
+  function drawRoundedRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
+  }
 
 // Funcation to set the canvas size to the bottom bar
 function updateCanvasSize() {
