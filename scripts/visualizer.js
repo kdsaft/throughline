@@ -53,14 +53,14 @@ function drawBars(canvas, analyser, canvasContext) {
   
     for (let i = 0; i < bufferLength; i++) {
       if (i >= minBarIndex && i <= maxBarIndex) {
-        barHeight = 3 + (dataArray[i] / 255) * (36 - 3);
+        barHeight = 4 + (dataArray[i] / 255) * (48 - 4);
       } else {
         barHeight = 4; // Set the default height for non-animated bars
       }
   
-      const y = 18 - barHeight / 2;
+      const y = 24 - barHeight / 2;
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 2);
+      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
   
       x += barWidth + 4;
     }
