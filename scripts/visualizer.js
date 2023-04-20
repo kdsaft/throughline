@@ -47,8 +47,9 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     let barHeight;
     const leftPadding = 88; // Add the left padding value here
     const fixedLengthAfterContent = 96; // Add the fixed length after the content width
-    const totalWidth = canvas.width - leftPadding - fixedLengthAfterContent;
-  
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - fixedLengthAfterContent;
+    
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
     const contentStart = contentRect.left - leftPadding;
