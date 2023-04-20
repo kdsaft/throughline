@@ -66,7 +66,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
   
     const numBarsBeforeContent = Math.floor(contentStart / (barWidth + 4));
     console.log(numBarsBeforeContent);
-    const numBarsAfterContent = Math.floor((totalWidth - contentWidth - contentStart) / (barWidth + 4));
+    const numBarsAfterContent = 4;
     console.log(numBarsAfterContent);
     const numBars = numBarsBeforeContent + numAnimatedBars + numBarsAfterContent;
     console.log(numBars);
