@@ -1,5 +1,4 @@
 // Opening code
-updateCanvasSize()
 
 canvasContext.lineWidth = 0.5;
 canvasContext.strokeStyle = "rgba(0, 0, 0, 0.2)";
@@ -12,9 +11,12 @@ window.addEventListener("resize", updateCanvasSize);
 
 navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
-        // Get the canvas element and its context
-        const canvas = document.getElementById("audio-visualization");
-        const canvasContext = canvas.getContext("2d");
+    // Get the canvas element and its context
+    const canvas = document.getElementById("audio-visualization");
+    const canvasContext = canvas.getContext("2d");
+
+    // Update the canvas size and resolution
+    updateCanvasSize();
 
         // Create an audio context and a media stream source
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -72,15 +74,25 @@ function drawBars(canvas, analyser, canvasContext) {
     ctx.arcTo(x, y, x + radius, y, radius);
     ctx.closePath();
     ctx.fill();
-    ctx.stroke();
+    // ctx.stroke();
   }
   
 // Funcation to set the canvas size to the bottom bar
 function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
-
-    // Set the canvas width to the parent's width+height
-    canvas.width = canvasContainer.clientWidth;
-    canvas.height = canvasContainer.clientHeight;
-}
+  
+    // Set the canvas width and height to the parent's width and height
+    canvas.style.width = canvasContainer.clientWidth + "px";
+    canvas.style.height = canvasContainer.clientHeight + "px";
+  
+    // Adjust the canvas resolution based on the device pixel ratio
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    canvas.width = canvasContainer.clientWidth * devicePixelRatio;
+    canvas.height = canvasContainer.clientHeight * devicePixelRatio;
+  
+    // Scale the canvas context to match the device pixel ratio
+    const canvasContext = canvas.getContext("2d");
+    canvasContext.scale(devicePixelRatio, devicePixelRatio);
+  }
+  
