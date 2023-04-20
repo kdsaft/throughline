@@ -41,7 +41,8 @@ function drawBars(canvas, analyser, canvasContext) {
   
     const barWidth = 8;
     let barHeight;
-    let x = 0;
+    const parentDivPadding = 148; // Add the padding value here
+    let x = parentDivPadding; // Add the padding value to the starting position
   
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
@@ -62,7 +63,8 @@ function drawBars(canvas, analyser, canvasContext) {
       x += barWidth + 4;
     }
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
-  }
+}
+
     
   function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
