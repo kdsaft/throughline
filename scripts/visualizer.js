@@ -23,7 +23,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         source.connect(analyser);
 
         // Start drawing the bars
-        drawBars(analyser, canvasContext);
+        drawBars(canvas, analyser, canvasContext);
     })
     .catch(error => {
       console.error("Error accessing the microphone:", error);
@@ -33,7 +33,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
       
 
 // Function to draw the bars on the canvas
-function drawBars(analyser, canvasContext) {
+function drawBars(canvas, analyser, canvasContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
@@ -52,7 +52,7 @@ function drawBars(analyser, canvasContext) {
 
         x += barWidth + 1;
     }
-    requestAnimationFrame(() => drawBars(analyser, canvasContext));
+    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
 }
 
 
