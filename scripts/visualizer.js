@@ -96,10 +96,10 @@ function updateCanvasSize() {
   
     // Adjust the canvas resolution based on the device pixel ratio
     const devicePixelRatio = window.devicePixelRatio || 1;
-    canvas.width = (canvasContainer.clientWidth - parentDivPadding * 2) * devicePixelRatio;
-    canvas.height = canvasContainer.clientHeight * devicePixelRatio;
+    canvas.width = parseInt(canvas.style.width) * devicePixelRatio;
+    canvas.height = parseInt(canvas.style.height) * devicePixelRatio;
   
     // Scale the canvas context to match the device pixel ratio
     const canvasContext = canvas.getContext("2d");
     canvasContext.scale(devicePixelRatio, devicePixelRatio);
-}  
+}
