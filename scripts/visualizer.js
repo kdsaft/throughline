@@ -45,8 +45,8 @@ function drawBars(canvas, analyser, canvasContext) {
     let x = 0;
   
     for (let i = 0; i < bufferLength; i++) {
-      barHeight = 3 + (dataArray[i] / 255) * (36 - 3);
-      const y = 18 - barHeight / 2;
+      barHeight = 4 + (dataArray[i] / 255) * (48 - 4);
+      const y = 24 - barHeight / 2;
   
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
       drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
