@@ -5,8 +5,16 @@ let pathElement;
 let animateElements;
 
 
-
 initTimingData();
+updateSVGViewBox();
+
+
+// When the window is resized...
+window.addEventListener("resize", updateSVGViewBox);
+
+
+
+
 
 
 function onDocumentReady(callback) {
@@ -35,12 +43,6 @@ function updateSVGViewBox() {
   // Update the viewBox with the correct dimensions
   svg.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
 }
-
-// Call the function to update the viewBox initially
-updateSVGViewBox();
-
-// Call the function when the window is resized
-window.addEventListener("resize", updateSVGViewBox);
 
 
 

@@ -1,11 +1,11 @@
+// Opening code
+updateCanvasSize() 
 
-
-
-// Call the function(s) when the window is resized
+// When the window is resized...
 window.addEventListener("resize", updateCanvasSize);
   
 
-function updateCanvasSize () {
+function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
 
