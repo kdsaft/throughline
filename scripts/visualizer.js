@@ -90,7 +90,7 @@ function updateCanvasSize() {
     const canvasContainer = document.getElementById("canvas-container");
   
     // Set the canvas width and height to the parent's width and height
-    canvas.style.width = canvasContainer.clientWidth + "px";
+    canvas.style.width = canvasContainer.clientWidth - 296 + "px";
     canvas.style.height = canvasContainer.clientHeight + "px";
   
     // Adjust the canvas resolution based on the device pixel ratio
