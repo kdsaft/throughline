@@ -46,18 +46,27 @@ function drawBars(canvas, analyser, canvasContext) {
     let barHeight;
     let x = 0;
   
-    for (let i = 0; i < bufferLength; i++) {
-      barHeight = 4 + (dataArray[i] / 255) * (48 - 4);
-      const y = 24 - barHeight / 2;
+    const contentDiv = document.querySelector(".content");
+    const contentRect = contentDiv.getBoundingClientRect();
+    const minBarIndex = Math.floor((contentRect.left - canvas.getBoundingClientRect().left) / (barWidth + 4));
+    const maxBarIndex = Math.ceil((contentRect.right - canvas.getBoundingClientRect().left) / (barWidth + 4));
   
+    for (let i = 0; i < bufferLength; i++) {
+      if (i >= minBarIndex && i <= maxBarIndex) {
+        barHeight = 3 + (dataArray[i] / 255) * (36 - 3);
+      } else {
+        barHeight = 4; // Set the default height for non-animated bars
+      }
+  
+      const y = 18 - barHeight / 2;
       canvasContext.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
-      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
+      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 2);
   
       x += barWidth + 4;
     }
     requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext));
   }
-  
+    
   function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
   
