@@ -6,6 +6,17 @@ let canvas;
 let canvasContext;
 let animationId;
 
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
+
+// When the window is resized...
+window.addEventListener("resize", updateCanvasSize);
+
+
 function init() {
     // Get the canvas element and its context
     canvas = document.getElementById("audio-visualization");
@@ -57,13 +68,6 @@ function stopListening() {
     // Draw the default bars again
     drawBars(canvas, canvasContext);
 }
-
-// Run the init function when the page loads
-init();
-
-// When the window is resized...
-window.addEventListener("resize", updateCanvasSize);
-
 
 navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
