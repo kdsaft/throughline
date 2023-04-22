@@ -1,44 +1,13 @@
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
+// Opening code
 
-class ListenToUser {
-    constructor(audioContext, analyser) {
-        this.audioContext = audioContext;
-        this.analyser = analyser;
-        this.stream = null;
-        this.isListening = false;
-    }
 
-    turnListeningOff() {
-        this.isListening = false;
-        if (this.source) {
-            this.source.disconnect(this.analyser);
-        }
-        if (this.stream) {
-            this.stream.getTracks().forEach(track => track.stop());
-        }
-    }
 
-    async turnListeningOn() {
-        this.isListening = true;
-        this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        this.source = this.audioContext.createMediaStreamSource(this.stream);
-        this.source.connect(this.analyser);
-    }
+// When the window is resized...
+window.addEventListener("resize", updateCanvasSize);
 
-    isUserListening() {
-        return this.isListening;
-    }
-}
 
-let listenToUser;
-
-async function init() {
-    console.log("Initializing...");
-    try {
+navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(stream => {
         // Get the canvas element and its context
         const canvas = document.getElementById("audio-visualization");
         const canvasContext = canvas.getContext("2d");
@@ -48,109 +17,28 @@ async function init() {
 
         // Create an audio context and a media stream source
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaStreamSource(stream);
 
         // Create an analyser node to analyze the audio frequency data
         const analyser = audioContext.createAnalyser();
         analyser.fftSize = 256; // Change this value to control the number of bars
+        source.connect(analyser);
 
-        // Create an instance of ListenToUser
-        listenToUser = new ListenToUser(audioContext, analyser);
-
-        // Turn listening off by default
-        listenToUser.turnListeningOff();
-
-        // Draw the initial bars
-        drawInitialBars(canvas, canvasContext);
-
-        console.log("Listening to user...");
-            // Add event listeners for the buttons
-    document.getElementById("sleep").addEventListener("click", () => {
-        listenToUser.turnListeningOff();
-    });
-
-    document.getElementById("wake-up").addEventListener("click", () => {
-        listenToUser.turnListeningOn();
-    });
-
-    
         // Start drawing the bars
-        drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
-    } catch (error) {
+        drawBars(canvas, analyser, canvasContext, audioContext);
+    })
+    .catch(error => {
         console.error("Error accessing the microphone:", error);
-    }
-}
-
-function drawInitialBars(canvas, canvasContext) {
-    const barWidth = 8;
-    let barHeight = 4;
-    const leftPadding = 88;
-    const devicePixelRatio = window.devicePixelRatio || 1;
-    const rightPadding = 148;
-    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
-
-    let x = leftPadding;
-
-    for (let i = 0; i < totalWidth / (barWidth + 4); i++) {
-        const y = 48 - barHeight / 2;
-        canvasContext.fillStyle = "#EBEFF9";
-        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-
-        x += barWidth + 4;
-    }
-}
+    });
 
 
 
-// When the window is resized...
-window.addEventListener("resize", updateCanvasSize);
+// Functions to draw the bars 
 
-function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
+function drawBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
-
-    if (listenToUser.isUserListening()) {
-        listenToUser.analyser.getByteFrequencyData(dataArray);
-    }
-
-    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-
-    const barWidth = 8;
-    let barHeight;
-    const leftPadding = 88; // Add the left padding value here
-    const devicePixelRatio = window.devicePixelRatio || 1;
-    const rightPadding = 148;
-    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
-
-    let x = leftPadding;
-
-    for (let i = 0; i < totalWidth / (barWidth + 4); i++) {
-        if (listenToUser.isUserListening()) {
-            const dataIndex = Math.floor(i * (bufferLength / (totalWidth / (barWidth + 4))));
-            const scaledValue = dataArray[dataIndex] / 255;
-            barHeight = 4 + scaledValue * (48 - 4);
-        } else {
-            barHeight = 4;
-        }
-
-        const y = 48 - barHeight / 2;
-        canvasContext.fillStyle = "#EBEFF9";
-        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-
-        x += barWidth + 4;
-    }
-
-    requestAnimationFrame(() => drawBars(canvas, listenToUser, canvasContext, audioContext, analyser));
-}
-
-
-
-/* function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    if (listenToUser.isUserListening()) {
-        listenToUser.analyser.getByteFrequencyData(dataArray);
-    }
+    analyser.getByteFrequencyData(dataArray);
 
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -183,6 +71,7 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
 
     const animatedFrequencyStep = (maxFrequency - minFrequency) / numAnimatedBars; // used for logging the frequency range
 
+
     for (let i = 0; i < numBars; i++) {
         if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
             const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
@@ -195,6 +84,15 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
 
+           
+        //    // Logging
+        //     const lowerFrequencyLimit = minFrequency + (i - animatedBarStartIndex) * animatedFrequencyStep;
+        //     const upperFrequencyLimit = lowerFrequencyLimit + animatedFrequencyStep;
+        
+        //     if (i === animatedBarStartIndex) console.log("First bar frequency range:", lowerFrequencyLimit, "Hz -", upperFrequencyLimit, "Hz");
+
+        //    if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
+
         } else {
             barHeight = 4;
         }
@@ -206,8 +104,9 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
         x += barWidth + 4;
     }
 
-    requestAnimationFrame(() => drawBars(canvas, listenToUser, canvasContext, audioContext, analyser));
-} */
+    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
+}
+
 
 function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
@@ -226,12 +125,16 @@ function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     ctx.fill();
 }
 
+
 function logScale(value, min, max) {
     const minValue = Math.log(min);
     const maxValue = Math.log(max);
     const scale = (Math.log(value) - minValue) / (maxValue - minValue);
     return Math.max(0, scale);
 }
+
+
+
 
 // Funcation to set the canvas size to the bottom bar
 function updateCanvasSize() {
