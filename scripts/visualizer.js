@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', init);
+
+let listenToUser;
+
 class ListenToUser {
     constructor(audioContext, analyser) {
         this.audioContext = audioContext;
@@ -12,7 +16,7 @@ class ListenToUser {
         if (this.isListening) {
             await this.turnListeningOn();
         } else {
-            this.turnListeningOff();
+            this.turnListeningOff(true);
         }
     }
 
@@ -38,29 +42,38 @@ class ListenToUser {
     }
 }
 
+
 async function init() {
-    // Get the canvas element and its context
-    const canvas = document.getElementById("audio-visualization");
-    const canvasContext = canvas.getContext("2d");
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-    // Update the canvas size and resolution
-    updateCanvasSize();
+        // Get the canvas element and its context
+        const canvas = document.getElementById("audio-visualization");
+        const canvasContext = canvas.getContext("2d");
 
-    // Create an audio context
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // Update the canvas size and resolution
+        updateCanvasSize();
 
-    // Create an analyser node to analyze the audio frequency data
-    const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256; // Change this value to control the number of bars
+        // Create an audio context and a media stream source
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-    // Create an instance of ListenToUser without getting user media
-    listenToUser = new ListenToUser(audioContext, analyser);
+        // Create an analyser node to analyze the audio frequency data
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256; // Change this value to control the number of bars
 
-    // Start drawing the bars
-    drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
+        // Create an instance of ListenToUser
+        listenToUser = new ListenToUser(audioContext, analyser);
+
+        // Turn listening off by default
+        listenToUser.turnListeningOff();
+
+        // Start drawing the bars
+        drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
+    } catch (error) {
+        console.error("Error accessing the microphone:", error);
+    }
 }
 
-init();
 
 
 // When the window is resized...
