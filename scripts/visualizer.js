@@ -69,7 +69,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
 
     let x = leftPadding;
 
-    const animatedFrequencyStep = (maxFrequency - minFrequency) / numAnimatedBars;
+    const animatedFrequencyStep = (maxFrequency - minFrequency) / numAnimatedBars; // used for logging the frequency range
 
 
     for (let i = 0; i < numBars; i++) {
@@ -84,12 +84,14 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
 
-            const lowerFrequencyLimit = minFrequency + (i - animatedBarStartIndex) * animatedFrequencyStep;
-            const upperFrequencyLimit = lowerFrequencyLimit + animatedFrequencyStep;
+           
+        //    // Logging
+        //     const lowerFrequencyLimit = minFrequency + (i - animatedBarStartIndex) * animatedFrequencyStep;
+        //     const upperFrequencyLimit = lowerFrequencyLimit + animatedFrequencyStep;
         
-            if (i === animatedBarStartIndex) console.log("First bar frequency range:", lowerFrequencyLimit, "Hz -", upperFrequencyLimit, "Hz");
+        //     if (i === animatedBarStartIndex) console.log("First bar frequency range:", lowerFrequencyLimit, "Hz -", upperFrequencyLimit, "Hz");
 
-           // if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
+        //    if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
 
         } else {
             barHeight = 4;
