@@ -1,4 +1,8 @@
-document.addEventListener('DOMContentLoaded', init);
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+} else {
+    init();
+}
 
 class ListenToUser {
     constructor(audioContext, analyser) {
