@@ -8,16 +8,6 @@ class ListenToUser {
         this.isListening = false;
     }
 
-    async toggleListening() {
-        this.isListening = !this.isListening;
-
-        if (this.isListening) {
-            await this.turnListeningOn();
-        } else {
-            this.turnListeningOff(true);
-        }
-    }
-
     turnListeningOff() {
         this.isListening = false;
         if (this.source) {
@@ -63,6 +53,9 @@ async function init() {
 
         // Turn listening off by default
         listenToUser.turnListeningOff();
+
+        // Draw the initial bars
+        drawInitialBars(canvas, canvasContext);
 
         // Start drawing the bars
         drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
