@@ -29,6 +29,7 @@ class ListenToUser {
 
     async turnListeningOn() {
         this.isListening = true;
+        this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         this.source = this.audioContext.createMediaStreamSource(this.stream);
         this.source.connect(this.analyser);
     }
@@ -62,8 +63,6 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         // Create an instance of ListenToUser
         listenToUser = new ListenToUser(audioContext, analyser);
 
-        // Set the stream as a property of listenToUser
-listenToUser.stream = stream;
 
         // Turn listening off by default
         listenToUser.turnListeningOff();
