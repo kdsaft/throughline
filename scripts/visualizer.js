@@ -64,10 +64,32 @@ async function init() {
         // Turn listening off by default
         listenToUser.turnListeningOff();
 
+        // Draw the bars initially
+        drawInitialBars(canvas, canvasContext);
+
         // Start drawing the bars
         drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
     } catch (error) {
         console.error("Error accessing the microphone:", error);
+    }
+}
+
+function drawInitialBars(canvas, canvasContext) {
+    const barWidth = 8;
+    let barHeight = 4;
+    const leftPadding = 88;
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const rightPadding = 148;
+    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
+
+    let x = leftPadding;
+
+    for (let i = 0; i < totalWidth / (barWidth + 4); i++) {
+        const y = 48 - barHeight / 2;
+        canvasContext.fillStyle = "#EBEFF9";
+        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
+
+        x += barWidth + 4;
     }
 }
 
@@ -76,45 +98,34 @@ async function init() {
 // When the window is resized...
 window.addEventListener("resize", updateCanvasSize);
 
-// Functions to draw the bars
 function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
     if (listenToUser.isUserListening()) {
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
         listenToUser.analyser.getByteFrequencyData(dataArray);
-    }
 
-    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+        canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
-    const barWidth = 8;
-    let barHeight;
-    const leftPadding = 88; // Add the left padding value here
-    const devicePixelRatio = window.devicePixelRatio || 1;
-    const rightPadding = 148;
-    const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
+        const barWidth = 8;
+        let barHeight;
+        const leftPadding = 88;
+        const devicePixelRatio = window.devicePixelRatio || 1;
+        const rightPadding = 148;
+        const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
 
-    const contentDiv = document.querySelector(".content");
-    const contentRect = contentDiv.getBoundingClientRect();
-    const contentStart = contentRect.left - leftPadding;
-    const contentWidth = 712; // Set the width of the animated area
+        let x = leftPadding;
 
-    let x = leftPadding;
-
-    for (let i = 0; i < totalWidth / (barWidth + 4); i++) {
-        if (listenToUser.isUserListening()) {
+        for (let i = 0; i < totalWidth / (barWidth + 4); i++) {
             const dataIndex = Math.floor(i * (bufferLength / (totalWidth / (barWidth + 4))));
             const scaledValue = dataArray[dataIndex] / 255;
             barHeight = 4 + scaledValue * (48 - 4);
-        } else {
-            barHeight = 4;
+
+            const y = 48 - barHeight / 2;
+            canvasContext.fillStyle = "#EBEFF9";
+            drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
+
+            x += barWidth + 4;
         }
-
-        const y = 48 - barHeight / 2;
-        canvasContext.fillStyle = "#EBEFF9";
-        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-
-        x += barWidth + 4;
     }
 
     requestAnimationFrame(() => drawBars(canvas, listenToUser, canvasContext, audioContext, analyser));
