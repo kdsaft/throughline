@@ -14,16 +14,16 @@ class ListenToUser {
         if (this.isListening) {
             await this.turnListeningOn();
         } else {
-            this.turnListeningOff(true);
+            this.turnListeningOff();
         }
     }
 
-    turnListeningOff(stopTracks = false) {
+    turnListeningOff() {
         this.isListening = false;
         if (this.source) {
             this.source.disconnect(this.analyser);
         }
-        if (this.stream && stopTracks) {
+        if (this.stream) {
             this.stream.getTracks().forEach(track => track.stop());
         }
     }
