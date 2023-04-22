@@ -6,8 +6,18 @@
 </style>
 
 <Script>
+    // Move Sammy close to the text
+    const contentDiv = document.querySelector(".content");
+    const contentRect = contentDiv.getBoundingClientRect();
+    const sammyLeft = contentRect.left - 100 - 48;
+
+    const sammy = document.getElementById("sammy");
+
+    sammy.style.left = sammyLeft + "px";
+
     // Start asleep
-    sleep();
+        sleep();
+
 
     function setState(visibleElements) {
         const allElements = ['Beak Opened', 'Beak Tongue', 'Beak Closed', 'Right Eye Asleep', 'Right Eye Awake', 'Left Eye Asleep', 'Left Eye Awake'];
