@@ -1,7 +1,8 @@
 // Opening code
 
 let isListening = false;
-
+let source;
+let analyser;
 
 
 
@@ -9,6 +10,26 @@ let isListening = false;
 // When the window is resized...
 window.addEventListener("resize", updateCanvasSize);
 
+// Listening funcations
+function toggleListening() {
+    isListening = !isListening;
+
+    if (isListening) {
+        source.connect(analyser);
+    } else {
+        source.disconnect(analyser);
+    }
+}
+
+function turnListeningOff() {
+    isListening = false;
+    source.disconnect(analyser);
+}
+
+function turnListeningOn() {
+    isListening = true;
+    source.connect(analyser);
+}
 
 navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
@@ -21,10 +42,10 @@ navigator.mediaDevices.getUserMedia({ audio: true })
 
         // Create an audio context and a media stream source
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioContext.createMediaStreamSource(stream);
+        source = audioContext.createMediaStreamSource(stream);
 
         // Create an analyser node to analyze the audio frequency data
-        const analyser = audioContext.createAnalyser();
+        analyser = audioContext.createAnalyser();
         analyser.fftSize = 256; // Change this value to control the number of bars
         source.connect(analyser);
 
@@ -37,28 +58,6 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(error => {
         console.error("Error accessing the microphone:", error);
     });
-
-
-    // Listening functions
-    function toggleListening() {
-        isListening = !isListening;
-    
-        if (isListening) {
-            source.connect(analyser);
-        } else {
-            source.disconnect(analyser);
-        }
-    }
-
-    function turnListeningOff() {
-        isListening = false;
-        source.disconnect(analyser);
-    }
-
-    function turnListeningOn() {
-        isListening = true;
-        source.connect(analyser);
-    }
 
 
 
@@ -113,14 +112,14 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
 
-           
-        //    // Logging
-        //     const lowerFrequencyLimit = minFrequency + (i - animatedBarStartIndex) * animatedFrequencyStep;
-        //     const upperFrequencyLimit = lowerFrequencyLimit + animatedFrequencyStep;
-        
-        //     if (i === animatedBarStartIndex) console.log("First bar frequency range:", lowerFrequencyLimit, "Hz -", upperFrequencyLimit, "Hz");
 
-        //    if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
+            //    // Logging
+            //     const lowerFrequencyLimit = minFrequency + (i - animatedBarStartIndex) * animatedFrequencyStep;
+            //     const upperFrequencyLimit = lowerFrequencyLimit + animatedFrequencyStep;
+
+            //     if (i === animatedBarStartIndex) console.log("First bar frequency range:", lowerFrequencyLimit, "Hz -", upperFrequencyLimit, "Hz");
+
+            //    if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
 
         } else {
             barHeight = 4;
