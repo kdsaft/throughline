@@ -24,8 +24,8 @@ body {
 
 #sammy {
     position: fixed !important;
-    left: 50px !important;
-    bottom: 50px !important;
+    left: 100px !important;
+    bottom: 40px !important;
     width: 100px !important;
     height: 105px !important;
     z-index: 999 !important;
