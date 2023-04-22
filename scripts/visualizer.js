@@ -27,9 +27,8 @@ class ListenToUser {
         }
     }
 
-    async turnListeningOn(stream) {
+    async turnListeningOn() {
         this.isListening = true;
-        this.stream = stream;
         this.source = this.audioContext.createMediaStreamSource(this.stream);
         this.source.connect(this.analyser);
     }
@@ -54,7 +53,6 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         // Create an audio context and a media stream source
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
        // const source = audioContext.createMediaStreamSource(stream);
-       listenToUser.turnListeningOn(stream);
 
         // Create an analyser node to analyze the audio frequency data
         const analyser = audioContext.createAnalyser();
@@ -63,6 +61,9 @@ navigator.mediaDevices.getUserMedia({ audio: true })
 
         // Create an instance of ListenToUser
         listenToUser = new ListenToUser(audioContext, analyser);
+
+        // Set the stream as a property of listenToUser
+listenToUser.stream = stream;
 
         // Turn listening off by default
         listenToUser.turnListeningOff();
