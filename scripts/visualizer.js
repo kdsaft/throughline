@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', init);
 
-let listenToUser;
-
 class ListenToUser {
     constructor(audioContext, analyser) {
         this.audioContext = audioContext;
@@ -41,6 +39,7 @@ class ListenToUser {
         return this.isListening;
     }
 }
+let listenToUser;
 
 
 async function init() {
