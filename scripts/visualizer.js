@@ -71,9 +71,7 @@ async function init() {
     }
 }
 
-// Add event listeners for the "listen" and "don't listen" buttons
-document.getElementById("listen").addEventListener("click", () => listenToUser.toggleListening());
-document.getElementById("dont-listen").addEventListener("click", () => listenToUser.toggleListening());
+
 
 // When the window is resized...
 window.addEventListener("resize", updateCanvasSize);
