@@ -73,7 +73,14 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     for (let i = 0; i < numBars; i++) {
         if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
           const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
-          const scaledValue = dataArray[dataIndex] / 255;
+
+         //How to scale the bars
+          const logScaledValue = logScale(dataArray[dataIndex], 1, 256);
+          const powerScaledValue = Math.pow(dataArray[dataIndex] / 255, 0.5);
+          const linearScaledValue =  dataArray[dataIndex] / 255
+      
+          const scaledValue = logScaledValue; 
+      
           barHeight = 4 + scaledValue * (48 - 4);
         } else {
           barHeight = 4;
