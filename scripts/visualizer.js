@@ -34,6 +34,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
 
 
 // Functions to draw the bars 
+const scaledValue = logScale(dataArray[dataIndex], minFrequency, maxFrequency);
 
 
 function drawBars(canvas, analyser, canvasContext, audioContext) {
@@ -72,23 +73,24 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
   
 
     for (let i = 0; i < numBars; i++) {
-      if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
-        const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
-        const scaledValue = Math.pow(dataArray[dataIndex] / 255, 0.5); // Raise the value to a power less than 1
-        barHeight = 4 + scaledValue * (48 - 4);
-      } else {
-        barHeight = 4;
+        if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
+          const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
+          const scaledValue = logScale(dataArray[dataIndex], minFrequency, maxFrequency);
+          barHeight = 4 + scaledValue * (48 - 4);
+        } else {
+          barHeight = 4;
+        }
+    
+        const y = 48 - barHeight / 2;
+        canvasContext.fillStyle = "#EBEFF9";
+        drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
+    
+        x += barWidth + 4;
       }
-          
-      const y = 48 - barHeight / 2;
-      canvasContext.fillStyle = "#EBEFF9";
-      drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-  
-      x += barWidth + 4;
+    
+      requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
     }
-
-    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
-  }
+    
     
   function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
@@ -106,6 +108,15 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     ctx.closePath();
     ctx.fill();
   }
+
+
+  function logScale(value, min, max) {
+    const minValue = Math.log(min);
+    const maxValue = Math.log(max);
+    const scale = (Math.log(value) - minValue) / (maxValue - minValue);
+    return Math.max(0, scale);
+  }
+  
 
 
 
