@@ -1,9 +1,10 @@
 // Opening code
 
 class ListenToUser {
-    constructor(audioContext, analyser) {
+    constructor(audioContext, analyser, stream) {
         this.audioContext = audioContext;
         this.analyser = analyser;
+        this.stream = stream;
         this.isListening = false;
     }
 
@@ -13,19 +14,20 @@ class ListenToUser {
         if (this.isListening) {
             await this.turnListeningOn();
         } else {
-            this.turnListeningOff();
+            this.turnListeningOff(true);
         }
     }
 
-    turnListeningOff() {
+    turnListeningOff(stopTracks = false) {
         this.isListening = false;
         if (this.source) {
             this.source.disconnect(this.analyser);
         }
-        if (this.stream) {
+        if (this.stream && stopTracks) {
             this.stream.getTracks().forEach(track => track.stop());
         }
     }
+
 
     async turnListeningOn() {
         this.isListening = true;
@@ -61,7 +63,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
        // source.connect(analyser);
 
         // Create an instance of ListenToUser
-        listenToUser = new ListenToUser(audioContext, analyser);
+        listenToUser = new ListenToUser(audioContext, analyser, stream);
 
 
         // Turn listening off by default
