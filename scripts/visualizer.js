@@ -34,8 +34,6 @@ navigator.mediaDevices.getUserMedia({ audio: true })
 
 
 // Functions to draw the bars 
-const scaledValue = logScale(dataArray[dataIndex], minFrequency, maxFrequency);
-
 
 function drawBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
@@ -73,14 +71,15 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
   
 
     for (let i = 0; i < numBars; i++) {
-        if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
-          const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
-          const scaledValue = logScale(dataArray[dataIndex], minFrequency, maxFrequency);
-          barHeight = 4 + scaledValue * (48 - 4);
-        } else {
-          barHeight = 4;
-        }
-    
+        for (let i = 0; i < numBars; i++) {
+            if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
+              const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
+              const scaledValue = dataArray[dataIndex] / 255;
+              barHeight = 4 + scaledValue * (48 - 4);
+            } else {
+              barHeight = 4;
+            }
+              
         const y = 48 - barHeight / 2;
         canvasContext.fillStyle = "#EBEFF9";
         drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
