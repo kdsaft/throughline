@@ -13,12 +13,17 @@ window.addEventListener("resize", positionSammy);
 
 // Add a click event listener to toggle between sleep and awake states
 
-sammy.addEventListener('click', toggleSleep);
+sammy.addEventListener('click', () => {
+    if (typeof toggleSleep === 'function') {
+        toggleSleep();
+    }
+});
 sammy.addEventListener('touchend', (event) => {
     event.preventDefault();
-    toggleSleep();
+    if (typeof toggleSleep === 'function') {
+        toggleSleep();
+    }
 });
-
 
 // Functions to change Sammy's state
 
