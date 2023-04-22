@@ -41,7 +41,7 @@ function talk() {
 function setBodyColor(state) {
     sammyBody = document.getElementById('Body');
     if (state === 'sleep') {
-        sammyBody.setAttribute('fill', '#0F2D8A');
+        sammyBody.setAttribute('fill', '#445DBE');
     } else if (state === 'worry') {
         sammyBody.setAttribute('fill', '#D40F67');
     } else {
