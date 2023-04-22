@@ -54,7 +54,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const contentStart = contentRect.left - leftPadding;
     const contentWidth = 712; // Set the width of the animated area
 
-    const minFrequency = 300; // Adjust this value as needed
+    const minFrequency = 100; // Adjust this value as needed
     const maxFrequency = 3400; // Adjust this value as needed
     const frequencyStep = (audioContext.sampleRate / 2) / bufferLength;
     const minBarIndex = Math.floor(minFrequency / frequencyStep);
