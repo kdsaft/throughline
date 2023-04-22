@@ -57,8 +57,16 @@ async function init() {
         // Draw the initial bars
         drawInitialBars(canvas, canvasContext);
 
-        document.getElementById("sleep").addEventListener("click", sleep);
-        document.getElementById("wake-up").addEventListener("click", wakeUp);
+        console.log("Listening to user...");
+            // Add event listeners for the buttons
+    document.getElementById("sleep").addEventListener("click", () => {
+        listenToUser.turnListeningOff();
+    });
+
+    document.getElementById("wake-up").addEventListener("click", () => {
+        listenToUser.turnListeningOn();
+    });
+
     
         // Start drawing the bars
         drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
