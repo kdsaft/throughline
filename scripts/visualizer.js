@@ -57,6 +57,9 @@ async function init() {
         // Draw the initial bars
         drawInitialBars(canvas, canvasContext);
 
+        document.getElementById("sleep").addEventListener("click", sleep);
+        document.getElementById("wake-up").addEventListener("click", wakeUp);
+    
         // Start drawing the bars
         drawBars(canvas, listenToUser, canvasContext, audioContext, analyser);
     } catch (error) {
