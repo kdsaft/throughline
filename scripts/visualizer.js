@@ -35,6 +35,11 @@ async function startListening() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
+        // Resume the audioContext if necessary
+        if (audioContext.state === "suspended") {
+            await audioContext.resume();
+        }
+
         // Create a media stream source
         source = audioContext.createMediaStreamSource(stream);
 
@@ -69,32 +74,7 @@ function stopListening() {
     drawBars(canvas, canvasContext);
 }
 
-/* navigator.mediaDevices.getUserMedia({ audio: true })
-    .then(stream => {
-        // Get the canvas element and its context
-        const canvas = document.getElementById("audio-visualization");
-        const canvasContext = canvas.getContext("2d");
 
-        // Update the canvas size and resolution
-        updateCanvasSize();
-
-        // Create an audio context and a media stream source
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const source = audioContext.createMediaStreamSource(stream);
-
-        // Create an analyser node to analyze the audio frequency data
-        const analyser = audioContext.createAnalyser();
-        analyser.fftSize = 256; // Change this value to control the number of bars
-        source.connect(analyser);
-
-        // Start drawing the bars
-        drawBars(canvas, analyser, canvasContext, audioContext);
-    })
-    .catch(error => {
-        console.error("Error accessing the microphone:", error);
-    });
-
- */
 
 // Functions to draw the bars 
 
