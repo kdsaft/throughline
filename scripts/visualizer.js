@@ -8,12 +8,12 @@ window.addEventListener("resize", updateCanvasSize);
 
 navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
-    // Get the canvas element and its context
-    const canvas = document.getElementById("audio-visualization");
-    const canvasContext = canvas.getContext("2d");
+        // Get the canvas element and its context
+        const canvas = document.getElementById("audio-visualization");
+        const canvasContext = canvas.getContext("2d");
 
-    // Update the canvas size and resolution
-    updateCanvasSize();
+        // Update the canvas size and resolution
+        updateCanvasSize();
 
         // Create an audio context and a media stream source
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -28,7 +28,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         drawBars(canvas, analyser, canvasContext, audioContext);
     })
     .catch(error => {
-      console.error("Error accessing the microphone:", error);
+        console.error("Error accessing the microphone:", error);
     });
 
 
@@ -39,67 +39,66 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
-  
+
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-  
+
     const barWidth = 8;
     let barHeight;
     const leftPadding = 88; // Add the left padding value here
     const devicePixelRatio = window.devicePixelRatio || 1;
     const rightPadding = 148;
     const totalWidth = (canvas.width / devicePixelRatio) - leftPadding - rightPadding;
-    
+
     const contentDiv = document.querySelector(".content");
     const contentRect = contentDiv.getBoundingClientRect();
     const contentStart = contentRect.left - leftPadding;
     const contentWidth = 712; // Set the width of the animated area
-  
+
     const minFrequency = 300; // Adjust this value as needed
     const maxFrequency = 3400; // Adjust this value as needed
     const frequencyStep = (audioContext.sampleRate / 2) / bufferLength;
     const minBarIndex = Math.floor(minFrequency / frequencyStep);
     const maxBarIndex = Math.ceil(maxFrequency / frequencyStep);
-  
+
     const numAnimatedBars = Math.floor(contentWidth / (barWidth + 4));
     const animatedBarStartIndex = Math.floor(contentStart / (barWidth + 4));
-  
+
     const numBarsBeforeContent = Math.floor(contentStart / (barWidth + 4));
     const numBarsAfterContent = Math.floor((totalWidth - contentWidth - contentStart) / (barWidth + 4));
     const numBars = numBarsBeforeContent + numAnimatedBars + numBarsAfterContent;
-    
+
     let x = leftPadding;
-  
+
 
     for (let i = 0; i < numBars; i++) {
         if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
-          const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
+            const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
 
-         //How to scale the bars
-          const logScaledValue = logScale(dataArray[dataIndex], 1, 256);
-          const powerScaledValue = Math.pow(dataArray[dataIndex] / 255, 0.5);
-          const linearScaledValue =  dataArray[dataIndex] / 255
-      
-          const scaledValue = logScaledValue; 
-      
-          barHeight = 4 + scaledValue * (48 - 4);
+            //How to scale the bars
+            const powerExponent = 2; // 0-1 = compress the higher values, 1 = linear, >1 = compress the lower values
+            const powerScaledValue = Math.pow(dataArray[dataIndex] / 255, powerExponent);
+            const logScaledValue = logScale(dataArray[dataIndex], 1, 256);
+
+            const scaledValue = powerScaledValue;
+            barHeight = 4 + scaledValue * (48 - 4);
         } else {
-          barHeight = 4;
+            barHeight = 4;
         }
-    
+
         const y = 48 - barHeight / 2;
         canvasContext.fillStyle = "#EBEFF9";
         drawRoundedRect(canvasContext, x, y, barWidth, barHeight, 4);
-    
+
         x += barWidth + 4;
-      }
-    
-      requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
     }
-    
-    
-  function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
+
+    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
+}
+
+
+function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
-  
+
     ctx.beginPath();
     ctx.moveTo(x + radius, y);
     ctx.lineTo(x + width - radius, y);
@@ -112,16 +111,16 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
     ctx.arcTo(x, y, x + radius, y, radius);
     ctx.closePath();
     ctx.fill();
-  }
+}
 
 
-  function logScale(value, min, max) {
+function logScale(value, min, max) {
     const minValue = Math.log(min);
     const maxValue = Math.log(max);
     const scale = (Math.log(value) - minValue) / (maxValue - minValue);
     return Math.max(0, scale);
-  }
-  
+}
+
 
 
 
@@ -129,16 +128,16 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
 function updateCanvasSize() {
     const canvas = document.getElementById("audio-visualization");
     const canvasContainer = document.getElementById("canvas-container");
-  
+
     // Set the canvas width and height to the parent's width and height
     canvas.style.width = canvasContainer.clientWidth + "px";
     canvas.style.height = canvasContainer.clientHeight + "px";
-  
+
     // Adjust the canvas resolution based on the device pixel ratio
     const devicePixelRatio = window.devicePixelRatio || 1;
     canvas.width = parseInt(canvas.style.width) * devicePixelRatio;
     canvas.height = parseInt(canvas.style.height) * devicePixelRatio;
-  
+
     // Scale the canvas context to match the device pixel ratio
     const canvasContext = canvas.getContext("2d");
     canvasContext.scale(devicePixelRatio, devicePixelRatio);
