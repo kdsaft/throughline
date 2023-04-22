@@ -33,6 +33,7 @@ class ListenToUser {
 let listenToUser;
 
 async function init() {
+    console.log("Initializing...");
     try {
         // Get the canvas element and its context
         const canvas = document.getElementById("audio-visualization");
