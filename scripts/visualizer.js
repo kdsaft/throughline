@@ -1,30 +1,30 @@
 // Opening code
 
 class ListenToUser {
-    constructor(source, analyser) {
+    constructor(source, analyser, stream) {
         this.source = source;
         this.analyser = analyser;
+        this.stream = stream;
         this.isListening = false;
     }
 
     toggleListening() {
         this.isListening = !this.isListening;
-
-        if (this.isListening) {
-            this.source.connect(this.analyser);
-        } else {
-            this.source.disconnect(this.analyser);
-        }
+        this.isListening ? this.turnListeningOn() : this.turnListeningOff();
     }
 
     turnListeningOff() {
         this.isListening = false;
         this.source.disconnect(this.analyser);
+        this.stream.getTracks().forEach(track => track.stop());
     }
 
     turnListeningOn() {
         this.isListening = true;
         this.source.connect(this.analyser);
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(newStream => {
+            this.stream = newStream;
+        });
     }
 }
 
@@ -48,8 +48,8 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         analyser.fftSize = 256; // Change this value to control the number of bars
         source.connect(analyser);
 
-        // Create an instance of AudioVisualizer
-        listenToUser = new ListenToUser(source, analyser);
+        // Create an instance of ListenToUser
+        listenToUser = new ListenToUser(source, analyser, stream);
 
         // Turn listening off by default
         listenToUser.turnListeningOff();
@@ -60,6 +60,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(error => {
         console.error("Error accessing the microphone:", error);
     });
+
 
 
 // When the window is resized...
