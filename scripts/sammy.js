@@ -24,14 +24,28 @@ sammy.addEventListener('touchend', (event) => {
 
 function sleep() {
     setState(['Beak Closed', 'Right Eye Asleep', 'Left Eye Asleep']);
+    setBodyColor('sleep');
 }
 
 function wakeUp() {
     setState(['Beak Closed', 'Right Eye Awake', 'Left Eye Awake']);
+    setBodyColor('awake');
 }
 
 function talk() {
     setState(['Beak Closed', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
+    setBodyColor('talk');
+}
+
+
+function setBodyColor(state) {
+    sammyBody = document.getElementById('Body');
+    if (state === 'sleep') {
+        sammyBody.setAttribute('fill', '#0F2D8A');
+    } else if (state === 'worry') {
+        sammyBody.setAttribute('fill', '#D40F67');
+} else {
+    sammyBody.setAttribute('fill', '#1A79C7');
 }
 
 
