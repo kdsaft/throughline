@@ -81,6 +81,9 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
 
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
+
+            if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
+
         } else {
             barHeight = 4;
         }
