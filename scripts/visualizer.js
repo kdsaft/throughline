@@ -1,30 +1,32 @@
 // Opening code
 
 class ListenToUser {
-    constructor(source, analyser, stream) {
-        this.source = source;
+    constructor(audioContext, analyser) {
+        this.audioContext = audioContext;
         this.analyser = analyser;
-        this.stream = stream;
         this.isListening = false;
     }
 
-    toggleListening() {
+    async toggleListening() {
         this.isListening = !this.isListening;
-        this.isListening ? this.turnListeningOn() : this.turnListeningOff();
+        this.isListening ? await this.turnListeningOn() : this.turnListeningOff();
     }
 
     turnListeningOff() {
         this.isListening = false;
-        this.source.disconnect(this.analyser);
-        this.stream.getTracks().forEach(track => track.stop());
+        if (this.source) {
+            this.source.disconnect(this.analyser);
+        }
+        if (this.stream) {
+            this.stream.getTracks().forEach(track => track.stop());
+        }
     }
 
-    turnListeningOn() {
+    async turnListeningOn() {
         this.isListening = true;
+        this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        this.source = this.audioContext.createMediaStreamSource(this.stream);
         this.source.connect(this.analyser);
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(newStream => {
-            this.stream = newStream;
-        });
     }
 }
 
@@ -49,7 +51,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         source.connect(analyser);
 
         // Create an instance of ListenToUser
-        listenToUser = new ListenToUser(source, analyser, stream);
+        listenToUser = new ListenToUser(audioContext, analyser);
 
         // Turn listening off by default
         listenToUser.turnListeningOff();
@@ -60,6 +62,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(error => {
         console.error("Error accessing the microphone:", error);
     });
+
 
 
 
