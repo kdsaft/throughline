@@ -32,6 +32,8 @@ function init() {
 }
 
 async function startListening() {
+    console.log("Starting to listen...");
+
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
@@ -56,6 +58,8 @@ async function startListening() {
 }
 
 function stopListening() {
+    console.log("Stopping to listen...");
+
     if (source) {
         source.disconnect();
         source.mediaStream.getTracks().forEach(track => track.stop());
