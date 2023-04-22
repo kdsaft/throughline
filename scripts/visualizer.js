@@ -75,7 +75,7 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
             const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
 
             //How to scale the bars
-            const powerExponent = 2; // 0-1 = compress the higher values, 1 = linear, >1 = compress the lower values
+            const powerExponent = 3; // 0-1 = compress the higher values, 1 = linear, >1 = compress the lower values
             const powerScaledValue = Math.pow(dataArray[dataIndex] / 255, powerExponent);
             const logScaledValue = logScale(dataArray[dataIndex], 1, 256);
 
