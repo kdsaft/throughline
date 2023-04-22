@@ -33,6 +33,11 @@ class ListenToUser {
         this.source = this.audioContext.createMediaStreamSource(this.stream);
         this.source.connect(this.analyser);
     }
+
+    isUserListening() {
+        return this.isListening;
+    }
+
 }
 
 let listenToUser;
@@ -79,10 +84,14 @@ window.addEventListener("resize", updateCanvasSize);
 // Functions to draw the bars 
 
 function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-    listenToUser.analyser.getByteFrequencyData(dataArray);
-
+    if (listenToUser.isUserListening()) {
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        listenToUser.analyser.getByteFrequencyData(dataArray);
+    } else {
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+    }
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
     const barWidth = 8;
