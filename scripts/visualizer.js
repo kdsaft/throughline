@@ -69,7 +69,7 @@ function stopListening() {
     drawBars(canvas, canvasContext);
 }
 
-navigator.mediaDevices.getUserMedia({ audio: true })
+/* navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
         // Get the canvas element and its context
         const canvas = document.getElementById("audio-visualization");
@@ -94,12 +94,12 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         console.error("Error accessing the microphone:", error);
     });
 
-
+ */
 
 // Functions to draw the bars 
 
 function drawBars(canvas, canvasContext) {
-    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    //canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
     const barWidth = 8;
     const barHeight = 4;
