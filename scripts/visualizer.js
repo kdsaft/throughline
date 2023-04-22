@@ -1,5 +1,9 @@
 // Opening code
 
+let isListening = false;
+
+
+
 
 
 // When the window is resized...
@@ -24,12 +28,37 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         analyser.fftSize = 256; // Change this value to control the number of bars
         source.connect(analyser);
 
+        // Turn listening off by default
+        turnListeningOff();
+
         // Start drawing the bars
         drawBars(canvas, analyser, canvasContext, audioContext);
     })
     .catch(error => {
         console.error("Error accessing the microphone:", error);
     });
+
+
+    // Listening functions
+    function toggleListening() {
+        isListening = !isListening;
+    
+        if (isListening) {
+            source.connect(analyser);
+        } else {
+            source.disconnect(analyser);
+        }
+    }
+
+    function turnListeningOff() {
+        isListening = false;
+        source.disconnect(analyser);
+    }
+
+    function turnListeningOn() {
+        isListening = true;
+        source.connect(analyser);
+    }
 
 
 
