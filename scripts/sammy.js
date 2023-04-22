@@ -25,13 +25,13 @@ sammy.addEventListener('touchend', (event) => {
 function sleep() {
     setState(['Beak Closed', 'Right Eye Asleep', 'Left Eye Asleep']);
     setBodyColor('sleep');
-    turnListeningOff();
+    listenToUser.turnListeningOff();
 }
 
 function wakeUp() {
     setState(['Beak Closed', 'Right Eye Awake', 'Left Eye Awake']);
     setBodyColor('awake');
-    turnListeningOn();
+    listenToUser.turnListeningOn();
 }
 
 function talk() {
