@@ -39,13 +39,11 @@ class ListenToUser {
         return this.isListening;
     }
 }
-let listenToUser;
 
+let listenToUser;
 
 async function init() {
     try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
         // Get the canvas element and its context
         const canvas = document.getElementById("audio-visualization");
         const canvasContext = canvas.getContext("2d");
@@ -73,14 +71,14 @@ async function init() {
     }
 }
 
-
+// Add event listeners for the "listen" and "don't listen" buttons
+document.getElementById("listen").addEventListener("click", () => listenToUser.toggleListening());
+document.getElementById("dont-listen").addEventListener("click", () => listenToUser.toggleListening());
 
 // When the window is resized...
 window.addEventListener("resize", updateCanvasSize);
 
-
-
-// Functions to draw the bars 
+// Functions to draw the bars
 
 function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
     const bufferLength = analyser.frequencyBinCount;
@@ -89,7 +87,7 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
     if (listenToUser.isUserListening()) {
         listenToUser.analyser.getByteFrequencyData(dataArray);
     }
-    
+
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
     const barWidth = 8;
@@ -121,7 +119,6 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
 
     const animatedFrequencyStep = (maxFrequency - minFrequency) / numAnimatedBars; // used for logging the frequency range
 
-
     for (let i = 0; i < numBars; i++) {
         if (i >= animatedBarStartIndex && i < animatedBarStartIndex + numAnimatedBars) {
             const dataIndex = minBarIndex + Math.floor((i - animatedBarStartIndex) * ((maxBarIndex - minBarIndex + 1) / numAnimatedBars));
@@ -133,15 +130,6 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
 
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
-
-
-            //    // Logging
-            //     const lowerFrequencyLimit = minFrequency + (i - animatedBarStartIndex) * animatedFrequencyStep;
-            //     const upperFrequencyLimit = lowerFrequencyLimit + animatedFrequencyStep;
-
-            //     if (i === animatedBarStartIndex) console.log("First bar frequency range:", lowerFrequencyLimit, "Hz -", upperFrequencyLimit, "Hz");
-
-            //    if (i === animatedBarStartIndex) console.log("First bar amplitude:", dataArray[dataIndex]);
 
         } else {
             barHeight = 4;
@@ -156,10 +144,6 @@ function drawBars(canvas, listenToUser, canvasContext, audioContext, analyser) {
 
     requestAnimationFrame(() => drawBars(canvas, listenToUser, canvasContext, audioContext, analyser));
 }
-
-
-
-
 
 function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     const radius = Math.min(maxRadius, height / 2);
@@ -178,16 +162,12 @@ function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
     ctx.fill();
 }
 
-
 function logScale(value, min, max) {
     const minValue = Math.log(min);
     const maxValue = Math.log(max);
     const scale = (Math.log(value) - minValue) / (maxValue - minValue);
     return Math.max(0, scale);
 }
-
-
-
 
 // Funcation to set the canvas size to the bottom bar
 function updateCanvasSize() {
