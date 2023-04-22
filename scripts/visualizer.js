@@ -9,7 +9,12 @@ class ListenToUser {
 
     async toggleListening() {
         this.isListening = !this.isListening;
-        this.isListening ? await this.turnListeningOn() : this.turnListeningOff();
+
+        if (this.isListening) {
+            await this.turnListeningOn();
+        } else {
+            this.turnListeningOff();
+        }
     }
 
     turnListeningOff() {
@@ -57,7 +62,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         listenToUser.turnListeningOff();
 
         // Start drawing the bars
-        drawBars(canvas, analyser, canvasContext, audioContext);
+        drawBars(canvas, listenToUser, canvasContext, audioContext);
     })
     .catch(error => {
         console.error("Error accessing the microphone:", error);
@@ -73,10 +78,10 @@ window.addEventListener("resize", updateCanvasSize);
 
 // Functions to draw the bars 
 
-function drawBars(canvas, analyser, canvasContext, audioContext) {
+function drawBars(canvas, listenToUser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
-    analyser.getByteFrequencyData(dataArray);
+    listenToUser.analyser.getByteFrequencyData(dataArray);
 
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -142,8 +147,11 @@ function drawBars(canvas, analyser, canvasContext, audioContext) {
         x += barWidth + 4;
     }
 
-    requestAnimationFrame(() => drawBars(canvas, analyser, canvasContext, audioContext));
+    requestAnimationFrame(() => drawBars(canvas, listenToUser, canvasContext, audioContext));
 }
+
+
+
 
 
 function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
