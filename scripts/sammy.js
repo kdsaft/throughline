@@ -17,8 +17,8 @@ sammy.addEventListener('click', toggleSleep);
 sammy.addEventListener('touchend', (event) => {
     event.preventDefault();
     toggleSleep();
-  });
-    
+});
+
 
 // Functions to change Sammy's state
 
@@ -44,8 +44,9 @@ function setBodyColor(state) {
         sammyBody.setAttribute('fill', '#0F2D8A');
     } else if (state === 'worry') {
         sammyBody.setAttribute('fill', '#D40F67');
-} else {
-    sammyBody.setAttribute('fill', '#1A79C7');
+    } else {
+        sammyBody.setAttribute('fill', '#1A79C7');
+    }
 }
 
 
@@ -77,10 +78,9 @@ function setState(visibleElements) {
 function toggleSleep() {
     if (isAwake) {
         sleep();
-      } else {
+    } else {
         wakeUp();
-      }
-      isAwake = !isAwake;
     }
-    
-    
+    isAwake = !isAwake;
+}
+
