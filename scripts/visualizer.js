@@ -18,7 +18,7 @@ window.addEventListener("resize", updateCanvasSize);
 
 
 function init() {
-    const useVersion = 1;
+    const useVersion = 2;
 
     if (useVersion == 1) {
         // Get the canvas element and its context
@@ -72,7 +72,9 @@ async function startListening() {
         }
 
         // Create a media stream source
+        console.log("Creating a media stream source...");
         source = audioContext.createMediaStreamSource(stream);
+        console.log("Media stream source created.");
 
         // Create an analyser node to analyze the audio frequency data
         analyser = audioContext.createAnalyser();
