@@ -31,6 +31,8 @@ function init() {
 
         if (AudioContext) {
             audioContext = new AudioContext();
+            console.log('AudioContext used:', AudioContext.name); // Add this log statement
+
         } else {
             alert("Audio context not supported");
         }
@@ -149,6 +151,7 @@ async function animateBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
+    console.log('dataArray:', dataArray);
 
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
