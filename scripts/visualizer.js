@@ -135,6 +135,9 @@ function drawBars(canvas, canvasContext) {
 
 function animateBars(canvas, analyser, canvasContext, audioContext) {
 
+    console.log("AudioContext state:", audioContext.state);
+
+
         // Check if the AudioContext is in a suspended state
         if (audioContext.state === "suspended") {
             try {
