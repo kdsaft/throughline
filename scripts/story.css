@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-  }
+}
 
 
 #topPanel {
@@ -29,23 +29,31 @@ body {
     width: 100px !important;
     height: 105px !important;
     z-index: 999 !important;
-  }
+}
 
 #html-content {
     width: 710px !important;
     height: 100vh !important;
-    box-sizing: border-box  !important;  
+    box-sizing: border-box !important;
 }
 
-    #lensStyle{
-		border-radius: 24px !important;
-		background-color: rgba(254, 251, 253, 0.7) !important;  
-		border: 2px solid rgba(177, 177, 177, 0.2) !important;
-		box-shadow: 0 0 10px rgba(26, 121, 199, .1) !important;
-		-webkit-backdrop-filter: blur(7px)!important;
-		backdrop-filter: blur(7px)!important; 
-    }
-  
+#lensStyle {
+    border-radius: 24px !important;
+    background-color: rgba(254, 251, 253, 0.7) !important;
+    border: 2px solid rgba(177, 177, 177, 0.2) !important;
+    box-shadow: 0 0 10px rgba(26, 121, 199, .1) !important;
+    -webkit-backdrop-filter: blur(7px) !important;
+    backdrop-filter: blur(7px) !important;
+}
+
+#canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 
 .content {
     position: relative;
@@ -53,7 +61,7 @@ body {
     height: 100vh;
     width: 710px;
     padding-right: 20px;
-    box-sizing: border-box;  
+    box-sizing: border-box;
 }
 
 .content::-webkit-scrollbar {
@@ -61,16 +69,18 @@ body {
     opacity: 0;
     transition: opacity 0.3s;
 }
+
 .content.scrolling::-webkit-scrollbar {
     width: 4px;
     opacity: 1;
 }
 
 .content::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 100vw;
     margin-block: 112px;
 }
+
 .content::-webkit-scrollbar-thumb {
     background: #EBEFF9;
     border-radius: 100vw;
@@ -118,21 +128,22 @@ body {
 }
 
 .highlight-area {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 0;
-  width: 700px;
-  height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: 700px;
+    height: 100%;
 
 }
 
 #highlight-viewport {
     height: 100%;
-  }
+}
 
 
-.unread, .unread .punctuation {
+.unread,
+.unread .punctuation {
     font-family: SF-Mono-Regular;
     color: #0E0E0E;
 }
@@ -147,7 +158,8 @@ body {
     color: #0E0E0E;
 }
 
-.read, .read .punctuation {
+.read,
+.read .punctuation {
     font-family: SF-Mono-Regular;
     color: #9D9EA0;
 }
