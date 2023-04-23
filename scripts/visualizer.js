@@ -151,7 +151,7 @@ async function animateBars(canvas, analyser, canvasContext, audioContext) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
-    console.log('dataArray:', dataArray);
+    //console.log('dataArray:', dataArray);
 
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -196,7 +196,6 @@ async function animateBars(canvas, analyser, canvasContext, audioContext) {
 
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
-            console.log("Bar height:", barHeight);
             
         } else {
             barHeight = 4;
