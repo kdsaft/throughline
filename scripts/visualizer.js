@@ -25,8 +25,18 @@ function init() {
     // Update the canvas size and resolution
     updateCanvasSize();
 
-    // Create an audio context
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    // Create an audio context with compatibility for different browsers
+    try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+        if (AudioContext) {
+            audioContext = new AudioContext();
+        } else {
+            alert("Audio context not supported");
+        }
+    } catch (e) {
+        console.log("no sound context found, no audio output. " + e);
+    }
 
     drawBars(canvas, canvasContext);
 }
