@@ -35,8 +35,9 @@ async function startListening() {
     console.log("AudioContext state:", audioContext.state);
 
     try {
-        console.log("Steam =");
+        console.log("Steam = ...before");
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log("Steam = ...after");
 
         // Resume the audioContext if necessary
         if (audioContext.state === "suspended") {
