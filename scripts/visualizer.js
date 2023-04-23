@@ -21,6 +21,7 @@ function init() {
     const useVersion = 2;
 
     if (useVersion == 1) {
+        console.log("Using version 1");
         // Get the canvas element and its context
         canvas = document.getElementById("audio-visualization");
         canvasContext = canvas.getContext("2d");
@@ -34,7 +35,7 @@ function init() {
         drawBars(canvas, canvasContext);
 
     } else {
-
+        console.log("Using version 2");
         // Get the canvas element and its context
         canvas = document.getElementById("audio-visualization");
         canvasContext = canvas.getContext("2d");
