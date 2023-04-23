@@ -35,6 +35,7 @@ async function startListening() {
     console.log("AudioContext state:", audioContext.state);
 
     try {
+        console.log("Steam =");
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
         // Resume the audioContext if necessary
@@ -44,11 +45,15 @@ async function startListening() {
         }
 
         // Create a media stream source
+        console.log("Creating a media stream source");
         source = audioContext.createMediaStreamSource(stream);
 
         // Create an analyser node to analyze the audio frequency data
+        console.log("analyser =");
         analyser = audioContext.createAnalyser();
+        console.log("fftSize =");
         analyser.fftSize = 256; // Change this value to control the number of bars
+        console.log("source.connect");
         source.connect(analyser);
 
         // Start animating the bars
