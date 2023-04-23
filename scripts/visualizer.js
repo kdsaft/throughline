@@ -17,79 +17,40 @@ if (document.readyState === "loading") {
 window.addEventListener("resize", updateCanvasSize);
 
 
-
-
 function init() {
-    const useVersion = 1;
+    // Get the canvas element and its context
+    canvas = document.getElementById("audio-visualization");
+    canvasContext = canvas.getContext("2d");
 
-    if (useVersion == 1) {
-        // Get the canvas element and its context
-        canvas = document.getElementById("audio-visualization");
-        canvasContext = canvas.getContext("2d");
+    // Update the canvas size and resolution
+    updateCanvasSize();
 
-        // Update the canvas size and resolution
-        updateCanvasSize();
+    // Create an audio context
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-        // Create an audio context
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        drawBars(canvas, canvasContext);
-
-    } else {
-
-        // Get the canvas element and its context
-        canvas = document.getElementById("audio-visualization");
-        canvasContext = canvas.getContext("2d");
-
-        // Update the canvas size and resolution
-        updateCanvasSize();
-
-        // Create an audio context with compatibility for different browsers
-        try {
-            const AudioContext = window.AudioContext || window.webkitAudioContext || false;
-
-            if (AudioContext) {
-                audioContext = new AudioContext();
-
-            } else {
-                alert("Audio context not supported");
-            }
-        } catch (e) {
-            console.log("no sound context found, no audio output. " + e);
-        }
-
-        drawBars(canvas, canvasContext);
-    }
+    drawBars(canvas, canvasContext);
 }
 
 async function startListening() {
-    console.log("AudioContext state:", audioContext.state);
+    console.log("Starting to listen...");
 
     try {
-        console.log("Steam = ...before");
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        console.log("Steam = ...after");
 
         // Resume the audioContext if necessary
         if (audioContext.state === "suspended") {
-            console.log("Resuming audioContext");
             await audioContext.resume();
         }
 
         // Create a media stream source
-        console.log("Creating a media stream source");
         source = audioContext.createMediaStreamSource(stream);
 
         // Create an analyser node to analyze the audio frequency data
-        console.log("analyser =");
         analyser = audioContext.createAnalyser();
-        console.log("fftSize =");
         analyser.fftSize = 256; // Change this value to control the number of bars
-        console.log("source.connect");
         source.connect(analyser);
 
         // Start animating the bars
-        console.log("Animating bars...");
         animateBars(canvas, analyser, canvasContext, audioContext);
     } catch (error) {
         console.error("Error accessing the microphone:", error);
@@ -100,9 +61,7 @@ function stopListening() {
     console.log("Stopping to listen...");
 
     if (source) {
-        console.log("Disconnecting source...");
         source.disconnect();
-        console.log("Stopping tracks...");
         source.mediaStream.getTracks().forEach(track => track.stop());
         source = null;
     }
@@ -155,23 +114,9 @@ function drawBars(canvas, canvasContext) {
 
 
 function animateBars(canvas, analyser, canvasContext, audioContext) {
-    console.log("AudioContext state:", audioContext.state);
-
-/* 
-    // Check if the AudioContext is in a suspended state
-    if (audioContext.state === "suspended") {
-        try {
-            // Attempt to resume the AudioContext
-            await audioContext.resume();
-        } catch (error) {
-            console.error("Error resuming the AudioContext:", error);
-        }
-    } */
-
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
-    //console.log('dataArray:', dataArray);
 
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -216,7 +161,6 @@ function animateBars(canvas, analyser, canvasContext, audioContext) {
 
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
-
         } else {
             barHeight = 4;
         }
@@ -228,8 +172,7 @@ function animateBars(canvas, analyser, canvasContext, audioContext) {
         x += barWidth + 4;
     }
 
-    requestAnimationFrame(() => animateBars(canvas, analyser, canvasContext, audioContext));
-}
+    requestAnimationFrame(() => animateBars(canvas, analyser, canvasContext, audioContext));}
 
 
 function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
