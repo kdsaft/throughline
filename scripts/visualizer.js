@@ -133,7 +133,7 @@ function drawBars(canvas, canvasContext) {
 }
 
 
-function animateBars(canvas, analyser, canvasContext, audioContext) {
+async function animateBars(canvas, analyser, canvasContext, audioContext) {
 
     console.log("AudioContext state:", audioContext.state);
 
