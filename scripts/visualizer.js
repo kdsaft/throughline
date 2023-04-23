@@ -32,13 +32,14 @@ function init() {
 }
 
 async function startListening() {
-    console.log("Starting to listen...");
+    console.log("AudioContext state:", audioContext.state);
 
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
         // Resume the audioContext if necessary
         if (audioContext.state === "suspended") {
+            console.log("Resuming audioContext");
             await audioContext.resume();
         }
 
@@ -51,6 +52,7 @@ async function startListening() {
         source.connect(analyser);
 
         // Start animating the bars
+        console.log("Animating bars...");
         animateBars(canvas, analyser, canvasContext, audioContext);
     } catch (error) {
         console.error("Error accessing the microphone:", error);
@@ -61,7 +63,9 @@ function stopListening() {
     console.log("Stopping to listen...");
 
     if (source) {
+        console.log("Disconnecting source...");
         source.disconnect();
+        console.log("Stopping tracks...");
         source.mediaStream.getTracks().forEach(track => track.stop());
         source = null;
     }
