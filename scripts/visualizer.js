@@ -17,30 +17,49 @@ if (document.readyState === "loading") {
 window.addEventListener("resize", updateCanvasSize);
 
 
+
+
 function init() {
-    // Get the canvas element and its context
-    canvas = document.getElementById("audio-visualization");
-    canvasContext = canvas.getContext("2d");
+    const useVersion = 1;
 
-    // Update the canvas size and resolution
-    updateCanvasSize();
+    if (useVersion == 1) {
+        // Get the canvas element and its context
+        canvas = document.getElementById("audio-visualization");
+        canvasContext = canvas.getContext("2d");
 
-    // Create an audio context with compatibility for different browsers
-    try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext || false;
+        // Update the canvas size and resolution
+        updateCanvasSize();
 
-        if (AudioContext) {
-            audioContext = new AudioContext();
-            console.log('AudioContext used:', AudioContext.name); // Add this log statement
+        // Create an audio context
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-        } else {
-            alert("Audio context not supported");
+        drawBars(canvas, canvasContext);
+
+    } else {
+
+        // Get the canvas element and its context
+        canvas = document.getElementById("audio-visualization");
+        canvasContext = canvas.getContext("2d");
+
+        // Update the canvas size and resolution
+        updateCanvasSize();
+
+        // Create an audio context with compatibility for different browsers
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+            if (AudioContext) {
+                audioContext = new AudioContext();
+
+            } else {
+                alert("Audio context not supported");
+            }
+        } catch (e) {
+            console.log("no sound context found, no audio output. " + e);
         }
-    } catch (e) {
-        console.log("no sound context found, no audio output. " + e);
-    }
 
-    drawBars(canvas, canvasContext);
+        drawBars(canvas, canvasContext);
+    }
 }
 
 async function startListening() {
@@ -138,16 +157,16 @@ function drawBars(canvas, canvasContext) {
 async function animateBars(canvas, analyser, canvasContext, audioContext) {
 
 
-        // Check if the AudioContext is in a suspended state
-        if (audioContext.state === "suspended") {
-            try {
-                // Attempt to resume the AudioContext
-                await audioContext.resume();
-            } catch (error) {
-                console.error("Error resuming the AudioContext:", error);
-            }
+    // Check if the AudioContext is in a suspended state
+    if (audioContext.state === "suspended") {
+        try {
+            // Attempt to resume the AudioContext
+            await audioContext.resume();
+        } catch (error) {
+            console.error("Error resuming the AudioContext:", error);
         }
-    
+    }
+
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
@@ -196,7 +215,7 @@ async function animateBars(canvas, analyser, canvasContext, audioContext) {
 
             const scaledValue = powerScaledValue;
             barHeight = 4 + scaledValue * (48 - 4);
-            
+
         } else {
             barHeight = 4;
         }
@@ -208,7 +227,8 @@ async function animateBars(canvas, analyser, canvasContext, audioContext) {
         x += barWidth + 4;
     }
 
-    requestAnimationFrame(() => animateBars(canvas, analyser, canvasContext, audioContext));}
+    requestAnimationFrame(() => animateBars(canvas, analyser, canvasContext, audioContext));
+}
 
 
 function drawRoundedRect(ctx, x, y, width, height, maxRadius) {
