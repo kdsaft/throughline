@@ -18,17 +18,46 @@ window.addEventListener("resize", updateCanvasSize);
 
 
 function init() {
-    // Get the canvas element and its context
-    canvas = document.getElementById("audio-visualization");
-    canvasContext = canvas.getContext("2d");
+    const useVersion = 1;
 
-    // Update the canvas size and resolution
-    updateCanvasSize();
+    if (useVersion == 1) {
+        // Get the canvas element and its context
+        canvas = document.getElementById("audio-visualization");
+        canvasContext = canvas.getContext("2d");
 
-    // Create an audio context
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // Update the canvas size and resolution
+        updateCanvasSize();
 
-    drawBars(canvas, canvasContext);
+        // Create an audio context
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        drawBars(canvas, canvasContext);
+
+    } else {
+
+        // Get the canvas element and its context
+        canvas = document.getElementById("audio-visualization");
+        canvasContext = canvas.getContext("2d");
+
+        // Update the canvas size and resolution
+        updateCanvasSize();
+
+        // Create an audio context with compatibility for different browsers
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+            if (AudioContext) {
+                audioContext = new AudioContext();
+
+            } else {
+                alert("Audio context not supported");
+            }
+        } catch (e) {
+            console.log("no sound context found, no audio output. " + e);
+        }
+
+        drawBars(canvas, canvasContext);
+    }
 }
 
 async function startListening() {
