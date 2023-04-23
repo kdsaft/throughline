@@ -134,6 +134,17 @@ function drawBars(canvas, canvasContext) {
 
 
 function animateBars(canvas, analyser, canvasContext, audioContext) {
+
+        // Check if the AudioContext is in a suspended state
+        if (audioContext.state === "suspended") {
+            try {
+                // Attempt to resume the AudioContext
+                await audioContext.resume();
+            } catch (error) {
+                console.error("Error resuming the AudioContext:", error);
+            }
+        }
+    
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
     analyser.getByteFrequencyData(dataArray);
