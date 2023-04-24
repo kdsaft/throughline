@@ -5,6 +5,7 @@ let analyser;
 let canvas;
 let canvasContext;
 let animationId;
+let recognizer;
 
 
 if (document.readyState === "loading") {
@@ -15,7 +16,7 @@ if (document.readyState === "loading") {
 
 // When the window is resized...
 window.addEventListener("resize", () => {
-    updateCanvasSize(); 
+    updateCanvasSize();
     drawBars(canvas, canvasContext);
 });
 
@@ -90,17 +91,17 @@ async function startListening() {
         // Create a media stream source
         source = audioContext.createMediaStreamSource(stream);
 
-            // Connect the media stream source to the Speech SDK
-    const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(source.mediaStream);
-    const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+        // Connect the media stream source to the Speech SDK
+        const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(source.mediaStream);
+        recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
 
-    // Add an event listener to the recognizer to log the recognized text
-    recognizer.recognizing = (sender, event) => {
-        console.log(`Recognizing: ${event.result.text}`);
-    };
+        // Add an event listener to the recognizer to log the recognized text
+        recognizer.recognizing = (sender, event) => {
+            console.log(`Recognizing: ${event.result.text}`);
+        };
 
-    // Start the recognizer
-    recognizer.startContinuousRecognitionAsync();
+        // Start the recognizer
+        recognizer.startContinuousRecognitionAsync();
 
 
         // Create an analyser node to analyze the audio frequency data
