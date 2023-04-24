@@ -86,7 +86,8 @@ function resetStory() {
 }
 
 function stopReading() {
-  const wordElements = document.querySelectorAll('[class^="word-"]');
+  const wordNumber = parseInt(document.getElementById("word-number").value);
+  const wordElement = document.querySelector(".word-" + wordNumber);
 
   // set the active word to unread and hide the line
   updateWordStyle(wordElement, "unread");
