@@ -4,11 +4,12 @@ let jsonData;
 let pathElement;
 let animateElements;
 
-const content = document.querySelector('.content');
+let content;
 let scrollingTimeout;
 
 
 function initReading() {
+  content = document.querySelector('.content');
   initTimingData();
   updateSVGViewBox();
 
@@ -19,7 +20,6 @@ function initReading() {
   content.addEventListener('scroll', () => {
     handleScrollbarFade();
   });
-
 
 }
 
