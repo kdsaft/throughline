@@ -15,8 +15,6 @@ window.addEventListener("resize", updateSVGViewBox);
 
 
 
-
-
 function onDocumentReady(callback) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', callback);
@@ -88,8 +86,12 @@ function resetStory() {
 }
 
 function stopReading() {
-    // Hide the line if it exists
-    if (pathElement) {
+  const wordElements = document.querySelectorAll('[class^="word-"]');
+
+  // set the active word to unread and hide the line
+  updateWordStyle(wordElement, "unread");
+
+  if (pathElement) {
       hideLine(pathElement);
     }
 }
