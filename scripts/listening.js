@@ -19,6 +19,17 @@ window.addEventListener("resize", () => {
     drawBars(canvas, canvasContext);
 });
 
+function initSpeechSDK() {
+    // Replace with your own authorization token
+    const authorizationToken = "58bb436e2df14a129076349790de9cb0";
+    const region = "eastus";
+    const language = "en-US";
+
+    const speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(authorizationToken, region);
+    speechConfig.speechRecognitionLanguage = language;
+}
+
+
 
 function init() {
     const useVersion = 2;
@@ -69,6 +80,7 @@ async function startListening() {
 
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        initSpeechSDK();
 
         // Resume the audioContext if necessary
         if (audioContext.state === "suspended") {
@@ -76,9 +88,20 @@ async function startListening() {
         }
 
         // Create a media stream source
-        console.log("Creating a media stream source...");
         source = audioContext.createMediaStreamSource(stream);
-        console.log("Media stream source created.");
+
+            // Connect the media stream source to the Speech SDK
+    const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(source.mediaStream);
+    const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+    // Add an event listener to the recognizer to log the recognized text
+    recognizer.recognizing = (sender, event) => {
+        console.log(`Recognizing: ${event.result.text}`);
+    };
+
+    // Start the recognizer
+    recognizer.startContinuousRecognitionAsync();
+
 
         // Create an analyser node to analyze the audio frequency data
         analyser = audioContext.createAnalyser();
@@ -92,6 +115,7 @@ async function startListening() {
     }
 }
 
+
 function stopListening() {
     console.log("Stopping to listen...");
 
@@ -104,6 +128,19 @@ function stopListening() {
     if (animationId) {
         cancelAnimationFrame(animationId);
         animationId = null;
+    }
+
+    if (recognizer) {
+        recognizer.stopContinuousRecognitionAsync(
+            () => {
+                recognizer.close();
+                recognizer = undefined;
+            },
+            (err) => {
+                recognizer.close();
+                recognizer = undefined;
+            }
+        );
     }
 
     // Clear the canvas
