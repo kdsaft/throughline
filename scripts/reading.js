@@ -8,7 +8,7 @@ let content;
 let scrollingTimeout;
 
 
-function initReading() {
+export function initReading() {
   content = document.querySelector('.content');
   initTimingData();
   updateSVGViewBox();
@@ -382,6 +382,3 @@ function getSyllablesAsString(data, id) {
     console.error("Word not found with given ID:", id);
   }
 }
-
-
-initReading();

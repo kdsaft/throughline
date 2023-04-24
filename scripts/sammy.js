@@ -3,7 +3,7 @@
 let sammy;
 
 
-function initSammy() {
+export function initSammy() {
     sammy = document.getElementById("sammy");
 
     positionSammy()
@@ -97,5 +97,3 @@ function toggleSleep() {
     }
     isAwake = !isAwake;
 }
-
-initSammy();

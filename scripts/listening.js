@@ -10,7 +10,7 @@ let recognizer;
 let speechConfig
 
 
-function initListening() {
+export function initListening() {
     const useVersion = 2;
 
     // When the window is resized...
@@ -148,6 +148,3 @@ function stopListening() {
     // Draw the default bars again
     drawBars(canvas, canvasContext);
 }
-
-
-initListening();

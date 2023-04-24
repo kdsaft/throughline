@@ -1,5 +1,4 @@
 // loader.js
-
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", thingsToLoad);
 } else {
@@ -28,6 +27,12 @@ async function thingsToLoad() {
         // Await the loading of all JS files
         await Promise.all(scriptUrls.map(url => loadJS(url)));
 
+        // Call init functions after all scripts are loaded
+        initReading();
+        initVisualizer();
+        initListening();
+        initSammy();
+
     } catch (error) {
         console.error('Error loading scripts:', error);
     }
@@ -46,6 +51,7 @@ function loadJS(url) {
     return new Promise((resolve, reject) => {
         var script = document.createElement('script');
         script.src = url;
+        script.type = 'module'; // Add this line to support ES modules
         script.onload = resolve;
         script.onerror = reject;
         document.body.appendChild(script);
