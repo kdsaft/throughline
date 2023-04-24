@@ -51,7 +51,6 @@ function loadJS(url) {
     return new Promise((resolve, reject) => {
         var script = document.createElement('script');
         script.src = url;
-        script.type = 'module'; // Add this line to support ES modules
         script.onload = resolve;
         script.onerror = reject;
         document.body.appendChild(script);
