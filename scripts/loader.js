@@ -20,9 +20,6 @@ async function thingsToLoad() {
         'https://kdsaft.github.io/throughline/scripts/sammy.js'
     ];
 
-    // Load JS files
-    scriptUrls.forEach(url => loadJS(url));
-
     try {
         // Await the loading of all JS files
         await Promise.all(scriptUrls.map(url => loadJS(url)));
