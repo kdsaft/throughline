@@ -23,11 +23,11 @@ window.addEventListener("resize", () => {
 
 function initSpeechSDK() {
     // Replace with your own authorization token
-    const authorizationToken = "bdb8bfbfafa74fa39e46d676edf2787b";
+    const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
     const region = "eastus";
     const language = "en-US";
 
-    speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(authorizationToken, region);
+    speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
     speechConfig.speechRecognitionLanguage = language;
 }
 
@@ -35,6 +35,8 @@ function initSpeechSDK() {
 
 function init() {
     const useVersion = 2;
+
+    initSpeechSDK()
 
     if (useVersion == 1) {
         console.log("Using version 1");
@@ -82,7 +84,6 @@ async function startListening() {
 
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        initSpeechSDK();
 
         // Resume the audioContext if necessary
         if (audioContext.state === "suspended") {
