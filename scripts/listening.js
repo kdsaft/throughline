@@ -23,7 +23,7 @@ window.addEventListener("resize", () => {
 
 function initSpeechSDK() {
     // Replace with your own authorization token
-    const authorizationToken = "58bb436e2df14a129076349790de9cb0";
+    const authorizationToken = "bdb8bfbfafa74fa39e46d676edf2787b";
     const region = "eastus";
     const language = "en-US";
 
