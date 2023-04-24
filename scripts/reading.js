@@ -25,10 +25,6 @@ function initReading() {
 
 
 
-
-
-
-
 function updateSVGViewBox() {
   const svg = document.getElementById("highlight-viewport");
   const textArea = document.querySelector(".text-area");
@@ -386,3 +382,6 @@ function getSyllablesAsString(data, id) {
     console.error("Word not found with given ID:", id);
   }
 }
+
+
+initReading();

@@ -28,12 +28,6 @@ async function thingsToLoad() {
         // Await the loading of all JS files
         await Promise.all(scriptUrls.map(url => loadJS(url)));
 
-        // Call init functions after all scripts have been loaded
-        initReading();
-        initVisualizer();
-        initListening();
-        initSammy();
-
     } catch (error) {
         console.error('Error loading scripts:', error);
     }
@@ -49,8 +43,11 @@ function loadCSS(url) {
 }
 
 function loadJS(url) {
-    var script = document.createElement('script');
-    script.src = url;
-    document.body.appendChild(script);
+    return new Promise((resolve, reject) => {
+        var script = document.createElement('script');
+        script.src = url;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+    });
 }
-

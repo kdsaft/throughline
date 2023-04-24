@@ -2,6 +2,7 @@
 
 let sammy;
 
+
 function initSammy() {
     sammy = document.getElementById("sammy");
 
@@ -97,3 +98,4 @@ function toggleSleep() {
     isAwake = !isAwake;
 }
 
+initSammy();
