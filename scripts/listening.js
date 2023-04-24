@@ -6,6 +6,7 @@ let canvas;
 let canvasContext;
 let animationId;
 let recognizer;
+let speechConfig
 
 
 if (document.readyState === "loading") {
@@ -26,7 +27,7 @@ function initSpeechSDK() {
     const region = "eastus";
     const language = "en-US";
 
-    const speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(authorizationToken, region);
+    speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(authorizationToken, region);
     speechConfig.speechRecognitionLanguage = language;
 }
 
