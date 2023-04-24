@@ -7,7 +7,7 @@ function thingsToLoad() {
 
 
     // JS files
-    loadJS('https://cdn.cris.ai/sdk/speech/1.18.0/js/microsoft.cognitiveservices.speech.sdk.bundle-min.js');
+    loadJS('https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js');
     loadJS('https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js');
 
     loadJS('https://kdsaft.github.io/throughline/scripts/reading.js');
@@ -15,7 +15,6 @@ function thingsToLoad() {
     loadJS('https://kdsaft.github.io/throughline/scripts/listening.js');
     loadJS('https://kdsaft.github.io/throughline/scripts/sammy.js');
 }
-
 
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", thingsToLoad);
