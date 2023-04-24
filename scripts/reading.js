@@ -7,8 +7,7 @@ let animateElements;
 let content;
 let scrollingTimeout;
 
-
-export function initReading() {
+function initReading() {
   content = document.querySelector('.content');
   initTimingData();
   updateSVGViewBox();

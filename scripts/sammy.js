@@ -3,7 +3,7 @@
 let sammy;
 
 
-export function initSammy() {
+function initSammy() {
     sammy = document.getElementById("sammy");
 
     positionSammy()

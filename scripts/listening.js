@@ -10,7 +10,7 @@ let recognizer;
 let speechConfig
 
 
-export function initListening() {
+function initListening() {
     const useVersion = 2;
 
     // When the window is resized...
