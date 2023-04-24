@@ -16,7 +16,6 @@ window.addEventListener("resize", positionSammy);
 sammy.addEventListener('click', () => {
     if (typeof toggleSleep === 'function') {
         toggleSleep();
-        console.log("Click event triggered");
     }
 });
 sammy.addEventListener('touchend', (event) => {
@@ -29,18 +28,17 @@ sammy.addEventListener('touchend', (event) => {
 // Functions to change Sammy's state
 
 function sleep() {
-    console.log("triggered stopListening");
     setState(['Beak Closed', 'Right Eye Asleep', 'Left Eye Asleep']);
     setBodyColor('sleep');
     stopListening();
+    stopReading();
 }
 
 function wakeUp() {
-    console.log("triggered startListening");
-
     setState(['Beak Closed', 'Right Eye Awake', 'Left Eye Awake']);
     setBodyColor('awake');
-   startListening();
+    readingCurrentWord()
+    startListening();
     }
 
 function talk() {
