@@ -87,6 +87,13 @@ function resetStory() {
   }
 }
 
+function stopReading() {
+    // Hide the line if it exists
+    if (pathElement) {
+      hideLine(pathElement);
+    }
+}
+
 function readingCurrentWord() {
   const wordNumber = parseInt(document.getElementById("word-number").value);
   const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
