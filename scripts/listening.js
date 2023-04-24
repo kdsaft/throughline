@@ -14,7 +14,10 @@ if (document.readyState === "loading") {
 }
 
 // When the window is resized...
-window.addEventListener("resize", updateCanvasSize);
+window.addEventListener("resize", () => {
+    updateCanvasSize(); 
+    drawBars(canvas, canvasContext);
+});
 
 
 function init() {
