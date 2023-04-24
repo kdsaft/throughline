@@ -29,7 +29,6 @@ async function thingsToLoad() {
 
         // Call init functions after all scripts are loaded
         initReading();
-        initVisualizer();
         initListening();
         initSammy();
 
