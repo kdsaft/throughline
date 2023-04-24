@@ -1,6 +1,8 @@
 // sammy.js
 
 let sammy;
+let isAwake = false;
+
 
 
 function initSammy() {
@@ -8,7 +10,6 @@ function initSammy() {
 
     positionSammy()
     sleep();
-    let isAwake = false;
     
     // When the window is resized...
     window.addEventListener("resize", positionSammy);
