@@ -1,29 +1,33 @@
+// sammy.js
 
-// opening code
-const sammy = document.getElementById("sammy");
+let sammy;
 
-positionSammy()
-sleep();
-let isAwake = false;
+function initSammy() {
+    sammy = document.getElementById("sammy");
 
-// When the window is resized...
-window.addEventListener("resize", positionSammy);
+    positionSammy()
+    sleep();
+    let isAwake = false;
+    
+    // When the window is resized...
+    window.addEventListener("resize", positionSammy);
+    
+    
+    
+    // When the user clicks on Sammy...
+    sammy.addEventListener('click', () => {
+        if (typeof toggleSleep === 'function') {
+            toggleSleep();
+        }
+    });
+    sammy.addEventListener('touchend', (event) => {
+        event.preventDefault();
+        if (typeof toggleSleep === 'function') {
+            toggleSleep();
+        }
+    });
+}
 
-
-
-// Add a click event listener to toggle between sleep and awake states
-
-sammy.addEventListener('click', () => {
-    if (typeof toggleSleep === 'function') {
-        toggleSleep();
-    }
-});
-sammy.addEventListener('touchend', (event) => {
-    event.preventDefault();
-    if (typeof toggleSleep === 'function') {
-        toggleSleep();
-    }
-});
 
 // Functions to change Sammy's state
 

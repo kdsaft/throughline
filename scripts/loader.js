@@ -1,21 +1,5 @@
 // loader.js
 
-
-function thingsToLoad() {
-    // CSS files
-    loadCSS('https://kdsaft.github.io/throughline/scripts/story.css');
-
-
-    // JS files
-    loadJS('https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js');
-    loadJS('https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js');
-
-    loadJS('https://kdsaft.github.io/throughline/scripts/reading.js');
-    loadJS('https://kdsaft.github.io/throughline/scripts/visualizer.js');
-    loadJS('https://kdsaft.github.io/throughline/scripts/listening.js');
-    loadJS('https://kdsaft.github.io/throughline/scripts/sammy.js');
-}
-
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", thingsToLoad);
 } else {
@@ -23,6 +7,37 @@ if (document.readyState === "loading") {
 }
 
 
+async function thingsToLoad() {
+    // CSS files
+    loadCSS('https://kdsaft.github.io/throughline/scripts/story.css');
+
+    // JS file URLs
+    const scriptUrls = [
+        'https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js',
+        'https://kdsaft.github.io/throughline/scripts/reading.js',
+        'https://kdsaft.github.io/throughline/scripts/visualizer.js',
+        'https://kdsaft.github.io/throughline/scripts/listening.js',
+        'https://kdsaft.github.io/throughline/scripts/sammy.js'
+    ];
+
+    // Load JS files
+    scriptUrls.forEach(url => loadJS(url));
+
+    try {
+        // Await the loading of all JS files
+        await Promise.all(scriptUrls.map(url => loadJS(url)));
+
+        // Call init functions after all scripts have been loaded
+        initReading();
+        initVisualizer();
+        initListening();
+        initSammy();
+
+    } catch (error) {
+        console.error('Error loading scripts:', error);
+    }
+}
 
 
 

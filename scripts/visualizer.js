@@ -1,6 +1,7 @@
+//visualizer.js
+
 
 // Functions to draw the bars 
-
 function drawBars(canvas, canvasContext) {
     //canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -118,8 +119,6 @@ function logScale(value, min, max) {
     const scale = (Math.log(value) - minValue) / (maxValue - minValue);
     return Math.max(0, scale);
 }
-
-
 
 
 // Funcation to set the canvas size to the bottom bar

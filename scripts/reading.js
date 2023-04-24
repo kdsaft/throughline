@@ -1,57 +1,53 @@
-// Opening code
+// Reading.js
 
 let jsonData;
 let pathElement;
 let animateElements;
 
-
-initTimingData();
-updateSVGViewBox();
-
-
-// When the window is resized...
-window.addEventListener("resize", updateSVGViewBox);
+const content = document.querySelector('.content');
+let scrollingTimeout;
 
 
+function initReading() {
+  initTimingData();
+  updateSVGViewBox();
+
+  // When the window is resized...
+  window.addEventListener("resize", updateSVGViewBox);
+
+  // handling content scrolling
+  content.addEventListener('scroll', () => {
+    handleScrollbarFade();
+  });
 
 
-function onDocumentReady(callback) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', callback);
-  } else {
-    callback();
-  }
 }
+
+
+
+
+
+
 
 function updateSVGViewBox() {
   const svg = document.getElementById("highlight-viewport");
   const textArea = document.querySelector(".text-area");
   const highlightArea = document.querySelector(".highlight-area");
-  
+
   // Get the height and width of the text-area div
   const height = textArea.clientHeight;
   const width = textArea.clientWidth;
-  
+
   // Set the highlight-area div's height to match the text-area div
   highlightArea.style.height = `${height}px`;
 
   // Set the SVG element's width to match the text-area div
   svg.setAttribute("width", width);
-  
+
   // Update the viewBox with the correct dimensions
   svg.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
 }
 
-
-
-
-// handling content scrolling
-const content = document.querySelector('.content');
-let scrollingTimeout;
-
-content.addEventListener('scroll', () => {
-  handleScrollbarFade();
-});
 
 function handleScrollbarFade() {
   clearTimeout(scrollingTimeout);
@@ -93,8 +89,8 @@ function stopReading() {
   updateWordStyle(wordElement, "unread");
 
   if (pathElement) {
-      hideLine(pathElement);
-    }
+    hideLine(pathElement);
+  }
 }
 
 function readingCurrentWord() {
@@ -350,6 +346,7 @@ function animateSineWave(pathElement, startX, endX, yCoordinate, referenceLength
 function hideLine(pathElement) {
   pathElement.style.display = 'none';
 }
+
 
 // Funcations to handle JSON data
 

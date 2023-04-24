@@ -1,4 +1,5 @@
-// Opening code
+// listening.js
+
 let audioContext;
 let source;
 let analyser;
@@ -9,32 +10,14 @@ let recognizer;
 let speechConfig
 
 
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
-
-// When the window is resized...
-window.addEventListener("resize", () => {
-    updateCanvasSize();
-    drawBars(canvas, canvasContext);
-});
-
-function initSpeechSDK() {
-    // Replace with your own authorization token
-    const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
-    const region = "eastus";
-    const language = "en-US";
-
-    speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
-    speechConfig.speechRecognitionLanguage = language;
-}
-
-
-
-function init() {
+function initListening() {
     const useVersion = 2;
+
+    // When the window is resized...
+    window.addEventListener("resize", () => {
+        updateCanvasSize();
+        drawBars(canvas, canvasContext);
+    });
 
     initSpeechSDK()
 
@@ -78,6 +61,19 @@ function init() {
         drawBars(canvas, canvasContext);
     }
 }
+
+function initSpeechSDK() {
+    // Replace with your own authorization token
+    const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
+    const region = "eastus";
+    const language = "en-US";
+
+    speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
+    speechConfig.speechRecognitionLanguage = language;
+}
+
+
+
 
 async function startListening() {
     console.log("Starting to listen...");
