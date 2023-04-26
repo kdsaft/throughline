@@ -53,8 +53,7 @@ function initSpeechSDK() {
     if (version === 1) {
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
         speechConfig.speechRecognitionLanguage = language;
-    } else {
-
+    } else if (version === 2) {
         const PronunciationAssessmentConfig = window.SpeechSDK.PronunciationAssessmentConfig;
         const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
         const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
