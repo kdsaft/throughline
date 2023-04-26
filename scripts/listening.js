@@ -108,20 +108,20 @@ async function startListening() {
             };
         }
 
-        // Add an event listener to the recognizer to handle the word-by-word evaluation
-        recognizer.recognizing = (sender, event) => {
-            const result = event.result;
-            if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
-                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-                const recognizedWords = result.text.split(" ");
+// Add an event listener to the recognizer to handle the word-by-word evaluation
+recognizer.recognizing = (sender, event) => {
+    const result = event.result;
+    if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
+        console.log("Recognizing event triggered:", result.text);
+        const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+        const recognizedWords = result.text.split(" ");
 
-                // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
-                recognizedWords.forEach((word) => {
-                    handlePronunciationAssessmentResult(pronunciationAssessmentResult, word);
-                });
-            }
-        };
-
+        // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
+        recognizedWords.forEach((word) => {
+            handlePronunciationAssessmentResult(pronunciationAssessmentResult, word);
+        });
+    }
+};
 
         // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
@@ -190,6 +190,7 @@ function getReferenceText() {
 
 
 function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word) {
+    console.log("Handling pronunciation assessment result for word:", word);
     const words = pronunciationAssessmentResult.words;
     const currentWordElement = document.querySelector(".reading");
 
@@ -198,16 +199,23 @@ function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word
 
         // Check if the recognized word matches the current word text
         if (word === currentWordText) {
+            console.log("Recognized word matches the current word text:", word);
             const currentWord = words.find((word) => word.word === currentWordText);
 
             if (currentWord) {
                 const pronunciationScore = currentWord.accuracyScore;
                 if (pronunciationScore >= 0.8) {
+                    console.log("Pronunciation score is above 0.8:", pronunciationScore);
                     readNextWord();
                 } else {
+                    console.log("Pronunciation score is below 0.8:", pronunciationScore);
                     troubleWithCurrentWord();
                 }
             }
+        } else {
+            console.log("Recognized word does not match the current word text:", word, currentWordText);
         }
+    } else {
+        console.log("No current word element found with the 'reading' class");
     }
 }
