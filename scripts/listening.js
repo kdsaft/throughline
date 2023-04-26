@@ -108,20 +108,28 @@ async function startListening() {
             };
         }
 
-    // Add an event listener to the recognizer to handle the word-by-word evaluation
-    recognizer.recognized = (sender, event) => {
-        const result = event.result;
-        if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
-            const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-            
-            // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
-            pronunciationAssessmentResult.words.forEach((wordDetails) => {
-                handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
-            });
-        }
-    };
+        // Add an event listener to the recognizer to handle the word-by-word evaluation
+        recognizer.recognized = (sender, event) => {
+            const result = event.result;
+            if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
+                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
 
-    // Start the recognizer
+                // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
+                pronunciationAssessmentResult.words.forEach((wordDetails) => {
+                    handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
+                });
+            }
+        };
+
+        // recognizer.recognizing event for logging purposes
+        recognizer.recognizing = (sender, event) => {
+            const result = event.result;
+            if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
+                console.log("Recognizing event triggered:", result.text);
+            }
+        };
+
+        // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
 
         // Create an analyser node to analyze the audio frequency data
