@@ -93,6 +93,7 @@ async function startListening() {
         recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
 
         // If pronunciation assessment config is available, apply it to the recognizer
+        console.log(window.pronunciationAssessmentConfig);
         if (window.pronunciationAssessmentConfig) {
             window.pronunciationAssessmentConfig.applyTo(recognizer);
 
