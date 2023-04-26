@@ -12,70 +12,78 @@ let speechConfig;
 function initListening() {
     // When the window is resized...
     window.addEventListener("resize", () => {
-      updateCanvasSize();
-      drawBars(canvas, canvasContext);
+        updateCanvasSize();
+        drawBars(canvas, canvasContext);
     });
-  
+
     // Initialize the Speech SDK
     initSpeechSDK();
-  
+
     // Get the canvas element and its context
     canvas = document.getElementById("audio-visualization");
     canvasContext = canvas.getContext("2d");
-  
+
     // Update the canvas size and resolution
     updateCanvasSize();
-  
+
     // Create an audio context with compatibility for different browsers
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext || false;
-  
-      if (AudioContext) {
-        audioContext = new AudioContext();
-      } else {
-        alert("Audio context not supported");
-      }
-    } catch (e) {
-      console.log("no sound context found, no audio output. " + e);
-    }
-  
-    drawBars(canvas, canvasContext);
-  }
-  
+        const AudioContext = window.AudioContext || window.webkitAudioContext || false;
 
-  function initSpeechSDK() {
+        if (AudioContext) {
+            audioContext = new AudioContext();
+        } else {
+            alert("Audio context not supported");
+        }
+    } catch (e) {
+        console.log("no sound context found, no audio output. " + e);
+    }
+
+    drawBars(canvas, canvasContext);
+}
+
+
+function initSpeechSDK() {
     const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
     const region = "eastus";
     const language = "en-US";
 
-    const PronunciationAssessmentConfig = window.SpeechSDK.PronunciationAssessmentConfig;
-    const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
-    const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
+    const version = 1; // basic speech recognition
 
-    speechConfig = window.SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
-    speechConfig.speechRecognitionLanguage = language;
-    recognizer = new window.SpeechSDK.SpeechRecognizer(speechConfig, window.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput());
+    if (version === 1) {
+        speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
+        speechConfig.speechRecognitionLanguage = language;
+    } else {
 
-    const pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
-        PronunciationAssessmentGradingSystem.HundredMark,
-        PronunciationAssessmentGranularity.Word,
-        true, // EnableMispronunciation
-        true // EnablePronunciation
-    );
-    pronunciationAssessmentConfig.applyTo(recognizer.properties);
-    
-    // Set the reference text
-    const referenceText = getReferenceText(jsonData);
-    pronunciationAssessmentConfig.referenceText = referenceText;
+        const PronunciationAssessmentConfig = window.SpeechSDK.PronunciationAssessmentConfig;
+        const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
+        const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
 
-    // Add an event listener to the recognizer to handle the word-by-word evaluation
-    recognizer.recognizing = (sender, event) => {
-        const result = event.result;
-        if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
-            const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-            handlePronunciationAssessmentResult(pronunciationAssessmentResult);
-        }
-    };
+        speechConfig = window.SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
+        speechConfig.speechRecognitionLanguage = language;
+        recognizer = new window.SpeechSDK.SpeechRecognizer(speechConfig, window.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput());
+
+        const pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
+            PronunciationAssessmentGradingSystem.HundredMark,
+            PronunciationAssessmentGranularity.Word,
+            true, // EnableMispronunciation
+            true // EnablePronunciation
+        );
+        pronunciationAssessmentConfig.applyTo(recognizer.properties);
+
+        // Set the reference text
+        const referenceText = getReferenceText(jsonData);
+        pronunciationAssessmentConfig.referenceText = referenceText;
+
+        // Add an event listener to the recognizer to handle the word-by-word evaluation
+        recognizer.recognizing = (sender, event) => {
+            const result = event.result;
+            if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
+                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+                handlePronunciationAssessmentResult(pronunciationAssessmentResult);
+            }
+        };
+    }
 }
 
 
