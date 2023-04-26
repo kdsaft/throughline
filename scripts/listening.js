@@ -181,14 +181,21 @@ function getReferenceText() {
 
 function handlePronunciationAssessmentResult(pronunciationAssessmentResult) {
     const words = pronunciationAssessmentResult.words;
-    const currentWord = words.find((word) => word.word === parseInt(document.getElementById("word-number").value));
+    const currentWordElement = document.querySelector(".reading");
 
-    if (currentWord) {
-        const pronunciationScore = currentWord.accuracyScore;
-        if (pronunciationScore >= 0.8) {
-            readNextWord();
-        } else {
-            troubleWithCurrentWord();
+    console.log("current word: " + currentWordElement.textContent.trim());
+
+    if (currentWordElement) {
+        const currentWordText = currentWordElement.textContent.trim();
+        const currentWord = words.find((word) => word.word === currentWordText);
+
+        if (currentWord) {
+            const pronunciationScore = currentWord.accuracyScore;
+            if (pronunciationScore >= 0.8) {
+                readNextWord();
+            } else {
+                troubleWithCurrentWord();
+            }
         }
     }
 }

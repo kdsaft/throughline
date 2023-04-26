@@ -373,6 +373,15 @@ function getStartAndEndTime(data, id) {
   }
 }
 
+/* function getCurrentWord(data, id) {
+  const word = data.words.find((word) => word.id === id);
+  if (word) {
+    return word;
+  } else {
+    console.error("Word not found with given ID:", id);
+  }
+}
+ */
 
 function getSyllablesAsString(data, id) {
   const word = data.words.find((word) => word.id === id);
