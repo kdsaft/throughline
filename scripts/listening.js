@@ -100,7 +100,7 @@ async function startListening() {
 
             // Add an event listener to the recognizer to handle the word-by-word evaluation
             recognizer.recognized = (sender, event) => {
-                console.log("Recognized event triggered"); 
+                console.log("Recognized event triggered");
                 const result = event.result;
                 if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
                     const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
@@ -113,23 +113,14 @@ async function startListening() {
             };
         }
 
-
-        // Use the recognizer.recognizing event to process the recognized words
+        // Use the recognizer.recognizing event for logging purposes only
         recognizer.recognizing = (sender, event) => {
             const result = event.result;
             if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
                 console.log("Recognizing event triggered:", result.text);
-                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-
-                // Split the recognized text into words and filter out any undefined or empty string values
-                const recognizedWords = result.text.split(" ").filter((word) => word);
-
-                // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
-                recognizedWords.forEach((word) => {
-                    handlePronunciationAssessmentResult(pronunciationAssessmentResult, word);
-                });
             }
         };
+
         // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
 
