@@ -52,12 +52,9 @@ function initListening() {
     const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
     const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
 
-    console.log(window.SpeechSDK); // Add this line to check if the SDK is loaded
-
-
-    speechConfig = sdk.SpeechConfig.fromSubscription(subscriptionKey, region);
+    speechConfig = window.SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
     speechConfig.speechRecognitionLanguage = language;
-    recognizer = new sdk.SpeechRecognizer(speechConfig, sdk.AudioConfig.fromDefaultMicrophoneInput());
+    recognizer = new window.SpeechSDK.SpeechRecognizer(speechConfig, window.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput());
 
     const pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
         PronunciationAssessmentGradingSystem.HundredMark,
@@ -65,7 +62,7 @@ function initListening() {
         true, // EnableMispronunciation
         true // EnablePronunciation
     );
-    sdk.PronunciationAssessmentConfig.applyTo(recognizer.properties, pronunciationAssessmentConfig);
+    window.SpeechSDK.PronunciationAssessmentConfig.applyTo(recognizer.properties, pronunciationAssessmentConfig);
 
     // Set the reference text
     const referenceText = getReferenceText(jsonData);
@@ -74,12 +71,12 @@ function initListening() {
     // Add an event listener to the recognizer to handle the word-by-word evaluation
     recognizer.recognizing = (sender, event) => {
         const result = event.result;
-        if (result.reason === sdk.ResultReason.RecognizingSpeech) {
-            const pronunciationAssessmentResult = sdk.PronunciationAssessmentResult.fromResult(result);
+        if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
+            const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
             handlePronunciationAssessmentResult(pronunciationAssessmentResult);
         }
     };
-}  
+}
 
 
 
