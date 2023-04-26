@@ -108,22 +108,20 @@ async function startListening() {
             };
         }
 
-// Add an event listener to the recognizer to handle the word-by-word evaluation
-recognizer.recognizing = (sender, event) => {
-    const result = event.result;
-    if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
-        console.log("Recognizing event triggered:", result.text);
-        const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-        const recognizedWords = result.text.split(" ");
+    // Add an event listener to the recognizer to handle the word-by-word evaluation
+    recognizer.recognized = (sender, event) => {
+        const result = event.result;
+        if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
+            const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+            
+            // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
+            pronunciationAssessmentResult.words.forEach((wordDetails) => {
+                handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
+            });
+        }
+    };
 
-        // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
-        recognizedWords.forEach((word) => {
-            handlePronunciationAssessmentResult(pronunciationAssessmentResult, word);
-        });
-    }
-};
-
-        // Start the recognizer
+    // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
 
         // Create an analyser node to analyze the audio frequency data
