@@ -9,11 +9,6 @@ let animationId;
 let recognizer;
 let speechConfig;
 
-const PronunciationAssessmentConfig = window.SpeechSDK.PronunciationAssessmentConfig;
-const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
-const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
-
-
 function initListening() {
     // When the window is resized...
     window.addEventListener("resize", () => {
@@ -52,33 +47,36 @@ function initListening() {
     const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
     const region = "eastus";
     const language = "en-US";
-  
+
+    const PronunciationAssessmentConfig = window.SpeechSDK.PronunciationAssessmentConfig;
+    const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
+    const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
+
     speechConfig = sdk.SpeechConfig.fromSubscription(subscriptionKey, region);
     speechConfig.speechRecognitionLanguage = language;
     recognizer = new sdk.SpeechRecognizer(speechConfig, sdk.AudioConfig.fromDefaultMicrophoneInput());
-  
+
     const pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
-      PronunciationAssessmentGradingSystem.HundredMark,
-      PronunciationAssessmentGranularity.Word,
-      true, // EnableMispronunciation
-      true // EnablePronunciation
+        PronunciationAssessmentGradingSystem.HundredMark,
+        PronunciationAssessmentGranularity.Word,
+        true, // EnableMispronunciation
+        true // EnablePronunciation
     );
     sdk.PronunciationAssessmentConfig.applyTo(recognizer.properties, pronunciationAssessmentConfig);
-  
+
     // Set the reference text
     const referenceText = getReferenceText(jsonData);
     pronunciationAssessmentConfig.referenceText = referenceText;
-  
+
     // Add an event listener to the recognizer to handle the word-by-word evaluation
     recognizer.recognizing = (sender, event) => {
-      const result = event.result;
-      if (result.reason === sdk.ResultReason.RecognizingSpeech) {
-        const pronunciationAssessmentResult = sdk.PronunciationAssessmentResult.fromResult(result);
-        handlePronunciationAssessmentResult(pronunciationAssessmentResult);
-      }
+        const result = event.result;
+        if (result.reason === sdk.ResultReason.RecognizingSpeech) {
+            const pronunciationAssessmentResult = sdk.PronunciationAssessmentResult.fromResult(result);
+            handlePronunciationAssessmentResult(pronunciationAssessmentResult);
+        }
     };
-  }
-  
+}  
 
 
 
