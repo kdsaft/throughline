@@ -62,8 +62,8 @@ function initListening() {
         true, // EnableMispronunciation
         true // EnablePronunciation
     );
-    window.SpeechSDK.PronunciationAssessmentConfig.applyTo(recognizer.properties, pronunciationAssessmentConfig);
-
+    pronunciationAssessmentConfig.applyTo(recognizer.properties);
+    
     // Set the reference text
     const referenceText = getReferenceText(jsonData);
     pronunciationAssessmentConfig.referenceText = referenceText;
