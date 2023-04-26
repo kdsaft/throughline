@@ -93,8 +93,9 @@ async function startListening() {
         recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
 
         // If pronunciation assessment config is available, apply it to the recognizer
-        console.log(window.pronunciationAssessmentConfig);
         if (window.pronunciationAssessmentConfig) {
+            console.log('window.pronunciationAssessmentConfig is available');
+
             window.pronunciationAssessmentConfig.applyTo(recognizer);
 
             // Add an event listener to the recognizer to handle the word-by-word evaluation
