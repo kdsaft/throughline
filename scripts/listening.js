@@ -52,6 +52,9 @@ function initListening() {
     const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
     const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
 
+    console.log(window.SpeechSDK); // Add this line to check if the SDK is loaded
+
+
     speechConfig = sdk.SpeechConfig.fromSubscription(subscriptionKey, region);
     speechConfig.speechRecognitionLanguage = language;
     recognizer = new sdk.SpeechRecognizer(speechConfig, sdk.AudioConfig.fromDefaultMicrophoneInput());
