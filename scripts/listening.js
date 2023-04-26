@@ -98,19 +98,21 @@ async function startListening() {
 
             window.pronunciationAssessmentConfig.applyTo(recognizer);
 
-        // Add an event listener to the recognizer to handle the word-by-word evaluation
-        recognizer.recognized = (sender, event) => {
-            console.log("Recognized event triggered"); 
-            const result = event.result;
-            if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
-                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+            // Add an event listener to the recognizer to handle the word-by-word evaluation
+            recognizer.recognized = (sender, event) => {
+                console.log("Recognized event triggered"); 
+                const result = event.result;
+                if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
+                    const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
 
-                // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
-                pronunciationAssessmentResult.words.forEach((wordDetails) => {
-                    handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
-                });
-            }
-        };
+                    // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
+                    pronunciationAssessmentResult.words.forEach((wordDetails) => {
+                        handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
+                    });
+                }
+            };
+        }
+
 
         // Use the recognizer.recognizing event to process the recognized words
         recognizer.recognizing = (sender, event) => {
