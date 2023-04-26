@@ -95,9 +95,9 @@ async function startListening() {
         // If pronunciation assessment config is available, apply it to the recognizer
         if (window.pronunciationAssessmentConfig) {
             console.log('window.pronunciationAssessmentConfig is available');
-        
+
             window.pronunciationAssessmentConfig.applyTo(recognizer);
-        
+
             // Add an event listener to the recognizer to handle the word-by-word evaluation
             recognizer.recognized = (sender, event) => {
                 const result = event.result;
@@ -107,11 +107,21 @@ async function startListening() {
                 }
             };
         }
-        
-        // Add an event listener to the recognizer to log the recognized text
+
+        // Add an event listener to the recognizer to handle the word-by-word evaluation
         recognizer.recognizing = (sender, event) => {
-            console.log(`Recognizing: ${event.result.text}`);
+            const result = event.result;
+            if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
+                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+                const recognizedWords = result.text.split(" ");
+
+                // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
+                recognizedWords.forEach((word) => {
+                    handlePronunciationAssessmentResult(pronunciationAssessmentResult, word);
+                });
+            }
         };
+
 
         // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
@@ -179,22 +189,24 @@ function getReferenceText() {
 
 
 
-function handlePronunciationAssessmentResult(pronunciationAssessmentResult) {
+function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word) {
     const words = pronunciationAssessmentResult.words;
     const currentWordElement = document.querySelector(".reading");
 
-    console.log("current word: " + currentWordElement.textContent.trim());
-
     if (currentWordElement) {
         const currentWordText = currentWordElement.textContent.trim();
-        const currentWord = words.find((word) => word.word === currentWordText);
 
-        if (currentWord) {
-            const pronunciationScore = currentWord.accuracyScore;
-            if (pronunciationScore >= 0.8) {
-                readNextWord();
-            } else {
-                troubleWithCurrentWord();
+        // Check if the recognized word matches the current word text
+        if (word === currentWordText) {
+            const currentWord = words.find((word) => word.word === currentWordText);
+
+            if (currentWord) {
+                const pronunciationScore = currentWord.accuracyScore;
+                if (pronunciationScore >= 0.8) {
+                    readNextWord();
+                } else {
+                    troubleWithCurrentWord();
+                }
             }
         }
     }
