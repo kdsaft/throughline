@@ -48,7 +48,7 @@ function initSpeechSDK() {
     const region = "eastus";
     const language = "en-US";
 
-    const version = 2; // 1 - basic speech recognition; 2 - pronunciation assessment
+    const version = 1; // 1 - basic speech recognition; 2 - pronunciation assessment
 
     if (version === 1) {
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
@@ -67,24 +67,10 @@ function initSpeechSDK() {
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
         speechConfig.speechRecognitionLanguage = language;
 
-        // Create the SpeechRecognizer instance
-        const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(source.mediaStream);
-        recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
-
-        // Apply pronunciation assessment config to the recognizer
-        pronunciationAssessmentConfig.applyTo(recognizer);
-
-        // Add an event listener to the recognizer to handle the word-by-word evaluation
-        recognizer.recognizing = (sender, event) => {
-            const result = event.result;
-            if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
-                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-                handlePronunciationAssessmentResult(pronunciationAssessmentResult);
-            }
-        };
+        // Save the pronunciation assessment config for later use in startListening()
+        window.pronunciationAssessmentConfig = pronunciationAssessmentConfig;
     }
 }
-
 
 
 
@@ -102,9 +88,23 @@ async function startListening() {
         // Create a media stream source
         source = audioContext.createMediaStreamSource(stream);
 
-        // Connect the media stream source to the Speech SDK
+        // Create the SpeechRecognizer instance
         const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(source.mediaStream);
         recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+        // If pronunciation assessment config is available, apply it to the recognizer
+        if (window.pronunciationAssessmentConfig) {
+            window.pronunciationAssessmentConfig.applyTo(recognizer);
+
+            // Add an event listener to the recognizer to handle the word-by-word evaluation
+            recognizer.recognizing = (sender, event) => {
+                const result = event.result;
+                if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
+                    const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+                    handlePronunciationAssessmentResult(pronunciationAssessmentResult);
+                }
+            };
+        }
 
         // Add an event listener to the recognizer to log the recognized text
         recognizer.recognizing = (sender, event) => {
@@ -113,7 +113,6 @@ async function startListening() {
 
         // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
-
 
         // Create an analyser node to analyze the audio frequency data
         analyser = audioContext.createAnalyser();
@@ -126,6 +125,7 @@ async function startListening() {
         console.error("Error accessing the microphone:", error);
     }
 }
+
 
 
 function stopListening() {
