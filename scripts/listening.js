@@ -9,6 +9,11 @@ let animationId;
 let recognizer;
 let speechConfig
 
+const PronunciationAssessmentConfig = sdk.PronunciationAssessmentConfig;
+const PronunciationAssessmentGradingSystem = sdk.PronunciationAssessmentGradingSystem;
+const PronunciationAssessmentGranularity = sdk.PronunciationAssessmentGranularity;
+
+
 
 function initListening() {
     const useVersion = 2;
@@ -63,13 +68,38 @@ function initListening() {
 }
 
 function initSpeechSDK() {
-    // Replace with your own authorization token
     const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
     const region = "eastus";
     const language = "en-US";
+    let speechConfig;
 
-    speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
-    speechConfig.speechRecognitionLanguage = language;
+    function initSpeechSDK() {
+        speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
+        speechConfig.speechRecognitionLanguage = language;
+
+        const pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
+            PronunciationAssessmentGradingSystem.HundredMark,
+            PronunciationAssessmentGranularity.Word,
+            true, // EnableMispronunciation
+            true // EnablePronunciation
+        );
+        sdk.PronunciationAssessmentConfig.applyTo(speechConfig, pronunciationAssessmentConfig);
+
+        // Set the reference text
+    // Set the reference text
+    const referenceText = getReferenceText(jsonData);
+    pronunciationAssessmentConfig.referenceText = referenceText;
+
+
+        // Add an event listener to the recognizer to handle the word-by-word evaluation
+        recognizer.recognized = (sender, event) => {
+            const result = event.result;
+            if (result.reason === sdk.ResultReason.RecognizedSpeech) {
+                const pronunciationAssessmentResult = sdk.PronunciationAssessmentResult.fromResult(result);
+                handlePronunciationAssessmentResult(pronunciationAssessmentResult);
+            }
+        };
+    }
 }
 
 
@@ -147,4 +177,19 @@ function stopListening() {
 
     // Draw the default bars again
     drawBars(canvas, canvasContext);
+}
+
+
+function handlePronunciationAssessmentResult(pronunciationAssessmentResult) {
+    const words = pronunciationAssessmentResult.words;
+    const currentWord = words.find((word) => word.word === parseInt(document.getElementById("word-number").value));
+
+    if (currentWord) {
+        const pronunciationScore = currentWord.accuracyScore;
+        if (pronunciationScore >= 0.8) {
+            readNextWord();
+        } else {
+            troubleWithCurrentWord();
+        }
+    }
 }
