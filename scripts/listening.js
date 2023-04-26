@@ -55,7 +55,7 @@ function initSpeechSDK() {
         speechConfig.speechRecognitionLanguage = language;
     } else if (version === 2) {
        // Create a pronunciation assessment config
-       const referenceText = getReferenceText(jsonData);
+       const referenceText = getReferenceText();
        const pronunciationAssessmentConfig = new SpeechSDK.PronunciationAssessmentConfig(
            referenceText,
            SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
@@ -157,6 +157,20 @@ function stopListening() {
     // Draw the default bars again
     drawBars(canvas, canvasContext);
 }
+
+
+function getReferenceText() {
+    const words = document.querySelectorAll(".unread");
+    let referenceText = "";
+
+    for (let i = 0; i < words.length; i++) {
+        referenceText += words[i].textContent + " ";
+    }
+
+    return referenceText.trim();
+}
+
+
 
 
 function handlePronunciationAssessmentResult(pronunciationAssessmentResult) {

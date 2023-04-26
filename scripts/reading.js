@@ -373,15 +373,6 @@ function getStartAndEndTime(data, id) {
   }
 }
 
-function getReferenceText(data) {
-  if (data && data.words) {
-    return data.words.map(word => word.word).join(' ');
-  } else {
-    console.error("Error retrieving reference text from JSON data");
-    return "";
-  }
-}
-
 
 function getSyllablesAsString(data, id) {
   const word = data.words.find((word) => word.id === id);
