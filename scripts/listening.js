@@ -121,14 +121,22 @@ async function startListening() {
             }
         };
 
-        // recognizer.recognizing event for logging purposes
+        // Use the recognizer.recognizing event to process the recognized words
         recognizer.recognizing = (sender, event) => {
             const result = event.result;
             if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
                 console.log("Recognizing event triggered:", result.text);
+                const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+
+                // Split the recognized text into words and filter out any undefined or empty string values
+                const recognizedWords = result.text.split(" ").filter((word) => word);
+
+                // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
+                recognizedWords.forEach((word) => {
+                    handlePronunciationAssessmentResult(pronunciationAssessmentResult, word);
+                });
             }
         };
-
         // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
 
