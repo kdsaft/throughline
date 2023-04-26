@@ -48,7 +48,7 @@ function initSpeechSDK() {
     const region = "eastus";
     const language = "en-US";
 
-    const version = 1; // 1 - basic speech recognition; 2 - pronunciation assessment
+    const version = 2; // 1 - basic speech recognition; 2 - pronunciation assessment
 
     if (version === 1) {
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
