@@ -54,21 +54,25 @@ function initSpeechSDK() {
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
         speechConfig.speechRecognitionLanguage = language;
     } else if (version === 2) {
-       // Create a pronunciation assessment config
-       const referenceText = getReferenceText();
-       const pronunciationAssessmentConfig = new SpeechSDK.PronunciationAssessmentConfig(
-           referenceText,
-           SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
-           SpeechSDK.PronunciationAssessmentGranularity.Word,
-           true
-       );
+        // Create a pronunciation assessment config
+        const referenceText = getReferenceText();
+        const pronunciationAssessmentConfig = new SpeechSDK.PronunciationAssessmentConfig(
+            referenceText,
+            SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
+            SpeechSDK.PronunciationAssessmentGranularity.Word,
+            true
+        );
 
-       // Create a speech config
-       speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
-       speechConfig.speechRecognitionLanguage = language;
+        // Create a speech config
+        speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
+        speechConfig.speechRecognitionLanguage = language;
 
-       // Apply pronunciation assessment config tospeechConfig
-        pronunciationAssessmentConfig.applyTo(speechConfig);
+        // Create the SpeechRecognizer instance
+        const audioConfig = SpeechSDK.AudioConfig.fromStreamInput(source.mediaStream);
+        recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+        // Apply pronunciation assessment config to the recognizer
+        pronunciationAssessmentConfig.applyTo(recognizer);
 
         // Add an event listener to the recognizer to handle the word-by-word evaluation
         recognizer.recognizing = (sender, event) => {
