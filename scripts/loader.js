@@ -24,6 +24,9 @@ async function thingsToLoad() {
         // Await the loading of all JS files
         await Promise.all(scriptUrls.map(url => loadJS(url)));
 
+        console.log(window.SpeechSDK); // Add this line to check if the SDK is loaded
+
+
         // Call init functions after all scripts are loaded
         initReading();
         initListening();
