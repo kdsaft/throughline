@@ -48,31 +48,27 @@ function initSpeechSDK() {
     const region = "eastus";
     const language = "en-US";
 
-    const version = 1; // basic speech recognition
+    const version = 2; // 1 - basic speech recognition; 2 - pronunciation assessment
 
     if (version === 1) {
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
         speechConfig.speechRecognitionLanguage = language;
     } else if (version === 2) {
-        const PronunciationAssessmentConfig = window.SpeechSDK.PronunciationAssessmentConfig;
-        const PronunciationAssessmentGradingSystem = window.SpeechSDK.PronunciationAssessmentGradingSystem;
-        const PronunciationAssessmentGranularity = window.SpeechSDK.PronunciationAssessmentGranularity;
+       // Create a pronunciation assessment config
+       const referenceText = getReferenceText(jsonData);
+       const pronunciationAssessmentConfig = new SpeechSDK.PronunciationAssessmentConfig(
+           referenceText,
+           SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
+           SpeechSDK.PronunciationAssessmentGranularity.Word,
+           true
+       );
 
-        speechConfig = window.SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
-        speechConfig.speechRecognitionLanguage = language;
-        recognizer = new window.SpeechSDK.SpeechRecognizer(speechConfig, window.SpeechSDK.AudioConfig.fromDefaultMicrophoneInput());
+       // Create a speech config
+       speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
+       speechConfig.speechRecognitionLanguage = language;
 
-        const pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
-            PronunciationAssessmentGradingSystem.HundredMark,
-            PronunciationAssessmentGranularity.Word,
-            true, // EnableMispronunciation
-            true // EnablePronunciation
-        );
-        pronunciationAssessmentConfig.applyTo(recognizer.properties);
-
-        // Set the reference text
-        const referenceText = getReferenceText(jsonData);
-        pronunciationAssessmentConfig.referenceText = referenceText;
+       // Apply pronunciation assessment config tospeechConfig
+        pronunciationAssessmentConfig.applyTo(speechConfig);
 
         // Add an event listener to the recognizer to handle the word-by-word evaluation
         recognizer.recognizing = (sender, event) => {
@@ -83,6 +79,8 @@ function initSpeechSDK() {
             }
         };
     }
+}
+
 }
 
 
