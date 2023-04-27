@@ -123,6 +123,7 @@ async function startListening() {
                         console.log("Current index:", i);
                         console.log("Word details:", wordDetails);
                         console.log("Word:", wordDetails.Word);
+                        console.log("Accuracy:", wordDetails.AccuracyScore);
 
                         handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.Word);
                     }
@@ -204,25 +205,24 @@ function getReferenceText() {
 
 
 
-function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word) {
-    console.log("************");
-
-    console.log("Assessing:", word);
+function handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordSpoken) {
     const words = pronunciationAssessmentResult.Words;
-    const currentWordElement = document.querySelector(".reading");
-    console.log("Current word element:", currentWordElement);
+    const currentWord = document.querySelector(".reading");
+    console.log("************");
+    console.log("Assessing:", wordSpoken);
+    console.log("Current word:", currentWord);
 
-    if (currentWordElement) {
-        const currentWordText = currentWordElement.textContent.trim();
-        console.log("current word text:", currentWordText);
-        console.log("current word:", word);
+    if (currentWord) {
+        const currentWordText = currentWord.textContent.trim();
+        console.log("Current word text:", currentWordText);
 
-        // Check if the recognized word matches the current word text
-        const lowercaseWord = word.toLowerCase();
+        const lowercaseWordSpoken = wordSpoken.toLowerCase();
         const lowercaseCurrentWordText = currentWordText.toLowerCase();
 
-        if (lowercaseWord === lowercaseCurrentWordText) {
-            console.log("Recognized word matches the current word text:", word);
+        if (lowercaseWordSpoken === lowercaseCurrentWordText) {
+            console.log("We have a match.");
+            
+            
             const currentWord = words.find((word) => word.word === currentWordText);
             console.log("Current word:", currentWord);
             console.log("Current word accuracy score:", currentWord.AccuracyScore);
