@@ -122,8 +122,9 @@ async function startListening() {
                         // Double-check the word index
                         console.log("Current index:", i);
                         console.log("Word details:", wordDetails);
+                        console.log("Word:", wordDetails.Word);
 
-                        handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
+                        handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.Word);
                     }
                 }
             };
@@ -205,7 +206,7 @@ function getReferenceText() {
 
 function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word) {
     console.log("Handling pronunciation assessment result for word:", word);
-    const words = pronunciationAssessmentResult.words;
+    const words = pronunciationAssessmentResult.Words;
     const currentWordElement = document.querySelector(".reading");
 
     if (currentWordElement) {
