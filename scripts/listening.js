@@ -214,6 +214,7 @@ function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word
 
     if (currentWordElement) {
         const currentWordText = currentWordElement.textContent.trim();
+        console.log("current word text:", currentWordText);
         console.log("current word:", word);
 
         // Check if the recognized word matches the current word text
