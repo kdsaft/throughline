@@ -111,14 +111,20 @@ async function startListening() {
                     const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
                     console.log("Pronunciation assessment result: ", pronunciationAssessmentResult);
 
-                    console.log("Number of words in pronunciation assessment result:", pronunciationAssessmentResult.words.length);
+                    // Extract the words array from the detailResult.Words property
+                    const words = pronunciationAssessmentResult.detailResult.Words;
+                    console.log("Number of words in pronunciation assessment result:", words.length);
 
-                    pronunciationAssessmentResult.words.forEach((wordDetails, index) => {
-                        console.log("Current index:", index);
+                    // Iterate over words
+                    for (let i = 0; i < words.length; i++) {
+                        const wordDetails = words[i];
+
+                        // Double-check the word index
+                        console.log("Current index:", i);
                         console.log("Word details:", wordDetails);
-            
-                        handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);            
-                    });
+
+                        handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.word);
+                    }
                 }
             };
         }
