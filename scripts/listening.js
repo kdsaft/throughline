@@ -205,12 +205,16 @@ function getReferenceText() {
 
 
 function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word) {
-    console.log("Handling pronunciation assessment result for word:", word);
+    console.log("************");
+
+    console.log("Assessing:", word);
     const words = pronunciationAssessmentResult.Words;
     const currentWordElement = document.querySelector(".reading");
+    console.log("Current word element:", currentWordElement);
 
     if (currentWordElement) {
         const currentWordText = currentWordElement.textContent.trim();
+        console.log("current word:", word);
 
         // Check if the recognized word matches the current word text
         if (word === currentWordText) {
