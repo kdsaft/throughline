@@ -224,9 +224,11 @@ function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word
         if (lowercaseWord === lowercaseCurrentWordText) {
             console.log("Recognized word matches the current word text:", word);
             const currentWord = words.find((word) => word.word === currentWordText);
+            console.log("Current word:", currentWord);
+            console.log("Current word accuracy score:", currentWord.AccuracyScore);
 
             if (currentWord) {
-                const pronunciationScore = currentWord.accuracyScore;
+                const pronunciationScore = currentWord.AccuracyScore;
                 if (pronunciationScore >= 0.8) {
                     console.log("Pronunciation score is above 0.8:", pronunciationScore);
                     readNextWord();
