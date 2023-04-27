@@ -109,6 +109,7 @@ async function startListening() {
 
                 if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
                     const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+                    console.log("Pronunciation assessment result: ", pronunciationAssessmentResult);
 
                     // Iterate through the recognized words and call the handlePronunciationAssessmentResult function
                     pronunciationAssessmentResult.words.forEach((wordDetails) => {
