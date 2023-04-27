@@ -123,7 +123,7 @@ async function startListening() {
                         console.log("Current index:", i);
                         console.log("Word details:", wordDetails);
                         console.log("Word:", wordDetails.Word);
-                        console.log("Accuracy:", wordDetails.AccuracyScore);
+                        console.log("Accuracy:", wordDetails.PronunciationAssessment.AccuracyScore);
 
                         handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.Word);
                     }
