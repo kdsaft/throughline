@@ -218,7 +218,10 @@ function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word
         console.log("current word:", word);
 
         // Check if the recognized word matches the current word text
-        if (word === currentWordText) {
+        const lowercaseWord = word.toLowerCase();
+        const lowercaseCurrentWordText = currentWordText.toLowerCase();
+
+        if (lowercaseWord === lowercaseCurrentWordText) {
             console.log("Recognized word matches the current word text:", word);
             const currentWord = words.find((word) => word.word === currentWordText);
 
