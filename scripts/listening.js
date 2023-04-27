@@ -125,7 +125,7 @@ async function startListening() {
                         console.log("Word:", wordDetails.Word);
                         console.log("Accuracy:", wordDetails.PronunciationAssessment.AccuracyScore);
 
-                        handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordDetails.Word);
+                        handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore);
                     }
                 }
             };
@@ -205,11 +205,11 @@ function getReferenceText() {
 
 
 
-function handlePronunciationAssessmentResult(pronunciationAssessmentResult, wordSpoken) {
-    const words = pronunciationAssessmentResult.Words;
+function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
     const currentWord = document.querySelector(".reading");
-    console.log("************");
+
     console.log("Assessing:", wordSpoken);
+    console.log("Assessing:", wordSpokenAccuracyScore);
     console.log("Current word:", currentWord);
 
     if (currentWord) {
@@ -222,20 +222,12 @@ function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word
         if (lowercaseWordSpoken === lowercaseCurrentWordText) {
             console.log("We have a match.");
             
-            
-            const currentWord = words.find((word) => word.word === currentWordText);
-            console.log("Current word:", currentWord);
-            console.log("Current word accuracy score:", currentWord.AccuracyScore);
-
-            if (currentWord) {
-                const pronunciationScore = currentWord.AccuracyScore;
-                if (pronunciationScore >= 0.8) {
-                    console.log("Pronunciation score is above 0.8:", pronunciationScore);
-                    readNextWord();
-                } else {
-                    console.log("Pronunciation score is below 0.8:", pronunciationScore);
-                    troubleWithCurrentWord();
-                }
+            if (wordSpokenAccuracyScore >= 0.8) {
+                console.log("Pronunciation score is above 0.8:", wordSpokenAccuracyScore);
+                readNextWord();
+            } else {
+                console.log("Pronunciation score is below 0.8:", wordSpokenAccuracyScore);
+                troubleWithCurrentWord();
             }
         } else {
             console.log("Recognized word does not match the current word text:", word, currentWordText);
@@ -243,4 +235,5 @@ function handlePronunciationAssessmentResult(pronunciationAssessmentResult, word
     } else {
         console.log("No current word element found with the 'reading' class");
     }
+    console.log("************");
 }
