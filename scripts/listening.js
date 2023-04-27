@@ -102,6 +102,10 @@ async function startListening() {
             recognizer.recognized = (sender, event) => {
                 const result = event.result;
                 console.log("Text recognized: ", result.text);
+                console.log("Reason: ", result.reason);
+                console.log("Recognized speech: ", window.SpeechSDK.ResultReason.RecognizedSpeech);
+
+
 
                 if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
                     const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
