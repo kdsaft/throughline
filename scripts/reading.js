@@ -124,7 +124,8 @@ function troubleWithWord(wordNumber) {
 
 
 function checkingWord(wordNumber) {
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
+  console.log("checking word: " + wordNumber);
+  const { wordElement } = getWordProperties(wordNumber);
   animateColorElements = animateToNewColor(pathElement, 0.25, '#E3F3FE');
   animateColorElement.beginElement();
   updateWordStyle(wordElement, "checking");
@@ -137,6 +138,7 @@ function checkingWord(wordNumber) {
 function readNextWord() {
 
   checkingWord(currentWordNumber);
+
   // Update the word number by 1 and activate the reading mode
   let nextWordNumber = wordNumber + 1;
   if (nextWordNumber <= 341) {
