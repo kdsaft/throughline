@@ -115,6 +115,7 @@ function troubleWithWord(wordId) {
 }
 
 function checkingWord(wordId) {
+  console.log("checkingWord "+ wordId);
   const { wordElement } = getWordProperties(wordId);
   const pathElement = pathElements.get(wordId);
   if (pathElement) {
@@ -264,6 +265,7 @@ function getWordsOnCurrentLine(element) {
 function updateWordStyle(wordElement, mode) {
   wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
   wordElement.classList.add(mode);
+  console.log('set to ' + mode);
 }
 
 function getWordProperties(wordNumber) {
