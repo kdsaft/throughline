@@ -119,6 +119,7 @@ function checkingWord(wordId) {
   const { wordElement } = getWordProperties(wordId);
   const pathElement = pathElements.get(wordId);
   if (pathElement) {
+    console.log("checking path element:  "+ pathElement);
     const { animateColorElement } = animateToNewColor(pathElement, 0.25, '#E3F3FE');
     animateColorElements.set(wordId, animateColorElement);
     animateColorElement.beginElement();  
@@ -162,6 +163,7 @@ function readNextWord() {
 
   // Update the counter and is if it is less than or equal to the total number of words
   let nextWordNumber = currentWordNumber + 1;
+  console.log('Next word number:', nextWordNumber);
   if (nextWordNumber <= 341) {
     console.log('Reading next word:', nextWordNumber);
     currentWordNumber = nextWordNumber;
