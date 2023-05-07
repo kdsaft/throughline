@@ -148,7 +148,6 @@ function readingCurrentWord() {
   currentWord(currentWordNumber);
 }
 
-
 function troubleWithCurrentWord() {
   troubleWithCurrentWord(currentWordNumber);
 }
