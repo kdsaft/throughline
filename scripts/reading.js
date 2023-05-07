@@ -140,7 +140,7 @@ function readNextWord() {
   checkingWord(currentWordNumber);
 
   // Update the word number by 1 and activate the reading mode
-  let nextWordNumber = wordNumber + 1;
+  let nextWordNumber = currentWordNumber + 1;
   if (nextWordNumber <= 341) {
     currentWordNumber = nextWordNumber;
     const nextWordElement = document.querySelector(".word-" + nextWordNumber);
