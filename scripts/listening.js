@@ -201,7 +201,9 @@ function highlightNextWord(wordsSpoken) {
 
     wordsArray.forEach(wordSpoken => {
         const currentWord = getWordWithoutPunctuation(jsonData, currentWordNumber).trim().toLowerCase();
+        console.log("Current word:", currentWord);
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
+        console.log("Word spoken:", lowercaseWordSpoken);
 
         if (lowercaseWordSpoken === currentWord) {
             lastRecognizedWord = currentWord;
