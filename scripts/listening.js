@@ -214,30 +214,27 @@ function highlightNextWord(wordsSpoken) {
 }
 
 function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
-    const currentWord = document.querySelector(".reading");
-    // console.log("Assessing:", wordSpoken);
-    // console.log("Assessing:", wordSpokenAccuracyScore);
-    // console.log("Current word:", currentWord);
+    const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
 
-    if (currentWord) {
-        const currentWordText = currentWord.textContent.trim();
+    const wordsToCheck = document.querySelectorAll(".checking");
 
-        const lowercaseWordSpoken = wordSpoken.toLowerCase();
-        const lowercaseCurrentWordText = currentWordText.toLowerCase();
+    // Iterate over words
+    for (let i = 0; i < wordsToCheck.length; i++) {
+        const wordElement = wordsToCheck[i];
+        const wordNumber = parseInt(wordElement.className.split('-')[1]);
 
-        if (lowercaseWordSpoken === lowercaseCurrentWordText) {
-            
+        // Get the word without punctuation and convert to lowercase
+        const wordWithoutPunctuation = getWordWithoutPunctuation(jsonData, wordNumber).toLowerCase();
+
+        if (lowercaseWordSpoken === wordWithoutPunctuation) {
             if (wordSpokenAccuracyScore >= 0.8) {
                 console.log("Pronunciation score is above 0.8:", wordSpokenAccuracyScore);
-                //readNextWord();
+                correctPronunciationOfWord(wordNumber);
             } else {
                 console.log("Pronunciation score is below 0.8:", wordSpokenAccuracyScore);
-               // troubleWithCurrentWord();
+                troubleWithWord(wordNumber);
             }
-        } else {
-            console.log("Recognized word does not match the current word text:", word, currentWordText);
+            break; // End the loop since a match is found
         }
-    } else {
-        console.log("No current word element found with the 'reading' class");
     }
 }
