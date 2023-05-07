@@ -75,7 +75,6 @@ function initSpeechSDK() {
 
 
 async function startListening() {
-    console.log("Starting to listen...");
 
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -94,37 +93,28 @@ async function startListening() {
 
         // If pronunciation assessment config is available, apply it to the recognizer
         if (window.pronunciationAssessmentConfig) {
-            console.log('window.pronunciationAssessmentConfig is available');
+            // console.log('window.pronunciationAssessmentConfig is available');
 
             window.pronunciationAssessmentConfig.applyTo(recognizer);
 
             // Add an event listener to the recognizer to handle the word-by-word evaluation
             recognizer.recognized = (sender, event) => {
                 const result = event.result;
-                console.log("Text recognized: ", result.text);
-                console.log("Reason: ", result.reason);
-                console.log("Recognized speech: ", window.SpeechSDK.ResultReason.RecognizedSpeech);
+                // console.log("Text recognized: ", result.text);
+                // console.log("Reason: ", result.reason);
+                // console.log("Recognized speech: ", window.SpeechSDK.ResultReason.RecognizedSpeech);
 
 
 
                 if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
                     const pronunciationAssessmentResult = window.SpeechSDK.PronunciationAssessmentResult.fromResult(result);
-                    console.log("Pronunciation assessment result: ", pronunciationAssessmentResult);
 
                     // Extract the words array from the detailResult.Words property
                     const words = pronunciationAssessmentResult.detailResult.Words;
-                    console.log("Number of words in pronunciation assessment result:", words.length);
 
                     // Iterate over words
                     for (let i = 0; i < words.length; i++) {
                         const wordDetails = words[i];
-
-                        // Double-check the word index
-                        console.log("Current index:", i);
-                        console.log("Word details:", wordDetails);
-                        console.log("Word:", wordDetails.Word);
-                        console.log("Accuracy:", wordDetails.PronunciationAssessment.AccuracyScore);
-
                         handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore);
                     }
                 }
@@ -136,6 +126,7 @@ async function startListening() {
             const result = event.result;
             if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
                 console.log("Recognizing:", result.text);
+                highlightNextWord(result.text.trim())
             }
         };
 
@@ -153,6 +144,7 @@ async function startListening() {
         console.error("Error accessing the microphone:", error);
     }
 }
+
 
 
 
@@ -203,31 +195,39 @@ function getReferenceText() {
 }
 
 
+function highlightNextWord(wordSpoken) {
+    const currentWord = document.querySelector(".reading");
+        let found = false;
+
+    readingWords.forEach((wordElement, index) => {
+        if (readingWord.textContent.trim().toLowerCase() === currentWord.toLowerCase()) {
+            // Call readNextWord() when the current word is recognized
+            readNextWord();
+        }
+    });
+}
 
 
 function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
     const currentWord = document.querySelector(".reading");
-
-    console.log("Assessing:", wordSpoken);
-    console.log("Assessing:", wordSpokenAccuracyScore);
-    console.log("Current word:", currentWord);
+    // console.log("Assessing:", wordSpoken);
+    // console.log("Assessing:", wordSpokenAccuracyScore);
+    // console.log("Current word:", currentWord);
 
     if (currentWord) {
         const currentWordText = currentWord.textContent.trim();
-        console.log("Current word text:", currentWordText);
 
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
         const lowercaseCurrentWordText = currentWordText.toLowerCase();
 
         if (lowercaseWordSpoken === lowercaseCurrentWordText) {
-            console.log("We have a match.");
             
             if (wordSpokenAccuracyScore >= 0.8) {
                 console.log("Pronunciation score is above 0.8:", wordSpokenAccuracyScore);
-                readNextWord();
+                //readNextWord();
             } else {
                 console.log("Pronunciation score is below 0.8:", wordSpokenAccuracyScore);
-                troubleWithCurrentWord();
+               // troubleWithCurrentWord();
             }
         } else {
             console.log("Recognized word does not match the current word text:", word, currentWordText);
@@ -235,5 +235,4 @@ function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore
     } else {
         console.log("No current word element found with the 'reading' class");
     }
-    console.log("************");
 }
