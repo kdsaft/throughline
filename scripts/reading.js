@@ -120,18 +120,23 @@ function troubleWithWord(wordNumber) {
   animateElements = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
   animateElements.animateElement.beginElement();
   animateElements.animateColorElement.beginElement();
-  updateWordStyle(wordElement, "trouble");}
+  updateWordStyle(wordElement, "trouble");
+}
 
 
-  function checkingWord(wordNumber) {
-    console.log("checking word: " + wordNumber);
-    const { wordElement } = getWordProperties(wordNumber);
-    const animateColorElement = animateToNewColor(pathElement, 0.25, '#E3F3FE');
-    animateColorElement.beginElement();
-    updateWordStyle(wordElement, "checking");
-  }
+function checkingWord(wordNumber) {
+  console.log("checking word: " + wordNumber);
+  const { wordElement } = getWordProperties(wordNumber);
+  const animateColorElement = animateToNewColor(pathElement, 0.25, '#E3F3FE');
+  animateColorElement.beginElement();
+  updateWordStyle(wordElement, "checking");
+}
 
-
+function correctPronunciationOfWord(wordNumber) {
+  if (pathElement) {
+    hideLine(pathElement);
+}
+}
 
 
 
@@ -253,10 +258,10 @@ function getWordsOnCurrentLine(element) {
 function updateWordStyle(wordElement, mode) {
   wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
   wordElement.classList.add(mode);
-/*   if (pathElement) {
-    hideLine(pathElement);
-  }
- */
+  /*   if (pathElement) {
+      hideLine(pathElement);
+    }
+   */
 }
 
 function getWordProperties(wordNumber) {
@@ -417,11 +422,11 @@ function getWordWithoutPunctuation(data, id) {
   const wordData = data.words.find((word) => word.id === id);
 
   if (wordData) {
-      const word = wordData.word;
-      const wordWithoutPunctuation = word.replace(/^[^\w]+|[^\w]+$/g, '');
-      return wordWithoutPunctuation; // Return only the word without punctuation
+    const word = wordData.word;
+    const wordWithoutPunctuation = word.replace(/^[^\w]+|[^\w]+$/g, '');
+    return wordWithoutPunctuation; // Return only the word without punctuation
   } else {
-      console.error("Word not found with given ID:", id);
+    console.error("Word not found with given ID:", id);
   }
 }
 
