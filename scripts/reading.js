@@ -416,10 +416,7 @@ function getWordWithoutPunctuation(data, id) {
   if (wordData) {
       const word = wordData.word;
       const wordWithoutPunctuation = word.replace(/^[^\w]+|[^\w]+$/g, '');
-      return {
-          ...wordData,
-          word: wordWithoutPunctuation,
-      };
+      return wordWithoutPunctuation; // Return only the word without punctuation
   } else {
       console.error("Word not found with given ID:", id);
   }
