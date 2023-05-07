@@ -100,9 +100,9 @@ async function startListening() {
             // Add an event listener to the recognizer to handle the word-by-word evaluation
             recognizer.recognized = (sender, event) => {
                 const result = event.result;
-                // console.log("Text recognized: ", result.text);
-                // console.log("Reason: ", result.reason);
-                // console.log("Recognized speech: ", window.SpeechSDK.ResultReason.RecognizedSpeech);
+                console.log("Text recognized: ", result.text);
+                console.log("Reason: ", result.reason);
+                console.log("Recognized speech: ", window.SpeechSDK.ResultReason.RecognizedSpeech);
 
 
 
@@ -201,13 +201,13 @@ function highlightNextWord(wordsSpoken) {
 
     wordsArray.forEach(wordSpoken => {
         const lowercaseCurrentWord = getWordWithoutPunctuation(jsonData, currentWordNumber).toLowerCase();
-        console.log("++ Current word:", lowercaseCurrentWord);
+        // console.log("++ Current word:", lowercaseCurrentWord);
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
-        console.log("++ Word spoken:", lowercaseWordSpoken);
+        // console.log("++ Word spoken:", lowercaseWordSpoken);
 
         if (lowercaseWordSpoken === lowercaseCurrentWord) {
             lastRecognizedWord = lowercaseCurrentWord;
-            console.log("++ Match");
+            // console.log("++ Match");
             readNextWord();
         }
     })
@@ -227,11 +227,11 @@ function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore
         const wordWithoutPunctuation = getWordWithoutPunctuation(jsonData, wordNumber).toLowerCase();
 
         if (lowercaseWordSpoken === wordWithoutPunctuation) {
-            if (wordSpokenAccuracyScore >= 0.8) {
-                console.log("Pronunciation score is above 0.8:", wordSpokenAccuracyScore);
+            if (wordSpokenAccuracyScore >= 80) {
+                console.log("Pronunciation score is above 80:", wordSpokenAccuracyScore);
                 correctPronunciationOfWord(wordNumber);
             } else {
-                console.log("Pronunciation score is below 0.8:", wordSpokenAccuracyScore);
+                console.log("Pronunciation score is below 80:", wordSpokenAccuracyScore);
                 troubleWithWord(wordNumber);
             }
             break; // End the loop since a match is found
