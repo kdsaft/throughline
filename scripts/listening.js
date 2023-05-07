@@ -197,15 +197,16 @@ function getReferenceText() {
 
 function highlightNextWord(wordSpoken) {
     const currentWord = document.querySelector(".reading");
-        let found = false;
+    const currentWordText = currentWord.textContent.trim();
 
-    readingWords.forEach((wordElement, index) => {
-        if (readingWord.textContent.trim().toLowerCase() === currentWord.toLowerCase()) {
+    const lowercaseWordSpoken = wordSpoken.toLowerCase();
+    const lowercaseCurrentWordText = currentWordText.toLowerCase();
+
+    if (lowercaseWordSpoken === lowercaseCurrentWordText) {
+
             // Call readNextWord() when the current word is recognized
             readNextWord();
-        }
-    });
-}
+        }}
 
 
 function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
