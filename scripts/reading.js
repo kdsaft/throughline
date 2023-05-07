@@ -123,13 +123,13 @@ function troubleWithWord(wordNumber) {
   updateWordStyle(wordElement, "trouble");}
 
 
-function checkingWord(wordNumber) {
-  console.log("checking word: " + wordNumber);
-  const { wordElement } = getWordProperties(wordNumber);
-  animateElements = animateToNewColor(pathElement, 0.25, '#E3F3FE');
-  animateElements.animateColorElement.beginElement();
-  updateWordStyle(wordElement, "checking");
-}
+  function checkingWord(wordNumber) {
+    console.log("checking word: " + wordNumber);
+    const { wordElement } = getWordProperties(wordNumber);
+    const animateColorElement = animateToNewColor(pathElement, 0.25, '#E3F3FE');
+    animateColorElement.beginElement();
+    updateWordStyle(wordElement, "checking");
+  }
 
 
 
@@ -359,6 +359,7 @@ function animateToSineWave(pathElement, startX, endX, yCoordinate, referenceLeng
 }
 
 function animateToNewColor(pathElement, duration, endColor) {
+  console.log("animateToNewColor");
   const startColor = pathElement.getAttribute("stroke");
 
   const animateColorElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
