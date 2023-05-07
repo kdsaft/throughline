@@ -87,7 +87,7 @@ function stopReading() {
 //word style functions
 
 function currentWord(wordId) {
-  console.log("currentWord"+ wordId);
+  console.log("currentWord " + wordId);
   const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
   const svg = document.getElementById("highlight-viewport");
 
@@ -98,8 +98,11 @@ function currentWord(wordId) {
 
   if (newPathElement) {
     newPathElement.style.display = "block";
+  } else {
+    console.log("Path element not created for wordId:", wordId);
   }
 }
+
 
 function troubleWithWord(wordId) {
   const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
@@ -119,10 +122,12 @@ function checkingWord(wordId) {
   const { wordElement } = getWordProperties(wordId);
   const pathElement = pathElements.get(wordId);
   if (pathElement) {
-    console.log("checking path element:  " + pathElement);
+    console.log("checking path element: " + pathElement);
     const { animateColorElement } = animateToNewColor(pathElement, 0.25, '#E3F3FE');
     animateColorElements.set(wordId, animateColorElement);
-    animateColorElement.beginElement();  
+    animateColorElement.beginElement();
+  } else {
+    console.log("Path element not found for wordId:", wordId);
   }
   updateWordStyle(wordElement, "checking");
 }
@@ -148,6 +153,7 @@ function unreadWord(wordId) {
 
 
 function readingCurrentWord() {
+  console.log('calling currentWord');
   currentWord(currentWordNumber);
 }
 
@@ -158,7 +164,6 @@ function troubleWithCurrentWord() {
 
 function readNextWord() {
   console.log('Checking word:', currentWordNumber);
-
   checkingWord(currentWordNumber);
 
   // Update the counter and is if it is less than or equal to the total number of words
@@ -168,7 +173,8 @@ function readNextWord() {
     console.log('Reading next word:', nextWordNumber);
     currentWordNumber = nextWordNumber;
     currentWord(currentWordNumber);
-    
+  } else {
+    console.log('No more words to read');
   }
 }
 
