@@ -96,7 +96,7 @@ function currentWord(wordId) {
   updateWordStyle(wordElement, "reading");
 
   if (newPathElement) {
-    pathElement.style.display = "block";
+    newPathElement.style.display = "block";
   }
 }
 
