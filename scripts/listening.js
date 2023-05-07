@@ -200,6 +200,8 @@ function highlightNextWord(wordsSpoken) {
     let lastRecognizedWord = null;
 
     console.log("Words spoken:", wordsArray);
+    console.log("Current word:", getWordWithoutPunctuation(jsonData, currentWordNumber).trim().toLowerCase());
+
 
     wordsArray.forEach(wordSpoken => {
         const currentWord = getWordWithoutPunctuation(jsonData, currentWordNumber).trim().toLowerCase();
