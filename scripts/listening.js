@@ -101,9 +101,6 @@ async function startListening() {
             recognizer.recognized = (sender, event) => {
                 const result = event.result;
                 console.log("Text recognized: ", result.text);
-                console.log("Reason: ", result.reason);
-                console.log("Recognized speech: ", window.SpeechSDK.ResultReason.RecognizedSpeech);
-
 
 
                 if (result.reason === window.SpeechSDK.ResultReason.RecognizedSpeech) {
@@ -115,6 +112,7 @@ async function startListening() {
                     // Iterate over words
                     for (let i = 0; i < words.length; i++) {
                         const wordDetails = words[i];
+                        console.log("Word handled: ", wordDetails.Word);
                         handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore);
                     }
                 }
