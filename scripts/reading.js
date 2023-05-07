@@ -156,13 +156,17 @@ function troubleWithCurrentWord() {
 
 
 function readNextWord() {
+  console.log('Checking word:', currentWordNumber);
+
   checkingWord(currentWordNumber);
 
   // Update the counter and is if it is less than or equal to the total number of words
   let nextWordNumber = currentWordNumber + 1;
   if (nextWordNumber <= 341) {
+    console.log('Reading next word:', nextWordNumber);
     currentWordNumber = nextWordNumber;
     currentWord(currentWordNumber);
+    
   }
 }
 
