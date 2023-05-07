@@ -1,8 +1,9 @@
 // Reading.js
 
 let jsonData;
-let pathElement;
-let animateElements;
+const pathElements = new Map();
+const animateElements = new Map();
+const animateColorElements = new Map();
 
 let currentWordNumber = 1;
 
@@ -64,10 +65,6 @@ function resetStory() {
   // Reset the current word number to 1
   currentWordNumber = 1;
 
-  // Hide the line if it exists
-  if (pathElement) {
-    hideLine(pathElement);
-  }
 
   // Loop through all the words and set their style to "unread"
   for (let i = 1; i <= wordsRead; i++) {
@@ -84,78 +81,87 @@ function stopReading() {
   // set the active word to unread and hide the line
   updateWordStyle(wordElement, "unread");
 
-  if (pathElement) {
-    hideLine(pathElement);
-  }
 }
 
-function readingCurrentWord() {
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(currentWordNumber);
+
+//word style functions
+
+function currentWord(wordId) {
+  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
   const svg = document.getElementById("highlight-viewport");
 
-  // Hide the pre-existing line if it exists
-  if (pathElement) {
-    hideLine(pathElement);
-  }
+  const newPathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7', wordId);
+  pathElements.set(wordId, newPathElement);
 
-  // Draw a new line
-  pathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7');
-  wordElement.classList.remove("unread", "trouble", "read", "checking");
-  wordElement.classList.add("reading");
-  if (pathElement) {
+  updateWordStyle(wordElement, "reading");
+
+  if (newPathElement) {
     pathElement.style.display = "block";
   }
 }
 
-function troubleWithCurrentWord() {
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(currentWordNumber);
-  animateElements = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
-  animateElements.animateElement.beginElement();
-  animateElements.animateColorElement.beginElement();
-  updateWordStyle(wordElement, "trouble");
+function troubleWithWord(wordId) {
+  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
+  const pathElement = pathElements.get(wordId);
+  if (pathElement) {
+    const { animateElement, animateColorElement } = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
+    animateElements.set(wordId, animateElement);
+    animateColorElements.set(wordId, animateColorElement);
+    animateElement.beginElement();
+    animateColorElement.beginElement();  
+      }
+    updateWordStyle(wordElement, "trouble");
 }
 
-function troubleWithWord(wordNumber) {
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
-  animateElements = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
-  animateElements.animateElement.beginElement();
-  animateElements.animateColorElement.beginElement();
-  updateWordStyle(wordElement, "trouble");
-}
-
-
-function checkingWord(wordNumber) {
-  // console.log("checking word: " + wordNumber);
-  const { wordElement } = getWordProperties(wordNumber);
-  const animateColorElement = animateToNewColor(pathElement, 0.25, '#E3F3FE');
-  animateColorElement.beginElement();
+function checkingWord(wordId) {
+  const { wordElement } = getWordProperties(wordId);
+  const pathElement = pathElements.get(wordId);
+  if (pathElement) {
+    const { animateColorElement } = animateToNewColor(pathElement, 0.25, '#E3F3FE');
+    animateColorElements.set(wordId, animateColorElement);
+    animateColorElement.beginElement();  
+  }
   updateWordStyle(wordElement, "checking");
 }
 
-function correctPronunciationOfWord(wordNumber) {
+function correctPronunciationOfWord(wordId) {
+  const { wordElement } = getWordProperties(wordId);
+  const pathElement = pathElements.get(wordId);
   if (pathElement) {
     hideLine(pathElement);
-}
+  }
+  updateWordStyle(wordElement, "read")
 }
 
+function unreadWord(wordId) {
+  const { wordElement } = getWordProperties(wordId);
+  const pathElement = pathElements.get(wordId);
+  if (pathElement) {
+    hideLine(pathElement);
+  }
+  updateWordStyle(wordElement, "unread");
+}
+
+
+
+function readingCurrentWord() {
+  currentWord(currentWordNumber);
+}
+
+
+function troubleWithCurrentWord() {
+  troubleWithCurrentWord(currentWordNumber);
+}
 
 
 function readNextWord() {
-
   checkingWord(currentWordNumber);
 
-  // Update the word number by 1 and activate the reading mode
+  // Update the counter and is if it is less than or equal to the total number of words
   let nextWordNumber = currentWordNumber + 1;
   if (nextWordNumber <= 341) {
     currentWordNumber = nextWordNumber;
-    const nextWordElement = document.querySelector(".word-" + nextWordNumber);
-    const { startX, endX, yCoordinate } = getWordProperties(nextWordNumber);
-    const svg = document.getElementById("highlight-viewport");
-    pathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7');
-    updateWordStyle(nextWordElement, "reading");
-    if (pathElement) {
-      pathElement.style.display = "block";
-    }
+    currentWord(currentWordNumber);
   }
 }
 
@@ -258,10 +264,6 @@ function getWordsOnCurrentLine(element) {
 function updateWordStyle(wordElement, mode) {
   wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
   wordElement.classList.add(mode);
-  /*   if (pathElement) {
-      hideLine(pathElement);
-    }
-   */
 }
 
 function getWordProperties(wordNumber) {
@@ -305,7 +307,7 @@ function getWordProperties(wordNumber) {
   return { wordElement, startX, endX, yCoordinate };
 }
 
-function drawLine(svg, startX, endX, yCoordinate, color) {
+function drawLine(svg, startX, endX, yCoordinate, color, wordID) {
   let length = endX - startX;
   let pathStart = '';
   for (let x = startX; x < endX; x++) {
@@ -319,6 +321,7 @@ function drawLine(svg, startX, endX, yCoordinate, color) {
   pathElement.setAttribute('fill', 'none');
   pathElement.setAttribute('stroke-linecap', 'round');
   pathElement.setAttribute('stroke-linejoin', 'round');
+  pathElement.setAttribute('data-word-id', wordID);
 
   svg.appendChild(pathElement);
   return pathElement;
