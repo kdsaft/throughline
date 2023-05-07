@@ -45,6 +45,7 @@ function wakeUp() {
     setBodyColor('awake');
     readingCurrentWord()
     startListening();
+    readingCurrentWord();
     }
 
 function talk() {
