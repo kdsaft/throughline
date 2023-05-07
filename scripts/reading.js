@@ -126,8 +126,8 @@ function troubleWithWord(wordNumber) {
 function checkingWord(wordNumber) {
   console.log("checking word: " + wordNumber);
   const { wordElement } = getWordProperties(wordNumber);
-  animateColorElements = animateToNewColor(pathElement, 0.25, '#E3F3FE');
-  animateColorElement.beginElement();
+  animateElements = animateToNewColor(pathElement, 0.25, '#E3F3FE');
+  animateElements.animateColorElement.beginElement();
   updateWordStyle(wordElement, "checking");
 }
 
