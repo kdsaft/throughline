@@ -158,6 +158,11 @@ body {
     color: #0E0E0E;
 }
 
+.checking {
+    font-family: SF-Mono-Regular;
+    color: #9D9EA0;
+}
+
 .read,
 .read .punctuation {
     font-family: SF-Mono-Regular;

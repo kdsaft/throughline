@@ -4,6 +4,8 @@ let jsonData;
 let pathElement;
 let animateElements;
 
+let currentWordNumber = 1;
+
 let content;
 let scrollingTimeout;
 
@@ -57,12 +59,10 @@ function handleScrollbarFade() {
 // Button for Bubble functions
 
 function resetStory() {
-  const wordElements = document.querySelectorAll('[class^="word-"]');
-  const numOfSpans = document.getElementById("word-number").value;
-  const wordsRead = parseInt(document.getElementById("word-number").value);
+  const wordsRead = currentWordNumber;
 
-  // Reset the counter to 1
-  document.getElementById("word-number").value = 1;
+  // Reset the current word number to 1
+  currentWordNumber = 1;
 
   // Hide the line if it exists
   if (pathElement) {
@@ -74,11 +74,12 @@ function resetStory() {
     const wordElement = document.querySelector(".word-" + i);
     updateWordStyle(wordElement, "unread");
   }
+
+  readingCurrentWord()
 }
 
 function stopReading() {
-  const wordNumber = parseInt(document.getElementById("word-number").value);
-  const wordElement = document.querySelector(".word-" + wordNumber);
+  const wordElement = document.querySelector(".word-" + currentWordNumber);
 
   // set the active word to unread and hide the line
   updateWordStyle(wordElement, "unread");
@@ -89,8 +90,7 @@ function stopReading() {
 }
 
 function readingCurrentWord() {
-  const wordNumber = parseInt(document.getElementById("word-number").value);
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
+  const { wordElement, startX, endX, yCoordinate } = getWordProperties(currentWordNumber);
   const svg = document.getElementById("highlight-viewport");
 
   // Hide the pre-existing line if it exists
@@ -100,7 +100,7 @@ function readingCurrentWord() {
 
   // Draw a new line
   pathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7');
-  wordElement.classList.remove("unread", "trouble", "read");
+  wordElement.classList.remove("unread", "trouble", "read", "checking");
   wordElement.classList.add("reading");
   if (pathElement) {
     pathElement.style.display = "block";
@@ -108,27 +108,39 @@ function readingCurrentWord() {
 }
 
 function troubleWithCurrentWord() {
-  const wordNumber = parseInt(document.getElementById("word-number").value);
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
-  animateElements = animateSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#1A79C7', '#9F0F7B');
+  const { wordElement, startX, endX, yCoordinate } = getWordProperties(currentWordNumber);
+  animateElements = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
   animateElements.animateElement.beginElement();
   animateElements.animateColorElement.beginElement();
-  wordElement.classList.remove("unread", "reading", "read");
-  wordElement.classList.add("trouble");
+  updateWordStyle(wordElement, "trouble");
 }
 
-function readNextWord() {
-  const wordNumber = parseInt(document.getElementById("word-number").value);
-  const wordElement = document.querySelector(".word-" + wordNumber);
-  updateWordStyle(wordElement, "read");
-  if (pathElement) {
-    hideLine(pathElement);
-  }
+function troubleWithWord(wordNumber) {
+  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
+  animateElements = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
+  animateElements.animateElement.beginElement();
+  animateElements.animateColorElement.beginElement();
+  updateWordStyle(wordElement, "trouble");}
 
+
+function checkingWord(wordNumber) {
+  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordNumber);
+  animateColorElements = animateToNewColor(pathElement, 0.25, '#E3F3FE');
+  animateColorElement.beginElement();
+  updateWordStyle(wordElement, "checking");
+}
+
+
+
+
+
+function readNextWord() {
+
+  checkingWord(currentWordNumber);
   // Update the word number by 1 and activate the reading mode
   let nextWordNumber = wordNumber + 1;
   if (nextWordNumber <= 341) {
-    document.getElementById("word-number").value = nextWordNumber;
+    currentWordNumber = nextWordNumber;
     const nextWordElement = document.querySelector(".word-" + nextWordNumber);
     const { startX, endX, yCoordinate } = getWordProperties(nextWordNumber);
     const svg = document.getElementById("highlight-viewport");
@@ -141,9 +153,9 @@ function readNextWord() {
 }
 
 
+
 function playCurrentWord() {
-  const wordId = parseInt(document.getElementById("word-number").value);
-  const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
+  const { start_time, stop_time } = getStartAndEndTime(jsonData, currentWordNumber);
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
@@ -237,8 +249,12 @@ function getWordsOnCurrentLine(element) {
 
 // Funcation to update the display
 function updateWordStyle(wordElement, mode) {
-  wordElement.classList.remove("unread", "reading", "trouble", "read");
+  wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
   wordElement.classList.add(mode);
+/*   if (pathElement) {
+    hideLine(pathElement);
+  }
+ */
 }
 
 function getWordProperties(wordNumber) {
@@ -303,10 +319,12 @@ function drawLine(svg, startX, endX, yCoordinate, color) {
 }
 
 
-function animateSineWave(pathElement, startX, endX, yCoordinate, referenceLength, referenceFrequency, duration, startColor, endColor) {
+function animateToSineWave(pathElement, startX, endX, yCoordinate, referenceLength, referenceFrequency, duration, endColor) {
   let length = endX - startX;
   const frequency = (referenceFrequency * length) / referenceLength;
   const amplitude = 2;
+
+  const startColor = pathElement.getAttribute("stroke");
 
   let pathEnd = '';
   for (let x = startX; x < endX; x++) {
@@ -337,6 +355,24 @@ function animateSineWave(pathElement, startX, endX, yCoordinate, referenceLength
 
   return { animateElement, animateColorElement };
 }
+
+function animateToNewColor(pathElement, duration, endColor) {
+  const startColor = pathElement.getAttribute("stroke");
+
+  const animateColorElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+  animateColorElement.setAttribute('attributeName', 'stroke');
+  animateColorElement.setAttribute('from', startColor);
+  animateColorElement.setAttribute('to', endColor);
+  animateColorElement.setAttribute('dur', duration + 's');
+  animateColorElement.setAttribute('begin', 'indefinite');
+  animateColorElement.setAttribute('repeatCount', '1');
+  animateColorElement.setAttribute('fill', 'freeze');
+
+  pathElement.appendChild(animateColorElement);
+
+  return animateColorElement;
+}
+
 
 function hideLine(pathElement) {
   pathElement.style.display = 'none';
@@ -373,15 +409,22 @@ function getStartAndEndTime(data, id) {
   }
 }
 
-/* function getCurrentWord(data, id) {
-  const word = data.words.find((word) => word.id === id);
-  if (word) {
-    return word;
+
+function getWordWithoutPunctuation(data, id) {
+  const wordData = data.words.find((word) => word.id === id);
+
+  if (wordData) {
+      const word = wordData.word;
+      const wordWithoutPunctuation = word.replace(/^[^\w]+|[^\w]+$/g, '');
+      return {
+          ...wordData,
+          word: wordWithoutPunctuation,
+      };
   } else {
-    console.error("Word not found with given ID:", id);
+      console.error("Word not found with given ID:", id);
   }
 }
- */
+
 
 function getSyllablesAsString(data, id) {
   const word = data.words.find((word) => word.id === id);

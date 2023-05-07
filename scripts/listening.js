@@ -121,7 +121,7 @@ async function startListening() {
             };
         }
 
-        // Use the recognizer.recognizing event for logging purposes only
+        // Use the recognizer.recognizing event for quick highlight of the current word
         recognizer.recognizing = (sender, event) => {
             const result = event.result;
             if (result.reason === window.SpeechSDK.ResultReason.RecognizingSpeech) {
@@ -200,23 +200,14 @@ function highlightNextWord(wordsSpoken) {
     let lastRecognizedWord = null;
 
     wordsArray.forEach(wordSpoken => {
-        const currentWord = document.querySelector(".reading");
-        const currentWordText = currentWord.textContent.trim();
-
+        const currentWord = getWordWithoutPunctuation(jsonData, currentWordNumber).trim().toLowerCase();
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
-        const lowercaseCurrentWordText = currentWordText.toLowerCase();
 
-        if (lowercaseWordSpoken === lowercaseCurrentWordText) {
+        if (lowercaseWordSpoken === currentWord) {
             lastRecognizedWord = currentWord;
-            // Call readNextWord() when the current word is recognized
             readNextWord();
         }
-    });
-
-    // If the last recognized word is not null, highlight it
-    // if (lastRecognizedWord) {
-    //     lastRecognizedWord.classList.add('highlight');
-    // }
+    })
 }
 
 function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
