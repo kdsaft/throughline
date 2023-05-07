@@ -87,6 +87,7 @@ function stopReading() {
 //word style functions
 
 function currentWord(wordId) {
+  console.log("currentWord"+ wordId);
   const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
   const svg = document.getElementById("highlight-viewport");
 
