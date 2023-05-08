@@ -91,16 +91,22 @@ function currentWord(wordId) {
   const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
   const svg = document.getElementById("highlight-viewport");
 
-  const newPathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7', wordId);
-  pathElements.set(wordId, newPathElement);
+  let pathElement = pathElements.get(wordId);
+  if (!pathElement) {
+    pathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7', wordId);
+    pathElements.set(wordId, pathElement);
+  } else {
+    console.log("Path element already created for wordId:", wordId);
+  }
 
   updateWordStyle(wordElement, "reading");
 
-  if (newPathElement) {
-    newPathElement.style.display = "block";
+  if (pathElement) {
+    pathElement.style.display = "block";
   } else {
     console.log("Path element not created for wordId:", wordId);
   }
+
 }
 
 
