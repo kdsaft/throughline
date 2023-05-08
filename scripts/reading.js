@@ -124,11 +124,10 @@ function troubleWithWord(wordId) {
 }
 
 function checkingWord(wordId) {
-  console.log("checkingWord " + wordId);
+  console.log("Function: checkingWord " + wordId);
   const { wordElement } = getWordProperties(wordId);
   const pathElement = pathElements.get(wordId);
   if (pathElement) {
-    console.log("checking path element: " + pathElement);
     const { animateColorElement } = animateToNewColor(pathElement, 0.25, '#E3F3FE');
     animateColorElements.set(wordId, animateColorElement);
     animateColorElement.beginElement();
@@ -159,7 +158,7 @@ function unreadWord(wordId) {
 
 
 function readingCurrentWord() {
-  console.log('calling currentWord');
+  console.log('Function: readingCurrentWord');
   currentWord(currentWordNumber);
 }
 
@@ -169,7 +168,7 @@ function troubleWithCurrentWord() {
 
 
 function readNextWord() {
-  console.log('Checking word:', currentWordNumber);
+  console.log('Function: readNextWord');
   checkingWord(currentWordNumber);
 
   // Update the counter and is if it is less than or equal to the total number of words
@@ -387,7 +386,6 @@ function animateToSineWave(pathElement, startX, endX, yCoordinate, referenceLeng
 }
 
 function animateToNewColor(pathElement, duration, endColor) {
-  console.log("animateToNewColor: start");
   const startColor = pathElement.getAttribute("stroke");
 
   const animateColorElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
@@ -400,7 +398,7 @@ function animateToNewColor(pathElement, duration, endColor) {
   animateColorElement.setAttribute('fill', 'freeze');
 
   pathElement.appendChild(animateColorElement);
-  console.log("animateToNewColor: end");
+  console.log("Function: animateToNewColor " + animateColorElement);
   return animateColorElement;
 }
 
