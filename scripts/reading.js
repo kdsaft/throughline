@@ -84,7 +84,7 @@ function stopReading() {
 //word style functions
 
 function updateWordState(wordId, newState) {
-  const word = wordsMap.get(wordId);
+  const word = wordsToReadMap.get(wordId);
   if (!word) return;
 
   switch (newState) {
