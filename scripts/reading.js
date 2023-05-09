@@ -277,7 +277,7 @@ function updateWordStyle(wordId, mode) {
   wordsToReadMap.get(wordId).wordElement.classList.add(mode);
 
   wordsToReadMap.get(wordId).state = mode;
-  console.log('set to ' + mode);
+  console.log(wordId + ' set to ' + mode);
 }
 
 
