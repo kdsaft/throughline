@@ -198,10 +198,10 @@ function highlightNextWord(wordsSpoken) {
     let lastRecognizedWord = null;
 
     wordsArray.forEach(wordSpoken => {
-        const lowercaseCurrentWord = wordsToReadMap.get(wordId).word.withoutPunctuation.toLowerCase();
-         console.log("++ Current word:", lowercaseCurrentWord);
+        const lowercaseCurrentWord = wordsToReadMap.get(currentWordNumber).word.withoutPunctuation.toLowerCase();
+         //console.log("++ Current word:", lowercaseCurrentWord);
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
-        console.log("++ Word spoken:", lowercaseWordSpoken);
+       // console.log("++ Word spoken:", lowercaseWordSpoken);
 
         if (lowercaseWordSpoken === lowercaseCurrentWord) {
             lastRecognizedWord = lowercaseCurrentWord;
