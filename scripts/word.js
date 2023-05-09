@@ -119,7 +119,7 @@ class Word {
         const referenceLength = 48;
         const referenceFrequency = 5;
         const duration = 0.25;
-        const endColor = "#9F0F7B";
+        const endColor = "#E7C3DE";
 
         let length = endX - startX;
         const frequency = (referenceFrequency * length) / referenceLength;
