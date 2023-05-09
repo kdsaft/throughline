@@ -219,6 +219,7 @@ function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore
     for (let i = 0; i < wordsToCheck.length; i++) {
         const wordInstance = wordsToCheck[i];
         const wordId = wordInstance.wordId;
+        console.log("Word handled: ", wordInstance.word.withoutPunctuation +" "+ wordInstance.wordId);
 
         // Get the word without punctuation and convert to lowercase
         const lowercaseCurrentWord = wordInstance.word.withoutPunctuation.toLowerCase();
