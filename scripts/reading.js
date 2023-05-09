@@ -14,7 +14,7 @@ function initReading() {
     console.log(wordsToReadMap);
     // You can use the wordsToReadMap here for further processing
   });
-  
+
   updateSVGViewBox();
 
   // When the window is resized...
@@ -130,11 +130,13 @@ function readingWord(wordId) {
 
 function troubleWithWord(wordId) {
   console.log('Function: troubleWithWord');
-  updateWordState(currentWordNumber, "trouble");}
+  updateWordState(currentWordNumber, "trouble");
+}
 
 function checkingWord(wordId) {
   console.log('Function: checkingWord');
-  updateWordState(currentWordNumber, "checking");}
+  updateWordState(currentWordNumber, "checking");
+}
 
 function correctPronunciationOfWord(wordId) {
   console.log('Function: correctPronunciationOfWord');
@@ -169,7 +171,7 @@ function readNextWord() {
     currentWordNumber = nextWordNumber;
     console.log('Function: readNextWord, reading');
     updateWordState(currentWordNumber, "reading");
-    } else {
+  } else {
     console.log('No more words to read');
   }
 }
@@ -406,27 +408,25 @@ function hideLine(pathElement) {
 // Funcations to handle JSON data
 
 async function initWordsToReadMap() {
- jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
- if (!jsonData) {
-  console.error("Error initializing JSON data");
-  return;
-}
-  const totalNumberOfWords = jsonData.words.length;
+  jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
+  if (!jsonData) {
+    console.error("Error initializing JSON data");
+    return;
+  }
+  for (const wordData of jsonData.words) {
+    const wordId = wordData.id;
+    const word = new Word(wordId);
 
-  for (let i = 1; i <= totalNumberOfWords; i++) {
-    const word = new Word(i);
-
-    const { start_time, stop_time } = getStartAndEndTime(jsonData, i);
+    const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
     word.audioElement.startTime = start_time;
     word.audioElement.endTime = stop_time;
 
-    word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, i);
-    word.word.syllables = getSyllablesAsString(jsonData, i);
+    word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
+    word.word.syllables = getSyllablesAsString(jsonData, wordId);
 
-    wordsToReadMap.set(i, word);
+    wordsToReadMap.set(wordId, word);
   }
 }
-
 
 
 async function readJsonFile(url) {
