@@ -218,7 +218,6 @@ function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore
     // Iterate over words
     for (let i = 0; i < wordsToCheck.length; i++) {
         const wordInstance = wordsToCheck[i];
-        const wordId = wordInstance.wordId;
         console.log("Word handled: ", wordInstance.word.withoutPunctuation +" "+ wordInstance.wordId);
 
         // Get the word without punctuation and convert to lowercase
@@ -227,10 +226,10 @@ function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore
         if (lowercaseWordSpoken === lowercaseCurrentWord) {
             if (wordSpokenAccuracyScore >= 80) {
                 console.log("Pronunciation score is above 80:", wordSpokenAccuracyScore);
-                correctPronunciationOfWord(wordId);
+                correctPronunciationOfWord(wordInstance.wordId);
             } else {
                 console.log("Pronunciation score is below 80:", wordSpokenAccuracyScore);
-                troubleWithWord(wordId);
+                troubleWithWord(wordInstance.wordId);
             }
             break; // End the loop since a match is found
         }
