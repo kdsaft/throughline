@@ -1,9 +1,7 @@
 // Reading.js
 
+let wordsToReadMap = new Map();
 let jsonData;
-const pathElements = new Map();
-const animateElements = new Map();
-const animateColorElements = new Map();
 
 let currentWordNumber = 1;
 
@@ -12,7 +10,11 @@ let scrollingTimeout;
 
 function initReading() {
   content = document.querySelector('.content');
-  initTimingData();
+  initWordsToReadMap().then(() => {
+    console.log(wordsToReadMap);
+    // You can use the wordsToReadMap here for further processing
+  });
+  
   updateSVGViewBox();
 
   // When the window is resized...
@@ -26,9 +28,8 @@ function initReading() {
 }
 
 
-
 function updateSVGViewBox() {
-  const svg = document.getElementById("highlight-viewport");
+  const svgViewBox = document.getElementById("highlight-viewport");
   const textArea = document.querySelector(".text-area");
   const highlightArea = document.querySelector(".highlight-area");
 
@@ -40,10 +41,10 @@ function updateSVGViewBox() {
   highlightArea.style.height = `${height}px`;
 
   // Set the SVG element's width to match the text-area div
-  svg.setAttribute("width", width);
+  svgViewBox.setAttribute("width", width);
 
   // Update the viewBox with the correct dimensions
-  svg.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
+  svgViewBox.setAttribute("viewBox", `-2 -2 ${width} ${height}`);
 }
 
 
@@ -68,117 +69,107 @@ function resetStory() {
 
   // Loop through all the words and set their style to "unread"
   for (let i = 1; i <= wordsRead; i++) {
-    const wordElement = document.querySelector(".word-" + i);
-    updateWordStyle(wordElement, "unread");
+    updateWordState(currentWordNumber, "unread");
   }
 
   readingCurrentWord()
 }
 
 function stopReading() {
-  const wordElement = document.querySelector(".word-" + currentWordNumber);
-
-  // set the active word to unread and hide the line
-  updateWordStyle(wordElement, "unread");
+  updateWordState(currentWordNumber, "unread");
 
 }
 
 
 //word style functions
 
-function currentWord(wordId) {
-  console.log("currentWord " + wordId);
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
-  const svg = document.getElementById("highlight-viewport");
+function updateWordState(wordId, newState) {
+  const word = wordsMap.get(wordId);
+  if (!word) return;
 
-  let pathElement = pathElements.get(wordId);
-  if (!pathElement) {
-    pathElement = drawLine(svg, startX, endX, yCoordinate, '#1A79C7', wordId);
-    pathElements.set(wordId, pathElement);
-  } else {
-    console.log("Path element already created for wordId:", wordId);
+  switch (newState) {
+    case "reading":
+      updateWordStyle(wordId, "reading");
+      wordsToReadMap.get(wordId).drawLine();
+      wordsToReadMap.get(wordId).createTroubleAnimationElements();
+      wordsToReadMap.get(wordId).createCheckingAnimationElement();
+      break;
+
+    case "checking":
+      updateWordStyle(wordId, "checking");
+      wordsToReadMap.get(wordId).svgElement.animateToCheckingColor.beginElement();
+      break;
+
+    case "trouble":
+      updateWordStyle(wordId, "trouble");
+      wordsToReadMap.get(wordId).svgElement.animateToTroubleLine.beginElement();
+      wordsToReadMap.get(wordId).svgElement.animateToTroubleColor.beginElement();
+      break;
+
+    case "read":
+      updateWordStyle(wordId, "read");
+      wordsToReadMap.get(wordId).hideLine();
+      break;
+
+    case "unread":
+      updateWordStyle(wordId, "unread");
+      wordsToReadMap.get(wordId).hideLine();
+      break;
+
+    default:
+      console.error("Invalid state:", newState);
   }
-
-  updateWordStyle(wordElement, "reading");
-
-  if (pathElement) {
-    pathElement.style.display = "block";
-  } else {
-    console.log("Path element not created for wordId:", wordId);
-  }
-
 }
 
+
+
+function readingWord(wordId) {
+  console.log('Function: readingWord');
+  updateWordState(currentWordNumber, "reading");
+}
 
 function troubleWithWord(wordId) {
-  const { wordElement, startX, endX, yCoordinate } = getWordProperties(wordId);
-  const pathElement = pathElements.get(wordId);
-  if (pathElement) {
-    const { animateElement, animateColorElement } = animateToSineWave(pathElement, startX, endX, yCoordinate, 48, 5, 0.25, '#9F0F7B');
-    animateElements.set(wordId, animateElement);
-    animateColorElements.set(wordId, animateColorElement);
-    animateElement.beginElement();
-    animateColorElement.beginElement();  
-      }
-    updateWordStyle(wordElement, "trouble");
-}
+  console.log('Function: troubleWithWord');
+  updateWordState(currentWordNumber, "trouble");}
 
 function checkingWord(wordId) {
-  console.log("Function: checkingWord " + wordId);
-  const { wordElement } = getWordProperties(wordId);
-  const pathElement = pathElements.get(wordId);
-  if (pathElement) {
-    const { animateColorElement } = animateToNewColor(pathElement, 0.25, '#E3F3FE');
-    animateColorElements.set(wordId, animateColorElement);
-    animateColorElement.beginElement();
-  } else {
-    console.log("Path element not found for wordId:", wordId);
-  }
-  updateWordStyle(wordElement, "checking");
-}
+  console.log('Function: checkingWord');
+  updateWordState(currentWordNumber, "checking");}
 
 function correctPronunciationOfWord(wordId) {
-  const { wordElement } = getWordProperties(wordId);
-  const pathElement = pathElements.get(wordId);
-  if (pathElement) {
-    hideLine(pathElement);
-  }
-  updateWordStyle(wordElement, "read")
+  console.log('Function: correctPronunciationOfWord');
+  updateWordState(currentWordNumber, "read");
 }
 
 function unreadWord(wordId) {
-  const { wordElement } = getWordProperties(wordId);
-  const pathElement = pathElements.get(wordId);
-  if (pathElement) {
-    hideLine(pathElement);
-  }
-  updateWordStyle(wordElement, "unread");
+  console.log('Function: unreadWord');
+  updateWordState(currentWordNumber, "unread");
 }
 
 
 
 function readingCurrentWord() {
   console.log('Function: readingCurrentWord');
-  currentWord(currentWordNumber);
+  updateWordState(currentWordNumber, "reading");
 }
 
 function troubleWithCurrentWord() {
-  troubleWithCurrentWord(currentWordNumber);
+  console.log('Function: troubleWithCurrentWord');
+  updateWordState(currentWordNumber, "trouble");
 }
 
 
 function readNextWord() {
-  console.log('Function: readNextWord');
-  checkingWord(currentWordNumber);
+  console.log('Function: readNextWord, checking');
+  updateWordState(currentWordNumber, "checking");
 
   // Update the counter and is if it is less than or equal to the total number of words
   let nextWordNumber = currentWordNumber + 1;
-  console.log('Next word number:', nextWordNumber);
   if (nextWordNumber <= 341) {
-    console.log('Reading next word:', nextWordNumber);
     currentWordNumber = nextWordNumber;
-    currentWord(currentWordNumber);
-  } else {
+    console.log('Function: readNextWord, reading');
+    updateWordState(currentWordNumber, "reading");
+    } else {
     console.log('No more words to read');
   }
 }
@@ -279,13 +270,17 @@ function getWordsOnCurrentLine(element) {
 
 
 // Funcation to update the display
-function updateWordStyle(wordElement, mode) {
-  wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
-  wordElement.classList.add(mode);
+function updateWordStyle(wordId, mode) {
+  wordsToReadMap.get(wordId).wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
+  wordsToReadMap.get(wordId).wordElement.classList.add(mode);
+
+  wordsToReadMap.get(wordId).state = mode;
   console.log('set to ' + mode);
 }
 
-function getWordProperties(wordNumber) {
+
+
+/* function getWordProperties(wordNumber) {
   const wordElement = document.querySelector(".word-" + wordNumber);
   const wordRect = wordElement.getBoundingClientRect();
   const parentDiv = wordElement.parentNode;
@@ -405,14 +400,33 @@ function animateToNewColor(pathElement, duration, endColor) {
 
 function hideLine(pathElement) {
   pathElement.style.display = 'none';
-}
+} */
 
 
 // Funcations to handle JSON data
 
-async function initTimingData() {
-  jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
+async function initWordsToReadMap() {
+ jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
+ if (!jsonData) {
+  console.error("Error initializing JSON data");
+  return;
 }
+  const totalNumberOfWords = jsonData.words.length;
+
+  for (let i = 1; i <= totalNumberOfWords; i++) {
+    const word = new Word(i);
+
+    const { start_time, stop_time } = getStartAndEndTime(jsonData, i);
+    word.audioElement.startTime = start_time;
+    word.audioElement.endTime = stop_time;
+
+    word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, i);
+    word.word.syllables = getSyllablesAsString(jsonData, i);
+
+    wordsToReadMap.set(i, word);
+  }
+}
+
 
 
 async function readJsonFile(url) {
@@ -424,6 +438,7 @@ async function readJsonFile(url) {
     console.error("Error reading JSON file:", error);
   }
 }
+
 
 
 function getStartAndEndTime(data, id) {
