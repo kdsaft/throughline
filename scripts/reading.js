@@ -125,27 +125,27 @@ function updateWordState(wordId, newState) {
 
 function readingWord(wordId) {
   console.log('Function: readingWord');
-  updateWordState(currentWordNumber, "reading");
+  updateWordState(wordId, "reading");
 }
 
 function troubleWithWord(wordId) {
   console.log('Function: troubleWithWord');
-  updateWordState(currentWordNumber, "trouble");
+  updateWordState(wordId, "trouble");
 }
 
 function checkingWord(wordId) {
   console.log('Function: checkingWord');
-  updateWordState(currentWordNumber, "checking");
+  updateWordState(wordId, "checking");
 }
 
 function correctPronunciationOfWord(wordId) {
   console.log('Function: correctPronunciationOfWord');
-  updateWordState(currentWordNumber, "read");
+  updateWordState(wordId, "read");
 }
 
 function unreadWord(wordId) {
   console.log('Function: unreadWord');
-  updateWordState(currentWordNumber, "unread");
+  updateWordState(wordId, "unread");
 }
 
 
