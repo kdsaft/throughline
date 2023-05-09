@@ -198,7 +198,7 @@ function highlightNextWord(wordsSpoken) {
     let lastRecognizedWord = null;
 
     wordsArray.forEach(wordSpoken => {
-        const lowercaseCurrentWord = getWordWithoutPunctuation(jsonData, currentWordNumber).toLowerCase();
+        const lowercaseCurrentWord = wordsToReadMap.get(wordId).word.withoutPunctuation.toLowerCase();
         //  console.log("++ Current word:", lowercaseCurrentWord);
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
         // console.log("++ Word spoken:", lowercaseWordSpoken);
@@ -213,24 +213,23 @@ function highlightNextWord(wordsSpoken) {
 
 function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
     const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
-
-    const wordsToCheck = document.querySelectorAll(".checking");
+    const wordsToCheck = Array.from(wordsToReadMap.values()).filter(word => word.state === "checking");
 
     // Iterate over words
     for (let i = 0; i < wordsToCheck.length; i++) {
-        const wordElement = wordsToCheck[i];
-        const wordNumber = parseInt(wordElement.className.split('-')[1]);
+        const wordInstance = wordsToCheck[i];
+        const wordId = wordInstance.wordId;
 
         // Get the word without punctuation and convert to lowercase
-        const wordWithoutPunctuation = getWordWithoutPunctuation(jsonData, wordNumber).toLowerCase();
+        const lowercaseCurrentWord = wordInstance.word.withoutPunctuation.toLowerCase();
 
-        if (lowercaseWordSpoken === wordWithoutPunctuation) {
+        if (lowercaseWordSpoken === lowercaseCurrentWord) {
             if (wordSpokenAccuracyScore >= 80) {
                 console.log("Pronunciation score is above 80:", wordSpokenAccuracyScore);
-                correctPronunciationOfWord(wordNumber);
+                correctPronunciationOfWord(wordId);
             } else {
                 console.log("Pronunciation score is below 80:", wordSpokenAccuracyScore);
-                troubleWithWord(wordNumber);
+                troubleWithWord(wordId);
             }
             break; // End the loop since a match is found
         }
