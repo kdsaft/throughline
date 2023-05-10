@@ -282,13 +282,13 @@ function updateWordStyle(wordId, mode) {
   console.log(wordId + ' set to ' + mode);
 }
 
-function updateTroubleWordList(wordId, assessment) {
+function updateTroubleWordList(wordId, syllablesAccuracyScores) {
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
       wordList.innerHTML += '<br>';
     }
     wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
-    console.log('assessment ' + assessment);
+    console.log('assessment ' + syllablesAccuracyScores);
 }
 
 

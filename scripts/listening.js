@@ -113,7 +113,14 @@ async function startListening() {
                     for (let i = 0; i < words.length; i++) {
                         const wordDetails = words[i];
                         console.log("Word handled: ", wordDetails.Word);
-                        handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore, wordDetails.Syllables);
+
+                        // Collect syllables and their accuracy scores
+                        const syllableAssessment = wordDetails.Syllables.map(syllableDetails => ({
+                            syllable: syllableDetails.Syllable,
+                            accuracyScore: syllableDetails.PronunciationAssessment.AccuracyScore
+                        }));
+
+                        handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore, syllableAssessment);
                     }
                 }
             };
@@ -127,7 +134,7 @@ async function startListening() {
                 highlightNextWord(result.text.trim());
             }
         };
-        
+
         // Start the recognizer
         recognizer.startContinuousRecognitionAsync();
 
@@ -199,9 +206,9 @@ function highlightNextWord(wordsSpoken) {
 
     wordsArray.forEach(wordSpoken => {
         const lowercaseCurrentWord = wordsToReadMap.get(currentWordNumber).word.withoutPunctuation.toLowerCase();
-         //console.log("++ Current word:", lowercaseCurrentWord);
+        //console.log("++ Current word:", lowercaseCurrentWord);
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
-       // console.log("++ Word spoken:", lowercaseWordSpoken);
+        // console.log("++ Word spoken:", lowercaseWordSpoken);
 
         if (lowercaseWordSpoken === lowercaseCurrentWord) {
             lastRecognizedWord = lowercaseCurrentWord;
@@ -211,25 +218,25 @@ function highlightNextWord(wordsSpoken) {
     })
 }
 
-function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore, wordSpokenSyllables) {
+function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAccuracyScores) {
     const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
     const wordsToCheck = Array.from(wordsToReadMap.values()).filter(word => word.state === "checking");
 
     // Iterate over words
     for (let i = 0; i < wordsToCheck.length; i++) {
         const wordInstance = wordsToCheck[i];
-        console.log("Word handled: ", wordInstance.word.withoutPunctuation +" "+ wordInstance.wordId);
+        console.log("Word handled: ", wordInstance.word.withoutPunctuation + " " + wordInstance.wordId);
 
         // Get the word without punctuation and convert to lowercase
         const lowercaseCurrentWord = wordInstance.word.withoutPunctuation.toLowerCase();
 
         if (lowercaseWordSpoken === lowercaseCurrentWord) {
-            if (wordSpokenAccuracyScore >= 80) {
-                console.log("Pronunciation score is above 80:", wordSpokenAccuracyScore);
+            if (wordAccuracyScore >= 80) {
+                console.log("Pronunciation score is above 80:", wordAccuracyScore);
                 correctPronunciationOfWord(wordInstance.wordId);
             } else {
-                console.log("Pronunciation score is below 80:", wordSpokenAccuracyScore);
-                troubleWithWord(wordInstance.wordId, wordSpokenSyllables);
+                console.log("Pronunciation score is below 80:", wordAccuracyScore);
+                troubleWithWord(wordInstance.wordId, syllablesAccuracyScores);
             }
             break; // End the loop since a match is found
         }
