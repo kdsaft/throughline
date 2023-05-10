@@ -287,10 +287,10 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores) {
   if (wordList.innerHTML.trim() !== "") {
       wordList.innerHTML += '<br>';
     }
-    wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
+    wordList.innerHTML += '<strong>' + wordsToReadMap.get(wordId).word.withoutPunctuation + '</strong>';
     wordList.innerHTML += '<br>';
     syllablesAccuracyScores.forEach(syllableResult => {
-      wordList.innerHTML += syllableResult.syllable + " [" + syllableResult.accuracyScore + "] ";
+      wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
     });
 }
 
