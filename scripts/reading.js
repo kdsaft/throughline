@@ -105,15 +105,17 @@ function updateWordState(wordId, newState) {
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStyle.beginElement();
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineColor.beginElement();
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStroke.beginElement();
+      
+      console.log("Word without punctuation: " + wordsToReadMap.get(wordId).word.withoutPunctuation);
 
       var wordList = document.getElementById("word-list");
-     /*  if (wordList.innerHTML.trim() !== "") {
-        // If it's not empty, append a new line
+      console.log("From word-list: " + wordList.textContent);
+
+    /* if (wordList.innerHTML.trim() !== "") {
         wordList.innerHTML += '<br>';
-      } */
-      console.log("From word-list: " + wordList);
-      console.log("Word without punctuation: " + wordsToReadMap.get(wordId).word.withoutPunctuation);
-      // wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
+      }
+      wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation; */
+
       break;
 
     case "read":
