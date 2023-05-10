@@ -91,19 +91,28 @@ function updateWordState(wordId, newState) {
     case "reading":
       updateWordStyle(wordId, "reading");
       wordsToReadMap.get(wordId).drawLine();
-      wordsToReadMap.get(wordId).createTroubleAnimationElements();
       wordsToReadMap.get(wordId).createCheckingAnimationElement();
       break;
 
     case "checking":
       updateWordStyle(wordId, "checking");
-      wordsToReadMap.get(wordId).svgElement.animateToCheckingColor.beginElement();
+      wordsToReadMap.get(wordId).svgElement.animateToCheckingLineColor.beginElement();
       break;
 
     case "trouble":
       updateWordStyle(wordId, "trouble");
-      wordsToReadMap.get(wordId).svgElement.animateToTroubleLine.beginElement();
-      wordsToReadMap.get(wordId).svgElement.animateToTroubleColor.beginElement();
+      wordsToReadMap.get(wordId).createTroubleAnimationElements();
+      wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStyle.beginElement();
+      wordsToReadMap.get(wordId).svgElement.animateToTroubleLineColor.beginElement();
+      wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStroke.beginElement();
+
+      var wordList = document.getElementById("word-list");
+      if (wordList.innerHTML.trim() !== "") {
+        // If it's not empty, append a new line
+        wordList.innerHTML += '<br>';
+      }
+      wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
+
       break;
 
     case "read":

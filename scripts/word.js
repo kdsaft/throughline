@@ -9,9 +9,10 @@ class Word {
 
         this.svgElement = {
             highlightLine: null,
-            animateToTroubleLine: null,
-            animateToTroubleColor: null,
-            animateToCheckingColor: null
+            animateToTroubleLineStyle: null,
+            animateToTroubleLineColor: null,
+            animateToTroubleLineStroke: null,
+            animateToCheckingLineColor: null
         };
 
         this.audioElement = {
@@ -114,34 +115,44 @@ class Word {
         Creates the end state of the trouble (sine wave) animation
         */
 
+        // settings
         const { startX, endX, yCoordinate } = this.getWordProperties()
         const pathElement = this.svgElement.highlightLine;
         const referenceLength = 48;
         const referenceFrequency = 5;
         const duration = 0.25;
         const endColor = "#E7C3DE";
+        const endStrokeWidth = 2;
 
+        // sine wave line
         let length = endX - startX;
         const frequency = (referenceFrequency * length) / referenceLength;
         const amplitude = 2;
-
-        const startColor = pathElement.getAttribute("stroke");
 
         let pathEnd = '';
         for (let x = startX; x < endX; x++) {
             const yEnd = yCoordinate + amplitude * Math.sin((2 * Math.PI * frequency * (x - startX)) / length);
             pathEnd += (x === startX ? 'M' : 'L') + x + ',' + yEnd;
         }
-
         const animateElement =  Word.createAnimateElement('d', pathElement.getAttribute('d'), pathEnd, duration);
-        const animateColorElement = Word.createAnimateElement('stroke', startColor, endColor, duration);
 
+       
+       // stroke width
+        const startStrokeWidth = pathElement.getAttribute("stroke-width");
+        const animateStrokeWidthElement = Word.createAnimateElement('stroke-width', startStrokeWidth, endStrokeWidth, duration);
+    
+        // stroke color
+        const startColor = pathElement.getAttribute("stroke");
+        const animateColorElement = Word.createAnimateElement('stroke', startColor, endColor, duration);
 
         pathElement.appendChild(animateElement);
         pathElement.appendChild(animateColorElement);
+        pathElement.appendChild(animateStrokeWidthElement); // Append the stroke width animation element
 
-        this.svgElement.animateToTroubleLine = animateElement;
-        this.svgElement.animateToTroubleColor = animateColorElement;
+
+        this.svgElement.animateToTroubleLineStyle = animateElement;
+        this.svgElement.animateToTroubleLineColor = animateColorElement;
+        this.svgElement.animateToTroubleLineStroke = animateStrokeWidthElement;
     }
 
     createCheckingAnimationElement() {
@@ -158,7 +169,7 @@ class Word {
         const animateColorElement = Word.createAnimateElement('stroke', startColor, endColor, duration);
 
         pathElement.appendChild(animateColorElement);
-        this.svgElement.animateToCheckingColor = animateColorElement;
+        this.svgElement.animateToCheckingLineColor = animateColorElement;
     }
 
     hideLine() {
