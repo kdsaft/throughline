@@ -11,8 +11,7 @@ let scrollingTimeout;
 function initReading() {
   content = document.querySelector('.content');
   initWordsToReadMap().then(() => {
-    console.log(wordsToReadMap);
-    // You can use the wordsToReadMap here for further processing
+    //console.log(wordsToReadMap);
   });
 
   updateSVGViewBox();
@@ -83,7 +82,7 @@ function stopReading() {
 
 //word style functions
 
-function updateWordState(wordId, newState) {
+function updateWordState(wordId, newState, assessment = null) {
   const word = wordsToReadMap.get(wordId);
   if (!word) return;
 
@@ -106,16 +105,7 @@ function updateWordState(wordId, newState) {
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineColor.beginElement();
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStroke.beginElement();
       
-      console.log("Word without punctuation: " + wordsToReadMap.get(wordId).word.withoutPunctuation);
-
-      var wordList = document.getElementById("word-list");
-      console.log("From word-list: " + wordList.textContent);
-
-    if (wordList.innerHTML.trim() !== "") {
-        wordList.innerHTML += '<br>';
-      }
-      wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
-
+      updateTroubleWordList(wordId, assessment);
       break;
 
     case "read":
@@ -140,9 +130,9 @@ function readingWord(wordId) {
   updateWordState(wordId, "reading");
 }
 
-function troubleWithWord(wordId) {
+function troubleWithWord(wordId, assessment) {
   console.log('Function: troubleWithWord');
-  updateWordState(wordId, "trouble");
+  updateWordState(wordId, "trouble", assessment);
 }
 
 function checkingWord(wordId) {
@@ -283,13 +273,22 @@ function getWordsOnCurrentLine(element) {
 }
 
 
-// Funcation to update the display
+// Funcations to update the display
 function updateWordStyle(wordId, mode) {
   wordsToReadMap.get(wordId).wordElement.classList.remove("unread", "reading", "trouble", "read", "checking");
   wordsToReadMap.get(wordId).wordElement.classList.add(mode);
 
   wordsToReadMap.get(wordId).state = mode;
   console.log(wordId + ' set to ' + mode);
+}
+
+function updateTroubleWordList(wordId, assessment) {
+  var wordList = document.getElementById("word-list");
+  if (wordList.innerHTML.trim() !== "") {
+      wordList.innerHTML += '<br>';
+    }
+    wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
+    console.log('assessment ' + assessment);
 }
 
 

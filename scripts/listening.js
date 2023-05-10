@@ -59,7 +59,7 @@ function initSpeechSDK() {
         const pronunciationAssessmentConfig = new SpeechSDK.PronunciationAssessmentConfig(
             referenceText,
             SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
-            SpeechSDK.PronunciationAssessmentGranularity.Word,
+            SpeechSDK.PronunciationAssessmentGranularity.Phoneme,
             true
         );
 
@@ -113,7 +113,7 @@ async function startListening() {
                     for (let i = 0; i < words.length; i++) {
                         const wordDetails = words[i];
                         console.log("Word handled: ", wordDetails.Word);
-                        handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore);
+                        handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore, wordDetails.Syllables);
                     }
                 }
             };
@@ -211,7 +211,7 @@ function highlightNextWord(wordsSpoken) {
     })
 }
 
-function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore) {
+function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore, wordSpokenSyllables) {
     const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
     const wordsToCheck = Array.from(wordsToReadMap.values()).filter(word => word.state === "checking");
 
@@ -229,7 +229,7 @@ function handlePronunciationAssessmentResult(wordSpoken, wordSpokenAccuracyScore
                 correctPronunciationOfWord(wordInstance.wordId);
             } else {
                 console.log("Pronunciation score is below 80:", wordSpokenAccuracyScore);
-                troubleWithWord(wordInstance.wordId);
+                troubleWithWord(wordInstance.wordId, wordSpokenSyllables);
             }
             break; // End the loop since a match is found
         }
