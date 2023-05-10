@@ -134,7 +134,7 @@ class Word {
             const yEnd = yCoordinate + amplitude * Math.sin((2 * Math.PI * frequency * (x - startX)) / length);
             pathEnd += (x === startX ? 'M' : 'L') + x + ',' + yEnd;
         }
-        const animateElement =  Word.createAnimateElement('d', pathElement.getAttribute('d'), pathEnd, duration);
+        const animateStyleElement =  Word.createAnimateElement('d', pathElement.getAttribute('d'), pathEnd, duration);
 
        
        // stroke width
@@ -145,12 +145,12 @@ class Word {
         const startColor = pathElement.getAttribute("stroke");
         const animateColorElement = Word.createAnimateElement('stroke', startColor, endColor, duration);
 
-        pathElement.appendChild(animateElement);
+        pathElement.appendChild(animateStyleElement);
         pathElement.appendChild(animateColorElement);
-        pathElement.appendChild(animateStrokeWidthElement); // Append the stroke width animation element
+        pathElement.appendChild(animateStrokeWidthElement);
 
 
-        this.svgElement.animateToTroubleLineStyle = animateElement;
+        this.svgElement.animateToTroubleLineStyle = animateStyleElement;
         this.svgElement.animateToTroubleLineColor = animateColorElement;
         this.svgElement.animateToTroubleLineStroke = animateStrokeWidthElement;
     }
