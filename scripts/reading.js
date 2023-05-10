@@ -288,7 +288,10 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores) {
       wordList.innerHTML += '<br>';
     }
     wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
-    console.log('assessment ' + syllablesAccuracyScores);
+    wordList.innerHTML += '<br>';
+    syllablesAccuracyScores.forEach(syllableResult => {
+      wordList.innerHTML += syllableResult.syllable + " [" + syllableResult.accuracyScore + "] ";
+    });
 }
 
 
