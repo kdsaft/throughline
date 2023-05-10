@@ -111,8 +111,9 @@ function updateWordState(wordId, newState) {
         // If it's not empty, append a new line
         wordList.innerHTML += '<br>';
       }
+      console.log("Word without punctuation: " + wordsToReadMap.get(wordId).word.withoutPunctuation);
       wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
-
+      console.log(wordList.innerHTML);
       break;
 
     case "read":
