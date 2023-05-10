@@ -111,10 +111,10 @@ function updateWordState(wordId, newState) {
       var wordList = document.getElementById("word-list");
       console.log("From word-list: " + wordList.textContent);
 
-    /* if (wordList.innerHTML.trim() !== "") {
+    if (wordList.innerHTML.trim() !== "") {
         wordList.innerHTML += '<br>';
       }
-      wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation; */
+      wordList.innerHTML += wordsToReadMap.get(wordId).word.withoutPunctuation;
 
       break;
 
