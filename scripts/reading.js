@@ -324,13 +324,14 @@ function getStartAndStopTime(data, id) {
   const wordData = data.words.find((word) => word.id === id);
   if (wordData) {
     return {
-      startTime: wordData.audioElement.startTime,
-      stopTime: wordData.audioElement.stopTime,
+      startTime: wordData.start_time,
+      stopTime: wordData.stop_time,
     };
   } else {
     console.error("Word not found with given ID:", id);
   }
 }
+
 
 
 function getWordWithoutPunctuation(data, id) {
