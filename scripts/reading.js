@@ -324,8 +324,8 @@ function getStartAndStopTime(data, id) {
   const wordData = data.words.find((word) => word.id === id);
   if (wordData) {
     return {
-      startTime: audioElement.startTime,
-      stopTime: audioElement.stopTime,
+      startTime: wordData.audioElement.startTime,
+      stopTime: wordData.audioElement.stopTime,
     };
   } else {
     console.error("Word not found with given ID:", id);
