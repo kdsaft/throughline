@@ -82,7 +82,7 @@ function stopReading() {
 
 //word style functions
 
-function updateWordState(wordId, newState, assessment = null) {
+function updateWordState(wordId, newState, syllablesAssessment = null, phonemesAssessment = null) {
   const word = wordsToReadMap.get(wordId);
   if (!word) return;
 
@@ -105,7 +105,7 @@ function updateWordState(wordId, newState, assessment = null) {
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineColor.beginElement();
       wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStroke.beginElement();
       
-      updateTroubleWordList(wordId, assessment);
+      updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment);
       break;
 
     case "read":
