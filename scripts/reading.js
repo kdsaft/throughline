@@ -156,6 +156,7 @@ function readNextWord() {
 }
 
 
+// Audio functions
 
 function playCurrentWord() {
   const wordStartTime = wordsToReadMap.get(currentWordNumber).audioElement.startTime;
@@ -297,6 +298,7 @@ async function initWordsToReadMap() {
     const { startTime, stopTime } = getStartAndStopTime(jsonData, wordId);
     word.audioElement.startTime = startTime;
     word.audioElement.stopTime = stopTime;
+    console.log("wordId:", wordId, "startTime:", startTime, "stopTime:", stopTime);
 
     word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
     word.word.syllables = getSyllablesAsString(jsonData, wordId);
