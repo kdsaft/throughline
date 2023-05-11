@@ -61,8 +61,8 @@ function initSpeechSDK() {
             SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
             SpeechSDK.PronunciationAssessmentGranularity.Phoneme,
             true,
-            PronunciationAssessmentPhonemeAlphabet.IPA
-        );
+            SpeechSDK.PronunciationAssessmentPhonemeAlphabet.IPA
+                    );
 
         // Create a speech config
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
