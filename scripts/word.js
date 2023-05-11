@@ -17,7 +17,7 @@ class Word {
 
         this.audioElement = {
             startTime: null,
-            endTime: null
+            stopTime: null
         };
         this.word = {
             withoutPunctuation: null,
