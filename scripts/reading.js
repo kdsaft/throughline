@@ -130,9 +130,9 @@ function readingWord(wordId) {
   updateWordState(wordId, "reading");
 }
 
-function troubleWithWord(wordId, assessment) {
+function troubleWithWord(wordId, syllablesAssessment, phonemesAssessment) {
   console.log('Function: troubleWithWord');
-  updateWordState(wordId, "trouble", assessment);
+  updateWordState(wordId, "trouble", syllablesAssessment, phonemesAssessment);
 }
 
 function checkingWord(wordId) {
@@ -282,13 +282,22 @@ function updateWordStyle(wordId, mode) {
   console.log(wordId + ' set to ' + mode);
 }
 
-function updateTroubleWordList(wordId, syllablesAccuracyScores) {
+function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
+  const showPhonemes = true;
+
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
       wordList.innerHTML += '<br>';
     }
     wordList.innerHTML += '<strong>' + wordsToReadMap.get(wordId).word.withoutPunctuation + '</strong>';
     wordList.innerHTML += '<br>';
+
+    if (showPhonemes) {
+      phonemesAccuracyScores.forEach(phonemeResult => {
+        wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
+      });
+  
+    } else
     syllablesAccuracyScores.forEach(syllableResult => {
       wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
     });
