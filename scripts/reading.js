@@ -57,28 +57,6 @@ function handleScrollbarFade() {
 }
 
 
-// Button for Bubble functions
-
-function resetStory() {
-  const wordsRead = currentWordNumber;
-
-  // Reset the current word number to 1
-  currentWordNumber = 1;
-
-
-  // Loop through all the words and set their style to "unread"
-  for (let i = 1; i <= wordsRead; i++) {
-    updateWordState(currentWordNumber, "unread");
-  }
-
-  readingCurrentWord()
-}
-
-function stopReading() {
-  updateWordState(currentWordNumber, "unread");
-
-}
-
 
 //word style functions
 
