@@ -283,7 +283,7 @@ function updateWordStyle(wordId, mode) {
 }
 
 function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
-  const showPhonemes = true;
+  const showPhonemes = false;
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
