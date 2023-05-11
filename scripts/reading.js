@@ -11,7 +11,6 @@ let scrollingTimeout;
 function initReading() {
   content = document.querySelector('.content');
   initWordsToReadMap().then(() => {
-    //console.log(wordsToReadMap);
   });
 
   updateSVGViewBox();
@@ -57,8 +56,18 @@ function handleScrollbarFade() {
 }
 
 
+// Sammy functions
 
-//word style functions
+function stopReading() {
+  updateWordState(currentWordNumber, "unread");
+}
+
+function startReading() {
+  updateWordState(currentWordNumber, "reading");
+}
+
+
+//word style control functions
 
 function updateWordState(wordId, newState, syllablesAssessment = null, phonemesAssessment = null) {
   const word = wordsToReadMap.get(wordId);
@@ -101,55 +110,44 @@ function updateWordState(wordId, newState, syllablesAssessment = null, phonemesA
   }
 }
 
-
-
 function readingWord(wordId) {
-  console.log('Function: readingWord');
   updateWordState(wordId, "reading");
 }
 
 function troubleWithWord(wordId, syllablesAssessment, phonemesAssessment) {
-  console.log('Function: troubleWithWord');
   updateWordState(wordId, "trouble", syllablesAssessment, phonemesAssessment);
 }
 
 function checkingWord(wordId) {
-  console.log('Function: checkingWord');
   updateWordState(wordId, "checking");
 }
 
 function correctPronunciationOfWord(wordId) {
-  console.log('Function: correctPronunciationOfWord');
   updateWordState(wordId, "read");
 }
 
 function unreadWord(wordId) {
-  console.log('Function: unreadWord');
   updateWordState(wordId, "unread");
+}
+
+function insertedWord(wordId, insertedWord) {
+  // updateWordState(wordId, "inserted", insertedWord);
 }
 
 
 
 function readingCurrentWord() {
-  console.log('Function: readingCurrentWord');
   updateWordState(currentWordNumber, "reading");
-}
-
-function troubleWithCurrentWord() {
-  console.log('Function: troubleWithCurrentWord');
-  updateWordState(currentWordNumber, "trouble");
 }
 
 
 function readNextWord() {
-  console.log('Function: readNextWord, checking');
   updateWordState(currentWordNumber, "checking");
 
   // Update the counter and is if it is less than or equal to the total number of words
   let nextWordNumber = currentWordNumber + 1;
   if (nextWordNumber <= 341) {
     currentWordNumber = nextWordNumber;
-    console.log('Function: readNextWord, reading');
     updateWordState(currentWordNumber, "reading");
   } else {
     console.log('No more words to read');
@@ -159,12 +157,14 @@ function readNextWord() {
 
 
 function playCurrentWord() {
-  const { start_time, stop_time } = getStartAndEndTime(jsonData, currentWordNumber);
+  const startTime = wordsToReadMap.get(currentWordNumber).word.audioElement.startTime;
+  const stopTime = wordsToReadMap.get(currentWordNumber).word.audioElement.stopTime;
+
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      word: [start_time * 1000, (stop_time - start_time) * 1000]
+      word: [startTime * 1000, (stopTime - startTime) * 1000]
     }
   });
 
@@ -177,9 +177,7 @@ function playCurrentWord() {
 }
 
 function playCurrentLine() {
-  const wordId = parseInt(document.getElementById("word-number").value);
-
-  const wordElement = document.querySelector(`span[class*="word-${wordId}"]`);
+  const wordElement = document.querySelector(`span[class*="word-${currentWordNumber}"]`);
   if (!wordElement) {
     console.error('Word not found');
     return;
@@ -193,9 +191,9 @@ function playCurrentLine() {
   const lastWordClassName = wordElements[wordElements.length - 1].className;
   const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
 
-  const { start_time: startTime } = getStartAndEndTime(jsonData, firstWordNumber);
-  const { stop_time: endTime } = getStartAndEndTime(jsonData, lastWordNumber);
-
+  const startOfLineTime = wordsToReadMap.get(firstWordNumber).word.audioElement.startTime;
+  const endOfLineTime = wordsToReadMap.get(lastWordNumber).word.audioElement.stopTime;
+  
   // Save original classes and set reading class
   const originalClasses = [];
   wordElements.forEach((element, index) => {
@@ -212,23 +210,23 @@ function playCurrentLine() {
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      line: [startTime * 1000, (endTime - startTime) * 1000]
+      line: [startOfLineTime * 1000, (endOfLineTime - startOfLineTime) * 1000]
     }
   });
 
   sound.play('line');
 
   wordElements.forEach((element, index) => {
-    const startWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).start_time;
-    const endWordTime = getStartAndEndTime(jsonData, firstWordNumber + index).stop_time;
-
+    const startWordTime = wordsToReadMap.get(firstWordNumber+ index).word.audioElement.startTime;
+    const endWordTime = wordsToReadMap.get(firstWordNumber + index).word.audioElement.stopTime;
+    
     setTimeout(() => {
       updateWordStyle(element, 'reading');
-    }, (startWordTime - startTime) * 1000);
+    }, (startWordTime - startOfLineTime) * 1000);
 
     setTimeout(() => {
       updateWordStyle(element, 'read');
-    }, (endWordTime - startTime) * 1000);
+    }, (endWordTime - startOfLineTime) * 1000);
   });
 
   sound.once('end', () => {
@@ -257,7 +255,6 @@ function updateWordStyle(wordId, mode) {
   wordsToReadMap.get(wordId).wordElement.classList.add(mode);
 
   wordsToReadMap.get(wordId).state = mode;
-  console.log(wordId + ' set to ' + mode);
 }
 
 function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
@@ -273,7 +270,6 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
     if (showPhonemes) {
       phonemesAccuracyScores.forEach(phonemeResult => {
         wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
-        console.log(phonemeResult.phoneme);
       });
   
     } else {
@@ -282,130 +278,6 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
     });
   }
 }
-
-
-
-/* function getWordProperties(wordNumber) {
-  const wordElement = document.querySelector(".word-" + wordNumber);
-  const wordRect = wordElement.getBoundingClientRect();
-  const parentDiv = wordElement.parentNode;
-  const parentRect = parentDiv.getBoundingClientRect();
-  const contentElement = document.querySelector(".content");
-  const contentRect = contentElement.getBoundingClientRect();
-
-
-  // Get the position and size of the punctuation element (if exists)
-  const endPunctuation = wordElement.querySelector('.endPunctuation');
-  const startPunctuation = wordElement.querySelector('.startPunctuation');
-
-  let punctuationStartWidth = 0;
-  if (startPunctuation) {
-    const startPunctuationRect = startPunctuation.getBoundingClientRect();
-    punctuationStartWidth = startPunctuationRect.width;
-  }
-  let punctuationWidth = 0;
-  if (endPunctuation) {
-    const endPunctuationRect = endPunctuation.getBoundingClientRect();
-    punctuationWidth = endPunctuationRect.width - punctuationStartWidth;
-  }
-
-  const startX = wordRect.left - contentRect.left - 2 + punctuationStartWidth;
-  const endX = wordRect.right - contentRect.left - 1 - punctuationWidth;
-
-  // Determine yCoordinate offset based on the parent div's class
-  let yOffset;
-  if (parentDiv.classList.contains("text-headline")) {
-    yOffset = 36;
-  } else {
-    yOffset = 24; // Default value paragraphs
-  }
-
-  const yCoordinate = wordRect.top - parentRect.top + parentRect.top - contentRect.top + yOffset + contentElement.scrollTop;
-
-
-  return { wordElement, startX, endX, yCoordinate };
-}
-
-function drawLine(svg, startX, endX, yCoordinate, color, wordID) {
-  let length = endX - startX;
-  let pathStart = '';
-  for (let x = startX; x < endX; x++) {
-    pathStart += (x === startX ? 'M' : 'L') + x + ',' + yCoordinate;
-  }
-
-  const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  pathElement.setAttribute('d', pathStart);
-  pathElement.setAttribute('stroke', color);
-  pathElement.setAttribute('stroke-width', 4);
-  pathElement.setAttribute('fill', 'none');
-  pathElement.setAttribute('stroke-linecap', 'round');
-  pathElement.setAttribute('stroke-linejoin', 'round');
-  pathElement.setAttribute('data-word-id', wordID);
-
-  svg.appendChild(pathElement);
-  return pathElement;
-
-}
-
-
-function animateToSineWave(pathElement, startX, endX, yCoordinate, referenceLength, referenceFrequency, duration, endColor) {
-  let length = endX - startX;
-  const frequency = (referenceFrequency * length) / referenceLength;
-  const amplitude = 2;
-
-  const startColor = pathElement.getAttribute("stroke");
-
-  let pathEnd = '';
-  for (let x = startX; x < endX; x++) {
-    const yEnd = yCoordinate + amplitude * Math.sin((2 * Math.PI * frequency * (x - startX)) / length);
-    pathEnd += (x === startX ? 'M' : 'L') + x + ',' + yEnd;
-  }
-
-  const animateElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-  animateElement.setAttribute('attributeName', 'd');
-  animateElement.setAttribute('from', pathElement.getAttribute('d'));
-  animateElement.setAttribute('to', pathEnd);
-  animateElement.setAttribute('dur', duration + 's');
-  animateElement.setAttribute('begin', 'indefinite');
-  animateElement.setAttribute('repeatCount', '1');
-  animateElement.setAttribute('fill', 'freeze');
-
-  const animateColorElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-  animateColorElement.setAttribute('attributeName', 'stroke');
-  animateColorElement.setAttribute('from', startColor);
-  animateColorElement.setAttribute('to', endColor);
-  animateColorElement.setAttribute('dur', duration + 's');
-  animateColorElement.setAttribute('begin', 'indefinite');
-  animateColorElement.setAttribute('repeatCount', '1');
-  animateColorElement.setAttribute('fill', 'freeze');
-
-  pathElement.appendChild(animateElement);
-  pathElement.appendChild(animateColorElement);
-
-  return { animateElement, animateColorElement };
-}
-
-function animateToNewColor(pathElement, duration, endColor) {
-  const startColor = pathElement.getAttribute("stroke");
-
-  const animateColorElement = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-  animateColorElement.setAttribute('attributeName', 'stroke');
-  animateColorElement.setAttribute('from', startColor);
-  animateColorElement.setAttribute('to', endColor);
-  animateColorElement.setAttribute('dur', duration + 's');
-  animateColorElement.setAttribute('begin', 'indefinite');
-  animateColorElement.setAttribute('repeatCount', '1');
-  animateColorElement.setAttribute('fill', 'freeze');
-
-  pathElement.appendChild(animateColorElement);
-  console.log("Function: animateToNewColor " + animateColorElement);
-  return animateColorElement;
-}
-
-
-function hideLine(pathElement) {
-  pathElement.style.display = 'none';
-} */
 
 
 // Funcations to handle JSON data
@@ -420,9 +292,9 @@ async function initWordsToReadMap() {
     const wordId = wordData.id;
     const word = new Word(wordId);
 
-    const { start_time, stop_time } = getStartAndEndTime(jsonData, wordId);
-    word.audioElement.startTime = start_time;
-    word.audioElement.endTime = stop_time;
+    const { startTime, stopTime } = getStartAndStopTime(jsonData, wordId);
+    word.audioElement.startTime = startTime;
+    word.audioElement.stopTime = stopTime;
 
     word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
     word.word.syllables = getSyllablesAsString(jsonData, wordId);
@@ -444,12 +316,12 @@ async function readJsonFile(url) {
 
 
 
-function getStartAndEndTime(data, id) {
+function getStartAndStopTime(data, id) {
   const word = data.words.find((word) => word.id === id);
   if (word) {
     return {
-      start_time: word.start_time,
-      stop_time: word.stop_time,
+      startTime: word.startTime,
+      stopTime: word.stopTime,
     };
   } else {
     console.error("Word not found with given ID:", id);

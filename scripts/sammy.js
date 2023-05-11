@@ -44,7 +44,7 @@ function wakeUp() {
     setState(['Beak Closed', 'Right Eye Awake', 'Left Eye Awake']);
     setBodyColor('awake');
     startListening();
-    readingCurrentWord();
+    startReading();
     }
 
 function talk() {
