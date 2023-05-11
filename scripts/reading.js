@@ -321,11 +321,11 @@ async function readJsonFile(url) {
 
 
 function getStartAndStopTime(data, id) {
-  const word = data.words.find((word) => word.id === id);
-  if (word) {
+  const wordData = data.words.find((word) => word.id === id);
+  if (wordData) {
     return {
-      startTime: word.startTime,
-      stopTime: word.stopTime,
+      startTime: audioElement.startTime,
+      stopTime: audioElement.stopTime,
     };
   } else {
     console.error("Word not found with given ID:", id);
