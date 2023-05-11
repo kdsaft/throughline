@@ -1,6 +1,7 @@
 // Reading.js
 
 let wordsToReadMap = new Map();
+console.log("wordsToReadMap:", wordsToReadMap);
 let jsonData;
 
 let currentWordNumber = 1;
