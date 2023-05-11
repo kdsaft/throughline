@@ -60,7 +60,8 @@ function initSpeechSDK() {
             referenceText,
             SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
             SpeechSDK.PronunciationAssessmentGranularity.Phoneme,
-            true
+            true,
+            PronunciationAssessmentPhonemeAlphabet.IPA
         );
 
         // Create a speech config
