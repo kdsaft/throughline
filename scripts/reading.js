@@ -158,14 +158,14 @@ function readNextWord() {
 
 
 function playCurrentWord() {
-  const startTime = wordsToReadMap.get(currentWordNumber).word.audioElement.startTime;
-  const stopTime = wordsToReadMap.get(currentWordNumber).word.audioElement.stopTime;
+  const wordStartTime = wordsToReadMap.get(currentWordNumber).audioElement.startTime;
+  const wordStopTime = wordsToReadMap.get(currentWordNumber).audioElement.stopTime;
 
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      word: [startTime * 1000, (stopTime - startTime) * 1000]
+      word: [wordStartTime * 1000, (wordStartTime - wordStopTime) * 1000]
     }
   });
 
@@ -192,8 +192,8 @@ function playCurrentLine() {
   const lastWordClassName = wordElements[wordElements.length - 1].className;
   const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
 
-  const startOfLineTime = wordsToReadMap.get(firstWordNumber).word.audioElement.startTime;
-  const endOfLineTime = wordsToReadMap.get(lastWordNumber).word.audioElement.stopTime;
+  const startOfLineTime = wordsToReadMap.get(firstWordNumber).audioElement.startTime;
+  const endOfLineTime = wordsToReadMap.get(lastWordNumber).audioElement.stopTime;
   
   // Save original classes and set reading class
   const originalClasses = [];
@@ -218,8 +218,8 @@ function playCurrentLine() {
   sound.play('line');
 
   wordElements.forEach((element, index) => {
-    const startWordTime = wordsToReadMap.get(firstWordNumber+ index).word.audioElement.startTime;
-    const endWordTime = wordsToReadMap.get(firstWordNumber + index).word.audioElement.stopTime;
+    const startWordTime = wordsToReadMap.get(firstWordNumber+ index).audioElement.startTime;
+    const endWordTime = wordsToReadMap.get(firstWordNumber + index).audioElement.stopTime;
     
     setTimeout(() => {
       updateWordStyle(element, 'reading');
