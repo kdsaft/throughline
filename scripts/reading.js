@@ -283,7 +283,7 @@ function updateWordStyle(wordId, mode) {
 }
 
 function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
-  const showPhonemes = false;
+  const showPhonemes = true;
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
@@ -295,12 +295,14 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
     if (showPhonemes) {
       phonemesAccuracyScores.forEach(phonemeResult => {
         wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
+        console.log(phonemeResult.phoneme);
       });
   
-    } else
+    } else {
     syllablesAccuracyScores.forEach(syllableResult => {
       wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
     });
+  }
 }
 
 
