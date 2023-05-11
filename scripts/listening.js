@@ -51,18 +51,19 @@ function initSpeechSDK() {
     const version = 2; // 1 - basic speech recognition; 2 - pronunciation assessment
 
     if (version === 1) {
+                // Create a pronunciation assessment config
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
         speechConfig.speechRecognitionLanguage = language;
     } else if (version === 2) {
-        // Create a pronunciation assessment config
         const referenceText = getReferenceText();
-        const pronunciationAssessmentConfig = new SpeechSDK.PronunciationAssessmentConfig(
-            referenceText,
-            SpeechSDK.PronunciationAssessmentGradingSystem.HundredMark,
-            SpeechSDK.PronunciationAssessmentGranularity.Phoneme,
-            true,
-            SpeechSDK.PronunciationAssessmentPhonemeAlphabet.IPA
-                    );
+        const pronunciationAssessmentConfigJson = {
+            referenceText: referenceText,
+            gradingSystem: "HundredMark",
+            granularity: "Phoneme",
+            enableMiscue: true,
+            phonemeAlphabet: "IPA"
+        };
+        const pronunciationAssessmentConfig = SpeechSDK.PronunciationAssessmentConfig.fromJSON(JSON.stringify(pronunciationAssessmentConfigJson));
 
         // Create a speech config
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
