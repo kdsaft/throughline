@@ -114,13 +114,22 @@ async function startListening() {
                         const wordDetails = words[i];
                         console.log("Word handled: ", wordDetails.Word);
 
-                        // Collect syllables and their accuracy scores
+                        const word = wordDetails.Word;
+
+                        const wordAssessment = wordDetails.PronunciationAssessment.AccuracyScore
+
                         const syllableAssessment = wordDetails.Syllables.map(syllableDetails => ({
                             syllable: syllableDetails.Syllable,
                             accuracyScore: syllableDetails.PronunciationAssessment.AccuracyScore
                         }));
 
-                        handlePronunciationAssessmentResult(wordDetails.Word, wordDetails.PronunciationAssessment.AccuracyScore, syllableAssessment);
+                        const phonemesAssessment = wordDetails.Phonemes.map(phonemeDetails => ({
+                            phoneme: phonemeDetails.Phoneme,
+                            accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore
+                        }));
+
+
+                        handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
                     }
                 }
             };
@@ -218,7 +227,7 @@ function highlightNextWord(wordsSpoken) {
     })
 }
 
-function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAccuracyScores) {
+function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAccuracyScores, phonemesAccuracyScores) {
     const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
     const wordsToCheck = Array.from(wordsToReadMap.values()).filter(word => word.state === "checking");
 
@@ -236,7 +245,7 @@ function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syll
                 correctPronunciationOfWord(wordInstance.wordId);
             } else {
                 console.log("Pronunciation score is below 80:", wordAccuracyScore);
-                troubleWithWord(wordInstance.wordId, syllablesAccuracyScores);
+                troubleWithWord(wordInstance.wordId, syllablesAccuracyScores, phonemesAccuracyScores);
             }
             break; // End the loop since a match is found
         }
