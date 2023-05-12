@@ -7,10 +7,10 @@ let isAwake = false;
 
 function initSammy() {
 
-        // Create the audio objects for the sound effects
-        const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
-        const pressAndHoldSound = new Audio('https://kdsaft.github.io/throughline/audio/PressAndHold.m4a');
-    
+    // Create the audio objects for the sound effects
+    const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
+    const pressAndHoldSound = new Audio('https://kdsaft.github.io/throughline/audio/PressAndHold.m4a');
+
 
     let timer = null;
     let longPress = false;
@@ -22,17 +22,17 @@ function initSammy() {
     sammy.addEventListener("touchstart", handleInteractionStart);
     sammy.addEventListener("touchend", handelInteractionEnd);
 
-  
-     positionSammy()
+
+    positionSammy()
     sleep();
-    
+
     // When the window is resized...
     window.addEventListener("resize", positionSammy);
 }
 
 // Functions to handle short and long presses
 
-function handleInteractionStart(event){
+function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
     buttonDownSound.play();
@@ -79,7 +79,7 @@ function wakeUp() {
     setBodyColor('awake');
     startListening();
     startReading();
-    }
+}
 
 function talk() {
     setState(['Beak Opened', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
@@ -88,19 +88,39 @@ function talk() {
 
 function resetText() {
     setState(['Beak Opened', 'Right Eye Awake', 'Left Eye Awake']);
-    setBodyColor('worry');
+    setBodyColor('reset');
 }
 
 
 function setBodyColor(state) {
     sammyBody = document.getElementById('Body');
-    if (state === 'sleep') {
-        sammyBody.setAttribute('fill', '#445DBE');
-    } else if (state === 'worry') {
-        sammyBody.setAttribute('fill', '#D40F67');
-    } else {
-        sammyBody.setAttribute('fill', '#1A79C7');
+
+    switch (state) {
+        case "sleep":
+            sammyBody.setAttribute('fill', '#445DBE');
+            break;
+
+        case "awake":
+            sammyBody.setAttribute('fill', '#1A79C7');
+            break;
+
+        case "talk":
+            sammyBody.setAttribute('fill', '#1A79C7');
+            break;
+
+
+        case "worry":
+            sammyBody.setAttribute('fill', '#D40F67');
+            break;
+
+        case "reset":
+            sammyBody.setAttribute('fill', '#74125D');
+            break;
+
+        default:
+            console.error("Invalid state:", newState);
     }
+
 }
 
 
