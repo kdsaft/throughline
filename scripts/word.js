@@ -125,8 +125,8 @@ class Word {
       this.createAnimationElement("trouble", {
         duration: 0.25,
         endColor: "#9F0F7B",
-        endStrokeWidth: 3,
-        endStrokeOpacity: 0.5,
+        endStrokeWidth: 2,
+        endStrokeOpacity: 0.6,
         sineWave: true,
       });
   
