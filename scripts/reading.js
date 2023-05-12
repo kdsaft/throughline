@@ -57,7 +57,7 @@ function handleScrollbarFade() {
 }
 
 
-// Sammy functions
+// Sammy convience functions
 
 function stopReading() {
   updateWordState(currentWordNumber, "unread");
@@ -168,7 +168,7 @@ console.log("currentWordNumber:", currentWordNumber);
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      word: [wordStartTime * 1000, (wordStartTime - wordStopTime) * 1000]
+      word: [wordStartTime * 1000, (wordStopTime - wordStartTime) * 1000]
     }
   });
 
