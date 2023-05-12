@@ -124,17 +124,17 @@ class Word {
   
       this.createAnimationElement("trouble", {
         duration: 0.25,
-        endColor: "#9F0F7B",
-        endStrokeWidth: 2,
-        endStrokeOpacity: 0.6,
+        endColor: "#F6E6F2",
+        endStrokeWidth: 3,
+        endStrokeOpacity: 1,
         sineWave: true,
       });
   
       this.createAnimationElement("checking", {
         duration: 0.25,
-        endColor: "#1A79C7",
+        endColor: "#E7F2FB",
         endStrokeWidth: 3,
-        endStrokeOpacity: 0.2,
+        endStrokeOpacity: 1,
       });
   
       this.createAnimationElement("unread", {
