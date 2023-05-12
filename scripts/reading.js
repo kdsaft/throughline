@@ -163,7 +163,7 @@ function playCurrentWord() {
   const wordStopTime = wordsToReadMap.get(currentWordNumber).audioElement.stopTime;
 console.log("wordStartTime:", wordStartTime);
 console.log("wordStopTime:", wordStopTime);
-content.log("currentWordNumber:", currentWordNumber);
+console.log("currentWordNumber:", currentWordNumber);
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
