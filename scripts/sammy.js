@@ -6,29 +6,62 @@ let isAwake = false;
 
 
 function initSammy() {
+
+        // Create the audio objects for the sound effects
+        const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
+        const pressAndHoldSound = new Audio('https://kdsaft.github.io/throughline/audio/PressAndHold.m4a');
+    
+
+    let timer = null;
+    let longPress = false;
     sammy = document.getElementById("sammy");
 
-    positionSammy()
+    sammy.addEventListener("mousedown", handleInteractionStart);
+    sammy.addEventListener("mouseup", handelInteractionEnd);
+
+    sammy.addEventListener("touchstart", handleInteractionStart);
+    sammy.addEventListener("touchend", handelInteractionEnd);
+
+  
+     positionSammy()
     sleep();
     
     // When the window is resized...
     window.addEventListener("resize", positionSammy);
-    
-    
-    
-    // When the user clicks on Sammy...
-    sammy.addEventListener('click', () => {
-        if (typeof toggleSleep === 'function') {
-            toggleSleep();
-        }
-    });
-    sammy.addEventListener('touchend', (event) => {
-        event.preventDefault();
-        if (typeof toggleSleep === 'function') {
-            toggleSleep();
-        }
-    });
 }
+
+// Functions to handle short and long presses
+
+function handleInteractionStart(event){
+    event.preventDefault(); // Prevent default behavior like scrolling on touch devices
+    longPress = false;
+    buttonDownSound.play();
+
+    timer = setTimeout(() => {
+        longPress = true;
+        pressAndHoldSound.play();
+        buttonIcon.setAttribute('aria-label', 'Long press activated');
+        talk();
+        resetTimer = setTimeout(() => {
+            wakeUp();
+        }, 2000);
+    }, 1500); // 1000ms = 1 second
+};
+
+function handelInteractionEnd(event) {
+    event.preventDefault(); // Prevent default behavior like scrolling on touch devices
+    clearTimeout(timer);
+    buttonIcon.setAttribute('aria-label', 'Short press activated');
+
+    if (longPress) {
+        longPress = false;
+    } else {
+        if (typeof toggleSleep === 'function') {
+            toggleSleep();
+        }
+    }
+};
+
 
 
 // Functions to change Sammy's state

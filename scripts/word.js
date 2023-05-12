@@ -212,11 +212,8 @@ class Word {
         const pathElement = this.svgElement.highlightLine;
         const pathStart = pathElement.getAttribute("d");
       
-        console.log(`Updating animation start values for wordId: ${this.wordId}`);
-        console.log(`pathStart: ${pathStart}`);
       
         for (const animationType in this.svgElement.animation) {
-          console.log(`Updating start values for animation type: ${animationType}`);
           this.svgElement.animation[animationType].style.setAttribute("from", pathStart);
           this.svgElement.animation[animationType].color.setAttribute("from", pathElement.getAttribute("stroke"));
           this.svgElement.animation[animationType].width.setAttribute("from", pathElement.getAttribute("stroke-width"));
