@@ -2,30 +2,32 @@
 
 class Word {
     constructor(wordId) {
-        this.wordId = wordId;
-        this.state = "unread";
-
-        this.wordElement = document.querySelector(`.word-${wordId}`);
-
-        this.svgElement = {
-            highlightLine: null,
-            animateToTroubleLineStyle: null,
-            animateToTroubleLineColor: null,
-            animateToTroubleLineStroke: null,
-            animateToCheckingLineColor: null
-        };
-
-        this.audioElement = {
-            startTime: null,
-            stopTime: null
-        };
-        this.word = {
-            withoutPunctuation: null,
-            syllables: null
-        };
+      this.wordId = wordId;
+      this.state = "unread";
+  
+      this.wordElement = document.querySelector(`.word-${wordId}`);
+  
+      this.svgElement = {
+        highlightLine: null,
+        animation: {
+          reading: {},
+          trouble: {},
+          checking: {},
+          unread: {},
+          read: {},
+        },
+      };
+  
+      this.audioElement = {
+        startTime: null,
+        stopTime: null,
+      };
+      this.word = {
+        withoutPunctuation: null,
+        syllables: null,
+      };
     }
-
-
+  
     // Methods
 
     getWordProperties() {
@@ -80,13 +82,14 @@ class Word {
         const { startX, endX, yCoordinate } = this.getWordProperties();
         const lineColor = "#1A79C7";
         const lineWidth = 4;
+        const lineOpacity = 1;
+        const display = "none";
         const wordID = this.wordId;
 
         if (this.svgElement.highlightLine) {
             svgViewBox.removeChild(this.svgElement.highlightLine);
         }
 
-        let length = endX - startX;
         let pathStart = "";
         for (let x = startX; x < endX; x++) {
             pathStart += (x === startX ? "M" : "L") + x + "," + yCoordinate;
@@ -99,91 +102,125 @@ class Word {
         pathElement.setAttribute("d", pathStart);
         pathElement.setAttribute("stroke", lineColor);
         pathElement.setAttribute("stroke-width", lineWidth);
+        pathElement.setAttribute("stroke-opacity", lineOpacity);
         pathElement.setAttribute("fill", "none");
         pathElement.setAttribute("stroke-linecap", "round");
         pathElement.setAttribute("stroke-linejoin", "round");
         pathElement.setAttribute("data-word-id", wordID);
 
-        pathElement.style.display = "block"
+        pathElement.style.display = display
 
         svgViewBox.appendChild(pathElement);
         this.svgElement.highlightLine = pathElement;
     }
 
-    createTroubleAnimationElements() {
-        /*  
-        Creates the end state of the trouble (sine wave) animation
-        */
-
-        // settings
-        const { startX, endX, yCoordinate } = this.getWordProperties()
-        const pathElement = this.svgElement.highlightLine;
+  // create the final state of the line for each word style
+    createAnimationElements() {
+      this.createAnimationElement("reading", {
+        duration: 0.0,
+        endColor: "#1A79C7",
+        endStrokeWidth: 4,
+        endStrokeOpacity: 1,
+      });
+  
+      this.createAnimationElement("trouble", {
+        duration: 0.25,
+        endColor: "#E7C3DE",
+        endStrokeWidth: 2,
+        endStrokeOpacity: 0.5,
+        sineWave: true,
+      });
+  
+      this.createAnimationElement("checking", {
+        duration: 0.25,
+        endColor: "#1A79C7",
+        endStrokeWidth: 2,
+        endStrokeOpacity: 0.1,
+      });
+  
+      this.createAnimationElement("unread", {
+        duration: 0.0,
+        endColor: "#1A79C7",
+        endStrokeWidth: 4,
+        endStrokeOpacity: 0.0,
+      });
+  
+      this.createAnimationElement("read", {
+        duration: 0.0,
+        endColor: "#1A79C7",
+        endStrokeWidth: 4,
+        endStrokeOpacity: 0.0,
+      });
+    }
+  
+    createAnimationElement(type, settings) {
+      const { startX, endX, yCoordinate } = this.getWordProperties();
+      const pathElement = this.svgElement.highlightLine;
+  
+      const pathStart = pathElement.getAttribute("d");
+      let pathEnd = "";
+  
+      if (settings.sineWave) {
         const referenceLength = 48;
         const referenceFrequency = 5;
-        const duration = 0.25;
-        const endColor = "#E7C3DE";
-        const endStrokeWidth = 2;
-
-        // sine wave line
-        let length = endX - startX;
+        const length = endX - startX;
         const frequency = (referenceFrequency * length) / referenceLength;
         const amplitude = 2;
-
-        let pathEnd = '';
         for (let x = startX; x < endX; x++) {
-            const yEnd = yCoordinate + amplitude * Math.sin((2 * Math.PI * frequency * (x - startX)) / length);
-            pathEnd += (x === startX ? 'M' : 'L') + x + ',' + yEnd;
+          const yEnd = yCoordinate + amplitude * Math.sin((2 * Math.PI * frequency * (x - startX)) / length);
+          pathEnd += (x === startX ? "M" : "L") + x + "," + yEnd;
         }
-        const animateStyleElement =  Word.createAnimateElement('d', pathElement.getAttribute('d'), pathEnd, duration);
-
-       
-       // stroke width
-        const startStrokeWidth = pathElement.getAttribute("stroke-width");
-        const animateStrokeWidthElement = Word.createAnimateElement('stroke-width', startStrokeWidth, endStrokeWidth, duration);
-    
-        // stroke color
-        const startColor = pathElement.getAttribute("stroke");
-        const animateColorElement = Word.createAnimateElement('stroke', startColor, endColor, duration);
-
-        pathElement.appendChild(animateStyleElement);
-        pathElement.appendChild(animateColorElement);
-        pathElement.appendChild(animateStrokeWidthElement);
-
-
-        this.svgElement.animateToTroubleLineStyle = animateStyleElement;
-        this.svgElement.animateToTroubleLineColor = animateColorElement;
-        this.svgElement.animateToTroubleLineStroke = animateStrokeWidthElement;
-    }
-
-    createCheckingAnimationElement() {
-        /*  
-        Creates the end state of the checking (light colored line) animation
-        */
-
-        const duration = 0.25;
-        const endColor = "#E3F3FE";
-        const pathElement = this.svgElement.highlightLine;
-
-        const startColor = pathElement.getAttribute("stroke");
-
-        const animateColorElement = Word.createAnimateElement('stroke', startColor, endColor, duration);
-
-        pathElement.appendChild(animateColorElement);
-        this.svgElement.animateToCheckingLineColor = animateColorElement;
+      } else {
+        for (let x = startX; x < endX; x++) {
+          pathEnd += (x === startX ? "M" : "L") + x + "," + yCoordinate;
+        }
+      }
+  
+      const animateStyleElement = Word.createAnimateElement("d", pathStart, pathEnd, settings.duration);
+      const animateStrokeWidthElement = Word.createAnimateElement("stroke-width", pathElement.getAttribute("stroke-width"), settings.endStrokeWidth, settings.duration);
+      const animateColorElement = Word.createAnimateElement("stroke", pathElement.getAttribute("stroke"), settings.endColor, settings.duration);
+      const animateOpacityElement = Word.createAnimateElement("stroke-opacity", pathElement.getAttribute("stroke-opacity"), settings.endStrokeOpacity, settings.duration);
+  
+      pathElement.appendChild(animateStyleElement);
+      pathElement.appendChild(animateColorElement);
+      pathElement.appendChild(animateStrokeWidthElement);
+      pathElement.appendChild(animateOpacityElement);
+  
+      this.svgElement.animation[type].style = animateStyleElement;
+      this.svgElement.animation[type].color = animateColorElement;
+      this.svgElement.animation[type].width = animateStrokeWidthElement;
+      this.svgElement.animation[type].opacity = animateOpacityElement;
     }
 
     hideLine() {
         /*  
         Hides the line
         */
-        const svgViewBox = document.getElementById("highlight-viewport");
-        if (this.svgElement.highlightLine) {
-            svgViewBox.removeChild(this.svgElement.highlightLine);
-        }
-
-        // const pathElement = this.svgElement.highlightLine;
-        // pathElement.style.display = 'none';
+        this.svgElement.highlightLine.style.display = "none";
     }
+
+    showLine() {
+        /*  
+        Shows the line
+        */
+        this.svgElement.highlightLine.style.display = "display";
+
+        
+    }
+
+    updateAnimationStartValues() {
+        const { startX, endX, yCoordinate } = this.getWordProperties();
+        const pathElement = this.svgElement.highlightLine;
+        const pathStart = pathElement.getAttribute("d");
+    
+        for (const animationType in this.svgElement.animation) {
+          this.svgElement.animation[animationType].style.setAttribute("from", pathStart);
+          this.svgElement.animation[animationType].color.setAttribute("from", pathElement.getAttribute("stroke"));
+          this.svgElement.animation[animationType].width.setAttribute("from", pathElement.getAttribute("stroke-width"));
+          this.svgElement.animation[animationType].opacity.setAttribute("from", pathElement.getAttribute("stroke-opacity"));
+        }
+      }
+    
 
     static createAnimateElement(attributeName, fromValue, toValue, duration) {
         /*  

@@ -77,33 +77,23 @@ function updateWordState(wordId, newState, syllablesAssessment = null, phonemesA
   switch (newState) {
     case "reading":
       updateWordStyle(wordId, "reading");
-      wordsToReadMap.get(wordId).drawLine();
-      wordsToReadMap.get(wordId).createCheckingAnimationElement();
       break;
 
     case "checking":
       updateWordStyle(wordId, "checking");
-      wordsToReadMap.get(wordId).svgElement.animateToCheckingLineColor.beginElement();
       break;
 
     case "trouble":
-      updateWordStyle(wordId, "trouble");
-      wordsToReadMap.get(wordId).createTroubleAnimationElements();
-      wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStyle.beginElement();
-      wordsToReadMap.get(wordId).svgElement.animateToTroubleLineColor.beginElement();
-      wordsToReadMap.get(wordId).svgElement.animateToTroubleLineStroke.beginElement();
-      
+      updateWordStyle(wordId, "trouble");      
       updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment);
       break;
 
     case "read":
       updateWordStyle(wordId, "read");
-      wordsToReadMap.get(wordId).hideLine();
       break;
 
     case "unread":
       updateWordStyle(wordId, "unread");
-      wordsToReadMap.get(wordId).hideLine();
       break;
 
     default:
@@ -259,6 +249,9 @@ function updateWordStyle(wordId, mode) {
   wordsToReadMap.get(wordId).wordElement.classList.add(mode);
 
   wordsToReadMap.get(wordId).state = mode;
+
+  wordsToReadMap.get(wordId).updateAnimationStartValues();
+  wordsToReadMap.get(wordId).svgElement.animation[mode].style.beginElement();
 }
 
 function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
@@ -302,6 +295,9 @@ async function initWordsToReadMap() {
 
     word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
     word.word.syllables = getSyllablesAsString(jsonData, wordId);
+
+    word.drawLine();
+    word.createAnimationElements();
 
     wordsToReadMap.set(wordId, word);
   }
