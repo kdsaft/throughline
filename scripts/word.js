@@ -82,7 +82,7 @@ class Word {
         const { startX, endX, yCoordinate } = this.getWordProperties();
         const lineColor = "#1A79C7";
         const lineWidth = 4;
-        const lineOpacity = 0;
+        const lineOpacity = 1;
         const wordID = this.wordId;
 
         if (this.svgElement.highlightLine) {
