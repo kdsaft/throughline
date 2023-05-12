@@ -163,6 +163,7 @@ function playCurrentWord() {
   const wordStopTime = wordsToReadMap.get(currentWordNumber).audioElement.stopTime;
 console.log("wordStartTime:", wordStartTime);
 console.log("wordStopTime:", wordStopTime);
+content.log("currentWordNumber:", currentWordNumber);
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
@@ -197,7 +198,7 @@ function playCurrentLine() {
   const startOfLineTime = wordsToReadMap.get(firstWordNumber).audioElement.startTime;
   const endOfLineTime = wordsToReadMap.get(lastWordNumber).audioElement.stopTime;
   
-  // Save original classes and set reading class
+/*   // Save original classes and set reading class
   const originalClasses = [];
   wordElements.forEach((element, index) => {
     originalClasses[index] = element.className;
@@ -208,7 +209,7 @@ function playCurrentLine() {
   updateWordStyle(wordElements[0], 'reading');
   for (let i = 1; i < wordElements.length; i++) {
     updateWordStyle(wordElements[i], 'unread');
-  }
+  } */
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
@@ -219,7 +220,7 @@ function playCurrentLine() {
 
   sound.play('line');
 
-  wordElements.forEach((element, index) => {
+/*   wordElements.forEach((element, index) => {
     const startWordTime = wordsToReadMap.get(firstWordNumber+ index).audioElement.startTime;
     const endWordTime = wordsToReadMap.get(firstWordNumber + index).audioElement.stopTime;
     
@@ -230,16 +231,16 @@ function playCurrentLine() {
     setTimeout(() => {
       updateWordStyle(element, 'read');
     }, (endWordTime - startOfLineTime) * 1000);
-  });
+  }); */
 
   sound.once('end', () => {
     resetPlaybutton();
 
     // Reset word elements to their original classes
-    pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
+/*     pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
     wordElements.forEach((element, index) => {
       element.className = originalClasses[index];
-    });
+    }); */
 
     sound.unload();
   });
@@ -298,7 +299,6 @@ async function initWordsToReadMap() {
     const { startTime, stopTime } = getStartAndStopTime(jsonData, wordId);
     word.audioElement.startTime = startTime;
     word.audioElement.stopTime = stopTime;
-    console.log("wordId:", wordId, "startTime:", startTime, "stopTime:", stopTime);
 
     word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
     word.word.syllables = getSyllablesAsString(jsonData, wordId);
