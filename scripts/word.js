@@ -116,7 +116,7 @@ class Word {
   // create the final state of the line for each word style
     createAnimationElements() {
       this.createAnimationElement("reading", {
-        duration: 0.0,
+        duration: 0.01,
         endColor: "#1A79C7",
         endStrokeWidth: 4,
         endStrokeOpacity: 1,
@@ -134,7 +134,7 @@ class Word {
         duration: 0.25,
         endColor: "#1A79C7",
         endStrokeWidth: 2,
-        endStrokeOpacity: 0.1,
+        endStrokeOpacity: 0.2,
       });
   
       this.createAnimationElement("unread", {
