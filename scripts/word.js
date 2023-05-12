@@ -126,14 +126,14 @@ class Word {
         duration: 0.25,
         endColor: "#9F0F7B",
         endStrokeWidth: 3,
-        endStrokeOpacity: 0.8,
+        endStrokeOpacity: 0.5,
         sineWave: true,
       });
   
       this.createAnimationElement("checking", {
         duration: 0.25,
         endColor: "#1A79C7",
-        endStrokeWidth: 2,
+        endStrokeWidth: 3,
         endStrokeOpacity: 0.2,
       });
   
