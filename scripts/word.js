@@ -126,7 +126,7 @@ class Word {
         duration: 0.25,
         endColor: "#9F0F7B",
         endStrokeWidth: 3,
-        endStrokeOpacity: 1,
+        endStrokeOpacity: 0.8,
         sineWave: true,
       });
   
