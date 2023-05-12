@@ -124,9 +124,9 @@ class Word {
   
       this.createAnimationElement("trouble", {
         duration: 0.25,
-        endColor: "#E7C3DE",
-        endStrokeWidth: 2,
-        endStrokeOpacity: 0.5,
+        endColor: "#9F0F7B",
+        endStrokeWidth: 3,
+        endStrokeOpacity: 0.75,
         sineWave: true,
       });
   
@@ -138,16 +138,16 @@ class Word {
       });
   
       this.createAnimationElement("unread", {
-        duration: 0.0,
+        duration: 0.01,
         endColor: "#1A79C7",
         endStrokeWidth: 4,
         endStrokeOpacity: 0.0,
       });
   
       this.createAnimationElement("read", {
-        duration: 0.0,
+        duration: 0.1,
         endColor: "#1A79C7",
-        endStrokeWidth: 4,
+        endStrokeWidth: 2,
         endStrokeOpacity: 0.0,
       });
     }
