@@ -87,7 +87,7 @@ function talk() {
 }
 
 function resetText() {
-    setState(['Beak Opened', 'Right Eye Awake', 'Left Eye Awake']);
+    setState(['Beak Opened', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
     setBodyColor('reset');
 }
 
@@ -118,7 +118,7 @@ function setBodyColor(state) {
             break;
 
         default:
-            console.error("Invalid state:", newState);
+            console.error("Invalid state:", state);
     }
 
 }
