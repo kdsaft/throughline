@@ -41,7 +41,7 @@ function handleInteractionStart(event){
         longPress = true;
         pressAndHoldSound.play();
         buttonIcon.setAttribute('aria-label', 'Long press activated');
-        talk();
+        resetText();
         resetTimer = setTimeout(() => {
             wakeUp();
             isAwake = true;
@@ -82,7 +82,12 @@ function wakeUp() {
     }
 
 function talk() {
-    setState(['Beak Closed', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
+    setState(['Beak Opened', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
+    setBodyColor('talk');
+}
+
+function resetText() {
+    setState(['Beak Opened', 'Right Eye Awake', 'Left Eye Awake']);
     setBodyColor('worry');
 }
 
