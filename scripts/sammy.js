@@ -44,7 +44,8 @@ function handleInteractionStart(event){
         talk();
         resetTimer = setTimeout(() => {
             wakeUp();
-        }, 2000);
+            isAwake = true;
+        }, 3000);
     }, 1500); // 1000ms = 1 second
 };
 
@@ -82,7 +83,7 @@ function wakeUp() {
 
 function talk() {
     setState(['Beak Closed', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
-    setBodyColor('talk');
+    setBodyColor('worry');
 }
 
 
