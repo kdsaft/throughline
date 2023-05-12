@@ -252,6 +252,9 @@ function updateWordStyle(wordId, mode) {
 
   wordsToReadMap.get(wordId).updateAnimationStartValues();
   wordsToReadMap.get(wordId).svgElement.animation[mode].style.beginElement();
+  wordsToReadMap.get(wordId).svgElement.animation[mode].color.beginElement();
+  wordsToReadMap.get(wordId).svgElement.animation[mode].width.beginElement();
+  wordsToReadMap.get(wordId).svgElement.animation[mode].opacity.beginElement();
 }
 
 function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
