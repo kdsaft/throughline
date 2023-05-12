@@ -82,8 +82,7 @@ class Word {
         const { startX, endX, yCoordinate } = this.getWordProperties();
         const lineColor = "#1A79C7";
         const lineWidth = 4;
-        const lineOpacity = 1;
-        const display = "none";
+        const lineOpacity = 0;
         const wordID = this.wordId;
 
         if (this.svgElement.highlightLine) {
@@ -108,7 +107,7 @@ class Word {
         pathElement.setAttribute("stroke-linejoin", "round");
         pathElement.setAttribute("data-word-id", wordID);
 
-        pathElement.style.display = display
+        pathElement.style.display = "display"
 
         svgViewBox.appendChild(pathElement);
         this.svgElement.highlightLine = pathElement;
