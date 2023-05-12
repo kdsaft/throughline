@@ -8,8 +8,8 @@ let isAwake = false;
 function initSammy() {
 
     // Create the audio objects for the sound effects
-    const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
-    const pressAndHoldSound = new Audio('https://kdsaft.github.io/throughline/audio/PressAndHold.m4a');
+    const chirpSound = new Audio('https://kdsaft.github.io/throughline/audio/digi_chirp.mp3');
+    const eraseSound = new Audio('https://kdsaft.github.io/throughline/audio/draw_erase.mp3');
 
 
     let timer = null;
@@ -35,11 +35,11 @@ function initSammy() {
 function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
-    buttonDownSound.play();
+    chirpSound.play();
 
     timer = setTimeout(() => {
         longPress = true;
-        pressAndHoldSound.play();
+        eraseSound.play();
         buttonIcon.setAttribute('aria-label', 'Long press activated');
         resetText();
         resetTimer = setTimeout(() => {
