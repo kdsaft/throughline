@@ -1,12 +1,12 @@
 // Reading.js
 
 let wordsToReadMap = new Map();
-console.log("wordsToReadMap:", wordsToReadMap);
 let jsonData;
 
 let currentWordNumber = 1;
 
 let content;
+let uiSounds = loadUISounds();
 let scrollingTimeout;
 
 function initReading() {
@@ -233,6 +233,20 @@ function playCurrentLine() {
 
     sound.unload();
   });
+}
+
+function loadUISounds() {
+  const sound = new Howl({
+    src: ['https://kdsaft.github.io/throughline/audio/uiSounds.mp4'],
+    sprite: {
+      pressDown: [0, 14],
+      pressAndHold: [15, 25.5],
+      chirp: [25.5, 51.0],
+      erase: [51.0, 144.0]
+    }
+  });
+
+  return sound;
 }
 
 function getWordsOnCurrentLine(element) {
