@@ -30,7 +30,7 @@ function initSammy() {
 function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
-    uiSounds.play('chrip');
+    uiSounds.play('chirp');
 
     timer = setTimeout(() => {
         longPress = true;
