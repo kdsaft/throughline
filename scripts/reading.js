@@ -157,7 +157,7 @@ console.log("currentWordNumber:", currentWordNumber);
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      word: [wordStartTime * 1000, wordDuration * 1000]
+      word: [wordStartTime * 100, wordDuration * 100]
     }
   });
 
@@ -203,7 +203,7 @@ function playCurrentLine() {
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      line: [startOfLineTime * 1000, (endOfLineTime - startOfLineTime) * 1000]
+      line: [startOfLineTime * 100, (endOfLineTime - startOfLineTime) * 100]
     }
   });
 
