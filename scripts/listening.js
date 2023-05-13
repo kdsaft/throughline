@@ -259,7 +259,11 @@ async function processAudioFile(fileUrl) {
         const audioBlob = await response.blob();
         console.log("Audio file loaded:", audioBlob);
 
-        const audioConfig = SpeechSDK.AudioConfig.fromWavFileInput(audioBlob);
+        // Create a temporary File object
+        const audioFile = new File([audioBlob], "temp.wav", { type: "audio/wav" });
+
+
+        const audioConfig = SpeechSDK.AudioConfig.fromWavFileInput(audioFile);
         const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
 
         // If pronunciation assessment config is available, apply it to the recognizer
