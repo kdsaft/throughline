@@ -257,6 +257,7 @@ async function processAudioFile(fileUrl) {
     try {
         const response = await fetch(fileUrl);
         const audioBlob = await response.blob();
+        console.log("Audio file loaded:", audioBlob);
 
         const audioConfig = SpeechSDK.AudioConfig.fromWavFileInput(audioBlob);
         const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
