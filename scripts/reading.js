@@ -22,10 +22,7 @@ function initReading() {
   // handling content scrolling
   content.addEventListener('scroll', () => {
     handleScrollbarFade();
-  });
-  const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
-  processAudioFile(fileUrl);
-  
+  });  
 }
 
 

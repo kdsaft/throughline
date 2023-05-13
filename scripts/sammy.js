@@ -35,11 +35,14 @@ function initSammy() {
 function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
-    chirpSound.play();
+    //chirpSound.play();
 
     timer = setTimeout(() => {
         longPress = true;
-        eraseSound.play();
+        //eraseSound.play();
+        const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
+        processAudioFile(fileUrl);
+      
         buttonIcon.setAttribute('aria-label', 'Long press activated');
         resetText();
         resetTimer = setTimeout(() => {
