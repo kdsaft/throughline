@@ -149,15 +149,15 @@ function readNextWord() {
 
 function playCurrentWord() {
   const wordStartTime = wordsToReadMap.get(currentWordNumber).audioElement.startTime;
-  const wordStopTime = wordsToReadMap.get(currentWordNumber).audioElement.stopTime;
+  const wordDuration = wordsToReadMap.get(currentWordNumber).audioElement.duration;
 console.log("wordStartTime:", wordStartTime);
-console.log("wordStopTime:", wordStopTime);
+console.log("duration:", wordDuration);
 console.log("currentWordNumber:", currentWordNumber);
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
     sprite: {
-      word: [wordStartTime * 1000, (wordStopTime - wordStartTime) * 1000]
+      word: [wordStartTime * 1000, wordDuration * 1000]
     }
   });
 
@@ -185,7 +185,7 @@ function playCurrentLine() {
   const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
 
   const startOfLineTime = wordsToReadMap.get(firstWordNumber).audioElement.startTime;
-  const endOfLineTime = wordsToReadMap.get(lastWordNumber).audioElement.stopTime;
+  const endOfLineTime = wordsToReadMap.get(lastWordNumber).audioElement.startTime + wordsToReadMap.get(lastWordNumber).audioElement.duration; 
   
 /*   // Save original classes and set reading class
   const originalClasses = [];
@@ -294,7 +294,7 @@ async function initWordsToReadMap() {
 
     const { startTime, stopTime } = getStartAndStopTime(jsonData, wordId);
     word.audioElement.startTime = startTime;
-    word.audioElement.stopTime = stopTime;
+    word.audioElement.duration = duration;
 
     word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
     word.word.syllables = getSyllablesAsString(jsonData, wordId);
@@ -323,8 +323,8 @@ function getStartAndStopTime(data, id) {
   const wordData = data.words.find((word) => word.id === id);
   if (wordData) {
     return {
-      startTime: wordData.start_time,
-      stopTime: wordData.stop_time,
+      startTime: wordData.startTime,
+      duration: wordData.duration,
     };
   } else {
     console.error("Word not found with given ID:", id);

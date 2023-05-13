@@ -20,7 +20,7 @@ class Word {
   
       this.audioElement = {
         startTime: null,
-        stopTime: null,
+        duration: null,
       };
       this.word = {
         withoutPunctuation: null,
