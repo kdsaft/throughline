@@ -14,32 +14,26 @@ async function thingsToLoad() {
     const scriptUrls = [
         'https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js',
-        'https://kdsaft.github.io/throughline/scripts/word.js',
         'https://kdsaft.github.io/throughline/scripts/reading.js',
         'https://kdsaft.github.io/throughline/scripts/visualizer.js',
+        'https://kdsaft.github.io/throughline/scripts/listening.js',
         'https://kdsaft.github.io/throughline/scripts/sammy.js'
     ];
-    
-    const listeningScriptUrl = 'https://kdsaft.github.io/throughline/scripts/listening.js';
 
     try {
-        // Await the loading of all JS files except listening.js
+        // Await the loading of all JS files
         await Promise.all(scriptUrls.map(url => loadJS(url)));
 
-        // Call init functions after all scripts except listening.js are loaded
+        // Call init functions after all scripts are loaded
         initReading();
-        initSammy();
-
-        // Load listening.js script
-        await loadJS(listeningScriptUrl);
-
-        // Call initListening() after listening.js script is loaded
         initListening();
+        initSammy();
 
     } catch (error) {
         console.error('Error loading scripts:', error);
     }
 }
+
 
 
 function loadCSS(url) {
