@@ -63,7 +63,6 @@ function initSpeechSDK() {
             enableMiscue: true,
             phonemeAlphabet: "IPA"
         };
-        const pronunciationAssessmentConfig = SpeechSDK.PronunciationAssessmentConfig.fromJSON(JSON.stringify(pronunciationAssessmentConfigJson));
 
         // Create a speech config
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
@@ -72,6 +71,10 @@ function initSpeechSDK() {
         // Save the pronunciation assessment config for later use in startListening()
         window.pronunciationAssessmentConfig = pronunciationAssessmentConfig;
     }
+
+    const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3';
+    processAudioFile(fileUrl);
+
 }
 
 

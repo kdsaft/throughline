@@ -242,6 +242,39 @@ function getWordsOnCurrentLine(element) {
   return words;
 }
 
+// Gather data from audio file
+async function processAudioFile(fileUrl) {
+  const audioConfig = SpeechSDK.AudioConfig.fromWavFileInput(fileUrl);
+  const recognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
+
+  // If pronunciation assessment config is available, apply it to the recognizer
+  if (window.pronunciationAssessmentConfig) {
+      window.pronunciationAssessmentConfig.applyTo(recognizer);
+  }
+
+  // Recognize the audio file
+  recognizer.recognizeOnceAsync(async (result) => {
+      if (result.reason === SpeechSDK.ResultReason.RecognizedSpeech) {
+          const pronunciationAssessmentResult = SpeechSDK.PronunciationAssessmentResult.fromResult(result);
+          const detailResult = pronunciationAssessmentResult.detailResult;
+          console.log("Pronunciation assessment result:", detailResult);
+
+          // Download the JSON file
+          const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(detailResult));
+          const downloadAnchorNode = document.createElement('a');
+          downloadAnchorNode.setAttribute("href", dataStr);
+          downloadAnchorNode.setAttribute("download", "pronunciation_assessment_result.json");
+          document.body.appendChild(downloadAnchorNode);
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+      } else {
+          console.error("Error processing the audio file:", result.errorDetails);
+      }
+
+      recognizer.close();
+  });
+}
+
 
 // Funcations to update the display
 function updateWordStyle(wordId, mode) {
