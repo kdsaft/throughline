@@ -292,7 +292,7 @@ async function initWordsToReadMap() {
     const wordId = wordData.id;
     const word = new Word(wordId);
 
-    const { startTime, stopTime } = getStartAndStopTime(jsonData, wordId);
+    const { startTime, duration } = getStartAndStopTime(jsonData, wordId);
     word.audioElement.startTime = startTime;
     word.audioElement.duration = duration;
 
