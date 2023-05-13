@@ -72,9 +72,6 @@ function initSpeechSDK() {
         window.pronunciationAssessmentConfig = pronunciationAssessmentConfig;
     }
 
-    const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
-    processAudioFile(fileUrl);
-
 }
 
 
