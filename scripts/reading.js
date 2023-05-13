@@ -239,10 +239,10 @@ function loadUISounds() {
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/uiSounds.m4a'],
     sprite: {
-      pressDown: [0, 14],
-      pressAndHold: [15, 25.5],
-      chirp: [25.5, 51.0],
-      erase: [51.0, 144.0]
+      pressDown: [0, 1.4],
+      pressAndHold: [1.5, 2.55],
+      chirp: [2.55, 5.10],
+      erase: [5.10, 14.40]
     }
   });
 
