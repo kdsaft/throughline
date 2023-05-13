@@ -42,7 +42,7 @@ function handleInteractionStart(event) {
         resetTimer = setTimeout(() => {
             wakeUp();
             isAwake = true;
-        }, 10);
+        }, 200);
     }, 750); // 1000ms = 1 second
 };
 
