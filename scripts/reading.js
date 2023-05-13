@@ -6,7 +6,7 @@ let jsonData;
 let currentWordNumber = 1;
 
 let content;
-let uiSounds = loadUISounds();
+let uiSounds;
 let scrollingTimeout;
 
 function initReading() {
@@ -15,6 +15,8 @@ function initReading() {
   });
 
   updateSVGViewBox();
+
+  uiSounds = loadUISounds();
 
   // When the window is resized...
   window.addEventListener("resize", updateSVGViewBox);
