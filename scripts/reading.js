@@ -241,8 +241,8 @@ function loadUISounds() {
     sprite: {
       pressDown: [0, 14],
       pressAndHold: [15, 241],
-      chirp: [25.5, 51.0],
-      erase: [51.0, 144.0]
+      chirp: [255, 255],
+      erase: [510, 930]
     }
   });
 

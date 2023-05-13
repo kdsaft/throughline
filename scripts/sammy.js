@@ -30,11 +30,11 @@ function initSammy() {
 function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
-    uiSounds.play('pressDown');
+    uiSounds.play('chirp');
 
     timer = setTimeout(() => {
         longPress = true;
-        uiSounds.play('pressAndHold');
+        uiSounds.play('erase');
         //const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
         //processAudioFile(fileUrl);
       
