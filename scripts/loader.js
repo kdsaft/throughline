@@ -14,6 +14,7 @@ async function thingsToLoad() {
     const scriptUrls = [
         'https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js',
+        'https://kdsaft.github.io/throughline/scripts/word.js',
         'https://kdsaft.github.io/throughline/scripts/reading.js',
         'https://kdsaft.github.io/throughline/scripts/visualizer.js',
         'https://kdsaft.github.io/throughline/scripts/listening.js',
