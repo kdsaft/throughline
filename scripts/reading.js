@@ -237,7 +237,7 @@ function playCurrentLine() {
 
 function loadUISounds() {
   const sound = new Howl({
-    src: ['https://kdsaft.github.io/throughline/audio/uiSounds.mp4'],
+    src: ['https://kdsaft.github.io/throughline/audio/uiSounds.m4a'],
     sprite: {
       pressDown: [0, 14],
       pressAndHold: [15, 25.5],

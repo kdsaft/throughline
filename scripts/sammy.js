@@ -7,11 +7,6 @@ let isAwake = false;
 
 function initSammy() {
 
-    // Create the audio objects for the sound effects
-    const chirpSound = new Audio('https://kdsaft.github.io/throughline/audio/digi_chirp.mp3');
-    const eraseSound = new Audio('https://kdsaft.github.io/throughline/audio/draw_erase.mp3');
-
-
     let timer = null;
     let longPress = false;
     sammy = document.getElementById("sammy");
@@ -35,11 +30,11 @@ function initSammy() {
 function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
-    //chirpSound.play();
+    uiSounds.play('chrip');
 
     timer = setTimeout(() => {
         longPress = true;
-        //eraseSound.play();
+        uiSounds.play('erase');
         //const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
         //processAudioFile(fileUrl);
       
