@@ -1,13 +1,13 @@
 {
     "id": "071e85ae-3952-4dd8-a269-2762ecbe3b8c",
-    "updated": "13-May-2023",
+    "update": "10-April-2022",
     "filename": "PieThatConquered.mp3",
     "words": [
         {
             "id": 1,
             "word": "The",
-            "startTime": 0.8,
-            "duration": 1.7,
+            "start_time": 0.06,
+            "stop_time": 0.2,
             "syllables": [
                 {
                     "syllable": "The",
@@ -21,8 +21,8 @@
         {
             "id": 2,
             "word": "Pie",
-            "startTime": 2.6,
-            "duration": 3.7,
+            "start_time": 0.22,
+            "stop_time": 0.63,
             "syllables": [
                 {
                     "syllable": "Pie",
@@ -36,8 +36,8 @@
         {
             "id": 3,
             "word": "That",
-            "startTime": 6.4,
-            "duration": 1.7,
+            "start_time": 0.63,
+            "stop_time": 0.73,
             "syllables": [
                 {
                     "syllable": "That",
@@ -52,8 +52,8 @@
         {
             "id": 4,
             "word": "conquered",
-            "startTime": 8.2,
-            "duration": 4.2,
+            "start_time": 0.78,
+            "stop_time": 1.21,
             "syllables": [
                 {
                     "syllable": "con",
@@ -78,8 +78,8 @@
         {
             "id": 5,
             "word": "the",
-            "startTime": 12.5,
-            "duration": 0.8,
+            "start_time": 1.21,
+            "stop_time": 1.31,
             "syllables": [
                 {
                     "syllable": "the",
@@ -93,8 +93,8 @@
         {
             "id": 6,
             "word": "canopy",
-            "startTime": 13.4,
-            "duration": 6.3,
+            "start_time": 1.32,
+            "stop_time": 1.86,
             "syllables": [
                 {
                     "syllable": "can",
@@ -122,8 +122,8 @@
         {
             "id": 7,
             "word": "Deep",
-            "startTime": 39.2,
-            "duration": 3.0,
+            "start_time": 1.82,
+            "stop_time": 4.16,
             "syllables": [
                 {
                     "syllable": "Deep",
@@ -138,8 +138,8 @@
         {
             "id": 8,
             "word": "within",
-            "startTime": 42.3,
-            "duration": 2.4,
+            "start_time": 4.16,
+            "stop_time": 4.44,
             "syllables": [
                 {
                     "syllable": "with",
@@ -161,8 +161,8 @@
         {
             "id": 9,
             "word": "the",
-            "startTime": 44.8,
-            "duration": 0.9,
+            "start_time": 4.44,
+            "stop_time": 4.56,
             "syllables": [
                 {
                     "syllable": "the",
@@ -176,8 +176,8 @@
         {
             "id": 10,
             "word": "heart",
-            "startTime": 45.8,
-            "duration": 2.4,
+            "start_time": 4.56,
+            "stop_time": 4.8,
             "syllables": [
                 {
                     "syllable": "heart",
@@ -193,8 +193,8 @@
         {
             "id": 11,
             "word": "of",
-            "startTime": 48.3,
-            "duration": 0.8,
+            "start_time": 4.8,
+            "stop_time": 4.88,
             "syllables": [
                 {
                     "syllable": "of",
@@ -208,8 +208,8 @@
         {
             "id": 12,
             "word": "the",
-            "startTime": 49.2,
-            "duration": 0.9,
+            "start_time": 4.88,
+            "stop_time": 5,
             "syllables": [
                 {
                     "syllable": "the",
@@ -223,8 +223,8 @@
         {
             "id": 13,
             "word": "jungle,",
-            "startTime": 5,
-            "duration": 5.38,
+            "start_time": 5,
+            "stop_time": 5.38,
             "syllables": [
                 {
                     "syllable": "jun",
@@ -247,8 +247,8 @@
         {
             "id": 14,
             "word": "a",
-            "startTime": 56.8,
-            "duration": 1.7,
+            "start_time": 5.38,
+            "stop_time": 5.82,
             "syllables": [
                 {
                     "syllable": "a",
@@ -261,8 +261,8 @@
         {
             "id": 15,
             "word": "hierarchical",
-            "startTime": 58.6,
-            "duration": 7.1,
+            "start_time": 5.82,
+            "stop_time": 6.54,
             "syllables": [
                 {
                     "syllable": "hi",
@@ -300,8 +300,8 @@
         {
             "id": 16,
             "word": "society",
-            "startTime": 65.8,
-            "duration": 5.5,
+            "start_time": 6.54,
+            "stop_time": 7.1,
             "syllables": [
                 {
                     "syllable": "so",
@@ -330,8 +330,8 @@
         {
             "id": 17,
             "word": "of",
-            "startTime": 71.4,
-            "duration": 1.5,
+            "start_time": 7.1,
+            "stop_time": 7.22,
             "syllables": [
                 {
                     "syllable": "of",
@@ -345,8 +345,8 @@
         {
             "id": 18,
             "word": "big-eyed",
-            "startTime": 73.0,
-            "duration": 4.3,
+            "start_time": 7.22,
+            "stop_time": 7.72,
             "syllables": [
                 {
                     "syllable": "big",
@@ -368,8 +368,8 @@
         {
             "id": 19,
             "word": "birds",
-            "startTime": 77.4,
-            "duration": 4.0,
+            "start_time": 7.72,
+            "stop_time": 8.08,
             "syllables": [
                 {
                     "syllable": "birds",
@@ -385,8 +385,8 @@
         {
             "id": 20,
             "word": "thrived",
-            "startTime": 81.5,
-            "duration": 5.4,
+            "start_time": 8.08,
+            "stop_time": 8.66,
             "syllables": [
                 {
                     "syllable": "thrived",
@@ -403,8 +403,8 @@
         {
             "id": 21,
             "word": "in",
-            "startTime": 87.0,
-            "duration": 0.9,
+            "start_time": 8.66,
+            "stop_time": 8.76,
             "syllables": [
                 {
                     "syllable": "in",
@@ -418,8 +418,8 @@
         {
             "id": 22,
             "word": "the",
-            "startTime": 88.0,
-            "duration": 0.9,
+            "start_time": 8.76,
+            "stop_time": 8.86,
             "syllables": [
                 {
                     "syllable": "the",
@@ -433,8 +433,8 @@
         {
             "id": 23,
             "word": "dense",
-            "startTime": 89.0,
-            "duration": 2.5,
+            "start_time": 8.86,
+            "stop_time": 9.14,
             "syllables": [
                 {
                     "syllable": "dense",
@@ -450,8 +450,8 @@
         {
             "id": 24,
             "word": "canopy.",
-            "startTime": 9.14,
-            "duration": 9.6,
+            "start_time": 9.14,
+            "stop_time": 9.6,
             "syllables": [
                 {
                     "syllable": "can",
@@ -479,8 +479,8 @@
         {
             "id": 25,
             "word": "Among",
-            "startTime": 103.8,
-            "duration": 4.3,
+            "start_time": 9.6,
+            "stop_time": 10.77,
             "syllables": [
                 {
                     "syllable": "A",
@@ -501,8 +501,8 @@
         {
             "id": 26,
             "word": "these",
-            "startTime": 108.2,
-            "duration": 2.1,
+            "start_time": 10.77,
+            "stop_time": 10.99,
             "syllables": [
                 {
                     "syllable": "these",
@@ -517,8 +517,8 @@
         {
             "id": 27,
             "word": "birds,",
-            "startTime": 10.99,
-            "duration": 11.39,
+            "start_time": 10.99,
+            "stop_time": 11.39,
             "syllables": [
                 {
                     "syllable": "birds",
@@ -534,8 +534,8 @@
         {
             "id": 28,
             "word": "an",
-            "startTime": 117.4,
-            "duration": 1.9,
+            "start_time": 11.39,
+            "stop_time": 11.89,
             "syllables": [
                 {
                     "syllable": "an",
@@ -549,8 +549,8 @@
         {
             "id": 29,
             "word": "annual",
-            "startTime": 119.4,
-            "duration": 4.3,
+            "start_time": 11.89,
+            "stop_time": 12.33,
             "syllables": [
                 {
                     "syllable": "an",
@@ -578,8 +578,8 @@
         {
             "id": 30,
             "word": "pie-making",
-            "startTime": 123.8,
-            "duration": 5.9,
+            "start_time": 12.33,
+            "stop_time": 12.95,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -608,8 +608,8 @@
         {
             "id": 31,
             "word": "contest",
-            "startTime": 129.8,
-            "duration": 5.1,
+            "start_time": 12.95,
+            "stop_time": 13.47,
             "syllables": [
                 {
                     "syllable": "con",
@@ -633,8 +633,8 @@
         {
             "id": 32,
             "word": "determined",
-            "startTime": 135.0,
-            "duration": 4.4,
+            "start_time": 13.47,
+            "stop_time": 13.93,
             "syllables": [
                 {
                     "syllable": "de",
@@ -664,8 +664,8 @@
         {
             "id": 33,
             "word": "the",
-            "startTime": 139.5,
-            "duration": 1.0,
+            "start_time": 13.93,
+            "stop_time": 14.03,
             "syllables": [
                 {
                     "syllable": "the",
@@ -679,8 +679,8 @@
         {
             "id": 34,
             "word": "social",
-            "startTime": 140.6,
-            "duration": 3.6,
+            "start_time": 14.03,
+            "stop_time": 14.41,
             "syllables": [
                 {
                     "syllable": "so",
@@ -702,8 +702,8 @@
         {
             "id": 35,
             "word": "standing",
-            "startTime": 144.3,
-            "duration": 4.3,
+            "start_time": 14.41,
+            "stop_time": 14.83,
             "syllables": [
                 {
                     "syllable": "stand",
@@ -727,8 +727,8 @@
         {
             "id": 36,
             "word": "of",
-            "startTime": 148.7,
-            "duration": 1.0,
+            "start_time": 14.83,
+            "stop_time": 14.93,
             "syllables": [
                 {
                     "syllable": "of",
@@ -742,8 +742,8 @@
         {
             "id": 37,
             "word": "each",
-            "startTime": 149.8,
-            "duration": 1.7,
+            "start_time": 15.13,
+            "stop_time": 15.13,
             "syllables": [
                 {
                     "syllable": "each",
@@ -757,8 +757,8 @@
         {
             "id": 38,
             "word": "family.",
-            "startTime": 15.13,
-            "duration": 15.57,
+            "start_time": 15.13,
+            "stop_time": 15.57,
             "syllables": [
                 {
                     "syllable": "fam",
@@ -781,8 +781,8 @@
         {
             "id": 39,
             "word": "Those",
-            "startTime": 163.2,
-            "duration": 3.1,
+            "start_time": 16.24,
+            "stop_time": 16.58,
             "syllables": [
                 {
                     "syllable": "Those",
@@ -797,8 +797,8 @@
         {
             "id": 40,
             "word": "who",
-            "startTime": 166.4,
-            "duration": 1.5,
+            "start_time": 16.58,
+            "stop_time": 16.74,
             "syllables": [
                 {
                     "syllable": "who",
@@ -812,8 +812,8 @@
         {
             "id": 41,
             "word": "ranked",
-            "startTime": 168.0,
-            "duration": 2.9,
+            "start_time": 16.74,
+            "stop_time": 17.07,
             "syllables": [
                 {
                     "syllable": "ranked",
@@ -830,8 +830,8 @@
         {
             "id": 42,
             "word": "higher",
-            "startTime": 171.0,
-            "duration": 5.3,
+            "start_time": 17.07,
+            "stop_time": 17.49,
             "syllables": [
                 {
                     "syllable": "high",
@@ -852,8 +852,8 @@
         {
             "id": 43,
             "word": "gained",
-            "startTime": 178.2,
-            "duration": 3.1,
+            "start_time": 17.49,
+            "stop_time": 18.11,
             "syllables": [
                 {
                     "syllable": "gained",
@@ -869,8 +869,8 @@
         {
             "id": 44,
             "word": "access",
-            "startTime": 181.4,
-            "duration": 4.3,
+            "start_time": 18.11,
+            "stop_time": 18.57,
             "syllables": [
                 {
                     "syllable": "ac",
@@ -892,8 +892,8 @@
         {
             "id": 45,
             "word": "to",
-            "startTime": 185.8,
-            "duration": 1.4,
+            "start_time": 18.57,
+            "stop_time": 18.69,
             "syllables": [
                 {
                     "syllable": "to",
@@ -907,8 +907,8 @@
         {
             "id": 46,
             "word": "better",
-            "startTime": 187.3,
-            "duration": 2.6,
+            "start_time": 18.69,
+            "stop_time": 18.97,
             "syllables": [
                 {
                     "syllable": "bet",
@@ -931,8 +931,8 @@
         {
             "id": 47,
             "word": "resources,",
-            "startTime": 18.97,
-            "duration": 19.65,
+            "start_time": 18.97,
+            "stop_time": 19.65,
             "syllables": [
                 {
                     "syllable": "re",
@@ -962,8 +962,8 @@
         {
             "id": 48,
             "word": "education",
-            "startTime": 198.2,
-            "duration": 9.1,
+            "start_time": 19.65,
+            "stop_time": 20.5,
             "syllables": [
                 {
                     "syllable": "ed",
@@ -999,8 +999,8 @@
         {
             "id": 49,
             "word": "and",
-            "startTime": 207.6,
-            "duration": 1.9,
+            "start_time": 20.5,
+            "stop_time": 20.92,
             "syllables": [
                 {
                     "syllable": "and",
@@ -1015,8 +1015,8 @@
         {
             "id": 50,
             "word": "opportunities.",
-            "startTime": 20.92,
-            "duration": 21.6,
+            "start_time": 20.92,
+            "stop_time": 21.6,
             "syllables": [
                 {
                     "syllable": "op",
@@ -1030,8 +1030,8 @@
         {
             "id": 51,
             "word": "The",
-            "startTime": 223.8,
-            "duration": 1.5,
+            "start_time": 22.33,
+            "stop_time": 22.49,
             "syllables": [
                 {
                     "syllable": "The",
@@ -1045,8 +1045,8 @@
         {
             "id": 52,
             "word": "competition",
-            "startTime": 225.4,
-            "duration": 6.1,
+            "start_time": 22.49,
+            "stop_time": 23.11,
             "syllables": [
                 {
                     "syllable": "com",
@@ -1083,8 +1083,8 @@
         {
             "id": 53,
             "word": "was",
-            "startTime": 231.6,
-            "duration": 1.9,
+            "start_time": 23.11,
+            "stop_time": 23.28,
             "syllables": [
                 {
                     "syllable": "was",
@@ -1099,8 +1099,8 @@
         {
             "id": 54,
             "word": "fierce,",
-            "startTime": 23.28,
-            "duration": 23.72,
+            "start_time": 23.28,
+            "stop_time": 23.72,
             "syllables": [
                 {
                     "syllable": "fierce",
@@ -1117,8 +1117,8 @@
         {
             "id": 55,
             "word": "with",
-            "startTime": 240.2,
-            "duration": 2.1,
+            "start_time": 23.72,
+            "stop_time": 24.2,
             "syllables": [
                 {
                     "syllable": "with",
@@ -1133,8 +1133,8 @@
         {
             "id": 56,
             "word": "families",
-            "startTime": 242.4,
-            "duration": 4.3,
+            "start_time": 24.2,
+            "stop_time": 24.64,
             "syllables": [
                 {
                     "syllable": "fam",
@@ -1163,8 +1163,8 @@
         {
             "id": 57,
             "word": "gathering",
-            "startTime": 246.8,
-            "duration": 4.9,
+            "start_time": 24.64,
+            "stop_time": 25.14,
             "syllables": [
                 {
                     "syllable": "gath",
@@ -1193,8 +1193,8 @@
         {
             "id": 58,
             "word": "in",
-            "startTime": 251.8,
-            "duration": 0.7,
+            "start_time": 25.14,
+            "stop_time": 25.22,
             "syllables": [
                 {
                     "syllable": "in",
@@ -1208,8 +1208,8 @@
         {
             "id": 59,
             "word": "the",
-            "startTime": 252.6,
-            "duration": 0.9,
+            "start_time": 25.22,
+            "stop_time": 25.34,
             "syllables": [
                 {
                     "syllable": "the",
@@ -1223,8 +1223,8 @@
         {
             "id": 60,
             "word": "Great",
-            "startTime": 253.6,
-            "duration": 2.9,
+            "start_time": 25.34,
+            "stop_time": 25.6,
             "syllables": [
                 {
                     "syllable": "Great",
@@ -1240,8 +1240,8 @@
         {
             "id": 61,
             "word": "Banion",
-            "startTime": 25.6,
-            "duration": 26.04,
+            "start_time": 25.6,
+            "stop_time": 26.04,
             "syllables": [
                 {
                     "syllable": "Ba",
@@ -1264,8 +1264,8 @@
         {
             "id": 62,
             "word": "Clearing",
-            "startTime": 260.6,
-            "duration": 3.9,
+            "start_time": 26.04,
+            "stop_time": 26.42,
             "syllables": [
                 {
                     "syllable": "Clear",
@@ -1289,8 +1289,8 @@
         {
             "id": 63,
             "word": "to",
-            "startTime": 264.6,
-            "duration": 1.1,
+            "start_time": 26.42,
+            "stop_time": 26.54,
             "syllables": [
                 {
                     "syllable": "to",
@@ -1304,8 +1304,8 @@
         {
             "id": 64,
             "word": "present",
-            "startTime": 265.8,
-            "duration": 3.2,
+            "start_time": 26.54,
+            "stop_time": 26.86,
             "syllables": [
                 {
                     "syllable": "pre",
@@ -1329,8 +1329,8 @@
         {
             "id": 65,
             "word": "their",
-            "startTime": 269.1,
-            "duration": 1.4,
+            "start_time": 27.04,
+            "stop_time": 27.44,
             "syllables": [
                 {
                     "syllable": "their",
@@ -1345,8 +1345,8 @@
         {
             "id": 66,
             "word": "pies.",
-            "startTime": 27.44,
-            "duration": 28.3,
+            "start_time": 27.44,
+            "stop_time": 28.3,
             "syllables": [
                 {
                     "syllable": "pies",
@@ -1361,8 +1361,8 @@
         {
             "id": 67,
             "word": "The",
-            "startTime": 281.4,
-            "duration": 1.7,
+            "start_time": 28.3,
+            "stop_time": 28.66,
             "syllables": [
                 {
                     "syllable": "The",
@@ -1376,8 +1376,8 @@
         {
             "id": 68,
             "word": "goal",
-            "startTime": 283.2,
-            "duration": 3.7,
+            "start_time": 28.66,
+            "stop_time": 28.82,
             "syllables": [
                 {
                     "syllable": "goal",
@@ -1392,8 +1392,8 @@
         {
             "id": 69,
             "word": "was",
-            "startTime": 287.0,
-            "duration": 1.7,
+            "start_time": 28.82,
+            "stop_time": 28.96,
             "syllables": [
                 {
                     "syllable": "was",
@@ -1408,8 +1408,8 @@
         {
             "id": 70,
             "word": "to",
-            "startTime": 288.8,
-            "duration": 1.1,
+            "start_time": 28.96,
+            "stop_time": 29.36,
             "syllables": [
                 {
                     "syllable": "to",
@@ -1423,8 +1423,8 @@
         {
             "id": 71,
             "word": "impress",
-            "startTime": 290.0,
-            "duration": 4.1,
+            "start_time": 29.36,
+            "stop_time": 29.52,
             "syllables": [
                 {
                     "syllable": "im",
@@ -1447,8 +1447,8 @@
         {
             "id": 72,
             "word": "the",
-            "startTime": 294.2,
-            "duration": 1.1,
+            "start_time": 29.52,
+            "stop_time": 29.96,
             "syllables": [
                 {
                     "syllable": "the",
@@ -1462,8 +1462,8 @@
         {
             "id": 73,
             "word": "judges",
-            "startTime": 295.4,
-            "duration": 6.1,
+            "start_time": 29.96,
+            "stop_time": 30.32,
             "syllables": [
                 {
                     "syllable": "judg",
@@ -1485,8 +1485,8 @@
         {
             "id": 74,
             "word": "and",
-            "startTime": 301.8,
-            "duration": 1.7,
+            "start_time": 30.32,
+            "stop_time": 30.64,
             "syllables": [
                 {
                     "syllable": "and",
@@ -1501,8 +1501,8 @@
         {
             "id": 75,
             "word": "claim",
-            "startTime": 303.6,
-            "duration": 3.1,
+            "start_time": 30.64,
+            "stop_time": 30.64,
             "syllables": [
                 {
                     "syllable": "claim",
@@ -1518,8 +1518,8 @@
         {
             "id": 76,
             "word": "the",
-            "startTime": 306.8,
-            "duration": 1.0,
+            "start_time": 30.64,
+            "stop_time": 30.78,
             "syllables": [
                 {
                     "syllable": "the",
@@ -1533,8 +1533,8 @@
         {
             "id": 77,
             "word": "esteemed",
-            "startTime": 307.9,
-            "duration": 4.4,
+            "start_time": 30.78,
+            "stop_time": 31.19,
             "syllables": [
                 {
                     "syllable": "es",
@@ -1563,8 +1563,8 @@
         {
             "id": 78,
             "word": "title",
-            "startTime": 312.4,
-            "duration": 3.3,
+            "start_time": 31.19,
+            "stop_time": 31.57,
             "syllables": [
                 {
                     "syllable": "ti",
@@ -1585,8 +1585,8 @@
         {
             "id": 79,
             "word": "of",
-            "startTime": 315.8,
-            "duration": 0.9,
+            "start_time": 31.57,
+            "stop_time": 31.65,
             "syllables": [
                 {
                     "syllable": "of",
@@ -1599,8 +1599,8 @@
         {
             "id": 80,
             "word": "pie",
-            "startTime": 316.8,
-            "duration": 2.5,
+            "start_time": 31.65,
+            "stop_time": 31.97,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -1614,8 +1614,8 @@
         {
             "id": 81,
             "word": "master,",
-            "startTime": 31.97,
-            "duration": 32.35,
+            "start_time": 31.97,
+            "stop_time": 32.35,
             "syllables": [
                 {
                     "syllable": "mas",
@@ -1643,8 +1643,8 @@
         {
             "id": 82,
             "word": "which",
-            "startTime": 327.6,
-            "duration": 2.5,
+            "start_time": 32.35,
+            "stop_time": 32.99,
             "syllables": [
                 {
                     "syllable": "which",
@@ -1659,8 +1659,8 @@
         {
             "id": 83,
             "word": "granted",
-            "startTime": 330.2,
-            "duration": 3.5,
+            "start_time": 32.99,
+            "stop_time": 33.35,
             "syllables": [
                 {
                     "syllable": "grant",
@@ -1684,8 +1684,8 @@
         {
             "id": 84,
             "word": "the",
-            "startTime": 333.8,
-            "duration": 1.1,
+            "start_time": 33.35,
+            "stop_time": 33.47,
             "syllables": [
                 {
                     "syllable": "the",
@@ -1699,8 +1699,8 @@
         {
             "id": 85,
             "word": "winners",
-            "startTime": 335.0,
-            "duration": 3.7,
+            "start_time": 33.47,
+            "stop_time": 33.85,
             "syllables": [
                 {
                     "syllable": "win",
@@ -1723,8 +1723,8 @@
         {
             "id": 86,
             "word": "the",
-            "startTime": 338.8,
-            "duration": 1.1,
+            "start_time": 33.85,
+            "stop_time": 33.99,
             "syllables": [
                 {
                     "syllable": "the",
@@ -1738,8 +1738,8 @@
         {
             "id": 87,
             "word": "most",
-            "startTime": 340.0,
-            "duration": 2.7,
+            "start_time": 33.99,
+            "stop_time": 34.21,
             "syllables": [
                 {
                     "syllable": "most",
@@ -1755,8 +1755,8 @@
         {
             "id": 88,
             "word": "luxurious",
-            "startTime": 342.8,
-            "duration": 6.1,
+            "start_time": 34.21,
+            "stop_time": 34.87,
             "syllables": [
                 {
                     "syllable": "lux",
@@ -1791,8 +1791,8 @@
         {
             "id": 89,
             "word": "nests",
-            "startTime": 349.0,
-            "duration": 4.6,
+            "start_time": 34.87,
+            "stop_time": 35.33,
             "syllables": [
                 {
                     "syllable": "nests",
@@ -1809,8 +1809,8 @@
         {
             "id": 90,
             "word": "in",
-            "startTime": 353.7,
-            "duration": 0.9,
+            "start_time": 35.33,
+            "stop_time": 35.45,
             "syllables": [
                 {
                     "syllable": "in",
@@ -1824,8 +1824,8 @@
         {
             "id": 91,
             "word": "the",
-            "startTime": 354.7,
-            "duration": 1.0,
+            "start_time": 35.45,
+            "stop_time": 35.57,
             "syllables": [
                 {
                     "syllable": "the",
@@ -1839,8 +1839,8 @@
         {
             "id": 92,
             "word": "highest",
-            "startTime": 355.8,
-            "duration": 3.7,
+            "start_time": 35.57,
+            "stop_time": 35.93,
             "syllables": [
                 {
                     "syllable": "high",
@@ -1862,8 +1862,8 @@
         {
             "id": 93,
             "word": "branches.",
-            "startTime": 35.93,
-            "duration": 36.39,
+            "start_time": 35.93,
+            "stop_time": 36.39,
             "syllables": [
                 {
                     "syllable": "branch",
@@ -1893,8 +1893,8 @@
         {
             "id": 94,
             "word": "One",
-            "startTime": 372.6,
-            "duration": 2.6,
+            "start_time": 37.27,
+            "stop_time": 37.51,
             "syllables": [
                 {
                     "syllable": "One",
@@ -1909,8 +1909,8 @@
         {
             "id": 95,
             "word": "day,",
-            "startTime": 37.51,
-            "duration": 37.75,
+            "start_time": 37.51,
+            "stop_time": 37.75,
             "syllables": [
                 {
                     "syllable": "day",
@@ -1930,8 +1930,8 @@
         {
             "id": 96,
             "word": "a",
-            "startTime": 381.4,
-            "duration": 1.8,
+            "start_time": 37.75,
+            "stop_time": 38.25,
             "syllables": [
                 {
                     "syllable": "a",
@@ -1944,8 +1944,8 @@
         {
             "id": 97,
             "word": "young",
-            "startTime": 383.3,
-            "duration": 3.8,
+            "start_time": 38.25,
+            "stop_time": 38.63,
             "syllables": [
                 {
                     "syllable": "young",
@@ -1960,8 +1960,8 @@
         {
             "id": 98,
             "word": "and",
-            "startTime": 387.2,
-            "duration": 1.3,
+            "start_time": 38.63,
+            "stop_time": 38.81,
             "syllables": [
                 {
                     "syllable": "and",
@@ -1974,8 +1974,8 @@
         {
             "id": 99,
             "word": "ambitious",
-            "startTime": 388.6,
-            "duration": 5.3,
+            "start_time": 38.81,
+            "stop_time": 39.35,
             "syllables": [
                 {
                     "syllable": "am",
@@ -2005,8 +2005,8 @@
         {
             "id": 100,
             "word": "bird",
-            "startTime": 394.0,
-            "duration": 3.4,
+            "start_time": 39.35,
+            "stop_time": 39.71,
             "syllables": [
                 {
                     "syllable": "bird",
@@ -2021,8 +2021,8 @@
         {
             "id": 101,
             "word": "named",
-            "startTime": 397.5,
-            "duration": 2.4,
+            "start_time": 39.71,
+            "stop_time": 39.95,
             "syllables": [
                 {
                     "syllable": "named",
@@ -2038,8 +2038,8 @@
         {
             "id": 102,
             "word": "Sammy",
-            "startTime": 400.0,
-            "duration": 5.4,
+            "start_time": 39.95,
+            "stop_time": 40.41,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -2061,8 +2061,8 @@
         {
             "id": 103,
             "word": "fluttered",
-            "startTime": 405.7,
-            "duration": 4.6,
+            "start_time": 40.41,
+            "stop_time": 40.99,
             "syllables": [
                 {
                     "syllable": "flut",
@@ -2087,8 +2087,8 @@
         {
             "id": 104,
             "word": "through",
-            "startTime": 410.4,
-            "duration": 2.3,
+            "start_time": 40.99,
+            "stop_time": 41.25,
             "syllables": [
                 {
                     "syllable": "through",
@@ -2103,8 +2103,8 @@
         {
             "id": 105,
             "word": "the",
-            "startTime": 412.8,
-            "duration": 1.3,
+            "start_time": 41.25,
+            "stop_time": 41.37,
             "syllables": [
                 {
                     "syllable": "the",
@@ -2118,8 +2118,8 @@
         {
             "id": 106,
             "word": "lush",
-            "startTime": 414.2,
-            "duration": 2.7,
+            "start_time": 41.37,
+            "stop_time": 41.67,
             "syllables": [
                 {
                     "syllable": "lush",
@@ -2134,8 +2134,8 @@
         {
             "id": 107,
             "word": "jungle",
-            "startTime": 417.0,
-            "duration": 5.1,
+            "start_time": 41.67,
+            "stop_time": 42.09,
             "syllables": [
                 {
                     "syllable": "jun",
@@ -2158,8 +2158,8 @@
         {
             "id": 108,
             "word": "carrying",
-            "startTime": 425.0,
-            "duration": 4.1,
+            "start_time": 42.09,
+            "stop_time": 42.89,
             "syllables": [
                 {
                     "syllable": "car",
@@ -2188,8 +2188,8 @@
         {
             "id": 109,
             "word": "a",
-            "startTime": 429.2,
-            "duration": 0.5,
+            "start_time": 42.89,
+            "stop_time": 42.95,
             "syllables": [
                 {
                     "syllable": "a",
@@ -2202,8 +2202,8 @@
         {
             "id": 110,
             "word": "piece",
-            "startTime": 429.8,
-            "duration": 2.1,
+            "start_time": 42.95,
+            "stop_time": 43.17,
             "syllables": [
                 {
                     "syllable": "piece",
@@ -2218,8 +2218,8 @@
         {
             "id": 111,
             "word": "of",
-            "startTime": 432.0,
-            "duration": 0.9,
+            "start_time": 43.17,
+            "stop_time": 43.25,
             "syllables": [
                 {
                     "syllable": "of",
@@ -2233,8 +2233,8 @@
         {
             "id": 112,
             "word": "pie",
-            "startTime": 433.0,
-            "duration": 3.1,
+            "start_time": 43.25,
+            "stop_time": 43.59,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -2248,8 +2248,8 @@
         {
             "id": 113,
             "word": "that",
-            "startTime": 436.2,
-            "duration": 1.2,
+            "start_time": 43.59,
+            "stop_time": 43.71,
             "syllables": [
                 {
                     "syllable": "that",
@@ -2264,8 +2264,8 @@
         {
             "id": 114,
             "word": "he",
-            "startTime": 437.5,
-            "duration": 0.6,
+            "start_time": 43.71,
+            "stop_time": 43.79,
             "syllables": [
                 {
                     "syllable": "he",
@@ -2278,8 +2278,8 @@
         {
             "id": 115,
             "word": "had",
-            "startTime": 438.2,
-            "duration": 1.1,
+            "start_time": 43.79,
+            "stop_time": 43.91,
             "syllables": [
                 {
                     "syllable": "had",
@@ -2294,8 +2294,8 @@
         {
             "id": 116,
             "word": "spent",
-            "startTime": 439.4,
-            "duration": 3.7,
+            "start_time": 43.91,
+            "stop_time": 44.21,
             "syllables": [
                 {
                     "syllable": "spent",
@@ -2312,8 +2312,8 @@
         {
             "id": 117,
             "word": "days",
-            "startTime": 443.2,
-            "duration": 3.3,
+            "start_time": 44.21,
+            "stop_time": 44.63,
             "syllables": [
                 {
                     "syllable": "days",
@@ -2328,8 +2328,8 @@
         {
             "id": 118,
             "word": "perfecting.",
-            "startTime": 44.63,
-            "duration": 45.23,
+            "start_time": 44.63,
+            "stop_time": 45.23,
             "syllables": [
                 {
                     "syllable": "per",
@@ -2359,8 +2359,8 @@
         {
             "id": 119,
             "word": "His",
-            "startTime": 462.2,
-            "duration": 2.5,
+            "start_time": 45.23,
+            "stop_time": 46.43,
             "syllables": [
                 {
                     "syllable": "His",
@@ -2375,8 +2375,8 @@
         {
             "id": 120,
             "word": "best",
-            "startTime": 464.8,
-            "duration": 2.7,
+            "start_time": 46.43,
+            "stop_time": 46.69,
             "syllables": [
                 {
                     "syllable": "best",
@@ -2392,8 +2392,8 @@
         {
             "id": 121,
             "word": "friend",
-            "startTime": 467.6,
-            "duration": 2.1,
+            "start_time": 46.69,
+            "stop_time": 46.93,
             "syllables": [
                 {
                     "syllable": "friend",
@@ -2410,8 +2410,8 @@
         {
             "id": 122,
             "word": "Daisy",
-            "startTime": 469.8,
-            "duration": 5.4,
+            "start_time": 46.93,
+            "stop_time": 47.35,
             "syllables": [
                 {
                     "syllable": "Dai",
@@ -2431,8 +2431,8 @@
         {
             "id": 123,
             "word": "was",
-            "startTime": 475.5,
-            "duration": 1.8,
+            "start_time": 47.35,
+            "stop_time": 47.67,
             "syllables": [
                 {
                     "syllable": "was",
@@ -2447,8 +2447,8 @@
         {
             "id": 124,
             "word": "waiting",
-            "startTime": 477.4,
-            "duration": 2.7,
+            "start_time": 47.67,
+            "stop_time": 47.97,
             "syllables": [
                 {
                     "syllable": "wait",
@@ -2470,8 +2470,8 @@
         {
             "id": 125,
             "word": "for",
-            "startTime": 480.2,
-            "duration": 1.3,
+            "start_time": 47.97,
+            "stop_time": 48.11,
             "syllables": [
                 {
                     "syllable": "for",
@@ -2486,8 +2486,8 @@
         {
             "id": 126,
             "word": "him",
-            "startTime": 481.6,
-            "duration": 1.0,
+            "start_time": 48.11,
+            "stop_time": 48.23,
             "syllables": [
                 {
                     "syllable": "him",
@@ -2502,8 +2502,8 @@
         {
             "id": 127,
             "word": "at",
-            "startTime": 482.7,
-            "duration": 0.8,
+            "start_time": 48.23,
+            "stop_time": 48.33,
             "syllables": [
                 {
                     "syllable": "at",
@@ -2517,8 +2517,8 @@
         {
             "id": 128,
             "word": "the",
-            "startTime": 483.6,
-            "duration": 1.1,
+            "start_time": 48.33,
+            "stop_time": 48.43,
             "syllables": [
                 {
                     "syllable": "the",
@@ -2532,8 +2532,8 @@
         {
             "id": 129,
             "word": "riverbank",
-            "startTime": 484.8,
-            "duration": 6.7,
+            "start_time": 48.43,
+            "stop_time": 48.97,
             "syllables": [
                 {
                     "syllable": "riv",
@@ -2564,8 +2564,8 @@
         {
             "id": 130,
             "word": "She",
-            "startTime": 494.8,
-            "duration": 2.3,
+            "start_time": 48.97,
+            "stop_time": 49.67,
             "syllables": [
                 {
                     "syllable": "She",
@@ -2579,8 +2579,8 @@
         {
             "id": 131,
             "word": "had",
-            "startTime": 497.2,
-            "duration": 1.1,
+            "start_time": 49.67,
+            "stop_time": 49.81,
             "syllables": [
                 {
                     "syllable": "had",
@@ -2595,8 +2595,8 @@
         {
             "id": 132,
             "word": "a",
-            "startTime": 498.4,
-            "duration": 0.5,
+            "start_time": 49.81,
+            "stop_time": 49.85,
             "syllables": [
                 {
                     "syllable": "a",
@@ -2609,8 +2609,8 @@
         {
             "id": 133,
             "word": "boat",
-            "startTime": 499.0,
-            "duration": 2.4,
+            "start_time": 49.85,
+            "stop_time": 50.09,
             "syllables": [
                 {
                     "syllable": "boat",
@@ -2625,8 +2625,8 @@
         {
             "id": 134,
             "word": "ready",
-            "startTime": 501.5,
-            "duration": 1.9,
+            "start_time": 50.09,
+            "stop_time": 50.33,
             "syllables": [
                 {
                     "syllable": "read",
@@ -2647,8 +2647,8 @@
         {
             "id": 135,
             "word": "to",
-            "startTime": 503.5,
-            "duration": 1.2,
+            "start_time": 50.33,
+            "stop_time": 50.45,
             "syllables": [
                 {
                     "syllable": "to",
@@ -2662,8 +2662,8 @@
         {
             "id": 136,
             "word": "take",
-            "startTime": 504.8,
-            "duration": 2.1,
+            "start_time": 50.45,
+            "stop_time": 50.65,
             "syllables": [
                 {
                     "syllable": "take",
@@ -2678,8 +2678,8 @@
         {
             "id": 137,
             "word": "them",
-            "startTime": 507.0,
-            "duration": 1.4,
+            "start_time": 50.65,
+            "stop_time": 50.81,
             "syllables": [
                 {
                     "syllable": "them",
@@ -2694,8 +2694,8 @@
         {
             "id": 138,
             "word": "to",
-            "startTime": 508.5,
-            "duration": 1.0,
+            "start_time": 50.81,
+            "stop_time": 50.91,
             "syllables": [
                 {
                     "syllable": "to",
@@ -2709,8 +2709,8 @@
         {
             "id": 139,
             "word": "the",
-            "startTime": 509.6,
-            "duration": 0.8,
+            "start_time": 50.91,
+            "stop_time": 51.03,
             "syllables": [
                 {
                     "syllable": "the",
@@ -2724,8 +2724,8 @@
         {
             "id": 140,
             "word": "Great",
-            "startTime": 510.5,
-            "duration": 2.8,
+            "start_time": 51.03,
+            "stop_time": 51.29,
             "syllables": [
                 {
                     "syllable": "Great",
@@ -2741,8 +2741,8 @@
         {
             "id": 141,
             "word": "Banyan",
-            "startTime": 513.4,
-            "duration": 3.9,
+            "start_time": 51.29,
+            "stop_time": 51.71,
             "syllables": [
                 {
                     "syllable": "Ban",
@@ -2765,8 +2765,8 @@
         {
             "id": 142,
             "word": "clearing.",
-            "startTime": 51.71,
-            "duration": 52.13,
+            "start_time": 51.71,
+            "stop_time": 52.13,
             "syllables": [
                 {
                     "syllable": "clear",
@@ -2793,8 +2793,8 @@
         {
             "id": 143,
             "word": "Hurry",
-            "startTime": 529.0,
-            "duration": 3.9,
+            "start_time": 52.88,
+            "stop_time": 53.22,
             "syllables": [
                 {
                     "syllable": "Hur",
@@ -2816,8 +2816,8 @@
         {
             "id": 144,
             "word": "up,",
-            "startTime": 53.22,
-            "duration": 53.38,
+            "start_time": 53.22,
+            "stop_time": 53.38,
             "syllables": [
                 {
                     "syllable": "up",
@@ -2831,8 +2831,8 @@
         {
             "id": 145,
             "word": "Sammy,",
-            "startTime": 53.38,
-            "duration": 53.82,
+            "start_time": 53.38,
+            "stop_time": 53.82,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -2854,8 +2854,8 @@
         {
             "id": 146,
             "word": "we",
-            "startTime": 541.4,
-            "duration": 1.6,
+            "start_time": 53.82,
+            "stop_time": 54.28,
             "syllables": [
                 {
                     "syllable": "we",
@@ -2869,8 +2869,8 @@
         {
             "id": 147,
             "word": "don't",
-            "startTime": 543.1,
-            "duration": 1.2,
+            "start_time": 54.28,
+            "stop_time": 54.42,
             "syllables": [
                 {
                     "syllable": "don't",
@@ -2886,8 +2886,8 @@
         {
             "id": 148,
             "word": "want",
-            "startTime": 544.4,
-            "duration": 1.2,
+            "start_time": 54.42,
+            "stop_time": 54.54,
             "syllables": [
                 {
                     "syllable": "want",
@@ -2903,8 +2903,8 @@
         {
             "id": 149,
             "word": "to",
-            "startTime": 545.7,
-            "duration": 0.6,
+            "start_time": 54.54,
+            "stop_time": 54.6,
             "syllables": [
                 {
                     "syllable": "to",
@@ -2918,8 +2918,8 @@
         {
             "id": 150,
             "word": "be",
-            "startTime": 546.4,
-            "duration": 0.9,
+            "start_time": 54.6,
+            "stop_time": 54.72,
             "syllables": [
                 {
                     "syllable": "be",
@@ -2933,8 +2933,8 @@
         {
             "id": 151,
             "word": "late,",
-            "startTime": 54.72,
-            "duration": 55.02,
+            "start_time": 54.72,
+            "stop_time": 55.02,
             "syllables": [
                 {
                     "syllable": "late",
@@ -2949,8 +2949,8 @@
         {
             "id": 152,
             "word": "Daisy",
-            "startTime": 553.8,
-            "duration": 3.7,
+            "start_time": 55.02,
+            "stop_time": 55.72,
             "syllables": [
                 {
                     "syllable": "Dai",
@@ -2971,8 +2971,8 @@
         {
             "id": 153,
             "word": "said",
-            "startTime": 557.6,
-            "duration": 3.9,
+            "start_time": 55.72,
+            "stop_time": 56.03,
             "syllables": [
                 {
                     "syllable": "said",
@@ -2987,8 +2987,8 @@
         {
             "id": 154,
             "word": "her",
-            "startTime": 563.6,
-            "duration": 1.8,
+            "start_time": 56.03,
+            "stop_time": 56.53,
             "syllables": [
                 {
                     "syllable": "her",
@@ -3003,8 +3003,8 @@
         {
             "id": 155,
             "word": "voice",
-            "startTime": 565.5,
-            "duration": 3.0,
+            "start_time": 56.53,
+            "stop_time": 56.81,
             "syllables": [
                 {
                     "syllable": "voice",
@@ -3019,8 +3019,8 @@
         {
             "id": 156,
             "word": "filled",
-            "startTime": 568.6,
-            "duration": 2.3,
+            "start_time": 56.81,
+            "stop_time": 57.07,
             "syllables": [
                 {
                     "syllable": "filled",
@@ -3036,8 +3036,8 @@
         {
             "id": 157,
             "word": "with",
-            "startTime": 571.0,
-            "duration": 1.1,
+            "start_time": 57.07,
+            "stop_time": 57.19,
             "syllables": [
                 {
                     "syllable": "with",
@@ -3052,8 +3052,8 @@
         {
             "id": 158,
             "word": "determination,",
-            "startTime": 57.19,
-            "duration": 57.99,
+            "start_time": 57.19,
+            "stop_time": 57.99,
             "syllables": [
                 {
                     "syllable": "de",
@@ -3095,8 +3095,8 @@
         {
             "id": 159,
             "word": "Sammy",
-            "startTime": 587.4,
-            "duration": 4.5,
+            "start_time": 57.99,
+            "stop_time": 59.21,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -3118,8 +3118,8 @@
         {
             "id": 160,
             "word": "hopped",
-            "startTime": 592.0,
-            "duration": 3.5,
+            "start_time": 59.21,
+            "stop_time": 59.51,
             "syllables": [
                 {
                     "syllable": "hopped",
@@ -3135,8 +3135,8 @@
         {
             "id": 161,
             "word": "onto",
-            "startTime": 595.6,
-            "duration": 1.7,
+            "start_time": 59.51,
+            "stop_time": 59.73,
             "syllables": [
                 {
                     "syllable": "on",
@@ -3157,8 +3157,8 @@
         {
             "id": 162,
             "word": "the",
-            "startTime": 597.4,
-            "duration": 1.1,
+            "start_time": 59.73,
+            "stop_time": 59.83,
             "syllables": [
                 {
                     "syllable": "the",
@@ -3172,8 +3172,8 @@
         {
             "id": 163,
             "word": "boat",
-            "startTime": 598.6,
-            "duration": 3.7,
+            "start_time": 59.83,
+            "stop_time": 60.11,
             "syllables": [
                 {
                     "syllable": "boat",
@@ -3188,8 +3188,8 @@
         {
             "id": 164,
             "word": "and",
-            "startTime": 603.8,
-            "duration": 1.7,
+            "start_time": 60.11,
+            "stop_time": 60.54,
             "syllables": [
                 {
                     "syllable": "and",
@@ -3204,8 +3204,8 @@
         {
             "id": 165,
             "word": "off",
-            "startTime": 605.6,
-            "duration": 2.0,
+            "start_time": 60.54,
+            "stop_time": 60.74,
             "syllables": [
                 {
                     "syllable": "off",
@@ -3219,8 +3219,8 @@
         {
             "id": 166,
             "word": "they",
-            "startTime": 607.7,
-            "duration": 1.2,
+            "start_time": 60.74,
+            "stop_time": 60.9,
             "syllables": [
                 {
                     "syllable": "they",
@@ -3234,8 +3234,8 @@
         {
             "id": 167,
             "word": "went",
-            "startTime": 609.0,
-            "duration": 4.1,
+            "start_time": 60.9,
+            "stop_time": 61.18,
             "syllables": [
                 {
                     "syllable": "went",
@@ -3251,8 +3251,8 @@
         {
             "id": 168,
             "word": "sailing",
-            "startTime": 614.4,
-            "duration": 4.9,
+            "start_time": 61.18,
+            "stop_time": 61.92,
             "syllables": [
                 {
                     "syllable": "sail",
@@ -3274,8 +3274,8 @@
         {
             "id": 169,
             "word": "across",
-            "startTime": 619.4,
-            "duration": 3.3,
+            "start_time": 61.92,
+            "stop_time": 62.26,
             "syllables": [
                 {
                     "syllable": "a",
@@ -3297,8 +3297,8 @@
         {
             "id": 170,
             "word": "the",
-            "startTime": 622.8,
-            "duration": 1.5,
+            "start_time": 62.26,
+            "stop_time": 62.42,
             "syllables": [
                 {
                     "syllable": "the",
@@ -3312,8 +3312,8 @@
         {
             "id": 171,
             "word": "river,",
-            "startTime": 62.42,
-            "duration": 62.72,
+            "start_time": 62.42,
+            "stop_time": 62.72,
             "syllables": [
                 {
                     "syllable": "riv",
@@ -3334,8 +3334,8 @@
         {
             "id": 172,
             "word": "discussing",
-            "startTime": 630.6,
-            "duration": 6.1,
+            "start_time": 62.72,
+            "stop_time": 63.66,
             "syllables": [
                 {
                     "syllable": "dis",
@@ -3366,8 +3366,8 @@
         {
             "id": 173,
             "word": "their",
-            "startTime": 636.8,
-            "duration": 1.7,
+            "start_time": 63.66,
+            "stop_time": 63.82,
             "syllables": [
                 {
                     "syllable": "their",
@@ -3382,8 +3382,8 @@
         {
             "id": 174,
             "word": "strategy",
-            "startTime": 638.6,
-            "duration": 5.5,
+            "start_time": 63.82,
+            "stop_time": 64.36,
             "syllables": [
                 {
                     "syllable": "stra",
@@ -3408,8 +3408,8 @@
         {
             "id": 175,
             "word": "for",
-            "startTime": 644.2,
-            "duration": 1.1,
+            "start_time": 64.36,
+            "stop_time": 64.5,
             "syllables": [
                 {
                     "syllable": "for",
@@ -3424,8 +3424,8 @@
         {
             "id": 176,
             "word": "the",
-            "startTime": 645.4,
-            "duration": 0.9,
+            "start_time": 64.5,
+            "stop_time": 64.62,
             "syllables": [
                 {
                     "syllable": "the",
@@ -3439,8 +3439,8 @@
         {
             "id": 177,
             "word": "contest",
-            "startTime": 646.4,
-            "duration": 4.2,
+            "start_time": 64.62,
+            "stop_time": 65.17,
             "syllables": [
                 {
                     "syllable": "con",
@@ -3464,8 +3464,8 @@
         {
             "id": 178,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 65.17,
+            "stop_time": 65.65,
             "syllables": [
                 {
                     "syllable": "and",
@@ -3480,8 +3480,8 @@
         {
             "id": 179,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 65.65,
+            "stop_time": 65.77,
             "syllables": [
                 {
                     "syllable": "the",
@@ -3495,8 +3495,8 @@
         {
             "id": 180,
             "word": "potential",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 65.77,
+            "stop_time": 66.21,
             "syllables": [
                 {
                     "syllable": "po",
@@ -3526,8 +3526,8 @@
         {
             "id": 181,
             "word": "implications",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 66.21,
+            "stop_time": 66.93,
             "syllables": [
                 {
                     "syllable": "im",
@@ -3565,8 +3565,8 @@
         {
             "id": 182,
             "word": "for",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 66.93,
+            "stop_time": 67.09,
             "syllables": [
                 {
                     "syllable": "for",
@@ -3581,8 +3581,8 @@
         {
             "id": 183,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 67.09,
+            "stop_time": 67.27,
             "syllables": [
                 {
                     "syllable": "their",
@@ -3597,8 +3597,8 @@
         {
             "id": 184,
             "word": "future",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 67.27,
+            "stop_time": 67.75,
             "syllables": [
                 {
                     "syllable": "fu",
@@ -3621,8 +3621,8 @@
         {
             "id": 185,
             "word": "in",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 67.75,
+            "stop_time": 67.83,
             "syllables": [
                 {
                     "syllable": "in",
@@ -3636,8 +3636,8 @@
         {
             "id": 186,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 67.83,
+            "stop_time": 67.95,
             "syllables": [
                 {
                     "syllable": "the",
@@ -3651,8 +3651,8 @@
         {
             "id": 187,
             "word": "bird",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 67.95,
+            "stop_time": 68.21,
             "syllables": [
                 {
                     "syllable": "bird",
@@ -3667,8 +3667,8 @@
         {
             "id": 188,
             "word": "hierarchy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 68.21,
+            "stop_time": 68.85,
             "syllables": [
                 {
                     "syllable": "hi",
@@ -3703,8 +3703,8 @@
         {
             "id": 189,
             "word": "as",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 68.85,
+            "stop_time": 69.8,
             "syllables": [
                 {
                     "syllable": "as",
@@ -3718,8 +3718,8 @@
         {
             "id": 190,
             "word": "they,",
-            "startTime": 69.8,
-            "duration": 69.98,
+            "start_time": 69.8,
+            "stop_time": 69.98,
             "syllables": [
                 {
                     "syllable": "they,",
@@ -3734,8 +3734,8 @@
         {
             "id": 191,
             "word": "rowed",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 69.98,
+            "stop_time": 70.4,
             "syllables": [
                 {
                     "syllable": "rowed",
@@ -3750,8 +3750,8 @@
         {
             "id": 192,
             "word": "Daisy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 70.4,
+            "stop_time": 71.12,
             "syllables": [
                 {
                     "syllable": "Dai",
@@ -3772,8 +3772,8 @@
         {
             "id": 193,
             "word": "shared",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 71.12,
+            "stop_time": 71.42,
             "syllables": [
                 {
                     "syllable": "shared",
@@ -3789,8 +3789,8 @@
         {
             "id": 194,
             "word": "her",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 71.42,
+            "stop_time": 71.54,
             "syllables": [
                 {
                     "syllable": "her",
@@ -3804,8 +3804,8 @@
         {
             "id": 195,
             "word": "psychology-based",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 71.54,
+            "stop_time": 72.54,
             "syllables": [
                 {
                     "syllable": "psy",
@@ -3845,8 +3845,8 @@
         {
             "id": 196,
             "word": "pie",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 72.54,
+            "stop_time": 72.9,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -3860,8 +3860,8 @@
         {
             "id": 197,
             "word": "theory",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 72.9,
+            "stop_time": 73.24,
             "syllables": [
                 {
                     "syllable": "the",
@@ -3882,8 +3882,8 @@
         {
             "id": 198,
             "word": "with",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 73.24,
+            "stop_time": 73.4,
             "syllables": [
                 {
                     "syllable": "with",
@@ -3898,8 +3898,8 @@
         {
             "id": 199,
             "word": "Sammy.",
-            "startTime": 73.4,
-            "duration": 73.82,
+            "start_time": 73.4,
+            "stop_time": 73.82,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -3921,8 +3921,8 @@
         {
             "id": 200,
             "word": "You",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 74.53,
+            "stop_time": 74.71,
             "syllables": [
                 {
                     "syllable": "You",
@@ -3935,8 +3935,8 @@
         {
             "id": 201,
             "word": "see,",
-            "startTime": 74.71,
-            "duration": 74.97,
+            "start_time": 74.71,
+            "stop_time": 74.97,
             "syllables": [
                 {
                     "syllable": "see",
@@ -3950,8 +3950,8 @@
         {
             "id": 202,
             "word": "she",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 74.97,
+            "stop_time": 75.43,
             "syllables": [
                 {
                     "syllable": "she",
@@ -3965,8 +3965,8 @@
         {
             "id": 203,
             "word": "explained",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 75.43,
+            "stop_time": 75.85,
             "syllables": [
                 {
                     "syllable": "ex",
@@ -3991,8 +3991,8 @@
         {
             "id": 204,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 75.85,
+            "stop_time": 76.49,
             "syllables": [
                 {
                     "syllable": "the",
@@ -4006,8 +4006,8 @@
         {
             "id": 205,
             "word": "judges",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 76.49,
+            "stop_time": 76.83,
             "syllables": [
                 {
                     "syllable": "judg",
@@ -4029,8 +4029,8 @@
         {
             "id": 206,
             "word": "have",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 76.83,
+            "stop_time": 76.97,
             "syllables": [
                 {
                     "syllable": "have",
@@ -4045,8 +4045,8 @@
         {
             "id": 207,
             "word": "had",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 76.97,
+            "stop_time": 77.11,
             "syllables": [
                 {
                     "syllable": "had",
@@ -4061,8 +4061,8 @@
         {
             "id": 208,
             "word": "enough",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 77.11,
+            "stop_time": 77.41,
             "syllables": [
                 {
                     "syllable": "en",
@@ -4082,8 +4082,8 @@
         {
             "id": 209,
             "word": "of",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 77.41,
+            "stop_time": 77.49,
             "syllables": [
                 {
                     "syllable": "of",
@@ -4097,8 +4097,8 @@
         {
             "id": 210,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 77.49,
+            "stop_time": 77.61,
             "syllables": [
                 {
                     "syllable": "the",
@@ -4112,8 +4112,8 @@
         {
             "id": 211,
             "word": "same",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 77.61,
+            "stop_time": 77.91,
             "syllables": [
                 {
                     "syllable": "same",
@@ -4128,8 +4128,8 @@
         {
             "id": 212,
             "word": "old",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 77.91,
+            "stop_time": 78.11,
             "syllables": [
                 {
                     "syllable": "old",
@@ -4144,8 +4144,8 @@
         {
             "id": 213,
             "word": "fruit",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 78.11,
+            "stop_time": 78.37,
             "syllables": [
                 {
                     "syllable": "fruit",
@@ -4161,8 +4161,8 @@
         {
             "id": 214,
             "word": "pies.",
-            "startTime": 78.37,
-            "duration": 78.75,
+            "start_time": 78.37,
+            "stop_time": 78.75,
             "syllables": [
                 {
                     "syllable": "pies",
@@ -4181,8 +4181,8 @@
         {
             "id": 215,
             "word": "We",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 78.75,
+            "stop_time": 79.47,
             "syllables": [
                 {
                     "syllable": "We",
@@ -4196,8 +4196,8 @@
         {
             "id": 216,
             "word": "need",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 79.47,
+            "stop_time": 79.63,
             "syllables": [
                 {
                     "syllable": "need",
@@ -4212,8 +4212,8 @@
         {
             "id": 217,
             "word": "to",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 79.63,
+            "stop_time": 79.71,
             "syllables": [
                 {
                     "syllable": "to",
@@ -4227,8 +4227,8 @@
         {
             "id": 218,
             "word": "make",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 79.71,
+            "stop_time": 79.87,
             "syllables": [
                 {
                     "syllable": "make",
@@ -4243,8 +4243,8 @@
         {
             "id": 219,
             "word": "a",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 79.87,
+            "stop_time": 79.93,
             "syllables": [
                 {
                     "syllable": "a",
@@ -4257,8 +4257,8 @@
         {
             "id": 220,
             "word": "pie",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 79.93,
+            "stop_time": 80.29,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -4272,8 +4272,8 @@
         {
             "id": 221,
             "word": "that",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 80.29,
+            "stop_time": 80.43,
             "syllables": [
                 {
                     "syllable": "that",
@@ -4288,8 +4288,8 @@
         {
             "id": 222,
             "word": "captures",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 80.43,
+            "stop_time": 80.91,
             "syllables": [
                 {
                     "syllable": "cap",
@@ -4312,8 +4312,8 @@
         {
             "id": 223,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 80.91,
+            "stop_time": 81.1,
             "syllables": [
                 {
                     "syllable": "their",
@@ -4327,8 +4327,8 @@
         {
             "id": 224,
             "word": "hearts",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 81.1,
+            "stop_time": 81.42,
             "syllables": [
                 {
                     "syllable": "hearts",
@@ -4343,8 +4343,8 @@
         {
             "id": 225,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 81.42,
+            "stop_time": 81.9,
             "syllables": [
                 {
                     "syllable": "and",
@@ -4357,8 +4357,8 @@
         {
             "id": 226,
             "word": "conquers",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 81.9,
+            "stop_time": 82.4,
             "syllables": [
                 {
                     "syllable": "con",
@@ -4382,8 +4382,8 @@
         {
             "id": 227,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 82.4,
+            "stop_time": 82.52,
             "syllables": [
                 {
                     "syllable": "the",
@@ -4397,8 +4397,8 @@
         {
             "id": 228,
             "word": "canopy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 82.52,
+            "stop_time": 83.02,
             "syllables": [
                 {
                     "syllable": "can",
@@ -4426,8 +4426,8 @@
         {
             "id": 229,
             "word": "with",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 83.02,
+            "stop_time": 83.18,
             "syllables": [
                 {
                     "syllable": "with",
@@ -4442,8 +4442,8 @@
         {
             "id": 230,
             "word": "its",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 83.18,
+            "stop_time": 83.34,
             "syllables": [
                 {
                     "syllable": "its",
@@ -4457,8 +4457,8 @@
         {
             "id": 231,
             "word": "taste",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 83.34,
+            "stop_time": 83.78,
             "syllables": [
                 {
                     "syllable": "taste",
@@ -4474,8 +4474,8 @@
         {
             "id": 232,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 83.78,
+            "stop_time": 83.88,
             "syllables": [
                 {
                     "syllable": "and",
@@ -4490,8 +4490,8 @@
         {
             "id": 233,
             "word": "creativity",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 83.88,
+            "stop_time": 84.58,
             "syllables": [
                 {
                     "syllable": "cre",
@@ -4534,8 +4534,8 @@
         {
             "id": 234,
             "word": "Sammy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 85.65,
+            "stop_time": 86.07,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -4557,8 +4557,8 @@
         {
             "id": 235,
             "word": "agreed",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 86.07,
+            "stop_time": 86.41,
             "syllables": [
                 {
                     "syllable": "a",
@@ -4580,8 +4580,8 @@
         {
             "id": 236,
             "word": "whole-heartedly",
-            "startTime": 86.41,
-            "duration": 87.11,
+            "start_time": 86.41,
+            "stop_time": 87.11,
             "syllables": [
                 {
                     "syllable": "whole",
@@ -4619,8 +4619,8 @@
         {
             "id": 237,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 87.11,
+            "stop_time": 87.53,
             "syllables": [
                 {
                     "syllable": "and",
@@ -4635,8 +4635,8 @@
         {
             "id": 238,
             "word": "they",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 87.53,
+            "stop_time": 87.69,
             "syllables": [
                 {
                     "syllable": "they",
@@ -4650,8 +4650,8 @@
         {
             "id": 239,
             "word": "continued",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 87.69,
+            "stop_time": 88.19,
             "syllables": [
                 {
                     "syllable": "con",
@@ -4682,8 +4682,8 @@
         {
             "id": 240,
             "word": "to",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 88.19,
+            "stop_time": 88.29,
             "syllables": [
                 {
                     "syllable": "to",
@@ -4697,8 +4697,8 @@
         {
             "id": 241,
             "word": "brainstorm",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 88.29,
+            "stop_time": 88.85,
             "syllables": [
                 {
                     "syllable": "brain",
@@ -4724,8 +4724,8 @@
         {
             "id": 242,
             "word": "ideas",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 88.85,
+            "stop_time": 89.37,
             "syllables": [
                 {
                     "syllable": "i",
@@ -4746,8 +4746,8 @@
         {
             "id": 243,
             "word": "for",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 89.37,
+            "stop_time": 89.53,
             "syllables": [
                 {
                     "syllable": "for",
@@ -4762,8 +4762,8 @@
         {
             "id": 244,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 89.53,
+            "stop_time": 89.75,
             "syllables": [
                 {
                     "syllable": "their",
@@ -4778,8 +4778,8 @@
         {
             "id": 245,
             "word": "unique",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 89.75,
+            "stop_time": 90.14,
             "syllables": [
                 {
                     "syllable": "u",
@@ -4801,8 +4801,8 @@
         {
             "id": 246,
             "word": "pie",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 90.14,
+            "stop_time": 90.38,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -4816,8 +4816,8 @@
         {
             "id": 247,
             "word": "creation",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 90.38,
+            "stop_time": 90.92,
             "syllables": [
                 {
                     "syllable": "cre",
@@ -4847,8 +4847,8 @@
         {
             "id": 248,
             "word": "Upon",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 90.92,
+            "stop_time": 91.98,
             "syllables": [
                 {
                     "syllable": "Up",
@@ -4869,8 +4869,8 @@
         {
             "id": 249,
             "word": "arriving",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 91.98,
+            "stop_time": 92.42,
             "syllables": [
                 {
                     "syllable": "ar",
@@ -4899,8 +4899,8 @@
         {
             "id": 250,
             "word": "at",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 92.42,
+            "stop_time": 92.5,
             "syllables": [
                 {
                     "syllable": "at",
@@ -4914,8 +4914,8 @@
         {
             "id": 251,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 92.5,
+            "stop_time": 92.62,
             "syllables": [
                 {
                     "syllable": "the",
@@ -4929,8 +4929,8 @@
         {
             "id": 252,
             "word": "Great",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 92.62,
+            "stop_time": 92.92,
             "syllables": [
                 {
                     "syllable": "Great",
@@ -4946,8 +4946,8 @@
         {
             "id": 253,
             "word": "Banyan",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 92.92,
+            "stop_time": 93.32,
             "syllables": [
                 {
                     "syllable": "Ban",
@@ -4970,8 +4970,8 @@
         {
             "id": 254,
             "word": "Clearing,",
-            "startTime": 93.32,
-            "duration": 93.74,
+            "start_time": 93.32,
+            "stop_time": 93.74,
             "syllables": [
                 {
                     "syllable": "Clear",
@@ -4994,8 +4994,8 @@
         {
             "id": 255,
             "word": "Sammy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 93.74,
+            "stop_time": 94.5,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -5017,8 +5017,8 @@
         {
             "id": 256,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 94.5,
+            "stop_time": 94.6,
             "syllables": [
                 {
                     "syllable": "and",
@@ -5033,8 +5033,8 @@
         {
             "id": 257,
             "word": "Daisy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 94.6,
+            "stop_time": 94.96,
             "syllables": [
                 {
                     "syllable": "Dai",
@@ -5055,8 +5055,8 @@
         {
             "id": 258,
             "word": "presented",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 94.96,
+            "stop_time": 95.4,
             "syllables": [
                 {
                     "syllable": "pre",
@@ -5087,8 +5087,8 @@
         {
             "id": 259,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 95.4,
+            "stop_time": 95.58,
             "syllables": [
                 {
                     "syllable": "their",
@@ -5102,8 +5102,8 @@
         {
             "id": 260,
             "word": "innovative",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 95.58,
+            "stop_time": 96.1,
             "syllables": [
                 {
                     "syllable": "in",
@@ -5139,8 +5139,8 @@
         {
             "id": 261,
             "word": "pie,",
-            "startTime": 96.1,
-            "duration": 96.46,
+            "start_time": 96.1,
+            "stop_time": 96.46,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -5154,8 +5154,8 @@
         {
             "id": 262,
             "word": "which",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 96.46,
+            "stop_time": 97.03,
             "syllables": [
                 {
                     "syllable": "which",
@@ -5170,8 +5170,8 @@
         {
             "id": 263,
             "word": "combined",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 97.03,
+            "stop_time": 97.55,
             "syllables": [
                 {
                     "syllable": "com",
@@ -5195,8 +5195,8 @@
         {
             "id": 264,
             "word": "exotic",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 97.55,
+            "stop_time": 98.07,
             "syllables": [
                 {
                     "syllable": "ex",
@@ -5225,8 +5225,8 @@
         {
             "id": 265,
             "word": "fruits",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 98.07,
+            "stop_time": 98.45,
             "syllables": [
                 {
                     "syllable": "fruits",
@@ -5243,8 +5243,8 @@
         {
             "id": 266,
             "word": "with",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 98.45,
+            "stop_time": 98.79,
             "syllables": [
                 {
                     "syllable": "with",
@@ -5259,8 +5259,8 @@
         {
             "id": 267,
             "word": "a",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 98.79,
+            "stop_time": 98.85,
             "syllables": [
                 {
                     "syllable": "a",
@@ -5273,8 +5273,8 @@
         {
             "id": 268,
             "word": "hint",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 98.85,
+            "stop_time": 99.09,
             "syllables": [
                 {
                     "syllable": "hint",
@@ -5290,8 +5290,8 @@
         {
             "id": 269,
             "word": "of",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 99.09,
+            "stop_time": 99.19,
             "syllables": [
                 {
                     "syllable": "of",
@@ -5304,8 +5304,8 @@
         {
             "id": 270,
             "word": "jungle",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 99.19,
+            "stop_time": 99.57,
             "syllables": [
                 {
                     "syllable": "jun",
@@ -5328,8 +5328,8 @@
         {
             "id": 271,
             "word": "spice.",
-            "startTime": 99.57,
-            "duration": 99.95,
+            "start_time": 99.57,
+            "stop_time": 99.95,
             "syllables": [
                 {
                     "syllable": "spice",
@@ -5345,8 +5345,8 @@
         {
             "id": 272,
             "word": "The",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 100.73,
+            "stop_time": 100.9,
             "syllables": [
                 {
                     "syllable": "The",
@@ -5360,8 +5360,8 @@
         {
             "id": 273,
             "word": "judges",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 100.9,
+            "stop_time": 101.32,
             "syllables": [
                 {
                     "syllable": "jud",
@@ -5384,8 +5384,8 @@
         {
             "id": 274,
             "word": "were",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 101.32,
+            "stop_time": 101.5,
             "syllables": [
                 {
                     "syllable": "were",
@@ -5399,8 +5399,8 @@
         {
             "id": 275,
             "word": "intrigued",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 101.5,
+            "stop_time": 102.08,
             "syllables": [
                 {
                     "syllable": "in",
@@ -5431,8 +5431,8 @@
         {
             "id": 276,
             "word": "by",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 102.08,
+            "stop_time": 102.24,
             "syllables": [
                 {
                     "syllable": "by",
@@ -5446,8 +5446,8 @@
         {
             "id": 277,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 102.24,
+            "stop_time": 102.4,
             "syllables": [
                 {
                     "syllable": "the",
@@ -5461,8 +5461,8 @@
         {
             "id": 278,
             "word": "unusual",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 102.4,
+            "stop_time": 102.94,
             "syllables": [
                 {
                     "syllable": "un",
@@ -5490,8 +5490,8 @@
         {
             "id": 279,
             "word": "flavours",
-            "startTime": 102.94,
-            "duration": 103.5,
+            "start_time": 102.94,
+            "stop_time": 103.5,
             "syllables": [
                 {
                     "syllable": "fla",
@@ -5514,8 +5514,8 @@
         {
             "id": 280,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 103.5,
+            "stop_time": 103.62,
             "syllables": [
                 {
                     "syllable": "and",
@@ -5528,8 +5528,8 @@
         {
             "id": 281,
             "word": "creativity",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 103.62,
+            "stop_time": 104.34,
             "syllables": [
                 {
                     "syllable": "cre",
@@ -5571,8 +5571,8 @@
         {
             "id": 282,
             "word": "of",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 104.34,
+            "stop_time": 104.44,
             "syllables": [
                 {
                     "syllable": "of",
@@ -5586,8 +5586,8 @@
         {
             "id": 283,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 104.44,
+            "stop_time": 104.58,
             "syllables": [
                 {
                     "syllable": "the",
@@ -5601,8 +5601,8 @@
         {
             "id": 284,
             "word": "delectable",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 104.58,
+            "stop_time": 105.1,
             "syllables": [
                 {
                     "syllable": "de",
@@ -5631,8 +5631,8 @@
         {
             "id": 285,
             "word": "desert.",
-            "startTime": 105.1,
-            "duration": 105.54,
+            "start_time": 105.1,
+            "stop_time": 105.54,
             "syllables": [
                 {
                     "syllable": "des",
@@ -5660,8 +5660,8 @@
         {
             "id": 286,
             "word": "As",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 105.54,
+            "stop_time": 106.28,
             "syllables": [
                 {
                     "syllable": "As",
@@ -5675,8 +5675,8 @@
         {
             "id": 287,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 106.28,
+            "stop_time": 106.44,
             "syllables": [
                 {
                     "syllable": "the",
@@ -5690,8 +5690,8 @@
         {
             "id": 288,
             "word": "results",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 106.44,
+            "stop_time": 106.84,
             "syllables": [
                 {
                     "syllable": "re",
@@ -5714,8 +5714,8 @@
         {
             "id": 289,
             "word": "were",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 106.84,
+            "stop_time": 106.98,
             "syllables": [
                 {
                     "syllable": "were",
@@ -5729,8 +5729,8 @@
         {
             "id": 290,
             "word": "announced,",
-            "startTime": 106.98,
-            "duration": 107.47,
+            "start_time": 106.98,
+            "stop_time": 107.47,
             "syllables": [
                 {
                     "syllable": "an",
@@ -5755,8 +5755,8 @@
         {
             "id": 291,
             "word": "Sammy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 107.47,
+            "stop_time": 108.33,
             "syllables": [
                 {
                     "syllable": "Sam",
@@ -5778,8 +5778,8 @@
         {
             "id": 292,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 108.33,
+            "stop_time": 108.45,
             "syllables": [
                 {
                     "syllable": "and",
@@ -5794,8 +5794,8 @@
         {
             "id": 293,
             "word": "Daisy",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 108.45,
+            "stop_time": 108.83,
             "syllables": [
                 {
                     "syllable": "Dai",
@@ -5816,8 +5816,8 @@
         {
             "id": 294,
             "word": "held",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 108.83,
+            "stop_time": 109.09,
             "syllables": [
                 {
                     "syllable": "held",
@@ -5833,8 +5833,8 @@
         {
             "id": 295,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 109.09,
+            "stop_time": 109.27,
             "syllables": [
                 {
                     "syllable": "their",
@@ -5849,8 +5849,8 @@
         {
             "id": 296,
             "word": "breath,",
-            "startTime": 109.27,
-            "duration": 109.59,
+            "start_time": 109.27,
+            "stop_time": 109.59,
             "syllables": [
                 {
                     "syllable": "breath",
@@ -5866,8 +5866,8 @@
         {
             "id": 297,
             "word": "waiting",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 109.59,
+            "stop_time": 110.29,
             "syllables": [
                 {
                     "syllable": "wait",
@@ -5889,8 +5889,8 @@
         {
             "id": 298,
             "word": "to",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 110.29,
+            "stop_time": 110.43,
             "syllables": [
                 {
                     "syllable": "to",
@@ -5904,8 +5904,8 @@
         {
             "id": 299,
             "word": "hear",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 110.43,
+            "stop_time": 110.63,
             "syllables": [
                 {
                     "syllable": "hear",
@@ -5920,8 +5920,8 @@
         {
             "id": 300,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 110.63,
+            "stop_time": 110.79,
             "syllables": [
                 {
                     "syllable": "their",
@@ -5936,8 +5936,8 @@
         {
             "id": 301,
             "word": "fate.",
-            "startTime": 110.79,
-            "duration": 111.11,
+            "start_time": 110.79,
+            "stop_time": 111.11,
             "syllables": [
                 {
                     "syllable": "fate",
@@ -5952,8 +5952,8 @@
         {
             "id": 302,
             "word": "To",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 112.03,
+            "stop_time": 112.17,
             "syllables": [
                 {
                     "syllable": "To",
@@ -5967,8 +5967,8 @@
         {
             "id": 303,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 112.17,
+            "stop_time": 112.35,
             "syllables": [
                 {
                     "syllable": "their",
@@ -5983,8 +5983,8 @@
         {
             "id": 304,
             "word": "delight,",
-            "startTime": 112.35,
-            "duration": 112.75,
+            "start_time": 112.35,
+            "stop_time": 112.75,
             "syllables": [
                 {
                     "syllable": "de",
@@ -6006,8 +6006,8 @@
         {
             "id": 305,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 112.75,
+            "stop_time": 113.29,
             "syllables": [
                 {
                     "syllable": "their",
@@ -6022,8 +6022,8 @@
         {
             "id": 306,
             "word": "creation",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 113.29,
+            "stop_time": 113.81,
             "syllables": [
                 {
                     "syllable": "cre",
@@ -6052,8 +6052,8 @@
         {
             "id": 307,
             "word": "was",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 113.81,
+            "stop_time": 113.97,
             "syllables": [
                 {
                     "syllable": "was",
@@ -6068,8 +6068,8 @@
         {
             "id": 308,
             "word": "crowned",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 113.97,
+            "stop_time": 114.39,
             "syllables": [
                 {
                     "syllable": "crowned",
@@ -6086,8 +6086,8 @@
         {
             "id": 309,
             "word": "as",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 114.39,
+            "stop_time": 114.59,
             "syllables": [
                 {
                     "syllable": "as",
@@ -6101,8 +6101,8 @@
         {
             "id": 310,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 114.59,
+            "stop_time": 115.11,
             "syllables": [
                 {
                     "syllable": "the",
@@ -6116,8 +6116,8 @@
         {
             "id": 311,
             "word": "pie",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 115.11,
+            "stop_time": 115.53,
             "syllables": [
                 {
                     "syllable": "pie",
@@ -6131,8 +6131,8 @@
         {
             "id": 312,
             "word": "that",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 115.53,
+            "stop_time": 115.71,
             "syllables": [
                 {
                     "syllable": "that",
@@ -6147,8 +6147,8 @@
         {
             "id": 313,
             "word": "conquered",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 115.71,
+            "stop_time": 116.13,
             "syllables": [
                 {
                     "syllable": "con",
@@ -6171,8 +6171,8 @@
         {
             "id": 314,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 116.13,
+            "stop_time": 116.23,
             "syllables": [
                 {
                     "syllable": "the",
@@ -6186,8 +6186,8 @@
         {
             "id": 315,
             "word": "canopy,",
-            "startTime": 116.23,
-            "duration": 116.71,
+            "start_time": 116.23,
+            "stop_time": 116.71,
             "syllables": [
                 {
                     "syllable": "can",
@@ -6215,8 +6215,8 @@
         {
             "id": 316,
             "word": "securing",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 116.71,
+            "stop_time": 117.85,
             "syllables": [
                 {
                     "syllable": "se",
@@ -6245,8 +6245,8 @@
         {
             "id": 317,
             "word": "a",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 117.85,
+            "stop_time": 117.91,
             "syllables": [
                 {
                     "syllable": "a",
@@ -6259,8 +6259,8 @@
         {
             "id": 318,
             "word": "bright",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 117.91,
+            "stop_time": 118.27,
             "syllables": [
                 {
                     "syllable": "bright",
@@ -6276,8 +6276,8 @@
         {
             "id": 319,
             "word": "future",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 118.27,
+            "stop_time": 118.69,
             "syllables": [
                 {
                     "syllable": "fu",
@@ -6300,8 +6300,8 @@
         {
             "id": 320,
             "word": "for",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 118.69,
+            "stop_time": 118.81,
             "syllables": [
                 {
                     "syllable": "for",
@@ -6315,8 +6315,8 @@
         {
             "id": 321,
             "word": "their",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 118.81,
+            "stop_time": 118.99,
             "syllables": [
                 {
                     "syllable": "their",
@@ -6330,8 +6330,8 @@
         {
             "id": 322,
             "word": "families",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 118.99,
+            "stop_time": 119.52,
             "syllables": [
                 {
                     "syllable": "fam",
@@ -6360,8 +6360,8 @@
         {
             "id": 323,
             "word": "and",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 119.52,
+            "stop_time": 119.8,
             "syllables": [
                 {
                     "syllable": "and",
@@ -6376,8 +6376,8 @@
         {
             "id": 324,
             "word": "proving",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 119.8,
+            "stop_time": 120.18,
             "syllables": [
                 {
                     "syllable": "prov",
@@ -6400,8 +6400,8 @@
         {
             "id": 325,
             "word": "that",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 120.18,
+            "stop_time": 120.34,
             "syllables": [
                 {
                     "syllable": "that",
@@ -6416,8 +6416,8 @@
         {
             "id": 326,
             "word": "unconventional",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 120.34,
+            "stop_time": 121.18,
             "syllables": [
                 {
                     "syllable": "un",
@@ -6460,8 +6460,8 @@
         {
             "id": 327,
             "word": "thinking",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 121.18,
+            "stop_time": 121.6,
             "syllables": [
                 {
                     "syllable": "think",
@@ -6484,8 +6484,8 @@
         {
             "id": 328,
             "word": "can",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 121.6,
+            "stop_time": 121.8,
             "syllables": [
                 {
                     "syllable": "can",
@@ -6500,8 +6500,8 @@
         {
             "id": 329,
             "word": "lead",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 121.8,
+            "stop_time": 122,
             "syllables": [
                 {
                     "syllable": "lead",
@@ -6515,8 +6515,8 @@
         {
             "id": 330,
             "word": "to",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 122,
+            "stop_time": 122.12,
             "syllables": [
                 {
                     "syllable": "to",
@@ -6530,169 +6530,118 @@
         {
             "id": 331,
             "word": "success",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 122.12,
+            "stop_time": 122.64,
             "syllables": [
-                {
-                    "syllable": "suc",
-                    "phonemes": [
-                        "s",
-                        "ə",
-                        "k"
-                    ]
-                },
-                {
-                    "syllable": "cess",
-                    "phonemes": [
-                        "s",
-                        "ɛ",
-                        "s"
-                    ]
-                }
+              {
+                "syllable": "suc",
+                "phonemes": ["s", "ə", "k"]
+              },
+              {
+                "syllable": "cess",
+                "phonemes": ["s", "ɛ", "s"]
+              }
             ]
-        },
-        {
+          },
+          {
             "id": 332,
             "word": "in",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 122.64,
+            "stop_time": 122.78,
             "syllables": [
-                {
-                    "syllable": "in",
-                    "phonemes": [
-                        "ɪ",
-                        "n"
-                    ]
-                }
+              {
+                "syllable": "in",
+                "phonemes": ["ɪ", "n"]
+              }
             ]
-        },
-        {
+          },
+          {
             "id": 333,
             "word": "even",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 122.78,
+            "stop_time": 123.04,
             "syllables": [
-                {
-                    "syllable": "e",
-                    "phonemes": [
-                        "i"
-                    ]
-                },
-                {
-                    "syllable": "ven",
-                    "phonemes": [
-                        "v",
-                        "ə",
-                        "n"
-                    ]
-                }
+              {
+                "syllable": "e",
+                "phonemes": ["i"]
+              },
+              {
+                "syllable": "ven",
+                "phonemes": ["v", "ə", "n"]
+              }
             ]
-        },
-        {
+          },
+          {
             "id": 334,
             "word": "the",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 123.04,
+            "stop_time": 123.16,
             "syllables": [
-                {
-                    "syllable": "the",
-                    "phonemes": [
-                        "ð",
-                        "ə"
-                    ]
-                }
+              {
+                "syllable": "the",
+                "phonemes": ["ð", "ə"]
+              }
             ]
-        },
-        {
+          },
+          {
             "id": 335,
             "word": "most",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 123.16,
+            "stop_time": 123.38,
             "syllables": [
-                {
-                    "syllable": "most",
-                    "phonemes": [
-                        "m",
-                        "oʊ",
-                        "s",
-                        "t"
-                    ]
-                }
+              {
+                "syllable": "most",
+                "phonemes": ["m", "oʊ", "s", "t"]
+              }
             ]
-        },
-        {
+          },
+          {
             "id": 336,
             "word": "traditional",
-            "startTime": 0.0,
-            "duration": 0.0,
+            "start_time": 123.38,
+            "stop_time": 123.98,
             "syllables": [
-                {
-                    "syllable": "tra",
-                    "phonemes": [
-                        "t",
-                        "ɹ",
-                        "æ"
-                    ]
-                },
-                {
-                    "syllable": "di",
-                    "phonemes": [
-                        "d",
-                        "ɪ"
-                    ]
-                },
-                {
-                    "syllable": "tion",
-                    "phonemes": [
-                        "ʃ",
-                        "ə",
-                        "n"
-                    ]
-                },
-                {
-                    "syllable": "al",
-                    "phonemes": [
-                        "ə",
-                        "l"
-                    ]
-                }
+              {
+                "syllable": "tra",
+                "phonemes": ["t", "ɹ", "æ"]
+              },
+              {
+                "syllable": "di",
+                "phonemes": ["d", "ɪ"]
+              },
+              {
+                "syllable": "tion",
+                "phonemes": ["ʃ", "ə", "n"]
+              },
+              {
+                "syllable": "al",
+                "phonemes": ["ə", "l"]
+              }
             ]
-        },
-        {
+          },
+          {
             "id": 337,
             "word": "societies.",
-            "startTime": 123.98,
-            "duration": 124.46,
+            "start_time": 123.98,
+            "stop_time": 124.46,
             "syllables": [
-                {
-                    "syllable": "so",
-                    "phonemes": [
-                        "s",
-                        "oʊ"
-                    ]
-                },
-                {
-                    "syllable": "ci",
-                    "phonemes": [
-                        "s",
-                        "ɪ"
-                    ]
-                },
-                {
-                    "syllable": "e",
-                    "phonemes": [
-                        "ɪ"
-                    ]
-                },
-                {
-                    "syllable": "ties",
-                    "phonemes": [
-                        "t",
-                        "aɪ",
-                        "z"
-                    ]
-                }
+              {
+                "syllable": "so",
+                "phonemes": ["s", "oʊ"]
+              },
+              {
+                "syllable": "ci",
+                "phonemes": ["s", "ɪ"]
+              },
+              {
+                "syllable": "e",
+                "phonemes": ["ɪ"]
+              },
+              {
+                "syllable": "ties",
+                "phonemes": ["t", "aɪ", "z"]
+              }
             ]
-        }
+          }
     ]
 }
