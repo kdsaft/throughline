@@ -30,20 +30,19 @@ function initSammy() {
 function handleInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
+    talk()
     uiSounds.play('chirp');
 
     timer = setTimeout(() => {
         longPress = true;
         uiSounds.play('erase');
-        //const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
-        //processAudioFile(fileUrl);
       
         buttonIcon.setAttribute('aria-label', 'Long press activated');
         resetText();
         resetTimer = setTimeout(() => {
             wakeUp();
             isAwake = true;
-        }, 3000);
+        }, 1500);
     }, 1500); // 1000ms = 1 second
 };
 
@@ -85,7 +84,7 @@ function talk() {
 }
 
 function resetText() {
-    setState(['Beak Opened', 'Beak Tongue', 'Right Eye Awake', 'Left Eye Awake']);
+    setState(['Beak Closed', 'Right Eye Asleep', 'Left Eye Awake']);
     setBodyColor('reset');
 }
 
