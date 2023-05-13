@@ -26,8 +26,8 @@ async function thingsToLoad() {
         await Promise.all(scriptUrls.map(url => loadJS(url)));
 
         // Call init functions after all scripts are loaded
-        initReading();
         initListening();
+        initReading();
         initSammy();
 
     } catch (error) {
