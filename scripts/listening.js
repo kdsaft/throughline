@@ -63,6 +63,7 @@ function initSpeechSDK() {
             enableMiscue: true,
             phonemeAlphabet: "IPA"
         };
+        const pronunciationAssessmentConfig = SpeechSDK.PronunciationAssessmentConfig.fromJSON(JSON.stringify(pronunciationAssessmentConfigJson));
 
         // Create a speech config
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription(subscriptionKey, region);
