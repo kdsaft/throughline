@@ -40,8 +40,8 @@ function handleInteractionStart(event) {
     timer = setTimeout(() => {
         longPress = true;
         //eraseSound.play();
-        const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
-        processAudioFile(fileUrl);
+        //const fileUrl = 'https://kdsaft.github.io/throughline/audio/PieThatConquered.wav';
+        //processAudioFile(fileUrl);
       
         buttonIcon.setAttribute('aria-label', 'Long press activated');
         resetText();
