@@ -20,6 +20,7 @@ $(document).ready(function () {
     // tracking variables
     let dragging = false;
     let isAnimating = false;
+    let isMoving = false;
     let wordId = 1;
 
     let offsetTouchX;
@@ -38,7 +39,7 @@ $(document).ready(function () {
         console.log('animateToWord');
         // The magicLens stays in word view
 
-        wordFocus();
+        //wordFocus();
 
         let destinationId = id;
 
@@ -461,14 +462,18 @@ $(document).ready(function () {
     // onEvents
 
     function onMouseUp(event) {
+
+        if (isMoving) {
             magicLensHandle.jQ.removeClass('grabbed');
             dragging = false;
+            isMoving = false;
             animateToWord(wordId);
             $(document).off('mousemove touchmove', updateMagicLens);
-
+        }
     }
 
     magicLensHandle.jQ.on('mousedown', function (event) {
+        isMoving = true;
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
         const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
 
@@ -483,6 +488,8 @@ $(document).ready(function () {
 
 
     grabHandleArea.jQ.on('touchstart', function (event) {
+        isMoving = true;
+
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
         const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
         if (event.type === 'touchstart') {
@@ -498,6 +505,8 @@ $(document).ready(function () {
     });
 
     magicLensDisplay.jQ.on('mousedown', function (event) {
+        isMoving = true;
+
         event.preventDefault();
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
@@ -521,6 +530,8 @@ $(document).ready(function () {
 
 
     magicLensDisplay.jQ.on('touchstart', function (event) {
+        isMoving = true;
+
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
         if (event.type === 'touchstart') {
@@ -561,6 +572,8 @@ $(document).ready(function () {
      $(document).on('mouseup touchend', onMouseUp);
 
     articleContainer.on('mousedown touchstart', '.word', function (event) {
+        isMoving = true;
+
         if (event.type === 'touchstart') {
             event.preventDefault();
         }
