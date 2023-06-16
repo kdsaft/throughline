@@ -94,9 +94,14 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
+}
 
-
-
+.article-container {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #d5e1ff;
+    padding: 20px;
+    overflow: visible;
 }
 
 .standard-text-container {
@@ -149,7 +154,7 @@ body {
     width: 50px;
     height: 50px;
     transform: scale(1.055, 1.055);
-    perspective(1px)
+    perspective: (1px)
 }
 
 
