@@ -27,11 +27,11 @@ $(document).ready(function () {
 
     // set article bounding box
     articleContainer.css({
-        height: syllableText.jQ.height() + parseInt(syllableText.jQ.css('marginTop')) + parseInt(syllableText.jQ.css('marginBottom')) + 20,
-        width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
+        height: syllableText.jQ.height() + parseInt(syllableText.jQ.css('marginTop')) + parseInt(syllableText.jQ.css('marginBottom')) + 20
     });
-    console.log(articleContainer.height(), articleContainer.width());
-    console.log(syllableText.jQ.height(), syllableText.jQ.width());
+
+    // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
+
 
 
     function animateToWord(id) {
