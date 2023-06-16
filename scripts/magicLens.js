@@ -306,7 +306,7 @@ $(document).ready(function () {
     }
 
     function containWithinLeftRight(X, containerWidth, objectWidth) {
-        console.log("containWithinLeftRight");  
+        console.log("containWithinLeftRight");
         let newX = X;
 
         if (newX < 4) {
@@ -459,15 +459,15 @@ $(document).ready(function () {
     // onEvents
 
     function onMouseUp(event) {
-        console.log("onMouseUp");
-        magicLensHandle.jQ.removeClass('grabbed');
-        dragging = false;
-        animateToWord(wordId);
-        $(document).off('mousemove touchmove', updateMagicLens);
+        if (dragging) {
+            magicLensHandle.jQ.removeClass('grabbed');
+            dragging = false;
+            animateToWord(wordId);
+            $(document).off('mousemove touchmove', updateMagicLens);
+        }
     }
 
     magicLensHandle.jQ.on('mousedown', function (event) {
-        console.log("magicLensHandle.jQ.on('mousedown'");   
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
         const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
 
@@ -482,7 +482,6 @@ $(document).ready(function () {
 
 
     grabHandleArea.jQ.on('touchstart', function (event) {
-        console.log("grabHandleArea.jQ.on('touchstart'");
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
         const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
         if (event.type === 'touchstart') {
@@ -498,7 +497,8 @@ $(document).ready(function () {
     });
 
     magicLensDisplay.jQ.on('mousedown', function (event) {
-        console.log("magicLensDisplay.jQ.on('mousedown'");
+        console.log("magicLensDisplay");
+
         event.preventDefault();
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
@@ -522,7 +522,6 @@ $(document).ready(function () {
 
 
     magicLensDisplay.jQ.on('touchstart', function (event) {
-        console.log("magicLensDisplay.jQ.on('touchstart'"); 
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
         if (event.type === 'touchstart') {
@@ -554,7 +553,6 @@ $(document).ready(function () {
     });
 
     articleContainer.on('mousemove touchmove', function (event) {
-        console.log("articleContainer.on('mousemove touchmove'");
         if (dragging) {
             event.preventDefault();
             updateMagicLens(event);
@@ -564,7 +562,7 @@ $(document).ready(function () {
     $(document).on('mouseup touchend', onMouseUp);
 
     articleContainer.on('mousedown touchstart', '.word', function (event) {
-        console.log("articleContainer.on('mousedown touchstart'");
+        console.log("articleContainer.on");
         if (event.type === 'touchstart') {
             event.preventDefault();
         }
