@@ -99,10 +99,11 @@ body {
 .article-container {
     position: relative;
     background-color: #fff;
-    border: 1px solid #d5e1ff;
+    border: 1px solid #ffe0d5;
     padding: 20px;
     overflow: visible;
-    border: 1px solid #d5ffff;
+    left: 0;
+    top: 120px;
 }
 
 .standard-text-container {
