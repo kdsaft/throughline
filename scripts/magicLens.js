@@ -459,12 +459,11 @@ $(document).ready(function () {
     // onEvents
 
     function onMouseUp(event) {
-        if (dragging) {
             magicLensHandle.jQ.removeClass('grabbed');
             dragging = false;
             animateToWord(wordId);
             $(document).off('mousemove touchmove', updateMagicLens);
-        }
+
     }
 
     magicLensHandle.jQ.on('mousedown', function (event) {
@@ -497,8 +496,6 @@ $(document).ready(function () {
     });
 
     magicLensDisplay.jQ.on('mousedown', function (event) {
-        console.log("magicLensDisplay");
-
         event.preventDefault();
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
@@ -559,10 +556,9 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('mouseup touchend', onMouseUp);
+    // $(document).on('mouseup touchend', onMouseUp);
 
     articleContainer.on('mousedown touchstart', '.word', function (event) {
-        console.log("articleContainer.on");
         if (event.type === 'touchstart') {
             event.preventDefault();
         }
