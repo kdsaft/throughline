@@ -36,7 +36,6 @@ $(document).ready(function () {
 
 
     function animateToWord(id) {
-        console.log('animateToWord');
         // The magicLens stays in word view
 
         //wordFocus();
@@ -83,19 +82,13 @@ $(document).ready(function () {
                     easing: 'easeOutExpo',
                     complete: function (anim) {
                         // Get the new position of the syllableText
-                        console.log('(Pre: SL, ST, WL, WT): ' + destinationSyllable.offset().left + ' ' + destinationSyllable.offset().top + ' ' + destinationWord.offset().left + ' ' + destinationWord.offset().top);
                         const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
                         const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
                         const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
                         const newSyllableTop = syllableText.jQ.position().top - deltaTop
-                        console.log('(pre syllableText: L, T): ' + syllableText.jQ.position().left + ' ' + syllableText.jQ.position().top);
-                        console.log('(Delta: L, T): ' + deltaLeft + ' ' + deltaTop);
-                        console.log('(post syllableText: SL, ST): ' + newSyllableLeft + ' ' + newSyllableTop);
-
 
                         // Update the syllable position relative to the word
                         syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
-                        console.log('(Post: SL, ST): ' + destinationSyllable.offset().left + ' ' + destinationSyllable.offset().top);
 
                         isAnimating = false;
                         syllableFocus();
@@ -110,7 +103,6 @@ $(document).ready(function () {
 
 
     function updateMagicLens(event) {
-        console.log('updateMagicLens');
         if (isAnimating) return;
 
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
@@ -134,7 +126,6 @@ $(document).ready(function () {
 
         wordId = speedbumped.id;
         magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
-        console.log('‖ ‖ ‖ ‖');
     }
 
 
@@ -235,7 +226,6 @@ $(document).ready(function () {
     // Helper functions
 
     function getNearestWord(posX, posY) {
-        console.log("getNearestWord");
         const allWords = $(".word");
         let nearestWord = null;
         let nearestDistance = Infinity;
@@ -260,7 +250,6 @@ $(document).ready(function () {
     }
 
     function getPaddedDimensions(id) {
-        console.log("getPaddedDimensions");
         const extraWidth = 20;
         const extraHeight = 32;
 
@@ -274,7 +263,6 @@ $(document).ready(function () {
     }
 
     function getSnapPosition(id) {
-        console.log("getSnapPosition");
         const wordElement = $('#word-' + id);
         const elementDimensions = getPaddedDimensions(id);
 
@@ -293,7 +281,6 @@ $(document).ready(function () {
     }
 
     function containWithinTopBottom(Y, containerHeight, objectHeight) {
-        console.log("containWithinTopBottom");
         let newY = Y;
 
         // top bounds
@@ -309,7 +296,6 @@ $(document).ready(function () {
     }
 
     function containWithinLeftRight(X, containerWidth, objectWidth) {
-        console.log("containWithinLeftRight");
         let newX = X;
 
         if (newX < 4) {
@@ -324,7 +310,6 @@ $(document).ready(function () {
     }
 
     function isFirstOrLastWord(id) {
-        console.log("isFirstOrLastWord");
         const syllableElement = $('#syllable-' + id);
         const isFirstWord = syllableElement.is(':first-child');
         const isLastWord = syllableElement.is(':last-child');
@@ -332,7 +317,6 @@ $(document).ready(function () {
     }
 
     function isFirstOrLastClause(id) {
-        console.log("isFirstOrLastClause");
         const syllableId = "syllable-" + id;
         const syllableElement = document.getElementById(syllableId);
         const clauseElement = syllableElement.closest(".clause");
@@ -350,7 +334,6 @@ $(document).ready(function () {
     // Animation functions
 
     function syllableFocus() {
-        console.log("syllableFocus");
         const syllableWidth = getPaddedDimensions(wordId).width.syllable;
         const syllableWidthString = `${syllableWidth}px`;
 
@@ -408,7 +391,6 @@ $(document).ready(function () {
     }
 
     function wordFocus() {
-        console.log("wordFocus");
         const wordWidth = getPaddedDimensions(wordId).width.word;
         const wordWidthString = `${wordWidth}px`;
 
