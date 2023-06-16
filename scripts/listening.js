@@ -214,7 +214,7 @@ function highlightNextWord(wordsSpoken) {
     let lastRecognizedWord = null;
 
     wordsArray.forEach(wordSpoken => {
-        const lowercaseCurrentWord = wordsToReadMap.get(currentWordNumber).word.withoutPunctuation.toLowerCase();
+        const lowercaseCurrentWord = wordsToReadMap.get(currentWordNumber).withoutPunctuation.toLowerCase();
         //console.log("++ Current word:", lowercaseCurrentWord);
         const lowercaseWordSpoken = wordSpoken.toLowerCase();
         // console.log("++ Word spoken:", lowercaseWordSpoken);
@@ -234,10 +234,10 @@ function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syll
     // Iterate over words
     for (let i = 0; i < wordsToCheck.length; i++) {
         const wordInstance = wordsToCheck[i];
-        console.log("Word handled: ", wordInstance.word.withoutPunctuation + " " + wordInstance.wordId);
+        console.log("Word handled: ", wordInstance.withoutPunctuation + " " + wordInstance.wordId);
 
         // Get the word without punctuation and convert to lowercase
-        const lowercaseCurrentWord = wordInstance.word.withoutPunctuation.toLowerCase();
+        const lowercaseCurrentWord = wordInstance.withoutPunctuation.toLowerCase();
 
         if (lowercaseWordSpoken === lowercaseCurrentWord) {
             if (wordAccuracyScore >= 80) {
