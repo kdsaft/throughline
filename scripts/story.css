@@ -89,7 +89,6 @@ body {
 
 .article-container {
     position: relative;
-    border: 1px solid #ffe0d5;
     padding: 20px;
     overflow: visible;
     left: 0;
@@ -103,7 +102,6 @@ body {
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
-    border: 1px solid #d5e1ff;
  }
 
 .syllable-text-container {
@@ -147,7 +145,6 @@ body {
     transform: scale(1.055, 1.055);
     perspective: (1px)
 }
-
 
 
 .syllable-text-wrapper {
