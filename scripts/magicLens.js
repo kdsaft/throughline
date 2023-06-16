@@ -35,6 +35,7 @@ $(document).ready(function () {
 
 
     function animateToWord(id) {
+        console.log('animateToWord');
         // The magicLens stays in word view
 
         let destinationId = id;
@@ -99,6 +100,7 @@ $(document).ready(function () {
 
 
     function updateMagicLens(event) {
+        console.log('updateMagicLens');
         if (isAnimating) return;
 
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
@@ -126,6 +128,7 @@ $(document).ready(function () {
 
 
     function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
+        console.log('applySpeedBump');
         const verticalSnapThreshold = 12;
         const horizontalSnapThreshold = 10;
         let heightOffset = 0;
@@ -222,6 +225,7 @@ $(document).ready(function () {
     // Helper functions
 
     function getNearestWord(posX, posY) {
+        console.log("getNearestWord");
         const allWords = $(".word");
         let nearestWord = null;
         let nearestDistance = Infinity;
@@ -246,6 +250,7 @@ $(document).ready(function () {
     }
 
     function getPaddedDimensions(id) {
+        console.log("getPaddedDimensions");
         const extraWidth = 20;
         const extraHeight = 32;
 
@@ -259,6 +264,7 @@ $(document).ready(function () {
     }
 
     function getSnapPosition(id) {
+        console.log("getSnapPosition");
         const wordElement = $('#word-' + id);
         const elementDimensions = getPaddedDimensions(id);
 
@@ -277,6 +283,7 @@ $(document).ready(function () {
     }
 
     function containWithinTopBottom(Y, containerHeight, objectHeight) {
+        console.log("containWithinTopBottom");
         let newY = Y;
 
         // top bounds
@@ -292,6 +299,7 @@ $(document).ready(function () {
     }
 
     function containWithinLeftRight(X, containerWidth, objectWidth) {
+        console.log("containWithinLeftRight");  
         let newX = X;
 
         if (newX < 4) {
@@ -306,6 +314,7 @@ $(document).ready(function () {
     }
 
     function isFirstOrLastWord(id) {
+        console.log("isFirstOrLastWord");
         const syllableElement = $('#syllable-' + id);
         const isFirstWord = syllableElement.is(':first-child');
         const isLastWord = syllableElement.is(':last-child');
@@ -313,6 +322,7 @@ $(document).ready(function () {
     }
 
     function isFirstOrLastClause(id) {
+        console.log("isFirstOrLastClause");
         const syllableId = "syllable-" + id;
         const syllableElement = document.getElementById(syllableId);
         const clauseElement = syllableElement.closest(".clause");
@@ -330,6 +340,7 @@ $(document).ready(function () {
     // Animation functions
 
     function syllableFocus() {
+        console.log("syllableFocus");
         const syllableWidth = getPaddedDimensions(wordId).width.syllable;
         const syllableWidthString = `${syllableWidth}px`;
 
@@ -387,6 +398,7 @@ $(document).ready(function () {
     }
 
     function wordFocus() {
+        console.log("wordFocus");
         const wordWidth = getPaddedDimensions(wordId).width.word;
         const wordWidthString = `${wordWidth}px`;
 
@@ -440,6 +452,7 @@ $(document).ready(function () {
     // onEvents
 
     function onMouseUp(event) {
+        console.log("onMouseUp");
         magicLensHandle.jQ.removeClass('grabbed');
         dragging = false;
         animateToWord(wordId);
@@ -447,6 +460,7 @@ $(document).ready(function () {
     }
 
     magicLensHandle.jQ.on('mousedown', function (event) {
+        console.log("magicLensHandle.jQ.on('mousedown'");   
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
         const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
 
@@ -461,6 +475,7 @@ $(document).ready(function () {
 
 
     grabHandleArea.jQ.on('touchstart', function (event) {
+        console.log("grabHandleArea.jQ.on('touchstart'");
         const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
         const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
         if (event.type === 'touchstart') {
@@ -476,6 +491,7 @@ $(document).ready(function () {
     });
 
     magicLensDisplay.jQ.on('mousedown', function (event) {
+        console.log("magicLensDisplay.jQ.on('mousedown'");
         event.preventDefault();
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
@@ -499,6 +515,7 @@ $(document).ready(function () {
 
 
     magicLensDisplay.jQ.on('touchstart', function (event) {
+        console.log("magicLensDisplay.jQ.on('touchstart'"); 
         const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
         const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
         if (event.type === 'touchstart') {
@@ -530,6 +547,7 @@ $(document).ready(function () {
     });
 
     articleContainer.on('mousemove touchmove', function (event) {
+        console.log("articleContainer.on('mousemove touchmove'");
         if (dragging) {
             event.preventDefault();
             updateMagicLens(event);
@@ -539,6 +557,7 @@ $(document).ready(function () {
     $(document).on('mouseup touchend', onMouseUp);
 
     articleContainer.on('mousedown touchstart', '.word', function (event) {
+        console.log("articleContainer.on('mousedown touchstart'");
         if (event.type === 'touchstart') {
             event.preventDefault();
         }
