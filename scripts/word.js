@@ -4,7 +4,6 @@ class Word {
   constructor(wordData) {
     this.wordId = wordData.id;
     this.state = "unread";
-    
     this.wordElement = document.querySelector(`.word-${wordData.id}`);
   
     this.svgElement = {
@@ -18,12 +17,13 @@ class Word {
       },
     };
   
-    this.audioElement.startTime = wordData.startTime;
-    this.audioElement.duration = wordData.duration;
+    this.audioElement = {
+      startTime: wordData.startTime,
+      duration: wordData.duration,
+    };
   
     this.withoutPunctuation = this._getWordWithoutPunctuation(wordData);
-
-    this._parseSyllables(wordData.syllables);
+    this.syllables = this._getSyllablesAndPhonemes(wordData);
   }
 
   // Methods
@@ -34,12 +34,7 @@ class Word {
   }
 
   _getSyllablesAndPhonemes(data) {
-    if (data) {
-      return data.syllables;
-    } else {
-      console.error(`Error: Could not find word with id ${this.wordId} in the JSON data.`);
-      return null;
-    }
+    return data.syllables;
   }
 
   getWordProperties() {

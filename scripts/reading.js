@@ -305,20 +305,17 @@ async function initWordsToReadMap() {
     return;
   }
 
-  // Get the clauses from both the title and body sections
   const titleClauses = jsonData.title.map((section) => section.clauses).flat();
   const bodyClauses = jsonData.body.map((section) => section.clauses).flat();
   const allClauses = [...titleClauses, ...bodyClauses];
 
   for (const clause of allClauses) {
-    // Check if clause.words exists and is an array
     if (!Array.isArray(clause.words)) {
       console.error("Error: clause.words is not iterable. Please check the JSON data structure.", clause);
       continue;
     }
 
     for (const wordData of clause.words) {
-      const wordId = wordData.id;
       const word = new Word(wordData);
       
       word.drawLine();
