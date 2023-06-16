@@ -109,9 +109,9 @@ body {
 .standard-text-container {
     position: absolute;
     z-index: 1;
-    left: 20px;
+    /* left: 20px;
     top: 0px;
-    width: 100%;
+    width: 100%; */
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
