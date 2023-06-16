@@ -99,7 +99,7 @@ body {
 
 }
 
-.text-area {
+.standard-text-container {
     position: absolute;
     z-index: 1;
     left: 0;
@@ -108,7 +108,7 @@ body {
     box-sizing: border-box;
 }
 
-.text-headline {
+.article-title {
     font-size: 27px;
     line-height: 48px;
     padding-left: 2px;
@@ -116,14 +116,19 @@ body {
     font-family: "SF-Mono-Regular";
 }
 
-.text-paragraph {
+.paragraph {
     padding-bottom: 32px;
 }
 
-.text-line {
+.clause {
+    padding-left: 2px;
+    white-space: nowrap;
+    height: 50px;
+}
+
+.article-body {
     font-size: 18px;
     line-height: 48px;
-    padding-left: 2px;
     font-family: "SF-Mono-Regular";
 }
 
