@@ -80,6 +80,7 @@ $(document).ready(function () {
                     easing: 'easeOutExpo',
                     complete: function (anim) {
                         // Get the new position of the syllableText
+                        console.log('SL, ST, WL, WT): ' + destinationSyllable.offset().left + ' ' + destinationSyllable.offset().top + ' ' + destinationWord.offset().left + ' ' + destinationWord.offset().top);
                         const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
                         const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
                         const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
