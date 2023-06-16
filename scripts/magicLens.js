@@ -131,11 +131,11 @@ $(document).ready(function () {
 
         wordId = speedbumped.id;
         magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
+        console.log('‖ ‖ ‖ ‖');
     }
 
 
     function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
-        console.log('applySpeedBump');
         const verticalSnapThreshold = 12;
         const horizontalSnapThreshold = 10;
         let heightOffset = 0;
