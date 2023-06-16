@@ -1,0 +1,273 @@
+<!-- 
+CHANGES
+1. The user should not be able to drag the lens beyond the containment area. Right now, it gets clicked off by the div. Rather you should not be able to drag any more when the left edge his the left edge of the div or the top hits the top, bottom hits the bottom or right hits right
+2. The text should be spaced in 25 pixels from the top and left of the containment box
+3. When the lens is centered on the first word on the screen <span class="word-1">, the syllable-text should be positioned so the center point of <span class="syllable-1"> is in the same position as the center point of <span class="word-1">
+4. When the lens is centered on the last word on the screen <span class="word-3">, the syllable text should be positioned so that the center point of <span class="syllable-3"> is in the same position as the center point <span class="word-3">
+5. As the moved the lens, syllable-text should move proportionally between the distance of 3 and 4 above
+ -->
+
+
+
+
+
+
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+    }
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+    $(document).ready(function () {
+        const articleContainer = $('.article-containter');
+        const magicLens = $('.magic-lens');
+        const standardText = $('#standard-text');
+        const syllableText = $('#syllable-text');
+        let dragging = false;
+
+        articleContainer.css({
+            height: syllableText.height() + parseInt(syllableText.css('marginTop')) + parseInt(syllableText.css('marginBottom')),
+            width: syllableText.width() + parseInt(syllableText.css('marginLeft')) + parseInt(syllableText.css('marginRight'))
+        });
+
+       function update(event) {
+            const containerOffset = articleContainer.offset();
+            const x = event.pageX - containerOffset.left - magicLens.width() / 2;
+            const y = event.pageY - containerOffset.top - magicLens.height() / 2;
+            magicLens.css({ left: x - 2, top: y - 2 }); // Adjust for border offset
+    
+            // Move the syllable-text horizontally based on lens position
+            const paddingLeft = parseInt(syllableText.css('paddingLeft'));
+            const paddingRight = parseInt(syllableText.css('paddingRight'));
+    
+            const syllableTextOffset = ((x - paddingLeft) / (standardText.width() - magicLens.width() - paddingLeft)) * (syllableText.width() - standardText.width());
+            //const syllableTextOffset = (x / (standardText.width() - magicLens.width())) * (syllableText.width() - standardText.width());
+            syllableText.css('left', -syllableTextOffset);
+    
+    
+            // Set the lens-clip attributes based on the lens position
+            const clipX = (x - 5 + syllableTextOffset - parseInt(standardText.css('marginLeft'))) / syllableText.width(); // Adjust for border offset
+            const clipY = (y - 4 - parseInt(standardText.css('marginTop'))) / syllableText.height(); // Adjust for border offset
+            const clipWidth = magicLens.width() / syllableText.width();
+            const clipHeight = (magicLens.height() + 8) / syllableText.height();
+            const fixedBorderRadius = 16;
+        const fixedRx = fixedBorderRadius / syllableText.width();
+        const fixedRy = fixedBorderRadius / syllableText.height();
+    
+        $('#clip-rect').attr({
+            x: clipX,
+            y: clipY,
+            width: clipWidth,
+            height: clipHeight,
+            rx: fixedRx,
+            ry: fixedRy
+        });
+    
+    
+            // $('#lens-clip rect').attr({ x: clipX, y: clipY, width: magicLens.width() / syllableText.width(), height: magicLens.height() / syllableText.height() });
+        }
+    
+        magicLens.on('mousedown', function (event) {
+            dragging = true;
+            syllableText.css('visibility', 'visible');
+            update(event);
+        });
+    
+        articleContainer.on('mousemove', function (event) {
+            if (dragging) {
+                update(event);
+            }
+        });
+    
+        articleContainer.on('mouseup', function () {
+            dragging = false;
+        });
+    });
+
+
+</script>
+
+<style>
+    .article-containter {
+        position: relative;
+        background-color: #fff;
+        border: 1px solid #d5e1ff;
+        overflow: visible;
+    }
+
+    .standard-text-container,
+    .syllable-text-container {
+        position: absolute;
+        margin: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        top: 0;
+        left: 0;
+    }
+
+    .standard-text-container {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .syllable-text-container {
+        /* visibility: hidden; */
+        clip-path: url("#lens-clip");
+        pointer-events: none;
+        background-color: rgba(255, 0, 115, 0.802);
+        z-index: 5;
+        // rgba(254, 251, 253, 0.7);
+    }
+
+    .magic-lens {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        cursor: move;
+        z-index: 3;
+        border-radius: 24px;
+    }
+
+    .magic-lens::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        /* Adjust for border offset */
+        left: -2px;
+        /* Adjust for border offset */
+        width: calc(100% + 4px);
+        /* Adjust for border width */
+        height: calc(100% + 4px);
+        /* Adjust for border width */
+        border-radius: 24px;
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+        background-color: rgba(254, 251, 253, 0.6);
+        border: 2px solid rgba(177, 177, 177, 0.4);
+        box-shadow: 0 0 10px rgba(26, 121, 199, .1);
+        z-index: 1;
+    }
+
+
+
+
+    .title {
+        font-size: 27px;
+        line-height: 48px;
+        padding-left: 2px;
+        padding-bottom: 24px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    .paragraph {
+        margin-bottom: 32px;
+    }
+
+    .clause {
+        padding-left: 2px;
+        white-space: nowrap;
+    }
+
+    .body {
+        font-size: 18px;
+        line-height: 48px;
+        font-family: "SF-Mono-Regular";
+    }
+</style>
+
+<body>
+
+    <!--     <svg height="0" width="0">
+        <defs>
+            <clipPath id="lens-clip" clipPathUnits="objectBoundingBox">
+                <rect x="0" y="0" width="1" height="1" />
+            </clipPath>
+        </defs>
+    </svg> -->
+
+    <svg width="0" height="0">
+        <defs>
+            <clipPath id="lens-clip" clipPathUnits="objectBoundingBox">
+                <rect id="clip-rect" x="0" y="0" width="0.25" height="0.25" rx="0" ry="0" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <div class="article-containter">
+        <div class="magic-lens"></div>
+
+        <article id="standard-text" class="standard-text-container">
+            <div class="title">
+                <div id="clause-1" class="clause">
+                    <span id="word-1" class="word">The</span>
+                    <span id="word-2" class="word">Major</span>
+                    <span id="word-3" class="word">Theme</span>
+                </div>
+            </div>
+            <div class="body">
+                <div class="paragraph">
+                    <div id="clause-2" class="clause">
+                        <span id="word-4" class="word">Magnifying</span>
+                        <span id="word-5" class="word">glass</span>
+                        <span id="word-6" class="word">example</span>
+                        <span id="word-7" class="word">of</span>
+                        <span id="word-8" class="word">text.</span>
+                    </div>
+                    <div id="clause-3" class="clause">
+                        <span id="word-9" class="word">We</span>
+                        <span id="word-10" class="word">calculate</span>
+                        <span id="word-11" class="word">everything.</span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="clause-4" class="clause">
+                        <span id="word-12" class="word">Elements</span>
+                        <span id="word-13" class="word">structured</span>
+                        <span id="word-14" class="word">for</span>
+                        <span id="word-15" class="word">semantic</span>
+                        <span id="word-16" class="word">meaning.</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+        <div id="syllable-text" class="syllable-text-container">
+            <div class="title">
+                <div id="syllable-clause-1" class="clause">
+                    <span id="syllable-1" class="syllable">The</span>
+                    <span id="syllable-2" class="syllable">Ma-jor</span>
+                    <span id="syllable-3" class="syllable">Theme</span>
+                </div>
+            </div>
+            <div class="body">
+                <div class="paragraph">
+                    <div id="syllable-clause-2" class="clause">
+                        <span id="syllable-4" class="syllable">Mag-ni-fy-ing</span>
+                        <span id="syllable-5" class="syllable">glass</span>
+                        <span id="syllable-6" class="syllable">ex-ample</span>
+                        <span id="syllable-7" class="syllable">of</span>
+                        <span id="syllable-8" class="syllable">text.</span>
+                    </div>
+                    <div id="syllable-clause-3" class="clause">
+                        <span id="syllable-9" class="syllable">We</span>
+                        <span id="syllable-10" class="syllable">cal-cu-late</span>
+                        <span id="syllable-11" class="syllable">ev-ery-thing.</span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="syllable-clause-4" class="clause">
+                        <span id="syllable-12" class="syllable">El-e-ments</span>
+                        <span id="syllable-13" class="syllable">struc-ture-d</span>
+                        <span id="syllable-14" class="syllable">for</span>
+                        <span id="syllable-15" class="syllable">sem-an-tic</span>
+                        <span id="syllable-16" class="syllable">mean-ing.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

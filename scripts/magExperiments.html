@@ -1,0 +1,163 @@
+<script>
+  if (typeof jQuery === 'undefined') {
+    document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+  }
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<script>
+  $(document).ready(function () {
+
+    // Pre-calculate each word's bounding box and center
+    const wordsData = $(".word").map(function () {
+      const word = $(this);
+      const wordPos = word.offset();
+      const wordWidth = word.width();
+      const wordHeight = word.height();
+      return {
+        element: word,
+        left: wordPos.left,
+        right: wordPos.left + wordWidth,
+        top: wordPos.top,
+        bottom: wordPos.top + wordHeight,
+        centerX: wordPos.left + wordWidth / 2,
+        centerY: wordPos.top + wordHeight / 2,
+        syllables: word.data("syllables")
+      };
+    }).get();
+
+    $(".magnifying-glass").draggable({
+      containment: ".container",
+      scroll: false,
+      delay: 100,
+
+
+      start: function () {
+        $(this).show();
+      },
+
+      drag: function (event, ui) {
+        const magnifyingGlass = $(this);
+        const mousePosition = { x: event.pageX, y: event.pageY }; // Update this line
+
+        let overWord = false;
+        let currentWordData = null;
+
+        for (const wordData of wordsData) {
+          if (
+            mousePosition.x >= wordData.left && // Update this line
+            mousePosition.x <= wordData.right && // Update this line
+            mousePosition.y >= wordData.top && // Update this line
+            mousePosition.y <= wordData.bottom // Update this line
+          ) {
+            magnifyingGlass.text(wordData.syllables);
+            overWord = true;
+            currentWordData = wordData;
+            break;
+          }
+        }
+
+        $(this).data("overWord", overWord);
+        $(this).data("currentWordData", currentWordData);
+        if (!overWord) {
+          magnifyingGlass.html("&nbsp;");
+        }
+      },
+
+
+
+
+      stop: function (event, ui) {
+        const magnifyingGlass = $(this);
+
+        if ($(this).data("overWord")) {
+          const currentWordData = $(this).data("currentWordData");
+
+          // Update the magnifying glass position
+          magnifyingGlass.animate({
+            "left": currentWordData.centerX - magnifyingGlass.outerWidth() / 2,
+            "top": currentWordData.centerY - magnifyingGlass.outerHeight() / 2
+          }, 0);
+        } else {
+          magnifyingGlass.animate({
+            "left": ui.originalPosition.left,
+            "top": ui.originalPosition.top
+          }, 1000);
+        }
+      }
+
+
+
+    });
+
+    $(document).on("mousedown", function (e) {
+      if ($(e.target).closest('.magnifying-glass').length === 0) {
+        $(".magnifying-glass").css({ "left": e.pageX - 50, "top": e.pageY - 25 });
+        $(".magnifying-glass").draggable("option", "disabled", false);
+        $(".magnifying-glass").trigger("mousedown");
+      }
+    });
+  });
+</script>
+
+
+<style>
+  .container {
+    position: relative;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    padding: 50px;
+    height: 100%;
+    white-space: nowrap;
+    /* Add this line */
+  }
+
+  .line {
+    white-space: nowrap;
+  }
+
+  .word {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .magnifying-glass {
+    position: absolute;
+    width: auto;
+    min-width: 100px;
+    height: auto;
+    /* Change this line */
+    line-height: 1;
+    /* Add this line */
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #000;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+    white-space: nowrap;
+    padding-left: 20px;
+
+    padding-right: 20px;
+
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="line">
+      <span class="word" data-syllables="mag-ni-fy-ing">magnifying</span>
+      <span class="word" data-syllables="glass">glass</span>
+    </div>
+    <div class="line">
+      <span class="word" data-syllables="ex-am-ple">example</span>
+    </div>
+  </div>
+  <div class="magnifying-glass"></div>
+</body>

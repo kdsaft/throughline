@@ -1,0 +1,684 @@
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+    $(document).ready(function () {
+        const articleContainer = $('.article-container');
+        const articleContainerOffset = articleContainer.offset();
+
+        const magicLensWrapper = $('.magic-lens-wrapper');
+        const magicLens = $('.magic-lens');
+        const magicLensDisplay = $('.syllable-text-wrapper');
+        const grabHandle = $('.grab-handle-top');
+        const standardText = $('#standard-text');
+        const syllableText = $('#syllable-text');
+
+        let dragging = false;
+        let isAnimating = false;
+        let movingVertically = false;
+        let wordId = 1;
+
+        let originalMouseX;
+        let originalMouseY;
+        let offsetTouchX;
+        let offsetTouchY;
+
+
+
+        articleContainer.css({
+            height: syllableText.height() + parseInt(syllableText.css('marginTop')) + parseInt(syllableText.css('marginBottom')),
+            width: syllableText.width() + parseInt(syllableText.css('marginLeft')) + parseInt(syllableText.css('marginRight'))
+        });
+
+
+        function animateToWord(event, id) {
+            const destinationWord = $('#word-' + id);
+            const destinationSyllable = $('#syllable-' + id);
+            let startTime
+
+            if (destinationWord.length && destinationSyllable.length) {
+                // Calculate the destination positions and width
+                const magicLensX = destinationWord.offset().left - articleContainerOffset.left - 11;
+                const magicLensY = destinationWord.offset().top - articleContainerOffset.top - 8;
+
+
+                const newWidth = destinationSyllable.width() + 20;
+                const currentWidth = magicLens.width();
+                const currentHeight = magicLens.height();
+                const newHeight = destinationSyllable.height() + 16;
+
+                // Store the initial step value for both left and top animation steps
+                let initialLeftStepValue, initialTopStepValue;
+
+
+                // Custom function to handle width and height change
+                const changeWidth = (now, start, end) => {
+                    const deltaWidth = (newWidth - currentWidth) * (now - start) / (end - start);
+                    magicLens.width(currentWidth + deltaWidth);
+                };
+
+                const changeHeight = (now, start, end) => {
+                    const deltaHeight = (newHeight - currentHeight) * (now - start) / (end - start);
+                    magicLens.height(currentHeight + deltaHeight);
+                };
+
+                isAnimating = true;
+
+                magicLensWrapper.animate({
+                    left: magicLensX,
+                    top: magicLensY
+                }, {
+                    duration: 300,
+                    easing: 'easeOutExpo',
+                    start: function (animation) {
+                        startTime = new Date().getTime();
+                    },
+                    step: function (now, fx) {
+
+                        if (fx.prop === 'left') {
+                            const duration = fx.options.duration;
+                            const currentTime = new Date().getTime();
+                            const progress = (currentTime - startTime) / duration;
+                            let wordDeltaX = 0;
+
+                            if (progress > 0.25) {
+                                wordDeltaX = (destinationSyllable.offset().left - destinationWord.offset().left);
+                            }
+
+
+                            const wrapperDeltaX = magicLensWrapper.position().left - fx.now;
+                            const syllableX = syllableText.position().left - wordDeltaX + wrapperDeltaX;
+                            syllableText.css({ left: syllableX });
+
+                            if (!initialLeftStepValue) {
+                                initialLeftStepValue = fx.now;
+                            }
+
+                            // Update the width and height of magicLens
+                            changeWidth(now, initialLeftStepValue, fx.end);
+                            changeHeight(now, fx.prop === 'left' ? initialLeftStepValue : initialTopStepValue, fx.end);
+
+
+                        } else if (fx.prop === 'top') {
+
+                            // Update the top position of syllableText based on the position difference
+                            const wordDeltaY = destinationSyllable.offset().top - destinationWord.offset().top;
+                            const wrapperDeltaY = magicLensWrapper.position().top - fx.now;
+                            const syllableY = syllableText.position().top - wordDeltaY + wrapperDeltaY;
+                            syllableText.css({ top: syllableY });
+
+                            if (!initialTopStepValue) {
+                                initialTopStepValue = fx.now;
+                            }
+
+                            // Update the width and height of magicLens
+                            changeWidth(now, fx.prop === 'left' ? initialLeftStepValue : initialTopStepValue, fx.end);
+                            changeHeight(now, initialTopStepValue, fx.end);
+                        }
+                    },
+                    complete: function () {
+                        const clientX = event.type === 'touchmove' ? event.touches[0].pageX : event.pageX;
+                        const clientY = event.type === 'touchmove' ? event.touches[0].pageY : event.pageY;
+
+                        isAnimating = false;
+                        originalMouseX = clientX - articleContainerOffset.left;
+                        originalMouseY = clientY - articleContainerOffset.top;
+                    }
+                });
+            }
+        }
+
+
+        function updateMagicLens(event) {
+            const thresholdX = 12;
+            const thresholdY = 12;
+            if (isAnimating) return;
+
+            const clientX = event.type === 'touchmove' ? event.touches[0].pageX : event.pageX;
+            const clientY = event.type === 'touchmove' ? event.touches[0].pageY : event.pageY;
+            const currentWord = $('#word-' + wordId);
+            const currentSyllable = $('#syllable-' + wordId);
+
+            const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+            const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+            const snapPoint = getSnapPoint(wordId);
+            const initialPosition = getInitialPosition(wordId);
+
+
+            if (originalMouseX === undefined) {
+                originalMouseX = clientX - articleContainerOffset.left;
+            }
+            if (originalMouseY === undefined) {
+                originalMouseY = clientY - articleContainerOffset.top;
+            }
+
+            // Get the dragging delta   
+            let draggingDeltaX = clientX - articleContainerOffset.left - originalMouseX;
+            let draggingDeltaY = clientY - articleContainerOffset.top - originalMouseY;
+
+            if (Math.abs(draggingDeltaX) > thresholdX) {
+                if (draggingDeltaX > 0) {
+                    draggingDeltaX = thresholdX + 1;
+                } else {
+                    draggingDeltaX = -thresholdX - 1;
+                }
+            }
+
+            if (isFirstWord && (draggingDeltaX < -3)) {
+                draggingDeltaX = -3;
+            }
+
+            if (isLastWord && (draggingDeltaX > 3)) {
+                draggingDeltaX = 3;
+            }
+
+            // Get the new positions and set the magicLensWrapper
+            const magicLensDestinationX = snapPoint.X + draggingDeltaX;
+            const magicLensDestinationY = snapPoint.Y; // + draggingDeltaY
+            magicLensWrapper.css({ left: magicLensDestinationX + 'px', top: magicLensDestinationY + 'px' });
+
+
+            // Calculate the position difference between the initial and current positions of magicLensWrapper
+            const magicLensWrapperDeltaX = initialPosition.X - magicLensDestinationX;
+            const magicLensWrapperDeltaY = initialPosition.Y - magicLensDestinationY;
+
+            // Update the syllableText
+            const deltaX = currentSyllable.offset().left - currentWord.offset().left;
+            const deltaY = currentSyllable.offset().top - currentWord.offset().top;
+            syllableText.css({ left: syllableText.position().left - deltaX, top: syllableText.position().top - deltaY });
+
+
+
+            // Determine whether the magicLens should snap back to the current position or increment/decrement the wordId
+            let newWord = false;
+
+            if ((-1 * draggingDeltaX) > thresholdX) {
+                if (!isFirstWord) {
+                    wordId -= 1;
+                }
+                newWord = true;
+
+            } else if ((-1 * draggingDeltaX) < -thresholdX) {
+                if (!isLastWord) {
+                    wordId += 1;
+                }
+                newWord = true;
+            }
+
+            if (isFirstWord && (draggingDeltaX < -3)) {
+                newWord = true;
+            }
+
+            if (draggingDeltaY < (-1 * thresholdY)) {
+                if (!isFirstClause) {
+                    wordId = getWordIdFromNewClause(wordId, -1);
+                }
+                newWord = true;
+
+            } else if (draggingDeltaY > thresholdY) {
+                if (!isLastClause) {
+                    wordId = getWordIdFromNewClause(wordId, 1);
+                }
+                newWord = true;
+            }
+
+            // Call animateToWord if the magicLens is outside the threshold
+            if (newWord) {
+                animateToWord(event, wordId);
+            }
+        }
+
+
+        // Helper functions
+
+        function getWordIdFromNewClause(id, direction) {
+            const standardTextContainer = document.querySelector(".standard-text-container");
+
+            // Find the current word and its position
+            const currentWord = standardTextContainer.querySelector(`#word-${id}`);
+            const currentWordPosition = currentWord.getBoundingClientRect();
+
+            // Find the current clause and the target clause based on the direction
+            const currentClause = currentWord.closest(".clause");
+            const currentClauseNumber = parseInt(currentClause.id.split("-")[1]);
+            const targetClauseNumber = currentClauseNumber + direction;
+            const targetClause = standardTextContainer.querySelector(`#clause-${targetClauseNumber}`);
+
+            // If the target clause doesn't exist, return the same wordId
+            if (!targetClause) {
+                return id;
+            }
+
+            // Get the words from the target clause and calculate their distances
+            const targetWords = Array.from(targetClause.querySelectorAll(".word"));
+            const distances = targetWords.map(word => {
+                const wordPosition = word.getBoundingClientRect();
+                return Math.abs(currentWordPosition.left - wordPosition.left);
+            });
+
+            // Find the index of the closest word and return its wordId
+            const closestWordIndex = distances.indexOf(Math.min(...distances));
+            const closestWordId = parseInt(targetWords[closestWordIndex].id.split('-')[1]);
+
+            return closestWordId;
+        }
+
+        function isFirstOrLastWord(id) {
+            const syllableElement = $('#syllable-' + id);
+            const isFirstWord = syllableElement.is(':first-child');
+            const isLastWord = syllableElement.is(':last-child');
+            return { isFirstWord, isLastWord };
+        }
+
+        function isFirstOrLastClause(id) {
+            const syllableId = "syllable-" + id;
+            const syllableElement = document.getElementById(syllableId);
+            const clauseElement = syllableElement.closest(".clause");
+
+            const syllableTextContainer = document.getElementById("syllable-text");
+            const allClauses = Array.from(syllableTextContainer.querySelectorAll(".clause"));
+
+            const isFirstClause = (clauseElement === allClauses[0]);
+            const isLastClause = (clauseElement === allClauses[allClauses.length - 1]);
+
+            return { isFirstClause, isLastClause };
+        }
+
+
+        function getInitialPosition(id) {
+            const wordElement = $('#word-' + id);
+            const magicLensX = wordElement.offset().left - articleContainerOffset.left - 11;
+            const magicLensY = wordElement.offset().top - articleContainerOffset.top + magicLens.height();
+
+            return { X: magicLensX, Y: magicLensY };
+        }
+
+        function getSnapPoint(id) {
+            const destinationWord = $('#word-' + id);
+            const x = destinationWord.offset().left - articleContainerOffset.left - 11;
+            const y = destinationWord.offset().top - articleContainerOffset.top - 8;
+
+            return { X: x, Y: y };
+        }
+
+
+        // onEvents
+
+        function onMouseUp(event) {
+            grabHandle.removeClass('grabbed');
+            dragging = false;
+            console.log('animateToWord: ' + wordId);
+            animateToWord(event, wordId);
+            $(document).off('mousemove touchmove', updateMagicLens);
+        }
+
+        grabHandle.on('mousedown touchstart', function (event) {
+            const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+            const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
+            if (event.type === 'touchstart') {
+                event.preventDefault();
+            }
+
+            offsetTouchX = clientX - articleContainerOffset.left - magicLensWrapper.position().left;
+            offsetTouchY = clientY - articleContainerOffset.top - magicLensWrapper.position().top;
+
+            originalMouseX = undefined;
+            originalMouseY = undefined;
+            grabHandle.addClass('grabbed');
+            dragging = true;
+            $(document).on('mousemove touchmove', updateMagicLens);
+        });
+
+        magicLensDisplay.on('mousedown', function (event) {
+            event.preventDefault();
+            const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+            const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
+
+            const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+            const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+            const relativeClickPointX = clientX - articleContainerOffset.left - magicLensWrapper.position().left;
+
+            if (relativeClickPointX < 24) {
+                if (!(isFirstWord && isFirstClause)) {
+                    wordId -= 1;
+                }
+            } else if (relativeClickPointX > (magicLens.width() - 24)) {
+                if (!(isLastWord && isLastClause)) {
+                    wordId += 1;
+                }
+            }
+        });
+
+
+        magicLensDisplay.on('touchstart', function (event) {
+            event.preventDefault();
+            console.log('magicLensDisplay touchstart');
+            const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+            const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
+
+            const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+            const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+            const relativeClickPointX = clientX - articleContainerOffset.left - magicLensWrapper.position().left;
+
+            if (relativeClickPointX < 16) {
+                if (!(isFirstWord && isFirstClause)) {
+                    wordId -= 1;
+                }
+            } else if (relativeClickPointX > (magicLens.width() - 16)) {
+                if (!(isLastWord && isLastClause)) {
+                    wordId += 1;
+                }
+            } else {
+                offsetTouchX = clientX - articleContainerOffset.left - magicLensWrapper.position().left;
+                offsetTouchY = clientY - articleContainerOffset.top - magicLensWrapper.position().top;
+
+                originalMouseX = undefined;
+                originalMouseY = undefined;
+                grabHandle.addClass('grabbed');
+                dragging = true;
+                $(document).on('touchmove', updateMagicLens);
+            }
+        });
+
+        articleContainer.on('mousemove touchmove', function (event) {
+            if (dragging) {
+                event.preventDefault();
+                updateMagicLens(event);
+            }
+        });
+
+        $(document).on('mouseup touchend', onMouseUp);
+
+        articleContainer.on('mousedown touchstart', '.word', function (event) {
+            console.log('articleContainer mousedown/touchstart');
+            if (event.type === 'touchstart') {
+                event.preventDefault();
+            }
+
+            // Get the id from the clicked word element
+            const elementID = $(this).attr('id').split('-')[1];
+            wordId = parseInt(elementID, 10);
+        });
+    });
+
+</script>
+
+<style>
+    .article-container {
+        position: relative;
+        background-color: #fff;
+        border: 1px solid #d5e1ff;
+        padding: 20px;
+        overflow: visible;
+    }
+
+    .standard-text-container {
+        position: absolute;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .syllable-text-container {
+        position: absolute;
+        pointer-events: none;
+        left: -2px;
+        top: -2px;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .magic-lens {
+        width: 50px;
+        height: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        overflow: visible;
+        padding: 0px 0px 0px 0px;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 0;
+        position: absolute;
+        border-radius: 8px;
+        z-index: 5;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .magic-lens-wrapper {
+        position: absolute;
+        overflow: visible;
+        z-index: 100;
+        width: 50px;
+        height: 50px;
+        /* pointer-events: none; */
+        /* border: 1px solid #f8d3e4; */
+    }
+
+
+
+    .syllable-text-wrapper {
+        box-sizing: border-box;
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 12px 2px 12px;
+        background-color: #ffffff;
+        color: #015498;
+        overflow: hidden;
+        position: relative;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 2;
+        border-radius: 8px;
+        border: 2px solid var(--Blue_100, #e7f2fb);
+    }
+
+    .grab-handle-bottom {
+        flex-shrink: 0;
+        min-width: 30px;
+        width: 30%;
+        height: 9px;
+        display: block;
+        bottom: -4px;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 4px;
+    }
+
+    .grab-handle-top {
+        box-sizing: border-box;
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+        cursor: grab;
+        flex-shrink: 0;
+        min-width: 30px;
+        width: 30%;
+        height: 9px;
+        display: block;
+        bottom: -4px;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 4px;
+        border: 2px solid var(--Blue_100, #e7f2fb);
+        pointer-events: auto;
+
+    }
+
+    .grabbed {
+        background-color: #D3E7F8;
+        border: 2px solid #D3E7F8;
+        cursor: -webkit-grabbinbg;
+        cursor: -moz-grabbing;
+        cursor: grabbing;
+
+    }
+
+
+    .title {
+        font-size: 27px;
+        line-height: 48px;
+        padding-left: 2px;
+        padding-bottom: 24px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    .title .syllable-separator {
+        font-size: 14px;
+        /* Adjust the font size for title grandparent */
+    }
+
+    .paragraph {
+        margin-bottom: 32px;
+    }
+
+    .clause {
+        padding-left: 2px;
+        white-space: nowrap;
+        height: 50px;
+    }
+
+    .body {
+        font-size: 18px;
+        line-height: 48px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    .body .syllable-separator {
+        font-size: 10px;
+    }
+
+    .word {
+        cursor: pointer;
+    }
+
+    .syllable-separator {
+        flex-shrink: 0;
+        width: auto;
+        height: auto;
+        white-space: pre;
+        position: relative;
+        font-family: "SF-Mono-Medium", monospace;
+        color: #b6cce1;
+        text-align: center;
+        bottom: 1px;
+        padding: 0px 1px 0px 1px;
+    }
+</style>
+
+<body>
+    <div class="article-container">
+        <div class="magic-lens-wrapper">
+            <div class="magic-lens">
+                <div class="grab-handle-bottom"></div>
+                <div class="syllable-text-wrapper">
+                    <div id="syllable-text" class="syllable-text-container">
+                        <div class="title">
+                            <div id="syllable-clause-1" class="clause">
+                                <span id="syllable-1" class="syllable">The</span>
+                                <span id="syllable-2" class="syllable">Ma<span
+                                        class="syllable-separator">•</span>jor</span>
+                                <span id="syllable-3" class="syllable">Theme</span>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="paragraph">
+                                <div id="syllable-clause-2" class="clause">
+                                    <span id="syllable-4" class="syllable">Mag<span
+                                            class="syllable-separator">•</span>ni<span
+                                            class="syllable-separator">•</span>fy<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-5" class="syllable">glass</span>
+                                    <span id="syllable-6" class="syllable">ex<span
+                                            class="syllable-separator">•</span>ample</span>
+                                    <span id="syllable-7" class="syllable">of</span>
+                                    <span id="syllable-8" class="syllable">text</span>
+                                </div>
+                                <div id="syllable-clause-3" class="clause">
+                                    <span id="syllable-9" class="syllable">We</span>
+                                    <span id="syllable-10" class="syllable">cal<span
+                                            class="syllable-separator">•</span>cu<span
+                                            class="syllable-separator">•</span>late</span>
+                                    <span id="syllable-11" class="syllable">ev<span
+                                            class="syllable-separator">•</span>ery<span
+                                            class="syllable-separator">•</span>thing</span>
+                                </div>
+                            </div>
+                            <div class="paragraph">
+                                <div id="syllable-clause-4" class="clause">
+                                    <span id="syllable-12" class="syllable">El<span
+                                            class="syllable-separator">•</span>e<span
+                                            class="syllable-separator">•</span>ments</span>
+                                    <span id="syllable-13" class="syllable">struc<span
+                                            class="syllable-separator">•</span>tur<span
+                                            class="syllable-separator">•</span>ed</span>
+                                    <span id="syllable-14" class="syllable">for</span>
+                                    <span id="syllable-15" class="syllable">sem<span
+                                            class="syllable-separator">•</span>an<span
+                                            class="syllable-separator">•</span>tic</span>
+                                    <span id="syllable-16" class="syllable">mean<span
+                                            class="syllable-separator">•</span>ing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grab-handle-top"></div>
+            </div>
+        </div>
+
+        <article id="standard-text" class="standard-text-container">
+            <div class="title">
+                <div id="clause-1" class="clause">
+                    <span id="word-1" class="word">The</span>
+                    <span id="word-2" class="word">Major</span>
+                    <span id="word-3" class="word">Theme</span>
+                </div>
+            </div>
+            <div class="body">
+                <div class="paragraph">
+                    <div id="clause-2" class="clause">
+                        <span id="word-4" class="word">Magnifying</span>
+                        <span id="word-5" class="word">glass</span>
+                        <span id="word-6" class="word">example</span>
+                        <span id="word-7" class="word">of</span>
+                        <span id="word-8" class="word">text.</span>
+                    </div>
+                    <div id="clause-3" class="clause">
+                        <span id="word-9" class="word">We</span>
+                        <span id="word-10" class="word">calculate</span>
+                        <span id="word-11" class="word">everything.</span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="clause-4" class="clause">
+                        <span id="word-12" class="word">Elements</span>
+                        <span id="word-13" class="word">structured</span>
+                        <span id="word-14" class="word">for</span>
+                        <span id="word-15" class="word">semantic</span>
+                        <span id="word-16" class="word">meaning.</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+    </div>
+</body>

@@ -1,0 +1,456 @@
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+    }
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+    $(document).ready(function () {
+        const articleContainer = $('.article-container');
+        const magicLens = $('.magic-lens');
+        const grabHandle = $('.grab-handle-top');
+        const standardText = $('#standard-text');
+        const syllableText = $('#syllable-text');
+        let dragging = false;
+        let syllableLeft = -2;
+        let wordId = 0;
+        let touchOffsetX = 0;
+        let touchOffsetY = 0;
+
+        articleContainer.css({
+            height: syllableText.height() + parseInt(syllableText.css('marginTop')) + parseInt(syllableText.css('marginBottom')),
+            width: syllableText.width() + parseInt(syllableText.css('marginLeft')) + parseInt(syllableText.css('marginRight'))
+        });
+
+
+        function snapIntoPlace(container) {
+            const containerOffset = articleContainer.offset();
+
+            const currentWord = $('#word-' + wordId);
+            const currentSyllable = $('#syllable-' + wordId);
+
+            if (currentWord.length && currentSyllable.length) {
+                const wordLeft = currentWord.offset().left;
+
+                // update the position of the magicLens
+                const magicLensX = wordLeft - containerOffset.left - 10;
+                magicLens.css({ left: magicLensX });
+
+                // Update the position syllableText
+                const syllableLeft = currentSyllable.offset().left;
+                const deltaX = syllableLeft - wordLeft;
+                syllableText.css({ left: syllableText.position().left - deltaX });
+            }
+        }
+
+
+        function updateMagicLens(event) {
+            const containerOffset = articleContainer.offset();
+
+            // Get the current positions of the magicLens and syllableText
+            const magicLensPosition = magicLens.position();
+            const syllableTextPosition = syllableText.position();
+
+            // Determine the new positions for the magicLens and syllableText
+            const magicLensX = event.pageX - containerOffset.left - touchOffsetX;
+            const magicLensY = event.pageY - containerOffset.top - touchOffsetY;
+            const deltaX = magicLensX - magicLensPosition.left;
+            const deltaY = magicLensY - magicLensPosition.top;
+
+            const syllableContainerX = syllableText.position().left - deltaX;
+            const syllableContainerY = syllableText.position().top - deltaY;
+
+            // Determine the ratio of the syllableText to regular text
+            const currentWord = $("#word-" + wordId);
+            const currentSyllable = $("#syllable-" + wordId);
+            let ratio = 1;
+            if (currentWord.length && currentSyllable.length) {
+                ratio = currentSyllable.width() / currentWord.width();
+            }
+
+            // Update the positions of the magicLens and syllableText
+            magicLens.css({ left: magicLensX, top: magicLensY });
+            syllableText.css({ left: syllableContainerX, top: syllableContainerY });
+        }
+
+
+        function speedBump(event) {
+            const clauses = $("#standard-text").find(".clause");
+            const verticalSnapThreshold = 12;
+            const clauseBaselineOffset = 5;
+
+            // Get the current positions
+            const magicLensPosition = magicLens.position();
+            const syllableTextPosition = syllableText.position();
+            const containerOffset = articleContainer.offset();
+
+            let minVerticalDistance = Infinity;
+            let closestClause = null;
+
+            // Find the closest clause vertically.
+            clauses.each(function () {
+                const offset = $(this).offset();
+                const distance = Math.abs(offset.top - magicLens.offset().top);
+
+                if (distance < minVerticalDistance) {
+                    minVerticalDistance = distance;
+                    closestClause = $(this);
+                }
+            });
+
+            if (minVerticalDistance < verticalSnapThreshold) {
+                // Snap vertically to the closest clause.
+                const clauseY = closestClause.offset().top - containerOffset.top + clauseBaselineOffset;
+
+                magicLens.css({ top: clauseY });
+                syllableText.css({ top: 18 - clauseY });
+
+                // Check for horizontal speed bump for the words in the closest clause
+                const words = closestClause.find(".word");
+                const horizontalSnapThreshold = 15;
+                let didSnap = false;
+                let newWordId = 0;
+                let snapSyllable = null;
+
+                words.each(function () {
+                    const currentElement = $(this);
+                    const currentWordBounds = {
+                        left: currentElement.offset().left,
+                        right: currentElement.offset().left + currentElement.width(),
+                    };
+
+                    const magicLensLeft = magicLens.offset().left;
+
+
+
+                    if (Math.abs(magicLensLeft - currentWordBounds.left) < horizontalSnapThreshold) {
+                        
+                        // Get the syllable element
+                        const currentSyllableElement = currentElement.attr("id").replace("word", "syllable");
+                        snapSyllable = $("#" + currentSyllableElement);
+                        const syllableLeft = snapSyllable.offset().left;
+                        const deltaX = syllableLeft - currentWordBounds.left;
+                        console.log("deltaX: " + deltaX);
+                        
+                        // Snap horizontally to the current word
+                        console.log("snap horizontally to: " + currentElement.attr("id"));
+                        const magicLensX = currentWordBounds.left - articleContainer.offset().left - 10;
+                        magicLens.css({ left: magicLensX });
+                        syllableText.css({ left: syllableText.position().left - deltaX });
+                        
+                        // Update the wordId and newWordId
+                        const ID = currentElement.attr("id").split('-');
+                        newWordId = parseInt(ID[1], 10);
+                        console.log("newWordId: " + newWordId);
+
+                        didSnap = true;
+                        return false;
+                    }
+                });
+                if (snapSyllable) {
+                    const oldSyllable = $("#syllable-" + wordId);
+                    console.log("newWordId: " + newWordId);
+                    console.log("wordId: " + wordId);
+
+                    if (newWordId !== wordId) {
+                        const syllableWidth = snapSyllable.width();
+                        const newWidth = syllableWidth + 20;
+                        magicLens.css({ width: newWidth });
+                    }
+                }
+
+                wordId = newWordId;
+            }
+        }
+
+
+
+        function restrictHorizontalDragging(event) {
+            const magicLensX = magicLens.position().left;
+            const wordElement = $("#word-" + wordId);
+
+            if (wordElement.length > 0) { // If the word element exists
+                const clause = wordElement.closest(".clause");
+
+                if (clause.length > 0) { // If the clause element exists
+                    const leftLimit = clause.position().left - magicLens.width();
+                    const rightLimit = clause.position().left + clause.width();
+
+                    if (magicLensX < leftLimit) {
+                        magicLens.css({ left: leftLimit });
+                    } else if (magicLensX > rightLimit) {
+                        magicLens.css({ left: rightLimit });
+                    } else {
+                        // Normal horizontal dragging
+                        const containerOffset = articleContainer.offset();
+                        magicLens.css({ left: event.pageX - containerOffset.left - touchOffsetX });
+                    }
+                }
+            }
+        }
+
+
+
+
+        function isFirstOrLastSyllable(wordId) {
+            const currentSyllable = $('#syllable-' + wordId);
+            const isFirst = currentSyllable.is(':first-child');
+            const isLast = currentSyllable.is(':last-child');
+            return { isFirst, isLast };
+        }
+
+
+
+
+        grabHandle.mousedown(function (event) {
+            const magicLensOffset = magicLens.offset();
+            touchOffsetX = event.pageX - magicLensOffset.left;
+            touchOffsetY = event.pageY - magicLensOffset.top;
+            console.log("offset: " + touchOffsetX, touchOffsetY);
+            grabHandle.addClass('grabbed');
+
+            updateMagicLens(event);
+            dragging = true;
+        });
+
+        articleContainer.mousemove(function (event) {
+            if (dragging) {
+                const container = $("#standard-text");
+                updateMagicLens(event);
+             speedBump(event);
+                // restrictHorizontalDragging(event);
+            }
+        });
+
+        articleContainer.mouseup(function (event) {
+            const container = $("#standard-text");
+            grabHandle.removeClass('grabbed');
+            dragging = false;
+            snapIntoPlace(container);
+        });
+    });
+
+
+
+</script>
+
+<style>
+    .article-container {
+        position: relative;
+        background-color: #fff;
+        border: 1px solid #d5e1ff;
+        padding: 20px;
+        overflow: visible;
+    }
+
+
+    .standard-text-container {
+        position: absolute;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .syllable-text-container {
+        /* visibility: hidden; */
+        position: absolute;
+        pointer-events: none;
+        left: -2px;
+        top: -2px;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .magic-lens {
+        width: 50px;
+        height: 38px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        overflow: visible;
+        padding: 0px 0px 0px 0px;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 0;
+        position: absolute;
+        border-radius: 8px;
+        z-index: 5;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .syllable-text-wrapper {
+        box-sizing: border-box;
+        flex-shrink: 0;
+        width: 100%;
+        height: 38px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 12px 2px 12px;
+        background-color: #ffffff;
+        color: #015498;
+        overflow: hidden;
+        position: relative;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 2;
+        border-radius: 8px;
+        border: 2px solid var(--Blue_100, #e7f2fb);
+    }
+
+    .grab-handle-bottom {
+        flex-shrink: 0;
+        min-width: 30px;
+        width: 30%;
+        height: 9px;
+        display: block;
+        top: 33px;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 4px;
+    }
+
+    .grab-handle-top {
+        box-sizing: border-box;
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+        cursor: grab;
+        flex-shrink: 0;
+        min-width: 30px;
+        width: 30%;
+        height: 9px;
+        display: block;
+        top: 33px;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 4px;
+        border: 2px solid var(--Blue_100, #e7f2fb);
+    }
+
+    .grabbed {
+        background-color: #D3E7F8;
+        border: 2px solid #D3E7F8;
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing;
+        cursor: grabbing;
+
+    }
+
+
+    .title {
+        font-size: 27px;
+        line-height: 48px;
+        padding-left: 2px;
+        padding-bottom: 24px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    .paragraph {
+        margin-bottom: 32px;
+    }
+
+    .clause {
+        padding-left: 2px;
+        white-space: nowrap;
+    }
+
+    .body {
+        font-size: 18px;
+        line-height: 48px;
+        font-family: "SF-Mono-Regular";
+    }
+</style>
+
+<body>
+
+    <div class="article-container">
+        <div class="magic-lens">
+            <div class="grab-handle-bottom"></div>
+            <div class="syllable-text-wrapper">
+                <div id="syllable-text" class="syllable-text-container">
+                    <div class="title">
+                        <div id="syllable-clause-1" class="clause">
+                            <span id="syllable-1" class="syllable">The</span>
+                            <span id="syllable-2" class="syllable">Ma-jor</span>
+                            <span id="syllable-3" class="syllable">Theme</span>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="paragraph">
+                            <div id="syllable-clause-2" class="clause">
+                                <span id="syllable-4" class="syllable">Mag-ni-fy-ing</span>
+                                <span id="syllable-5" class="syllable">glass</span>
+                                <span id="syllable-6" class="syllable">ex-ample</span>
+                                <span id="syllable-7" class="syllable">of</span>
+                                <span id="syllable-8" class="syllable">text.</span>
+                            </div>
+                            <div id="syllable-clause-3" class="clause">
+                                <span id="syllable-9" class="syllable">We</span>
+                                <span id="syllable-10" class="syllable">cal-cu-late</span>
+                                <span id="syllable-11" class="syllable">ev-ery-thing.</span>
+                            </div>
+                        </div>
+                        <div class="paragraph">
+                            <div id="syllable-clause-4" class="clause">
+                                <span id="syllable-12" class="syllable">El-e-ments</span>
+                                <span id="syllable-13" class="syllable">struc-ture-d</span>
+                                <span id="syllable-14" class="syllable">for</span>
+                                <span id="syllable-15" class="syllable">sem-an-tic</span>
+                                <span id="syllable-16" class="syllable">mean-ing.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grab-handle-top"></div>
+        </div>
+
+        <article id="standard-text" class="standard-text-container">
+            <div class="title">
+                <div id="clause-1" class="clause">
+                    <span id="word-1" class="word">The</span>
+                    <span id="word-2" class="word">Major</span>
+                    <span id="word-3" class="word">Theme</span>
+                </div>
+            </div>
+            <div class="body">
+                <div class="paragraph">
+                    <div id="clause-2" class="clause">
+                        <span id="word-4" class="word">Magnifying</span>
+                        <span id="word-5" class="word">glass</span>
+                        <span id="word-6" class="word">example</span>
+                        <span id="word-7" class="word">of</span>
+                        <span id="word-8" class="word">text.</span>
+                    </div>
+                    <div id="clause-3" class="clause">
+                        <span id="word-9" class="word">We</span>
+                        <span id="word-10" class="word">calculate</span>
+                        <span id="word-11" class="word">everything.</span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="clause-4" class="clause">
+                        <span id="word-12" class="word">Elements</span>
+                        <span id="word-13" class="word">structured</span>
+                        <span id="word-14" class="word">for</span>
+                        <span id="word-15" class="word">semantic</span>
+                        <span id="word-16" class="word">meaning.</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+    </div>
+</body>

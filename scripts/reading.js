@@ -280,7 +280,7 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
   if (wordList.innerHTML.trim() !== "") {
       wordList.innerHTML += '<br>';
     }
-    wordList.innerHTML += '<strong>' + wordsToReadMap.get(wordId).word.withoutPunctuation + '</strong>';
+    wordList.innerHTML += '<strong>' + wordsToReadMap.get(wordId).withoutPunctuation + '</strong>';
     wordList.innerHTML += '<br>';
 
     if (showPhonemes) {
@@ -296,7 +296,7 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
 }
 
 
-// Funcations to handle JSON data
+// Functions to handle JSON data
 
 async function initWordsToReadMap() {
   jsonData = await readJsonFile("https://kdsaft.github.io/throughline/text/PieThatConquered.json");
@@ -307,13 +307,6 @@ async function initWordsToReadMap() {
   for (const wordData of jsonData.words) {
     const wordId = wordData.id;
     const word = new Word(wordId);
-
-    const { startTime, duration } = getStartAndStopTime(jsonData, wordId);
-    word.audioElement.startTime = startTime;
-    word.audioElement.duration = duration;
-
-    word.word.withoutPunctuation = getWordWithoutPunctuation(jsonData, wordId);
-    word.word.syllables = getSyllablesAsString(jsonData, wordId);
 
     word.drawLine();
     word.createAnimationElements();
@@ -330,43 +323,5 @@ async function readJsonFile(url) {
     return data;
   } catch (error) {
     console.error("Error reading JSON file:", error);
-  }
-}
-
-
-
-function getStartAndStopTime(data, id) {
-  const wordData = data.words.find((word) => word.id === id);
-  if (wordData) {
-    return {
-      startTime: wordData.startTime,
-      duration: wordData.duration,
-    };
-  } else {
-    console.error("Word not found with given ID:", id);
-  }
-}
-
-
-
-function getWordWithoutPunctuation(data, id) {
-  const wordData = data.words.find((word) => word.id === id);
-
-  if (wordData) {
-    const word = wordData.word;
-    const wordWithoutPunctuation = word.replace(/^[^\w]+|[^\w]+$/g, '');
-    return wordWithoutPunctuation; // Return only the word without punctuation
-  } else {
-    console.error("Word not found with given ID:", id);
-  }
-}
-
-
-function getSyllablesAsString(data, id) {
-  const word = data.words.find((word) => word.id === id);
-  if (word) {
-    return word.syllables.map((syllable) => syllable.syllable).join("-");
-  } else {
-    console.error("Word not found with given ID:", id);
   }
 }

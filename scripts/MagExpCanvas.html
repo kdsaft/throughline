@@ -1,0 +1,179 @@
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+    }
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+    $(document).ready(function () {
+        const dummyUI = {
+            position: {
+                left: $('.magnifying-glass').offset().left,
+                top: $('.magnifying-glass').offset().top
+            }
+        };
+
+        const canvas = $('.magnifying-glass canvas')[0];
+        const ctx = canvas.getContext('2d');
+        const scaleFactor = 2;
+
+        function updateMagnifyingGlassOnLoad(magnifyingGlass) {
+            const centerX = magnifyingGlass.offset().left + magnifyingGlass.width() / 2;
+            const centerY = magnifyingGlass.offset().top + magnifyingGlass.height() / 2;
+
+            const event = jQuery.Event("mousemove", {
+                pageX: centerX,
+                pageY: centerY
+            });
+
+            updateMagnifyingGlass(magnifyingGlass, event, dummyUI);
+        }
+
+        function updateMagnifyingGlass(magnifyingGlass, initialUpdateEvent, dummyUI) {
+            const mousePosition = { x: initialUpdateEvent.pageX, y: initialUpdateEvent.pageY };
+
+            let closestWord = null;
+            let minDistance = Infinity;
+
+            $('.word').each(function () {
+                const word = $(this);
+                const wordPos = word.offset();
+                const wordWidth = word.width();
+                const wordHeight = word.height();
+                const centerX = wordPos.left + wordWidth / 2;
+                const centerY = wordPos.top + wordHeight / 2;
+
+                const distance = Math.sqrt(
+                    Math.pow(centerX - mousePosition.x, 2) + Math.pow(centerY - mousePosition.y, 2)
+                );
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestWord = word;
+                }
+            });
+
+            if (closestWord !== null) {
+
+                const wordPos = closestWord.offset();
+                const wordWidth = closestWord.width();
+                const wordHeight = closestWord.height();
+
+                canvas.width = wordWidth * scaleFactor;
+                canvas.height = wordHeight * scaleFactor;
+
+                ctx.textBaseline = 'top';
+                ctx.font = 'bold ' + (16 * scaleFactor) + 'px Arial';
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'black';
+                ctx.fillText(closestWord.data('syllables'), 0, 0);
+
+                const glassX = dummyUI.position.left + magnifyingGlass.width() / 2;
+                const glassY = dummyUI.position.top + magnifyingGlass.height() / 2;
+                const offsetX = (glassX - wordPos.left) * scaleFactor - magnifyingGlass.width() / 2;
+                const offsetY = (glassY - wordPos.top) * scaleFactor - magnifyingGlass.height() / 2;
+
+                $(canvas).css({
+                    'left': -offsetX,
+                    'top': -offsetY
+                });
+            }
+        }
+
+        $('.magnifying-glass').draggable({
+            containment: ".container",
+            scroll: false,
+            delay: 100,
+            drag: function (event, ui) {
+                updateMagnifyingGlass($(this), event, ui);
+            }
+        });
+
+        // Trigger the mousedown event to show the magnifying glass initially
+        $('.magnifying-glass').trigger('drag');
+
+// Call the updateMagnifyingGlassOnLoad function to show the magnifying glass initially
+updateMagnifyingGlassOnLoad($('.magnifying-glass'));
+
+// Trigger the drag event to show the magnifying glass while dragging
+$('.magnifying-glass').on('mousedown', function () {
+    $(this).on('mousemove', function (event) {
+        updateMagnifyingGlass($(this), event, dummyUI);
+    });
+}).on('mouseup', function () {
+    $(this).off('mousemove');
+});
+
+// Update the magnifying glass while dragging with jQuery UI draggable
+$('.magnifying-glass').draggable({
+    containment: ".container",
+    scroll: false,
+    delay: 100,
+    drag: function (event, ui) {
+        updateMagnifyingGlass($(this), event, ui);
+    }
+});
+    });
+</script>
+
+<style>
+    .container {
+        position: relative;
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        padding: 50px;
+        height: 100%;
+        white-space: nowrap;
+    }
+
+    .line {
+        white-space: nowrap;
+    }
+
+    .word {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .magnifying-glass {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 2px solid #000;
+        border-radius: 50%;
+        overflow: hidden;
+        left: 50px;
+        top: 50px;
+    }
+
+    .magnifying-glass canvas {
+        position: absolute;
+        width: 300%;
+        height: 300%;
+        top: -100%;
+        left: -100%;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="line">
+            <span class="word" data-syllables="mag-ni-fy-ing">magnifying</span>
+            <span class="word" data-syllables="glass">glass</span>
+        </div>
+        <div class="line">
+            <span class="word" data-syllables="ex-am-ple">example</span>
+        </div>
+    </div>
+    <div class="magnifying-glass">
+        <canvas></canvas>
+    </div>
+</body>

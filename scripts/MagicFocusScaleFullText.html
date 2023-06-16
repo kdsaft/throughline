@@ -1,0 +1,1892 @@
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+    $(document).ready(function () {
+
+        // Text elements
+        const articleContainer = $('.article-container');
+        const articleContainerOffset = articleContainer.offset();
+        const standardText = { jQ: $('#standard-text'), native: $('#standard-text').get(0) }
+        const syllableText = { jQ: $('#syllable-text'), native: $('#syllable-text').get(0) }
+        const seperatorText = { jQ: $('.syllable-separator'), native: document.querySelectorAll('.syllable-separator') }
+
+        // Magic Lens element
+        const magicLensWrapper = { jQ: $('.magic-lens-wrapper'), native: $('.magic-lens-wrapper').get(0) }
+        const magicLens = { jQ: $('.magic-lens'), native: $('.magic-lens').get(0) }
+        const magicLensDisplay = { jQ: $('.syllable-text-wrapper'), native: $('.syllable-text-wrapper').get(0) }
+        const magicLensHandle = { jQ: $('.grab-handle-top'), native: $('.grab-handle-top').get(0) }
+        const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handle-grab-area').get(0) }
+
+        // tracking variables
+        let dragging = false;
+        let isAnimating = false;
+        let wordId = 1;
+
+        let offsetTouchX;
+        let offsetTouchY;
+
+        // set article bounding box
+        articleContainer.css({
+            height: syllableText.jQ.height() + parseInt(syllableText.jQ.css('marginTop')) + parseInt(syllableText.jQ.css('marginBottom')) + 20,
+            width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
+        });
+        console.log(articleContainer.height(), articleContainer.width());
+        console.log(syllableText.jQ.height(), syllableText.jQ.width());
+
+
+        function animateToWord(id) {
+            // The magicLens stays in word view
+
+            let destinationId = id;
+
+            if (id === 0) {
+                // funcation to find nearest word
+                const magicLensCenterX = magicLens.jQ.offset().left + (magicLens.jQ.width() / 2) - articleContainerOffset.left;
+                const magicLensCenterY = magicLens.jQ.offset().top + (magicLens.jQ.height() / 2) - articleContainerOffset.top;
+
+                destinationId = getNearestWord(magicLensCenterX, magicLensCenterY);
+                wordId = destinationId;
+            }
+
+            const destinationWord = $('#word-' + destinationId);
+            const destinationSyllable = $('#syllable-' + destinationId);
+
+
+            if (destinationWord.length && destinationSyllable.length) {
+                // Get the final positions, height and width of the MagicLens
+                snapPositions = getSnapPosition(destinationId);
+                const newLeftString = `${snapPositions.left}px`;
+                const newTopString = `${snapPositions.top}px`;
+                const newWidthString = `${snapPositions.width.word}px`;
+                const newHeightString = `${snapPositions.height}px`;
+
+                const toNewWordTimeline = anime.timeline();
+
+                toNewWordTimeline
+                    .add({
+                        targets: magicLensWrapper.native,
+                        left: newLeftString,
+                        top: newTopString,
+                        duration: 200,
+                        easing: 'easeOutExpo',
+                    }, 0)
+
+                    .add({
+                        targets: magicLens.native,
+                        width: newWidthString,
+                        height: newHeightString,
+                        duration: 200,
+                        easing: 'easeOutExpo',
+                        complete: function (anim) {
+                            // Get the new position of the syllableText
+                            const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
+                            const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
+                            const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
+                            const newSyllableTop = syllableText.jQ.position().top - deltaTop
+
+                            // Update the syllable position relative to the word
+                            syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
+                            isAnimating = false;
+                            syllableFocus();
+                        },
+                    }, 0);
+
+                // Play the timeline
+                toNewWordTimeline.play();
+
+            }
+        }
+
+
+        function updateMagicLens(event) {
+            if (isAnimating) return;
+
+            const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
+            const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
+            const magicLensX = clientX - offsetTouchX;
+            const magicLensY = clientY - offsetTouchY;
+
+            const currentWord = $('#word-' + wordId);
+            const currentSyllable = $('#syllable-' + wordId);
+
+            const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
+
+            if (speedbumped.id !== 0) {
+                const snapPositions = getSnapPosition(speedbumped.id);
+                const newWidth = snapPositions.width.word;
+
+                magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' });
+            } else {
+                magicLens.jQ.css({ width: '50px', height: '54px' });
+            }
+
+            wordId = speedbumped.id;
+            magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
+        }
+
+
+        function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
+            const verticalSnapThreshold = 12;
+            const horizontalSnapThreshold = 10;
+            let heightOffset = 0;
+
+            const midpointX = currentLeft + (currentWidth / 2);
+            const midpointY = currentTop + (currentHeight / 2);
+
+            let activeClause = 0;
+            let overWord = 0;
+            let newLeft = currentLeft;
+            let newTop = currentTop;
+
+            // Are the points in a clause?
+            const clauses = standardText.jQ.find(".clause");
+
+            clauses.each(function () {
+                const clause = {
+                    height: $(this).height(),
+                    width: $(this).width(),
+                    left: $(this).offset().left - articleContainer.offset().left,
+                    right: $(this).offset().left - articleContainer.offset().left + $(this).width(),
+                    top: $(this).offset().top - articleContainer.offset().top,
+                    bottom: $(this).offset().top - articleContainer.offset().top + $(this).height()
+                };
+
+                if (midpointX > clause.left && midpointX < clause.right && midpointY > clause.top && midpointY < clause.bottom) {
+                    activeClauseId = $(this).attr("id").split("-")[1];
+                }
+            });
+
+
+
+
+            // Are the points over a word?
+            if (activeClauseId > 0) {
+                const words = $(`#clause-${activeClauseId}`).find('.word');
+                words.each(function () {
+                    const wordLeft = $(this).offset().left - articleContainer.offset().left;
+                    const wordRight = wordLeft + $(this).width();
+                    const wordTop = $(this).offset().top - articleContainer.offset().top;
+                    const wordBottom = wordTop + $(this).height();
+                    const wordId = parseInt($(this).attr("id").split("-")[1]);
+                    const wordIndex = words.index(this);
+                    const prevWord = words.eq(wordIndex - 1);
+                    const nextWord = words.eq(wordIndex + 1);
+
+                    let leftBound = wordLeft - 6;
+                    let rightBound = wordRight + 6;
+
+                    if (wordIndex !== 0) {
+                        if (prevWord.length) {
+                            const prevWordRight = prevWord.offset().left - articleContainer.offset().left + prevWord.width();
+                            leftBound = wordLeft - (wordLeft - prevWordRight) / 2;
+                        }
+                    }
+
+                    if (nextWord.length) {
+                        const nextWordLeft = nextWord.offset().left - articleContainer.offset().left;
+                        rightBound = wordRight + (nextWordLeft - wordRight) / 2;
+                    }
+
+                    if (midpointX > leftBound && midpointX < rightBound && midpointY > wordTop - 6 && midpointY < wordBottom + 6) {
+                        overWord = wordId;
+                    }
+                });
+            }
+
+            // Constrain to article container
+            newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
+            newLeft = containWithinLeftRight(newLeft, articleContainer.width(), currentWidth);
+
+            // Apply speed bumps
+            snapPositions = getSnapPosition(overWord);
+
+            // Apply a horizontal speed bump
+            const leftThreshold = snapPositions.left - horizontalSnapThreshold / 2;
+            const rightThreshold = snapPositions.left + horizontalSnapThreshold / 2;
+
+            if ((currentLeft > leftThreshold) && (currentLeft < rightThreshold)) {
+                newLeft = snapPositions.left;
+            }
+
+            // Apply a vertical speed bump
+            const upperThreshold = snapPositions.top + verticalSnapThreshold / 2;
+            const lowerThreshold = snapPositions.top - verticalSnapThreshold / 2;
+
+            if ((currentTop > lowerThreshold) && (currentTop < upperThreshold)) {
+                newTop = snapPositions.top;
+            }
+
+            return { left: newLeft, top: newTop, id: overWord };
+        }
+
+
+        // Helper functions
+
+        function getNearestWord(posX, posY) {
+            const allWords = $(".word");
+            let nearestWord = null;
+            let nearestDistance = Infinity;
+
+            allWords.each(function () {
+                const elementOffset = $(this).offset();
+                const articleContainerOffset = $("#standard-text").offset();
+                const elementPosX = elementOffset.left - articleContainerOffset.left;
+                const elementPosY = elementOffset.top - articleContainerOffset.top;
+
+                const distance = Math.sqrt(
+                    Math.pow(posX - elementPosX, 2) + Math.pow(posY - elementPosY, 2)
+                );
+
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestWordId = $(this).attr("id").split('-')[1];
+                }
+            });
+
+            return nearestWordId;
+        }
+
+        function getPaddedDimensions(id) {
+            const extraWidth = 20;
+            const extraHeight = 32;
+
+            const wordElement = $('#word-' + id);
+            const syllableElement = $('#syllable-' + id);
+
+            const newWidth = { word: wordElement.width() + extraWidth, syllable: syllableElement.width() + extraWidth };
+            const newHeight = wordElement.height() + extraHeight;
+
+            return ({ width: newWidth, height: newHeight });
+        }
+
+        function getSnapPosition(id) {
+            const wordElement = $('#word-' + id);
+            const syllableElement = $('#syllable-' + id);
+            const elementDimensions = getPaddedDimensions(id);
+
+            // Calculate the extra padding
+            const topHeightRatio = 0.4;
+            const extraWidthPadding = (elementDimensions.width.word - wordElement.width()) / 2;
+            const extraHeightPadding = Math.round((elementDimensions.height - wordElement.height()) * topHeightRatio);
+
+            // Calculate the new values
+            const newWidth = { word: elementDimensions.width.word, syllable: elementDimensions.width.syllable };
+            const newHeight = elementDimensions.height;
+            const newLeft = wordElement.offset().left - articleContainer.offset().left - extraWidthPadding;
+            const newTop = wordElement.offset().top - articleContainer.offset().top - extraHeightPadding;
+
+            return ({ left: newLeft, top: newTop, width: newWidth, height: newHeight });
+        }
+
+        function containWithinTopBottom(Y, containerHeight, objectHeight) {
+            let newY = Y;
+
+            // top bounds
+            if (newY < 4) {
+                newY = 4;
+            }
+
+            // bottom bounds
+            if (newY > (containerHeight - (objectHeight / 3) - 4)) {
+                newY = containerHeight - (objectHeight / 3) - 4;
+            }
+            return newY;
+        }
+
+        function containWithinLeftRight(X, containerWidth, objectWidth) {
+            let newX = X;
+
+            if (newX < 4) {
+                newX = 4;
+            }
+
+            let rightEdge = newX + objectWidth;
+            if (rightEdge > containerWidth + 34) {
+                newX = containerWidth + 34 - objectWidth;
+            }
+            return newX;
+        }
+
+        function getWordIdFromNewClause(id, direction) {
+            const standardTextContainer = document.querySelector(".standard-text-container");
+
+            // Find the current word and its position
+            const currentWord = standardTextContainer.querySelector(`#word-${id}`);
+            const currentWordPosition = currentWord.getBoundingClientRect();
+
+            // Find the current clause and the target clause based on the direction
+            const currentClause = currentWord.closest(".clause");
+            const currentClauseNumber = parseInt(currentClause.id.split("-")[1]);
+            const targetClauseNumber = currentClauseNumber + direction;
+            const targetClause = standardTextContainer.querySelector(`#clause-${targetClauseNumber}`);
+
+            // If the target clause doesn't exist, return the same wordId
+            if (!targetClause) {
+                return id;
+            }
+
+            // Get the words from the target clause and calculate their distances
+            const targetWords = Array.from(targetClause.querySelectorAll(".word"));
+            const distances = targetWords.map(word => {
+                const wordPosition = word.getBoundingClientRect();
+                return Math.abs(currentWordPosition.left - wordPosition.left);
+            });
+
+            // Find the index of the closest word and return its wordId
+            const closestWordIndex = distances.indexOf(Math.min(...distances));
+            const closestWordId = parseInt(targetWords[closestWordIndex].id.split('-')[1]);
+
+            return closestWordId;
+        }
+
+        function isFirstOrLastWord(id) {
+            const syllableElement = $('#syllable-' + id);
+            const isFirstWord = syllableElement.is(':first-child');
+            const isLastWord = syllableElement.is(':last-child');
+            return { isFirstWord, isLastWord };
+        }
+
+        function isFirstOrLastClause(id) {
+            const syllableId = "syllable-" + id;
+            const syllableElement = document.getElementById(syllableId);
+            const clauseElement = syllableElement.closest(".clause");
+
+            const syllableTextContainer = document.getElementById("syllable-text");
+            const allClauses = Array.from(syllableTextContainer.querySelectorAll(".clause"));
+
+            const isFirstClause = (clauseElement === allClauses[0]);
+            const isLastClause = (clauseElement === allClauses[allClauses.length - 1]);
+
+            return { isFirstClause, isLastClause };
+        }
+
+
+        // Animation functions
+
+        function syllableFocus() {
+            const syllableWidth = getPaddedDimensions(wordId).width.syllable;
+            const syllableWidthString = `${syllableWidth}px`;
+
+            const toSyllableFocusTimeline = anime.timeline();
+
+            toSyllableFocusTimeline
+                .add({
+                    targets: magicLensWrapper.native,
+                    scale: 1.055,
+                    duration: 200,
+                    easing: 'easeOutExpo',
+                }, 0)
+
+                .add({
+                    targets: magicLensDisplay.native,
+                    backdropFilter: 'blur(15px)',
+                    duration: 100,
+                    easing: 'easeOutExpo'
+                }, 0)
+
+                .add({
+                    targets: seperatorText.native,
+                    color: 'rgba(181, 204, 255, 1)',
+                    duration: 200,
+                    easing: 'easeOutExpo'
+                }, 0)
+
+                .add({
+                    targets: magicLensHandle.native,
+                    borderColor: 'rgba(231, 242, 251, 1)',
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                    duration: 200,
+                    easing: 'easeOutExpo'
+                }, 0)
+
+                .add({
+                    targets: magicLens.native,
+                    width: syllableWidthString,
+                    duration: 200,
+                    easing: 'easeOutExpo'
+                }, 0)
+
+                .add({
+                    targets: magicLensDisplay.native,
+                    borderColor: 'rgba(231, 242, 251, 1)',
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                    color: 'rgba(0, 84, 153, 1)',
+                    duration: 200,
+                    easing: 'easeOutExpo'
+                }, 0);
+
+
+            // Play the timeline
+            toSyllableFocusTimeline.play();
+        }
+
+        function wordFocus() {
+            const wordWidth = getPaddedDimensions(wordId).width.word;
+            const wordWidthString = `${wordWidth}px`;
+
+            anime({
+                targets: magicLensDisplay.native,
+                backdropFilter: 'blur(0px)',
+                duration: 100,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: seperatorText.native,
+                color: 'rgba(181, 204, 255, 0)',
+                duration: 200,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: magicLensDisplay.native,
+                borderColor: 'rgba(0, 84, 153, 1)',
+                backgroundColor: 'rgba(255, 255, 255, 0)',
+                color: 'rgba(0, 84, 153, 0)',
+                duration: 200,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: magicLensHandle.native,
+                borderColor: 'rgba(0, 84, 153, 1)',
+                backgroundColor: 'rgba(0, 84, 153, 1)',
+                duration: 200,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: magicLens.native,
+                width: wordWidthString,
+                duration: 200,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: magicLensWrapper.native,
+                scale: 1.0,
+                duration: 200,
+                easing: 'easeOutExpo'
+            });
+        }
+
+
+        // onEvents
+
+        function onMouseUp(event) {
+            magicLensHandle.jQ.removeClass('grabbed');
+            dragging = false;
+            animateToWord(wordId);
+            $(document).off('mousemove touchmove', updateMagicLens);
+        }
+
+        magicLensHandle.jQ.on('mousedown', function (event) {
+            const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
+            const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
+
+            offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
+            offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
+
+            wordFocus();
+            dragging = true;
+            magicLensHandle.jQ.addClass('grabbed');
+            $(document).on('mousemove', updateMagicLens);
+        });
+
+
+        grabHandleArea.jQ.on('touchstart', function (event) {
+            const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
+            const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
+            if (event.type === 'touchstart') {
+                event.preventDefault();
+            }
+            offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
+            offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
+
+            wordFocus();
+            dragging = true;
+            magicLensHandle.jQ.addClass('grabbed');
+            $(document).on('touchmove', updateMagicLens);
+        });
+
+        magicLensDisplay.jQ.on('mousedown', function (event) {
+            event.preventDefault();
+            const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+            const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
+
+            const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+            const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+            const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
+            wordFocus();
+
+            if (relativeClickPointX < 24) {
+                if (!(isFirstWord && isFirstClause)) {
+                    wordId -= 1;
+                }
+
+            } else if (relativeClickPointX > (magicLens.jQ.width() - 24)) {
+                if (!(isLastWord && isLastClause)) {
+                    wordId += 1;
+                }
+            }
+        });
+
+
+        magicLensDisplay.jQ.on('touchstart', function (event) {
+            const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+            const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
+            if (event.type === 'touchstart') {
+                event.preventDefault();
+            }
+            offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
+            offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
+
+            const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+            const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+            const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
+
+            wordFocus();
+
+            if (relativeClickPointX < 16) {
+                if (!(isFirstWord && isFirstClause)) {
+                    wordId -= 1;
+                }
+            } else if (relativeClickPointX > (magicLens.jQ.width() - 16)) {
+                if (!(isLastWord && isLastClause)) {
+                    wordId += 1;
+                }
+
+            } else {
+                dragging = true;
+                magicLensHandle.jQ.addClass('grabbed');
+                $(document).on('touchmove', updateMagicLens);
+            }
+        });
+
+        articleContainer.on('mousemove touchmove', function (event) {
+            if (dragging) {
+                event.preventDefault();
+                updateMagicLens(event);
+            }
+        });
+
+        $(document).on('mouseup touchend', onMouseUp);
+
+        articleContainer.on('mousedown touchstart', '.word', function (event) {
+            if (event.type === 'touchstart') {
+                event.preventDefault();
+            }
+
+            // Get the id from the clicked word element
+            const elementID = $(this).attr('id').split('-')[1];
+
+            wordFocus();
+            wordId = parseInt(elementID, 10);
+        });
+    });
+
+</script>
+
+<style>
+    .article-container {
+        position: relative;
+        background-color: #fff;
+        border: 1px solid #d5e1ff;
+        padding: 20px;
+        overflow: visible;
+    }
+
+    .standard-text-container {
+        position: absolute;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .syllable-text-container {
+        position: absolute;
+        pointer-events: none;
+        left: -2px;
+        top: -2px;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
+
+    .magic-lens {
+        width: 50px;
+        height: 54px;
+        min-width: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        overflow: visible;
+        padding: 0px 0px 0px 0px;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 0;
+        position: absolute;
+        border-radius: 8px;
+        z-index: 5;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+
+
+    .magic-lens-wrapper {
+        position: absolute;
+        overflow: visible;
+        z-index: 100;
+        width: 50px;
+        height: 50px;
+        transform: scale(1.055, 1.055);
+        perspective(1px)
+    }
+
+
+
+    .syllable-text-wrapper {
+        box-sizing: border-box;
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        color: #015498;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 12px 2px 12px;
+        overflow: hidden;
+        position: relative;
+        align-content: center;
+        flex-wrap: nowrap;
+        gap: 2;
+        border-radius: 8px;
+        border: 2px solid #e7f2fb;
+    }
+
+    .grab-handle-bottom {
+        flex-shrink: 0;
+        align-content: center;
+        align-items: center;
+        min-width: 30px;
+        width: 30%;
+        height: 9px;
+        display: block;
+        bottom: -4px;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 4px;
+    }
+
+    .grab-handle-top {
+        box-sizing: border-box;
+        align-content: center;
+        align-items: center;
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+        cursor: grab;
+        flex-shrink: 0;
+        min-width: 30px;
+        width: 30%;
+        height: 9px;
+        display: block;
+        bottom: 8px;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 0;
+        position: absolute;
+        border-radius: 4px;
+        border: 2px solid var(--Blue_100, #e7f2fb);
+        pointer-events: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .grab-handle-grab-area {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 24px;
+        bottom: -12px;
+    }
+
+    .grabbed {
+        cursor: -webkit-grabbinbg;
+        cursor: -moz-grabbing;
+        cursor: grabbing;
+
+    }
+
+
+    .article-title {
+        font-size: 27px;
+        line-height: 48px;
+        padding-left: 2px;
+        padding-bottom: 24px;
+        font-family: "SF-Mono-Regular";
+    }
+
+    .article-title .syllable-separator {
+        font-size: 14px;
+    }
+
+    .paragraph {
+        margin-bottom: 32px;
+    }
+
+    .clause {
+        padding-left: 2px;
+        white-space: nowrap;
+        height: 50px;
+    }
+
+    .article-body {
+        font-size: 18px;
+        line-height: 48px;
+        font-family: "SF-Mono-Regular";
+    }
+
+
+    .article-body .syllable-separator {
+        font-size: 10px;
+    }
+
+    .word {
+        cursor: pointer;
+    }
+
+    .syllable-separator {
+        flex-shrink: 0;
+        width: auto;
+        height: auto;
+        white-space: pre;
+        position: relative;
+        font-family: "SF-Mono-Medium", monospace;
+        color: rgba(181, 204, 255, 1);
+        text-align: center;
+        bottom: 1px;
+        padding: 0px 1px 0px 1px;
+    }
+</style>
+
+<body>
+    <div class="article-container">
+        <div class="magic-lens-wrapper">
+            <div class="magic-lens">
+                <div class="grab-handle-bottom"></div>
+                <div class="syllable-text-wrapper">
+                    <div id="syllable-text" class="syllable-text-container">
+                        <div class="article-title">
+                            <div id="syllable-clause-1" class="clause">
+                                <span id="syllable-1" class="syllable">The</span>
+                                <span id="syllable-2" class="syllable">Pie</span>
+                                <span id="syllable-3" class="syllable">That</span>
+                                <span id="syllable-4" class="syllable">Con<span
+                                        class="syllable-separator">•</span>quered</span>
+                                <span id="syllable-5" class="syllable">the</span>
+                                <span id="syllable-6" class="syllable">Can<span
+                                        class="syllable-separator">•</span>o<span
+                                        class="syllable-separator">•</span>py</span>
+                            </div>
+                        </div>
+                        <div class="article-body">
+                            <div class="paragraph">
+                                <div id="syllable-clause-2" class="clause">
+                                    <span id="syllable-7" class="syllable">Deep</span>
+                                    <span id="syllable-8" class="syllable">with<span
+                                            class="syllable-separator">•</span>in</span>
+                                    <span id="syllable-9" class="syllable">the</span>
+                                    <span id="syllable-10" class="syllable">heart</span>
+                                    <span id="syllable-11" class="syllable">of</span>
+                                    <span id="syllable-12" class="syllable">the</span>
+                                    <span id="syllable-13" class="syllable">jun<span
+                                            class="syllable-separator">•</span>gle</span>
+                                </div>
+                                <div id="syllable-clause-3" class="clause">
+                                    <span id="syllable-14"  class="word unread">a</span>
+                                    <span id="syllable-15"  class="word unread">hi<span class="syllable-separator">•</span>er<span
+                                            class="syllable-separator">•</span>arch<span
+                                            class="syllable-separator">•</span>ical</span>
+                                    <span id="syllable-16"  class="word unread">so<span class="syllable-separator">•</span>ci<span
+                                            class="syllable-separator">•</span>ety</span>
+                                    <span id="syllable-17" class="syllable">of</span>
+                                    <span id="syllable-18" class="syllable">big<span
+                                            class="syllable-separator">•</span>eyed</span>
+                                    <span id="syllable-19" class="syllable">birds</span>
+                                </div>
+                                <div id="syllable-clause-4" class="clause">
+                                    <span id="syllable-20" class="syllable">thrived</span>
+                                    <span id="syllable-21" class="syllable">in</span>
+                                    <span id="syllable-22" class="syllable">the</span>
+                                    <span id="syllable-23" class="syllable">dense</span>
+                                    <span id="syllable-24" class="syllable">can<span
+                                            class="syllable-separator">•</span>o<span
+                                            class="syllable-separator">•</span>py</span>
+                                </div>
+                                <div id="syllable-clause-5" class="clause">
+                                    <span id="syllable-25" class="syllable">A<span
+                                            class="syllable-separator">•</span>mong</span>
+                                    <span id="syllable-26" class="syllable">these</span>
+                                    <span id="syllable-27" class="syllable">birds</span>
+                                    <span id="syllable-28" class="syllable">an</span>
+                                    <span id="syllable-29" class="syllable">an<span
+                                            class="syllable-separator">•</span>nu<span
+                                            class="syllable-separator">•</span>al</span>
+                                    <span id="syllable-30" class="syllable">pie<span
+                                            class="syllable-separator">•</span>mak<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-31" class="syllable">con<span
+                                            class="syllable-separator">•</span>test</span>
+                                </div>
+                                <div id="syllable-clause-6" class="clause">
+                                    <span id="syllable-32" class="syllable">de<span
+                                            class="syllable-separator">•</span>ter<span
+                                            class="syllable-separator">•</span>mined</span>
+                                    <span id="syllable-33" class="syllable">the</span>
+                                    <span id="syllable-34" class="syllable">so<span
+                                            class="syllable-separator">•</span>cial</span>
+                                    <span id="syllable-35" class="syllable">stand<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-36" class="syllable">of</span>
+                                    <span id="syllable-37" class="syllable">each</span>
+                                    <span id="syllable-38" class="syllable">fam<span
+                                            class="syllable-separator">•</span>i<span
+                                            class="syllable-separator">•</span>ly</span>
+                                </div>
+                                <div id="syllable-clause-7" class="clause">
+                                    <span id="syllable-39" class="syllable">Those</span>
+                                    <span id="syllable-40" class="syllable">who</span>
+                                    <span id="syllable-41" class="syllable">ranked</span>
+                                    <span id="syllable-42" class="syllable">high<span
+                                            class="syllable-separator">•</span>er</span>
+                                    <span id="syllable-43" class="syllable">gained</span>
+                                    <span id="syllable-44" class="syllable">ac<span
+                                            class="syllable-separator">•</span>cess</span>
+                                </div>
+                                <div id="syllable-clause-8" class="clause">
+                                    <span id="syllable-45" class="syllable">to</span>
+                                    <span id="syllable-46" class="syllable">bet<span
+                                            class="syllable-separator">•</span>ter</span>
+                                    <span id="syllable-47" class="syllable">re<span
+                                            class="syllable-separator">•</span>sourc<span
+                                            class="syllable-separator">•</span>es</span>
+                                    <span id="syllable-48" class="syllable">ed<span
+                                            class="syllable-separator">•</span>u<span
+                                            class="syllable-separator">•</span>ca<span
+                                            class="syllable-separator">•</span>tion</span>
+                                    <span id="syllable-49" class="syllable">and</span>
+                                    <span id="syllable-50" class="syllable">op<span
+                                            class="syllable-separator">•</span>por<span
+                                            class="syllable-separator">•</span>tu<span
+                                            class="syllable-separator">•</span>nities</span>
+                                </div>
+                                <div id="syllable-clause-9" class="clause">
+                                    <span id="syllable-51" class="syllable">The</span>
+                                    <span id="syllable-52" class="syllable">com<span
+                                            class="syllable-separator">•</span>pe<span
+                                            class="syllable-separator">•</span>ti<span
+                                            class="syllable-separator">•</span>tion</span>
+                                    <span id="syllable-53" class="syllable">was</span>
+                                    <span id="syllable-54" class="syllable">fierce</span>
+                                    <span id="syllable-55" class="syllable">with</span>
+                                    <span id="syllable-56" class="syllable">fam<span
+                                            class="syllable-separator">•</span>i<span
+                                            class="syllable-separator">•</span>lies</span>
+                                    <span id="syllable-57" class="syllable">gath<span
+                                            class="syllable-separator">•</span>er<span
+                                            class="syllable-separator">•</span>ing</span>
+                                </div>
+                                <div id="syllable-clause-10" class="clause">
+                                    <span id="syllable-58" class="syllable">in</span>
+                                    <span id="syllable-59" class="syllable">the</span>
+                                    <span id="syllable-60" class="syllable">Great</span>
+                                    <span id="syllable-61" class="syllable">Ban<span
+                                            class="syllable-separator">•</span>yan</span>
+                                    <span id="syllable-62" class="syllable">Clear<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-63" class="syllable">to</span>
+                                    <span id="syllable-64" class="syllable">pre<span
+                                            class="syllable-separator">•</span>sent</span>
+                                    <span id="syllable-65" class="syllable">their</span>
+                                    <span id="syllable-66" class="syllable">pies</span>
+                                </div>
+                                <div id="syllable-clause-11" class="clause">
+                                    <span id="syllable-67" class="syllable">The</span>
+                                    <span id="syllable-68" class="syllable">goal</span>
+                                    <span id="syllable-69" class="syllable">was</span>
+                                    <span id="syllable-70" class="syllable">to</span>
+                                    <span id="syllable-71" class="syllable">im<span
+                                            class="syllable-separator">•</span>press</span>
+                                    <span id="syllable-72" class="syllable">the</span>
+                                    <span id="syllable-73" class="syllable">judges</span>
+                                    <span id="syllable-74" class="syllable">and</span>
+                                    <span id="syllable-75" class="syllable">claim</span>
+                                </div>
+                                <div id="syllable-clause-12" class="clause">
+                                    <span id="syllable-76" class="syllable">the</span>
+                                    <span id="syllable-77" class="syllable">es<span
+                                            class="syllable-separator">•</span>teemed</span>
+                                    <span id="syllable-78" class="syllable">ti<span
+                                            class="syllable-separator">•</span>tle</span>
+                                    <span id="syllable-79" class="syllable">of</span>
+                                    <span id="syllable-80" class="syllable">Pie</span>
+                                    <span id="syllable-81" class="syllable">Mas<span
+                                            class="syllable-separator">•</span>ter</span>
+                                </div>
+                                <div id="syllable-clause-13" class="clause">
+                                    <span id="syllable-82" class="syllable">which</span>
+                                    <span id="syllable-83" class="syllable">grant<span
+                                            class="syllable-separator">•</span>ed</span>
+                                    <span id="syllable-84" class="syllable">the</span>
+                                    <span id="syllable-85" class="syllable">win<span
+                                            class="syllable-separator">•</span>ners</span>
+                                    <span id="syllable-86" class="syllable">the</span>
+                                    <span id="syllable-87" class="syllable">most</span>
+                                    <span id="syllable-88" class="syllable">lux<span
+                                            class="syllable-separator">•</span>ur<span
+                                            class="syllable-separator">•</span>i<span
+                                            class="syllable-separator">•</span>ous</span>
+                                    <span id="syllable-89" class="syllable">nests</span>
+                                </div>
+                                <div id="syllable-clause-14" class="clause">
+                                    <span id="syllable-90" class="syllable">in</span>
+                                    <span id="syllable-91" class="syllable">the</span>
+                                    <span id="syllable-92" class="syllable">high<span
+                                            class="syllable-separator">•</span>est</span>
+                                    <span id="syllable-93" class="syllable">branch<span
+                                            class="syllable-separator">•</span>es</span>
+                                </div>
+                            </div>
+                            <div class="paragraph">
+                                <div id="syllable-clause-15" class="clause">
+                                    <span id="syllable-94" class="syllable">One</span>
+                                    <span id="syllable-95" class="syllable">day</span>
+                                    <span id="syllable-96" class="syllable">a</span>
+                                    <span id="syllable-97" class="syllable">young</span>
+                                    <span id="syllable-98" class="syllable">and</span>
+                                    <span id="syllable-99" class="syllable">am<span
+                                            class="syllable-separator">•</span>bi<span
+                                            class="syllable-separator">•</span>tious</span>
+                                    <span id="syllable-100" class="syllable">bird</span>
+                                    <span id="syllable-101" class="syllable">named</span>
+                                    <span id="syllable-102" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                </div>
+                                <div id="syllable-clause-16" class="clause">
+                                    <span id="syllable-103" class="syllable">flut<span
+                                            class="syllable-separator">•</span>tered</span>
+                                    <span id="syllable-104" class="syllable">through</span>
+                                    <span id="syllable-105" class="syllable">the</span>
+                                    <span id="syllable-106" class="syllable">lush</span>
+                                    <span id="syllable-107" class="syllable">jun<span
+                                            class="syllable-separator">•</span>gle</span>
+                                </div>
+                                <div id="syllable-clause-17" class="clause">
+                                    <span id="syllable-108" class="syllable">car<span
+                                            class="syllable-separator">•</span>ry<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-109" class="syllable">a</span>
+                                    <span id="syllable-110" class="syllable">piece</span>
+                                    <span id="syllable-111" class="syllable">of</span>
+                                    <span id="syllable-112" class="syllable">pie</span>
+                                    <span id="syllable-113" class="syllable">that</span>
+                                    <span id="syllable-114" class="syllable">he</span>
+                                    <span id="syllable-115" class="syllable">had</span>
+                                    <span id="syllable-116" class="syllable">spent</span>
+                                    <span id="syllable-117" class="syllable">days</span>
+                                    <span id="syllable-118" class="syllable">per<span
+                                            class="syllable-separator">•</span>fect<span
+                                            class="syllable-separator">•</span>ing</span>
+                                </div>
+                                <div id="syllable-clause-18" class="clause">
+                                    <span id="syllable-119" class="syllable">His</span>
+                                    <span id="syllable-120" class="syllable">best</span>
+                                    <span id="syllable-121" class="syllable">friend</span>
+                                    <span id="syllable-122" class="syllable">Dai<span
+                                            class="syllable-separator">•</span>sy</span>
+                                    <span id="syllable-123" class="syllable">was</span>
+                                    <span id="syllable-124" class="syllable">wait<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-125" class="syllable">for</span>
+                                    <span id="syllable-126" class="syllable">him</span>
+                                    <span id="syllable-127" class="syllable">at</span>
+                                    <span id="syllable-128" class="syllable">the</span>
+                                    <span id="syllable-129" class="syllable">riv<span
+                                            class="syllable-separator">•</span>er<span
+                                            class="syllable-separator">•</span>bank</span>
+                                </div>
+                                <div id="syllable-clause-19" class="clause">
+                                    <span id="syllable-130" class="syllable">She</span>
+                                    <span id="syllable-131" class="syllable">had</span>
+                                    <span id="syllable-132" class="syllable">a</span>
+                                    <span id="syllable-133" class="syllable">boat</span>
+                                    <span id="syllable-134" class="syllable">read<span
+                                            class="syllable-separator">•</span>y</span>
+                                    <span id="syllable-135" class="syllable">to</span>
+                                    <span id="syllable-136" class="syllable">take</span>
+                                    <span id="syllable-137" class="syllable">them</span>
+                                </div>
+                                <div id="syllable-clause-20" class="clause">
+                                    <span id="syllable-138" class="syllable">to</span>
+                                    <span id="syllable-139" class="syllable">the</span>
+                                    <span id="syllable-140" class="syllable">Great</span>
+                                    <span id="syllable-141" class="syllable">Ban<span
+                                            class="syllable-separator">•</span>yan</span>
+                                    <span id="syllable-142" class="syllable">Clear<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <div id="clause-21" class="clause">
+                                    </div>
+                                    <span id="syllable-143" class="syllable">Hur<span
+                                            class="syllable-separator">•</span>ry</span>
+                                    <span id="syllable-144" class="syllable">up</span>
+                                    <span id="syllable-145" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                    <span id="syllable-146" class="syllable">We</span>
+                                    <span id="syllable-147" class="syllable">don't</span>
+                                    <span id="syllable-148" class="syllable">want</span>
+                                    <span id="syllable-149" class="syllable">to</span>
+                                    <span id="syllable-150" class="syllable">be</span>
+                                    <span id="syllable-151" class="syllable">late</span>
+                                </div>
+                                <div id="syllable-clause-22" class="clause">
+                                    <span id="syllable-152" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                    <span id="syllable-153" class="syllable">hopped</span>
+                                    <span id="syllable-154" class="syllable">on<span
+                                            class="syllable-separator">•</span>to</span>
+                                    <span id="syllable-155" class="syllable">the</span>
+                                    <span id="syllable-156" class="syllable">boat</span>
+                                    <span id="syllable-157" class="syllable">and</span>
+                                    <span id="syllable-158" class="syllable">off</span>
+                                    <span id="syllable-159" class="syllable">they</span>
+                                    <span id="syllable-160" class="syllable">went</span>
+                                </div>
+                                <div id="syllable-clause-23" class="clause">
+                                    <span id="syllable-161" class="syllable">sail<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-162" class="syllable">across</span>
+                                    <span id="syllable-163" class="syllable">the</span>
+                                    <span id="syllable-164" class="syllable">riv<span
+                                            class="syllable-separator">•</span>er</span>
+                                </div>
+                                <div id="syllable-clause-24" class="clause">
+                                    <span id="syllable-165" class="syllable">dis<span
+                                            class="syllable-separator">•</span>cuss<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-166" class="syllable">their</span>
+                                    <span id="syllable-167" class="syllable">strat<span
+                                            class="syllable-separator">•</span>e<span
+                                            class="syllable-separator">•</span>gy</span>
+                                    <span id="syllable-168" class="syllable">for</span>
+                                    <span id="syllable-169" class="syllable">the</span>
+                                    <span id="syllable-170" class="syllable">con<span
+                                            class="syllable-separator">•</span>test</span>
+                                </div>
+                                <div id="syllable-clause-25" class="clause">
+                                    <span id="syllable-171" class="syllable">and</span>
+                                    <span id="syllable-172" class="syllable">the</span>
+                                    <span id="syllable-173" class="syllable">po<span
+                                            class="syllable-separator">•</span>ten<span
+                                            class="syllable-separator">•</span>tial</span>
+                                    <span id="syllable-174" class="syllable">im<span
+                                            class="syllable-separator">•</span>pli<span
+                                            class="syllable-separator">•</span>ca<span
+                                            class="syllable-separator">•</span>tions</span>
+                                </div>
+                                <div id="syllable-clause-26" class="clause">
+                                    <span id="syllable-175" class="syllable">for</span>
+                                    <span id="syllable-176" class="syllable">their</span>
+                                    <span id="syllable-177" class="syllable">fu<span
+                                            class="syllable-separator">•</span>ture</span>
+                                    <span id="syllable-178" class="syllable">in</span>
+                                    <span id="syllable-179" class="syllable">the</span>
+                                    <span id="syllable-180" class="syllable">bird</span>
+                                    <span id="syllable-181" class="syllable">hi<span
+                                            class="syllable-separator">•</span>er<span
+                                            class="syllable-separator">•</span>ar<span
+                                            class="syllable-separator">•</span>chy</span>
+                                </div>
+                                <div id="clause-27" class="clause">
+                                    <span id="syllable-182" class="syllable">for</span>
+                                    <span id="syllable-183" class="syllable">their</span>
+                                    <span id="syllable-184" class="syllable">fu<span
+                                            class="syllable-separator">•</span>ture</span>
+                                    <span id="syllable-185" class="syllable">in</span>
+                                    <span id="syllable-186" class="syllable">the</span>
+                                    <span id="syllable-187" class="syllable">bird</span>
+                                    <span id="syllable-188" class="syllable">hi<span
+                                            class="syllable-separator">•</span>er<span
+                                            class="syllable-separator">•</span>ar<span
+                                            class="syllable-separator">•</span>chy</span>
+                                </div>
+                            </div>
+                            <div class="paragraph">
+                                <div id="syllable-clause-28" class="clause">
+                                    <span id="syllable-189" class="syllable">As</span>
+                                    <span id="syllable-190" class="syllable">they</span>
+                                    <span id="syllable-191" class="syllable">rowed</span>
+                                    <span id="syllable-192" class="syllable">Dai<span
+                                            class="syllable-separator">•</span>sy</span>
+                                    <span id="syllable-193" class="syllable">shared</span>
+                                    <span id="syllable-194" class="syllable">her</span>
+                                    <span id="syllable-195" class="syllable">psy<span
+                                            class="syllable-separator">•</span>chol<span
+                                            class="syllable-separator">•</span>o<span
+                                            class="syllable-separator">•</span>gy-bas<span
+                                            class="syllable-separator">•</span>ed</span>
+                                    <span id="syllable-196" class="syllable">pie</span>
+                                    <span id="syllable-197" class="syllable">the<span
+                                            class="syllable-separator">•</span>o<span
+                                            class="syllable-separator">•</span>ry</span>
+                                </div>
+                                <div id="syllable-clause-29" class="clause">
+                                    <span id="syllable-198" class="syllable">with</span>
+                                    <span id="syllable-199" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                    <span id="syllable-200" class="syllable">You</span>
+                                    <span id="syllable-201" class="syllable">see</span>
+                                    <span id="syllable-202" class="syllable">she</span>
+                                    <span id="syllable-203" class="syllable">ex<span
+                                            class="syllable-separator">•</span>plained</span>
+                                </div>
+                                <div id="syllable-clause-30" class="clause">
+                                    <span id="syllable-204" class="syllable">the</span>
+                                    <span id="syllable-205" class="syllable">judg<span
+                                            class="syllable-separator">•</span>es</span>
+                                    <span id="syllable-206" class="syllable">have</span>
+                                    <span id="syllable-207" class="syllable">had</span>
+                                    <span id="syllable-208" class="syllable">en<span
+                                            class="syllable-separator">•</span>ough</span>
+                                    <span id="syllable-209" class="syllable">of</span>
+                                    <span id="syllable-210" class="syllable">the</span>
+                                    <span id="syllable-211" class="syllable">same</span>
+                                    <span id="syllable-212" class="syllable">old</span>
+                                    <span id="syllable-213" class="syllable">fruit</span>
+                                    <span id="syllable-214" class="syllable">pies</span>
+                                </div>
+                                <div id="syllable-clause-31" class="clause">
+                                    <span id="syllable-215" class="syllable">We</span>
+                                    <span id="syllable-216" class="syllable">need</span>
+                                    <span id="syllable-217" class="syllable">to</span>
+                                    <span id="syllable-218" class="syllable">make</span>
+                                    <span id="syllable-219" class="syllable">a</span>
+                                    <span id="syllable-220" class="syllable">pie</span>
+                                    <span id="syllable-221" class="syllable">that</span>
+                                    <span id="syllable-222" class="syllable">cap<span
+                                            class="syllable-separator">•</span>tur<span
+                                            class="syllable-separator">•</span>es</span>
+                                    <span id="syllable-223" class="syllable">their</span>
+                                    <span id="syllable-224" class="syllable">hearts</span>
+                                </div>
+                                <div id="syllable-clause-32" class="clause">
+                                    <span id="syllable-225" class="syllable">and</span>
+                                    <span id="syllable-226" class="syllable">con<span
+                                            class="syllable-separator">•</span>quers</span>
+                                    <span id="syllable-227" class="syllable">the</span>
+                                    <span id="syllable-228" class="syllable">can<span
+                                            class="syllable-separator">•</span>o<span
+                                            class="syllable-separator">•</span>py</span>
+                                    <span id="syllable-229" class="syllable">with</span>
+                                    <span id="syllable-230" class="syllable">its</span>
+                                    <span id="syllable-231" class="syllable">taste</span>
+                                    <span id="syllable-232" class="syllable">and</span>
+                                    <span id="syllable-233" class="syllable">cre<span
+                                            class="syllable-separator">•</span>a<span
+                                            class="syllable-separator">•</span>tiv<span
+                                            class="syllable-separator">•</span>i<span
+                                            class="syllable-separator">•</span>ty</span>
+                                </div>
+                                <div id="syllable-clause-33" class="clause">
+                                    <span id="syllable-234" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                    <span id="syllable-235" class="syllable">a<span
+                                            class="syllable-separator">•</span>greed</span>
+                                    <span id="syllable-236" class="syllable">whole<span
+                                            class="syllable-separator">•</span>heart<span
+                                            class="syllable-separator">•</span>ed<span
+                                            class="syllable-separator">•</span>ly</span>
+                                </div>
+                                <div id="syllable-clause-34" class="clause">
+                                    <span id="syllable-237" class="syllable">and</span>
+                                    <span id="syllable-238" class="syllable">they</span>
+                                    <span id="syllable-239" class="syllable">con<span
+                                            class="syllable-separator">•</span>tin<span
+                                            class="syllable-separator">•</span>ued</span>
+                                    <span id="syllable-240" class="syllable">to</span>
+                                    <span id="syllable-241" class="syllable">brain<span
+                                            class="syllable-separator">•</span>storm</span>
+                                    <span id="syllable-242" class="syllable">ideas</span>
+                                </div>
+                                <div id="syllable-clause-35" class="clause">
+                                    <span id="syllable-243" class="syllable">for</span>
+                                    <span id="syllable-244" class="syllable">their</span>
+                                    <span id="syllable-245" class="syllable">u<span
+                                            class="syllable-separator">•</span>nique</span>
+                                    <span id="syllable-246" class="syllable">pie</span>
+                                    <span id="syllable-247" class="syllable">cre<span
+                                            class="syllable-separator">•</span>a<span
+                                            class="syllable-separator">•</span>tion</span>
+                                </div>
+                            </div>
+                            <div class="paragraph">
+                                <div id="syllable-clause-36" class="clause">
+                                    <span id="syllable-248" class="syllable">Up<span
+                                            class="syllable-separator">•</span>on</span>
+                                    <span id="syllable-249" class="syllable">ar<span
+                                            class="syllable-separator">•</span>riv<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-250" class="syllable">at</span>
+                                    <span id="syllable-251" class="syllable">the</span>
+                                    <span id="syllable-252" class="syllable">Great</span>
+                                    <span id="syllable-253" class="syllable">Ban<span
+                                            class="syllable-separator">•</span>yan</span>
+                                    <span id="syllable-254" class="syllable">Clear<span
+                                            class="syllable-separator">•</span>ing</span>
+                                </div>
+                                <div id="syllable-clause-37" class="clause">
+                                    <span id="syllable-255" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                    <span id="syllable-256" class="syllable">and</span>
+                                    <span id="syllable-257" class="syllable">Dai<span
+                                            class="syllable-separator">•</span>sy</span>
+                                    <span id="syllable-258" class="syllable">pre<span
+                                            class="syllable-separator">•</span>sent<span
+                                            class="syllable-separator">•</span>ed</span>
+                                    <span id="syllable-259" class="syllable">their</span>
+                                    <span id="syllable-260" class="syllable">in<span
+                                            class="syllable-separator">•</span>no<span
+                                            class="syllable-separator">•</span>va<span
+                                            class="syllable-separator">•</span>tive</span>
+                                    <span id="syllable-261" class="syllable">pie</span>
+                                </div>
+                                <div id="syllable-clause-38" class="clause">
+                                    <span id="syllable-262" class="syllable">which</span>
+                                    <span id="syllable-263" class="syllable">com<span
+                                            class="syllable-separator">•</span>bined</span>
+                                    <span id="syllable-264" class="syllable">ex<span
+                                            class="syllable-separator">•</span>otic</span>
+                                    <span id="syllable-265" class="syllable">fruits</span>
+                                    <span id="syllable-266" class="syllable">with</span>
+                                    <span id="syllable-267" class="syllable">a</span>
+                                    <span id="syllable-268" class="syllable">hint</span>
+                                    <span id="syllable-269" class="syllable">of</span>
+                                    <span id="syllable-270" class="syllable">jun<span
+                                            class="syllable-separator">•</span>gle</span>
+                                    <span id="syllable-271" class="syllable">spice</span>
+                                </div>
+                                <div id="syllable-clause-39" class="clause">
+                                    <span id="syllable-272" class="syllable">The</span>
+                                    <span id="syllable-273" class="syllable">judg<span
+                                            class="syllable-separator">•</span>es</span>
+                                    <span id="syllable-274" class="syllable">were</span>
+                                    <span id="syllable-275" class="syllable">in<span
+                                            class="syllable-separator">•</span>trigued</span>
+                                    <span id="syllable-276" class="syllable">by</span>
+                                    <span id="syllable-277" class="syllable">the</span>
+                                    <span id="syllable-278" class="syllable">u<span
+                                            class="syllable-separator">•</span>nu<span
+                                            class="syllable-separator">•</span>sual</span>
+                                    <span id="syllable-279" class="syllable">flav<span
+                                            class="syllable-separator">•</span>ors</span>
+                                </div>
+                                <div id="syllable-clause-40" class="clause">
+                                    <span id="syllable-280" class="syllable">and</span>
+                                    <span id="syllable-281" class="syllable">cre<span
+                                            class="syllable-separator">•</span>a<span
+                                            class="syllable-separator">•</span>tiv<span
+                                            class="syllable-separator">•</span>i<span
+                                            class="syllable-separator">•</span>ty</span>
+                                    <span id="syllable-282" class="syllable">of</span>
+                                    <span id="syllable-283" class="syllable">the</span>
+                                    <span id="syllable-284" class="syllable">de<span
+                                            class="syllable-separator">•</span>lec<span
+                                            class="syllable-separator">•</span>ta<span
+                                            class="syllable-separator">•</span>ble</span>
+                                    <span id="syllable-285" class="syllable">des<span
+                                            class="syllable-separator">•</span>sert</span>
+                                </div>
+                                <div id="syllable-clause-41" class="clause">
+                                    <span id="syllable-286" class="syllable">As</span>
+                                    <span id="syllable-287" class="syllable">the</span>
+                                    <span id="syllable-288" class="syllable">re<span
+                                            class="syllable-separator">•</span>sults</span>
+                                    <span id="syllable-289" class="syllable">were</span>
+                                    <span id="syllable-290" class="syllable">a<span
+                                            class="syllable-separator">•</span>n<span
+                                            class="syllable-separator">•</span>nounced</span>
+                                </div>
+                                <div id="syllable-clause-42" class="clause">
+                                    <span id="syllable-291" class="syllable">Sam<span
+                                            class="syllable-separator">•</span>my</span>
+                                    <span id="syllable-292" class="syllable">and</span>
+                                    <span id="syllable-293" class="syllable">Dai<span
+                                            class="syllable-separator">•</span>sy</span>
+                                    <span id="syllable-294" class="syllable">held</span>
+                                    <span id="syllable-295" class="syllable">their</span>
+                                    <span id="syllable-296" class="syllable">breath</span>
+                                </div>
+                                <div id="clause-43" class="clause">
+                                    <span id="syllable-297" class="syllable">wait<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-298" class="syllable">to</span>
+                                    <span id="syllable-299" class="syllable">hear</span>
+                                    <span id="syllable-300" class="syllable">their</span>
+                                    <span id="syllable-301" class="syllable">fate</span>
+                                </div>
+                                <div id="syllable-clause-44" class="clause">
+                                    <span id="syllable-302" class="syllable">To</span>
+                                    <span id="syllable-303" class="syllable">their</span>
+                                    <span id="syllable-304" class="syllable">de<span
+                                            class="syllable-separator">•</span>light</span>
+                                    <span id="syllable-305" class="syllable">their</span>
+                                    <span id="syllable-306" class="syllable">cre<span
+                                            class="syllable-separator">•</span>a<span
+                                            class="syllable-separator">•</span>tion</span>
+                                    <span id="syllable-307" class="syllable">was</span>
+                                    <span id="syllable-308" class="syllable">crowned</span>
+                                </div>
+                                <div id="syllable-clause-45" class="clause">
+                                    <span id="syllable-309" class="syllable">as</span>
+                                    <span id="syllable-310" class="syllable">The</span>
+                                    <span id="syllable-311" class="syllable">Pie</span>
+                                    <span id="syllable-312" class="syllable">that</span>
+                                    <span id="syllable-313" class="syllable">Con<span
+                                            class="syllable-separator">•</span>quered</span>
+                                    <span id="syllable-314" class="syllable">the</span>
+                                    <span id="syllable-315" class="syllable">Can<span
+                                            class="syllable-separator">•</span>o<span
+                                            class="syllable-separator">•</span>py</span>
+                                </div>
+                                <div id="syllable-clause-46" class="clause">
+                                    <span id="syllable-316" class="syllable">se<span
+                                            class="syllable-separator">•</span>cur<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-317" class="syllable">a</span>
+                                    <span id="syllable-318" class="syllable">bright</span>
+                                    <span id="syllable-319" class="syllable">fu<span
+                                            class="syllable-separator">•</span>ture</span>
+                                    <span id="syllable-320" class="syllable">for</span>
+                                    <span id="syllable-321" class="syllable">their</span>
+                                    <span id="syllable-322" class="syllable">fam<span
+                                            class="syllable-separator">•</span>i<span
+                                            class="syllable-separator">•</span>lies</span>
+                                </div>
+                                <div id="syllable-clause-47" class="clause">
+                                    <span id="syllable-323" class="syllable">and</span>
+                                    <span id="syllable-324" class="syllable">prov<span
+                                            class="syllable-separator">•</span>ing</span>
+                                    <span id="syllable-325" class="syllable">that</span>
+                                    <span id="syllable-326" class="syllable">un<span
+                                            class="syllable-separator">•</span>con<span
+                                            class="syllable-separator">•</span>ven<span
+                                            class="syllable-separator">•</span>tion<span
+                                            class="syllable-separator">•</span>al</span>
+                                    <span id="syllable-327" class="syllable">think<span
+                                            class="syllable-separator">•</span>ing</span>
+                                </div>
+                                <div id="syllable-clause-48" class="clause">
+                                    <span id="syllable-328" class="syllable">can</span>
+                                    <span id="syllable-329" class="syllable">lead</span>
+                                    <span id="syllable-330" class="syllable">to</span>
+                                    <span id="syllable-331" class="syllable">suc<span
+                                            class="syllable-separator">•</span>cess</span>
+                                    <span id="syllable-332" class="syllable">in</span>
+                                    <span id="syllable-333" class="syllable">ev<span
+                                            class="syllable-separator">•</span>en</span>
+                                    <span id="syllable-334" class="syllable">the</span>
+                                    <span id="syllable-335" class="syllable">most</span>
+                                    <span id="syllable-336" class="syllable">tra<span
+                                            class="syllable-separator">•</span>di<span
+                                            class="syllable-separator">•</span>tion<span
+                                            class="syllable-separator">•</span>al</span>
+                                    <span id="syllable-337" class="syllable">so<span
+                                            class="syllable-separator">•</span>ci<span
+                                            class="syllable-separator">•</span>e<span
+                                            class="syllable-separator">•</span>ties</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grab-handle-grab-area">
+                    <div class="grab-handle-top"></div>
+                </div>
+            </div>
+        </div>
+
+        <article id="standard-text" class="standard-text-container">
+            <div class="article-title">
+                <div id="clause-1" class="clause">
+                    <span id="word-1"  class="word unread">The</span>
+                    <span id="word-2"  class="word unread">Pie</span>
+                    <span id="word-3"  class="word unread">That</span>
+                    <span id="word-4"  class="word unread">Conquered</span>
+                    <span id="word-5"  class="word unread">the</span>
+                    <span id="word-6"  class="word unread">Canopy</span>
+                </div>
+            </div>
+            <div class="article-body">
+                <div class="paragraph">
+                    <div id="clause-2" class="clause">
+                        <span id="word-7"  class="word unread">Deep</span>
+                        <span id="word-8"  class="word unread">within</span>
+                        <span id="word-9"  class="word unread">the</span>
+                        <span id="word-10"  class="word unread">heart</span>
+                        <span id="word-11"  class="word unread">of</span>
+                        <span id="word-12"  class="word unread">the</span>
+                        <span id="word-13"  class="word unread">jungle<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-3" class="clause">
+                        <span id="word-14"  class="word unread">a</span>
+                        <span id="word-15"  class="word unread">hierarchical</span>
+                        <span id="word-16"  class="word unread">society</span>
+                        <span id="word-17"  class="word unread">of</span>
+                        <span id="word-18"  class="word unread">big-eyed</span>
+                        <span id="word-19"  class="word unread">birds</span>
+                    </div>
+                    <div id="clause-4" class="clause">
+                        <span id="word-20"  class="word unread">thrived</span>
+                        <span id="word-21"  class="word unread">in</span>
+                        <span id="word-22"  class="word unread">the</span>
+                        <span id="word-23"  class="word unread">dense</span>
+                        <span id="word-24"  class="word unread">canopy<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-5" class="clause">
+                        <span id="word-25"  class="word unread">Among</span>
+                        <span id="word-26"  class="word unread">these</span>
+                        <span id="word-27"  class="word unread">birds<span class="endPunctuation">,</span></span>
+                        <span id="word-28"  class="word unread">an</span>
+                        <span id="word-29"  class="word unread">annual</span>
+                        <span id="word-30"  class="word unread">pie-making</span>
+                        <span id="word-31"  class="word unread">contest</span>
+                    </div>
+                    <div id="clause-6" class="clause">
+                        <span id="word-32"  class="word unread">determined</span>
+                        <span id="word-33"  class="word unread">the</span>
+                        <span id="word-34"  class="word unread">social</span>
+                        <span id="word-35"  class="word unread">standing</span>
+                        <span id="word-36"  class="word unread">of</span>
+                        <span id="word-37"  class="word unread">each</span>
+                        <span id="word-38"  class="word unread">family<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-7" class="clause">
+                        <span id="word-39"  class="word unread">Those</span>
+                        <span id="word-40"  class="word unread">who</span>
+                        <span id="word-41"  class="word unread">ranked</span>
+                        <span id="word-42"  class="word unread">higher</span>
+                        <span id="word-43"  class="word unread">gained</span>
+                        <span id="word-44"  class="word unread">access</span>
+                    </div>
+                    <div id="clause-8" class="clause">
+                        <span id="word-45"  class="word unread">to</span>
+                        <span id="word-46"  class="word unread">better</span>
+                        <span id="word-47"  class="word unread">resources<span class="endPunctuation">,</span></span>
+                        <span id="word-48"  class="word unread">education<span class="endPunctuation">,</span></span>
+                        <span id="word-49"  class="word unread">and</span>
+                        <span id="word-50"  class="word unread">opportunities<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-9" class="clause">
+                        <span id="word-51"  class="word unread">The</span>
+                        <span id="word-52"  class="word unread">competition</span>
+                        <span id="word-53"  class="word unread">was</span>
+                        <span id="word-54"  class="word unread">fierce<span class="endPunctuation">,</span></span>
+                        <span id="word-55"  class="word unread">with</span>
+                        <span id="word-56"  class="word unread">families</span>
+                        <span id="word-57"  class="word unread">gathering</span>
+                    </div>
+                    <div id="clause-10" class="clause">
+                        <span id="word-58"  class="word unread">in</span>
+                        <span id="word-59"  class="word unread">the</span>
+                        <span id="word-60"  class="word unread">Great</span>
+                        <span id="word-61"  class="word unread">Banyan</span>
+                        <span id="word-62"  class="word unread">Clearing</span>
+                        <span id="word-63"  class="word unread">to</span>
+                        <span id="word-64"  class="word unread">present</span>
+                        <span id="word-65"  class="word unread">their</span>
+                        <span id="word-66"  class="word unread">pies<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-11" class="clause">
+                        <span id="word-67"  class="word unread">The</span>
+                        <span id="word-68"  class="word unread">goal</span>
+                        <span id="word-69"  class="word unread">was</span>
+                        <span id="word-70"  class="word unread">to</span>
+                        <span id="word-71"  class="word unread">impress</span>
+                        <span id="word-72"  class="word unread">the</span>
+                        <span id="word-73"  class="word unread">judges</span>
+                        <span id="word-74"  class="word unread">and</span>
+                        <span id="word-75"  class="word unread">claim</span>
+                    </div>
+                    <div id="clause-11" class="clause">
+                        <span id="word-67"  class="word unread">The</span>
+                        <span id="word-68"  class="word unread">goal</span>
+                        <span id="word-69"  class="word unread">was</span>
+                        <span id="word-70"  class="word unread">to</span>
+                        <span id="word-71"  class="word unread">impress</span>
+                        <span id="word-72"  class="word unread">the</span>
+                        <span id="word-73"  class="word unread">judges</span>
+                        <span id="word-74"  class="word unread">and</span>
+                        <span id="word-75"  class="word unread">claim</span>
+                    </div>
+                    <div id="clause-12" class="clause">
+                        <span id="word-76"  class="word unread">the</span>
+                        <span id="word-77"  class="word unread">esteemed</span>
+                        <span id="word-78"  class="word unread">title</span>
+                        <span id="word-79"  class="word unread">of</span>
+                        <span id="word-80"  class="word unread">Pie</span>
+                        <span id="word-81"  class="word unread">Master<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-13" class="clause">
+                        <span id="word-82"  class="word unread">which</span>
+                        <span id="word-83"  class="word unread">granted</span>
+                        <span id="word-84"  class="word unread">the</span>
+                        <span id="word-85"  class="word unread">winners</span>
+                        <span id="word-86"  class="word unread">the</span>
+                        <span id="word-87"  class="word unread">most</span>
+                        <span id="word-88"  class="word unread">luxurious</span>
+                        <span id="word-89"  class="word unread">nests</span>
+                    </div>
+                    <div id="clause-14" class="clause">
+                        <span id="word-90"  class="word unread">in</span>
+                        <span id="word-91"  class="word unread">the</span>
+                        <span id="word-92"  class="word unread">highest</span>
+                        <span id="word-93"  class="word unread">branches<span class="endPunctuation">.</span></span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="clause-15" class="clause">
+                        <span id="word-94"  class="word unread">One</span>
+                        <span id="word-95"  class="word unread">day<span class="endPunctuation">,</span></span>
+                        <span id="word-96"  class="word unread">a</span>
+                        <span id="word-97"  class="word unread">young</span>
+                        <span id="word-98"  class="word unread">and</span>
+                        <span id="word-99"  class="word unread">ambitious</span>
+                        <span id="word-100"  class="word unread">bird</span>
+                        <span id="word-101"  class="word unread">named</span>
+                        <span id="word-102"  class="word unread">Sammy</span>
+                    </div>
+                    <div id="clause-16" class="clause">
+                        <span id="word-103"  class="word unread">fluttered</span>
+                        <span id="word-104"  class="word unread">through</span>
+                        <span id="word-105"  class="word unread">the</span>
+                        <span id="word-106"  class="word unread">lush</span>
+                        <span id="word-107"  class="word unread">jungle<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-17" class="clause">
+                        <span id="word-108"  class="word unread">carrying</span>
+                        <span id="word-109"  class="word unread">a</span>
+                        <span id="word-110"  class="word unread">piece</span>
+                        <span id="word-111"  class="word unread">of</span>
+                        <span id="word-112"  class="word unread">pie</span>
+                        <span id="word-113"  class="word unread">that</span>
+                        <span id="word-114"  class="word unread">he</span>
+                        <span id="word-115"  class="word unread">had</span>
+                        <span id="word-116"  class="word unread">spent</span>
+                        <span id="word-117"  class="word unread">days</span>
+                        <span id="word-118"  class="word unread">perfecting<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-18" class="clause">
+                        <span id="word-119"  class="word unread">His</span>
+                        <span id="word-120"  class="word unread">best</span>
+                        <span id="word-121"  class="word unread">friend<span class="endPunctuation">,</span></span>
+                        <span id="word-122"  class="word unread">Daisy<span class="endPunctuation">,</span></span>
+                        <span id="word-123"  class="word unread">was</span>
+                        <span id="word-124"  class="word unread">waiting</span>
+                        <span id="word-125"  class="word unread">for</span>
+                        <span id="word-126"  class="word unread">him</span>
+                        <span id="word-127"  class="word unread">at</span>
+                        <span id="word-128"  class="word unread">the</span>
+                        <span id="word-129"  class="word unread">riverbank<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-19" class="clause">
+                        <span id="word-130"  class="word unread">She</span>
+                        <span id="word-131"  class="word unread">had</span>
+                        <span id="word-132"  class="word unread">a</span>
+                        <span id="word-133"  class="word unread">boat</span>
+                        <span id="word-134"  class="word unread">ready</span>
+                        <span id="word-135"  class="word unread">to</span>
+                        <span id="word-136"  class="word unread">take</span>
+                        <span id="word-137"  class="word unread">them</span>
+                    </div>
+                    <div id="clause-20" class="clause">
+                        <span id="word-138"  class="word unread">to</span>
+                        <span id="word-139"  class="word unread">the</span>
+                        <span id="word-140"  class="word unread">Great</span>
+                        <span id="word-141"  class="word unread">Banyan</span>
+                        <span id="word-142"  class="word unread">Clearing<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-21" class="clause">
+                        <span id="word-143"  class="word unread"><span class="startPunctuation">“</span>Hurry</span>
+                        <span id="word-144"  class="word unread">up<span class="endPunctuation">,</span></span>
+                        <span id="word-145"  class="word unread">Sammy<span class="endPunctuation">!</span></span>
+                        <span id="word-146"  class="word unread">We</span>
+                        <span id="word-147"  class="word unread">don't</span>
+                        <span id="word-148"  class="word unread">want</span>
+                        <span id="word-149"  class="word unread">to</span>
+                        <span id="word-150"  class="word unread">be</span>
+                        <span id="word-151"  class="word unread">late<span class="endPunctuation">!”</span></span>
+                    </div>
+                    <div id="clause-22" class="clause">
+                        <span id="word-152"  class="word unread">Daisy</span>
+                        <span id="word-153"  class="word unread">said<span class="endPunctuation">,</span></span>
+                        <span id="word-154"  class="word unread">her</span>
+                        <span id="word-155"  class="word unread">voice</span>
+                        <span id="word-156"  class="word unread">filled</span>
+                        <span id="word-157"  class="word unread">with</span>
+                        <span id="word-158"  class="word unread">determination<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-23" class="clause">
+                        <span id="word-159"  class="word unread">Sammy</span>
+                        <span id="word-160"  class="word unread">hopped</span>
+                        <span id="word-161"  class="word unread">onto</span>
+                        <span id="word-162"  class="word unread">the</span>
+                        <span id="word-163"  class="word unread">boat<span class="endPunctuation">,</span></span>
+                        <span id="word-164"  class="word unread">and</span>
+                        <span id="word-165"  class="word unread">off</span>
+                        <span id="word-166"  class="word unread">they</span>
+                        <span id="word-167"  class="word unread">went<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-24" class="clause">
+                        <span id="word-168"  class="word unread">sailing</span>
+                        <span id="word-169"  class="word unread">across</span>
+                        <span id="word-170"  class="word unread">the</span>
+                        <span id="word-171"  class="word unread">river<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-25" class="clause">
+                        <span id="word-172"  class="word unread">discussing</span>
+                        <span id="word-173"  class="word unread">their</span>
+                        <span id="word-174"  class="word unread">strategy</span>
+                        <span id="word-175"  class="word unread">for</span>
+                        <span id="word-176"  class="word unread">the</span>
+                        <span id="word-177"  class="word unread">contest</span>
+                    </div>
+                    <div id="clause-26" class="clause">
+                        <span id="word-178"  class="word unread">and</span>
+                        <span id="word-179"  class="word unread">the</span>
+                        <span id="word-180"  class="word unread">potential</span>
+                        <span id="word-181"  class="word unread">implications</span>
+                    </div>
+                    <div id="clause-27" class="clause">
+                        <span id="word-182"  class="word unread">for</span>
+                        <span id="word-183"  class="word unread">their</span>
+                        <span id="word-184"  class="word unread">future</span>
+                        <span id="word-185"  class="word unread">in</span>
+                        <span id="word-186"  class="word unread">the</span>
+                        <span id="word-187"  class="word unread">bird</span>
+                        <span id="word-188"  class="word unread">hierarchy<span class="endPunctuation">.</span></span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="clause-28" class="clause">
+                        <span id="word-189"  class="word unread">As</span>
+                        <span id="word-190"  class="word unread">they</span>
+                        <span id="word-191"  class="word unread">rowed<span class="endPunctuation">,</span></span>
+                        <span id="word-192"  class="word unread">Daisy</span>
+                        <span id="word-193"  class="word unread">shared</span>
+                        <span id="word-194"  class="word unread">her</span>
+                        <span id="word-195"  class="word unread">psychology-based</span>
+                        <span id="word-196"  class="word unread">pie</span>
+                        <span id="word-197"  class="word unread">theory</span>
+                    </div>
+                    <div id="clause-29" class="clause">
+                        <span id="word-198"  class="word unread">with</span>
+                        <span id="word-199"  class="word unread">Sammy<span class="endPunctuation">.</span></span>
+                        <span id="word-200"  class="word unread"><span class="startPunctuation">“</span>You</span>
+                        <span id="word-201"  class="word unread">see<span class="endPunctuation">,”</span></span>
+                        <span id="word-202"  class="word unread">she</span>
+                        <span id="word-203"  class="word unread">explained<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-30" class="clause">
+                        <span id="word-204"  class="word unread"><span class="startPunctuation">“</span>the</span>
+                        <span id="word-205"  class="word unread">judges</span>
+                        <span id="word-206"  class="word unread">have</span>
+                        <span id="word-207"  class="word unread">had</span>
+                        <span id="word-208"  class="word unread">enough</span>
+                        <span id="word-209"  class="word unread">of</span>
+                        <span id="word-210"  class="word unread">the</span>
+                        <span id="word-211"  class="word unread">same</span>
+                        <span id="word-212"  class="word unread">old</span>
+                        <span id="word-213"  class="word unread">fruit</span>
+                        <span id="word-214"  class="word unread">pies<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-31" class="clause">
+                        <span id="word-215"  class="word unread">We</span>
+                        <span id="word-216"  class="word unread">need</span>
+                        <span id="word-217"  class="word unread">to</span>
+                        <span id="word-218"  class="word unread">make</span>
+                        <span id="word-219"  class="word unread">a</span>
+                        <span id="word-220"  class="word unread">pie</span>
+                        <span id="word-221"  class="word unread">that</span>
+                        <span id="word-222"  class="word unread">captures</span>
+                        <span id="word-223"  class="word unread">their</span>
+                        <span id="word-224"  class="word unread">hearts</span>
+                    </div>
+                    <div id="clause-32" class="clause">
+                        <span id="word-225"  class="word unread">and</span>
+                        <span id="word-226"  class="word unread">conquers</span>
+                        <span id="word-227"  class="word unread">the</span>
+                        <span id="word-228"  class="word unread">canopy</span>
+                        <span id="word-229"  class="word unread">with</span>
+                        <span id="word-230"  class="word unread">its</span>
+                        <span id="word-231"  class="word unread">taste</span>
+                        <span id="word-232"  class="word unread">and</span>
+                        <span id="word-233"  class="word unread">creativity<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-33" class="clause">
+                        <span id="word-234"  class="word unread">Sammy</span>
+                        <span id="word-235"  class="word unread">agreed</span>
+                        <span id="word-236"  class="word unread">wholeheartedly<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-34" class="clause">
+                        <span id="word-237"  class="word unread">and</span>
+                        <span id="word-238"  class="word unread">they</span>
+                        <span id="word-239"  class="word unread">continued</span>
+                        <span id="word-240"  class="word unread">to</span>
+                        <span id="word-241"  class="word unread">brainstorm</span>
+                        <span id="word-242"  class="word unread">ideas</span>
+                    </div>
+                    <div id="clause-35" class="clause">
+                        <span id="word-243"  class="word unread">for</span>
+                        <span id="word-244"  class="word unread">their</span>
+                        <span id="word-245"  class="word unread">unique</span>
+                        <span id="word-246"  class="word unread">pie</span>
+                        <span id="word-247"  class="word unread">creation<span class="endPunctuation">.</span></span>
+                    </div>
+                </div>
+                <div class="paragraph">
+                    <div id="clause-36" class="clause">
+                        <span id="word-248"  class="word unread">Upon</span>
+                        <span id="word-249"  class="word unread">arriving</span>
+                        <span id="word-250"  class="word unread">at</span>
+                        <span id="word-251"  class="word unread">the</span>
+                        <span id="word-252"  class="word unread">Great</span>
+                        <span id="word-253"  class="word unread">Banyan</span>
+                        <span id="word-254"  class="word unread">Clearing<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-37" class="clause">
+                        <span id="word-255"  class="word unread">Sammy</span>
+                        <span id="word-256"  class="word unread">and</span>
+                        <span id="word-257"  class="word unread">Daisy</span>
+                        <span id="word-258"  class="word unread">presented</span>
+                        <span id="word-259"  class="word unread">their</span>
+                        <span id="word-260"  class="word unread">innovative</span>
+                        <span id="word-261"  class="word unread">pie<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-38" class="clause">
+                        <span id="word-262"  class="word unread">which</span>
+                        <span id="word-263"  class="word unread">combined</span>
+                        <span id="word-264"  class="word unread">exotic</span>
+                        <span id="word-265"  class="word unread">fruits</span>
+                        <span id="word-266"  class="word unread">with</span>
+                        <span id="word-267"  class="word unread">a</span>
+                        <span id="word-268"  class="word unread">hint</span>
+                        <span id="word-269"  class="word unread">of</span>
+                        <span id="word-270"  class="word unread">jungle</span>
+                        <span id="word-271"  class="word unread">spice<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-39" class="clause">
+                        <span id="word-272"  class="word unread">The</span>
+                        <span id="word-273"  class="word unread">judges</span>
+                        <span id="word-274"  class="word unread">were</span>
+                        <span id="word-275"  class="word unread">intrigued</span>
+                        <span id="word-276"  class="word unread">by</span>
+                        <span id="word-277"  class="word unread">the</span>
+                        <span id="word-278"  class="word unread">unusual</span>
+                        <span id="word-279"  class="word unread">flavors</span>
+                    </div>
+                    <div id="clause-40" class="clause">
+                        <span id="word-280"  class="word unread">and</span>
+                        <span id="word-281"  class="word unread">creativity</span>
+                        <span id="word-282"  class="word unread">of</span>
+                        <span id="word-283"  class="word unread">the</span>
+                        <span id="word-284"  class="word unread">delectable</span>
+                        <span id="word-285"  class="word unread">dessert<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-41" class="clause">
+                        <span id="word-286"  class="word unread">As</span>
+                        <span id="word-287"  class="word unread">the</span>
+                        <span id="word-288"  class="word unread">results</span>
+                        <span id="word-289"  class="word unread">were</span>
+                        <span id="word-290"  class="word unread">announced<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-42" class="clause">
+                        <span id="word-291"  class="word unread">Sammy</span>
+                        <span id="word-292"  class="word unread">and</span>
+                        <span id="word-293"  class="word unread">Daisy</span>
+                        <span id="word-294"  class="word unread">held</span>
+                        <span id="word-295"  class="word unread">their</span>
+                        <span id="word-296"  class="word unread">breath<span class="endPunctuation">,</span></span>
+                    </div>
+                    <div id="clause-43" class="clause">
+                        <span id="word-297"  class="word unread">waiting</span>
+                        <span id="word-298"  class="word unread">to</span>
+                        <span id="word-299"  class="word unread">hear</span>
+                        <span id="word-300"  class="word unread">their</span>
+                        <span id="word-301"  class="word unread">fate<span class="endPunctuation">.</span></span>
+                    </div>
+                    <div id="clause-44" class="clause">
+                        <span id="word-302"  class="word unread">To</span>
+                        <span id="word-303"  class="word unread">their</span>
+                        <span id="word-304"  class="word unread">delight<span class="endPunctuation">,</span></span>
+                        <span id="word-305"  class="word unread">their</span>
+                        <span id="word-306"  class="word unread">creation</span>
+                        <span id="word-307"  class="word unread">was</span>
+                        <span id="word-308"  class="word unread">crowned</span>
+                    </div>
+                    <div id="clause-45" class="clause">
+                        <span id="word-309"  class="word unread">as</span>
+                        <span id="word-310"  class="word unread"><span class="startPunctuation">“</span>The</span>
+                        <span id="word-311"  class="word unread">Pie</span>
+                        <span id="word-312"  class="word unread">that</span>
+                        <span id="word-313"  class="word unread">Conquered</span>
+                        <span id="word-314"  class="word unread">the</span>
+                        <span id="word-315"  class="word unread">Canopy<span class="endPunctuation">,”</span></span>
+                    </div>
+                    <div id="clause-46" class="clause">
+                        <span id="word-316"  class="word unread">securing</span>
+                        <span id="word-317"  class="word unread">a</span>
+                        <span id="word-318"  class="word unread">bright</span>
+                        <span id="word-319"  class="word unread">future</span>
+                        <span id="word-320"  class="word unread">for</span>
+                        <span id="word-321"  class="word unread">their</span>
+                        <span id="word-322"  class="word unread">families</span>
+                    </div>
+                    <div id="clause-47" class="clause">
+                        <span id="word-323"  class="word unread">and</span>
+                        <span id="word-324"  class="word unread">proving</span>
+                        <span id="word-325"  class="word unread">that</span>
+                        <span id="word-326"  class="word unread">unconventional</span>
+                        <span id="word-327"  class="word unread">thinking</span>
+                    </div>
+                    <div id="clause-48" class="clause">
+                        <span id="word-328"  class="word unread">can</span>
+                        <span id="word-329"  class="word unread">lead</span>
+                        <span id="word-330"  class="word unread">to</span>
+                        <span id="word-331"  class="word unread">success</span>
+                        <span id="word-332"  class="word unread">in</span>
+                        <span id="word-333"  class="word unread">even</span>
+                        <span id="word-334"  class="word unread">the</span>
+                        <span id="word-335"  class="word unread">most</span>
+                        <span id="word-336"  class="word unread">traditional</span>
+                        <span id="word-337"  class="word unread">societies<span class="endPunctuation">.</span></span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
