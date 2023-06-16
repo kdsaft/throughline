@@ -556,7 +556,7 @@ $(document).ready(function () {
         }
     });
 
-    // $(document).on('mouseup touchend', onMouseUp);
+     $(document).on('mouseup touchend', onMouseUp);
 
     articleContainer.on('mousedown touchstart', '.word', function (event) {
         if (event.type === 'touchstart') {
