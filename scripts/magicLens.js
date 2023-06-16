@@ -156,9 +156,6 @@ $(document).ready(function () {
             }
         });
 
-
-
-
         // Are the points over a word?
         if (activeClauseId > 0) {
             const words = $(`#clause-${activeClauseId}`).find('.word');
@@ -205,6 +202,7 @@ $(document).ready(function () {
         const rightThreshold = snapPositions.left + horizontalSnapThreshold / 2;
 
         if ((currentLeft > leftThreshold) && (currentLeft < rightThreshold)) {
+            console.log("speedbump left");
             newLeft = snapPositions.left;
         }
 
@@ -213,6 +211,7 @@ $(document).ready(function () {
         const lowerThreshold = snapPositions.top - verticalSnapThreshold / 2;
 
         if ((currentTop > lowerThreshold) && (currentTop < upperThreshold)) {
+            console.log("speedbump top");
             newTop = snapPositions.top;
         }
 
@@ -261,7 +260,6 @@ $(document).ready(function () {
 
     function getSnapPosition(id) {
         const wordElement = $('#word-' + id);
-        const syllableElement = $('#syllable-' + id);
         const elementDimensions = getPaddedDimensions(id);
 
         // Calculate the extra padding
@@ -305,38 +303,6 @@ $(document).ready(function () {
             newX = containerWidth + 34 - objectWidth;
         }
         return newX;
-    }
-
-    function getWordIdFromNewClause(id, direction) {
-        const standardTextContainer = document.querySelector(".standard-text-container");
-
-        // Find the current word and its position
-        const currentWord = standardTextContainer.querySelector(`#word-${id}`);
-        const currentWordPosition = currentWord.getBoundingClientRect();
-
-        // Find the current clause and the target clause based on the direction
-        const currentClause = currentWord.closest(".clause");
-        const currentClauseNumber = parseInt(currentClause.id.split("-")[1]);
-        const targetClauseNumber = currentClauseNumber + direction;
-        const targetClause = standardTextContainer.querySelector(`#clause-${targetClauseNumber}`);
-
-        // If the target clause doesn't exist, return the same wordId
-        if (!targetClause) {
-            return id;
-        }
-
-        // Get the words from the target clause and calculate their distances
-        const targetWords = Array.from(targetClause.querySelectorAll(".word"));
-        const distances = targetWords.map(word => {
-            const wordPosition = word.getBoundingClientRect();
-            return Math.abs(currentWordPosition.left - wordPosition.left);
-        });
-
-        // Find the index of the closest word and return its wordId
-        const closestWordIndex = distances.indexOf(Math.min(...distances));
-        const closestWordId = parseInt(targetWords[closestWordIndex].id.split('-')[1]);
-
-        return closestWordId;
     }
 
     function isFirstOrLastWord(id) {
