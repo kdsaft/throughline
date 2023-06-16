@@ -24,7 +24,7 @@ function initReading() {
   // handling content scrolling
   content.addEventListener('scroll', () => {
     handleScrollbarFade();
-  });  
+  });
 }
 
 
@@ -85,7 +85,7 @@ function updateWordState(wordId, newState, syllablesAssessment = null, phonemesA
       break;
 
     case "trouble":
-      updateWordStyle(wordId, "trouble");      
+      updateWordStyle(wordId, "trouble");
       updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment);
       break;
 
@@ -152,9 +152,9 @@ function readNextWord() {
 function playCurrentWord() {
   const wordStartTime = wordsToReadMap.get(currentWordNumber).audioElement.startTime;
   const wordDuration = wordsToReadMap.get(currentWordNumber).audioElement.duration;
-console.log("wordStartTime:", wordStartTime);
-console.log("duration:", wordDuration);
-console.log("currentWordNumber:", currentWordNumber);
+  console.log("wordStartTime:", wordStartTime);
+  console.log("duration:", wordDuration);
+  console.log("currentWordNumber:", currentWordNumber);
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
@@ -187,20 +187,20 @@ function playCurrentLine() {
   const lastWordNumber = parseInt(lastWordClassName.split('-')[1].split(' ')[0]);
 
   const startOfLineTime = wordsToReadMap.get(firstWordNumber).audioElement.startTime;
-  const endOfLineTime = wordsToReadMap.get(lastWordNumber).audioElement.startTime + wordsToReadMap.get(lastWordNumber).audioElement.duration; 
-  
-/*   // Save original classes and set reading class
-  const originalClasses = [];
-  wordElements.forEach((element, index) => {
-    originalClasses[index] = element.className;
-  });
+  const endOfLineTime = wordsToReadMap.get(lastWordNumber).audioElement.startTime + wordsToReadMap.get(lastWordNumber).audioElement.duration;
 
-  // Set the first element to 'reading' and all other elements to 'unread'
-  pathElement.style.opacity = 0.1; // Set highlight line's opacity to 20%
-  updateWordStyle(wordElements[0], 'reading');
-  for (let i = 1; i < wordElements.length; i++) {
-    updateWordStyle(wordElements[i], 'unread');
-  } */
+  /*   // Save original classes and set reading class
+    const originalClasses = [];
+    wordElements.forEach((element, index) => {
+      originalClasses[index] = element.className;
+    });
+  
+    // Set the first element to 'reading' and all other elements to 'unread'
+    pathElement.style.opacity = 0.1; // Set highlight line's opacity to 20%
+    updateWordStyle(wordElements[0], 'reading');
+    for (let i = 1; i < wordElements.length; i++) {
+      updateWordStyle(wordElements[i], 'unread');
+    } */
 
   const sound = new Howl({
     src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
@@ -211,27 +211,27 @@ function playCurrentLine() {
 
   sound.play('line');
 
-/*   wordElements.forEach((element, index) => {
-    const startWordTime = wordsToReadMap.get(firstWordNumber+ index).audioElement.startTime;
-    const endWordTime = wordsToReadMap.get(firstWordNumber + index).audioElement.stopTime;
-    
-    setTimeout(() => {
-      updateWordStyle(element, 'reading');
-    }, (startWordTime - startOfLineTime) * 1000);
-
-    setTimeout(() => {
-      updateWordStyle(element, 'read');
-    }, (endWordTime - startOfLineTime) * 1000);
-  }); */
+  /*   wordElements.forEach((element, index) => {
+      const startWordTime = wordsToReadMap.get(firstWordNumber+ index).audioElement.startTime;
+      const endWordTime = wordsToReadMap.get(firstWordNumber + index).audioElement.stopTime;
+      
+      setTimeout(() => {
+        updateWordStyle(element, 'reading');
+      }, (startWordTime - startOfLineTime) * 1000);
+  
+      setTimeout(() => {
+        updateWordStyle(element, 'read');
+      }, (endWordTime - startOfLineTime) * 1000);
+    }); */
 
   sound.once('end', () => {
     resetPlaybutton();
 
     // Reset word elements to their original classes
-/*     pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
-    wordElements.forEach((element, index) => {
-      element.className = originalClasses[index];
-    }); */
+    /*     pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
+        wordElements.forEach((element, index) => {
+          element.className = originalClasses[index];
+        }); */
 
     sound.unload();
   });
@@ -278,17 +278,17 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
-      wordList.innerHTML += '<br>';
-    }
-    wordList.innerHTML += '<strong>' + wordsToReadMap.get(wordId).withoutPunctuation + '</strong>';
     wordList.innerHTML += '<br>';
+  }
+  wordList.innerHTML += '<strong>' + wordsToReadMap.get(wordId).withoutPunctuation + '</strong>';
+  wordList.innerHTML += '<br>';
 
-    if (showPhonemes) {
-      phonemesAccuracyScores.forEach(phonemeResult => {
-        wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
-      });
-  
-    } else {
+  if (showPhonemes) {
+    phonemesAccuracyScores.forEach(phonemeResult => {
+      wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
+    });
+
+  } else {
     syllablesAccuracyScores.forEach(syllableResult => {
       wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
     });
@@ -304,24 +304,45 @@ async function initWordsToReadMap() {
     console.error("Error initializing JSON data");
     return;
   }
-  for (const wordData of jsonData.words) {
-    const wordId = wordData.id;
-    const word = new Word(wordId);
 
-    word.drawLine();
-    word.createAnimationElements();
+  // Iterate through title and body sections
+  const allSections = [jsonData.title, ...jsonData.body];
 
-    wordsToReadMap.set(wordId, word);
+  for (const section of allSections) {
+    // Check if section.clauses exists and is an array
+    if (!Array.isArray(section.clauses)) {
+      console.error("Error: section.clauses is not iterable. Please check the JSON data structure.", section);
+      continue;
+    }
+
+    for (const clause of section.clauses) {
+      // Check if clause.words exists and is an array
+      if (!Array.isArray(clause.words)) {
+        console.error("Error: clause.words is not iterable. Please check the JSON data structure.", clause);
+        continue;
+      }
+
+      for (const wordData of jsonData.words) {
+        const wordId = wordData.id;
+        const word = new Word(wordId);
+
+        word.drawLine();
+        word.createAnimationElements();
+
+        wordsToReadMap.set(wordId, word);
+      }
+    }
   }
 }
 
 
-async function readJsonFile(url) {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error reading JSON file:", error);
-  }
-}
+
+    async function readJsonFile(url) {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Error reading JSON file:", error);
+      }
+    }
