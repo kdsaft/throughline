@@ -449,7 +449,7 @@ function hideMagicLens() {
 
 function showMagicLens() {
     isMoving = true;
-    wordFocus();
+    //wordFocus();
     magicLensWrapper.jQ.show();
 }
 

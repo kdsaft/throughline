@@ -2,6 +2,9 @@
     const syllableButton = document.getElementById("syllableButton");
     const syllableButtonIcon = document.getElementById("syllableButtonIcon");
 
+    const syllableOnIcon = "https://kdsaft.github.io/throughline/icons/Syllable-on.svg";
+    const syllableOffIcon = "https://kdsaft.github.io/throughline/icons/Syllable-normal.svg";
+
     syllableButton.addEventListener("mousedown", handleInteractionStart);
     syllableButton.addEventListener("mouseup", handelInteractionEnd);
 
@@ -9,24 +12,36 @@
     syllableButton.addEventListener("touchend", handelInteractionEnd);
 
 
-    function handleInteractionStart(event){
-        event.preventDefault(); 
-        syllableButtonIcon.src = "https://kdsaft.github.io/throughline/icons/Syllable-on.svg";
+    function handleInteractionStart(event) {
+        event.preventDefault();
+
+        if (syllableButtonIcon.src == syllableOnIcon) {
+            syllableButtonIcon.src = syllableOffIcon;
+        } else {
+            syllableButtonIcon.src = syllableOnIcon;
+        };
         buttonDownSound.play();
         document.getElementById('shortPressFeedback').style.display = 'block';
     }
 
-    function handelInteractionEnd(event) {
-        event.preventDefault(); 
-        syllableButtonIcon.setAttribute('aria-label', 'Syllable button');
 
-        showMagicLens();
-    };
+
+    function handelInteractionEnd(event) {
+        event.preventDefault();
+
+        if (syllableButtonIcon.src == syllableOnIcon) {
+            syllableButtonIcon.setAttribute('aria-label', 'MagicLens activated');
+            showMagicLens();
+        } else {
+            syllableButtonIcon.setAttribute('aria-label', 'MagicLens deactivated');
+            hideMagicLens();
+        };
+    }
 
     function resetsyllableButton() {
-        syllableButtonIcon.src = "https://kdsaft.github.io/throughline/icons/Syllable-normal.svg";
+        syllableButtonIcon.src = syllableOffIcon;
         document.getElementById('shortPressFeedback').style.display = 'none';
-    };
+    }
 
 </script>
 
@@ -43,12 +58,12 @@
 
 <body>
     <button id="syllableButton" style="position: relative;">
-        <img id="syllableButtonIcon" src="https://kdsaft.github.io/throughline/icons/Syllable-normal.svg" width="64" height="64"
-            style="position: absolute; top: 4px; left: 4px" aria-label="Syllable button" />
+        <img id="syllableButtonIcon" src="https://kdsaft.github.io/throughline/icons/Syllable-normal.svg" width="64"
+            height="64" style="position: absolute; top: 4px; left: 4px" aria-label="Syllable button" />
         <svg id="shortPressFeedback" width="68" height="68"
             style="position: absolute; top: 2px; left: 2px; display: none;">
             <circle cx="34" cy="34" r="32" stroke="#1A79C7" stroke-width="2" fill="transparent" />
         </svg>
-       
+
     </button>
 </body>
