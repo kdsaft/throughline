@@ -38,6 +38,8 @@ $(document).ready(function () {
         console.log('animateToWord');
         // The magicLens stays in word view
 
+        wordFocus();
+
         let destinationId = id;
 
         if (id === 0) {
