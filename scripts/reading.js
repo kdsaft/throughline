@@ -305,44 +305,36 @@ async function initWordsToReadMap() {
     return;
   }
 
-  // Iterate through title and body sections
-  const allSections = [jsonData.title, ...jsonData.body];
+  // Combine the clauses from both the title and body sections
+  const allClauses = [...jsonData.title[0].clauses, ...jsonData.body.flatMap((section) => section.clauses)];
 
-  for (const section of allSections) {
-    // Check if section.clauses exists and is an array
-    if (!Array.isArray(section.clauses)) {
-      console.error("Error: section.clauses is not iterable. Please check the JSON data structure.", section);
+  for (const clause of allClauses) {
+    // Check if clause.words exists and is an array
+    if (!Array.isArray(clause.words)) {
+      console.error("Error: clause.words is not iterable. Please check the JSON data structure.", clause);
       continue;
     }
 
-    for (const clause of section.clauses) {
-      // Check if clause.words exists and is an array
-      if (!Array.isArray(clause.words)) {
-        console.error("Error: clause.words is not iterable. Please check the JSON data structure.", clause);
-        continue;
-      }
+    for (const wordData of clause.words) {
+      const wordId = wordData.id;
+      const word = new Word(wordData);
+      word.drawLine();
+      word.createAnimationElements();
 
-      for (const wordData of jsonData.words) {
-        const wordId = wordData.id;
-        const word = new Word(wordId);
-
-        word.drawLine();
-        word.createAnimationElements();
-
-        wordsToReadMap.set(wordId, word);
-      }
+      wordsToReadMap.set(wordId, word);
     }
   }
 }
 
 
 
-    async function readJsonFile(url) {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error("Error reading JSON file:", error);
-      }
-    }
+
+async function readJsonFile(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error reading JSON file:", error);
+  }
+}
