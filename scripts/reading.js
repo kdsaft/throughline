@@ -305,8 +305,10 @@ async function initWordsToReadMap() {
     return;
   }
 
-  // Combine the clauses from both the title and body sections
-  const allClauses = [...jsonData.title[0].clauses, ...jsonData.body.flatMap((section) => section.clauses)];
+  // Get the clauses from both the title and body sections
+  const titleClauses = jsonData.title.map((section) => section.clauses).flat();
+  const bodyClauses = jsonData.body.map((section) => section.clauses).flat();
+  const allClauses = [...titleClauses, ...bodyClauses];
 
   for (const clause of allClauses) {
     // Check if clause.words exists and is an array
@@ -318,6 +320,7 @@ async function initWordsToReadMap() {
     for (const wordData of clause.words) {
       const wordId = wordData.id;
       const word = new Word(wordData);
+      
       word.drawLine();
       word.createAnimationElements();
 
