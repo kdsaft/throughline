@@ -449,8 +449,10 @@ function hideMagicLens() {
 
 function showMagicLens() {
     isMoving = true;
-    //wordFocus();
-    magicLensWrapper.jQ.show();
+    wordFocus();
+    setTimeout(function() {
+        magicLensWrapper.jQ.show();
+    }, 1000);
 }
 
 // onEvents
