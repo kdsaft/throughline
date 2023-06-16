@@ -86,6 +86,9 @@ $(document).ready(function () {
                         const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
                         const newSyllableTop = syllableText.jQ.position().top - deltaTop
                         console.log('(Post: SL, ST): ' + destinationSyllable.offset().left + ' ' + destinationSyllable.offset().top);
+                        console.log('(syllableText: L, T): ' + syllableText.jQ.position().left + ' ' + syllableText.jQ.position().top);
+                        console.log('(Delta: L, T): ' + deltaLeft + ' ' + deltaTop);
+                        console.log('(New: SL, ST): ' + newSyllableLeft + ' ' + newSyllableTop);
 
 
                         // Update the syllable position relative to the word
