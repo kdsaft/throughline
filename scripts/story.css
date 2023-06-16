@@ -111,7 +111,7 @@ body {
     top: -2px;
     width: auto;
     height: auto;
-    overflow: visible;
+    overflow: hidden;
 }
 .magic-lens {
     width: 50px;
@@ -144,7 +144,6 @@ body {
     height: 50px;
     transform: scale(1.055, 1.055);
     perspective: (1px);
-    border: 1px solid #74125D;
 }
 
 
