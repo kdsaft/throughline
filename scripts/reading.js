@@ -30,7 +30,7 @@ function initReading() {
 
 function updateSVGViewBox() {
   const svgViewBox = document.getElementById("highlight-viewport");
-  const textArea = document.querySelector(".text-area");
+  const textArea = document.querySelector(".standard-text-container");
   const highlightArea = document.querySelector(".highlight-area");
 
   // Get the height and width of the text-area div

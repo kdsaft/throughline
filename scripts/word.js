@@ -4,7 +4,7 @@ class Word {
   constructor(wordData) {
     this.wordId = wordData.id;
     this.state = "unread";
-    this.wordElement = document.querySelector(`.word-${wordData.id}`);
+    this.wordElement = document.querySelector(`#word-${wordData.id}`);
   
     this.svgElement = {
       highlightLine: null,
