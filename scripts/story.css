@@ -115,8 +115,8 @@ body {
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
-    border: 1px solid #d5e1ff;
-}
+/*     border: 1px solid #d5e1ff;
+ */}
 
 .syllable-text-container {
     position: absolute;
