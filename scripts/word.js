@@ -72,7 +72,7 @@ class Word {
 
     // Determine yCoordinate offset based on the parent div's class
     let yOffset;
-    yOffset = parentDiv.classList.contains("text-headline") ? 36 : 24;
+    yOffset = parentDiv.classList.contains("title") ? 36 : 24;
 
     const yCoordinate = wordRect.top - parentRect.top + parentRect.top - contentRect.top + yOffset + contentElement.scrollTop;
 
