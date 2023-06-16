@@ -31,6 +31,8 @@ $(document).ready(function () {
         height: syllableText.jQ.height() + parseInt(syllableText.jQ.css('marginTop')) + parseInt(syllableText.jQ.css('marginBottom')) + 20
     });
 
+    hideMagicLens();
+
     // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
 
 
@@ -206,7 +208,6 @@ $(document).ready(function () {
         const rightThreshold = snapPositions.left + horizontalSnapThreshold / 2;
 
         if ((currentLeft > leftThreshold) && (currentLeft < rightThreshold)) {
-            console.log("speedbump left");
             newLeft = snapPositions.left;
         }
 
@@ -215,7 +216,6 @@ $(document).ready(function () {
         const lowerThreshold = snapPositions.top - verticalSnapThreshold / 2;
 
         if ((currentTop > lowerThreshold) && (currentTop < upperThreshold)) {
-            console.log("speedbump top");
             newTop = snapPositions.top;
         }
 
@@ -440,6 +440,18 @@ $(document).ready(function () {
         });
     }
 
+
+    // control functions
+
+    function hideMagicLens() {
+        magicLensWrapper.jQ.hide();
+    }
+
+    function showMagicLens() {
+        isMoving = true;
+        wordFocus();
+        magicLensWrapper.jQ.show();
+    }
 
     // onEvents
 
