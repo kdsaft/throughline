@@ -154,6 +154,7 @@ function updateMagicLens(event) {
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
     const magicLensX = clientX - offsetTouchX;
     const magicLensY = clientY - offsetTouchY;
+    console.log('magicLensX: ' + magicLensX + ' magicLensY: ' + magicLensY);
 
     const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
 
