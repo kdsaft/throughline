@@ -24,7 +24,7 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 let dragging = false;
 let isAnimating = false;
 let magicLensWasMoved = false;
-let a = false;
+let isMagicLensVisible = false;
 let wordId = 1;
 
 let offsetTouchX;
@@ -36,6 +36,7 @@ articleContainer.css({
 });
 // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
 
+hideMagicLens();
 
 
 function animateToWord(id) {
@@ -201,7 +202,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         };
 
         console.log('clause width: ' + clause.left  + ' - ' + midpointX + ' - ' + clause.right );
-        console.log('clause height: ' + clause.top  + ' - ' + midpointY + ' - ' + clause.bottom );
+        console.log('clause height: ' + clause.top  + ' - ' + midpointY + ' - ' + clause.right );
 
         if (midpointX > clause.left && midpointX < clause.right && midpointY > clause.top && midpointY < clause.bottom) {
             activeClauseId = $(this).attr("id").split("-")[1];
@@ -494,18 +495,18 @@ function wordFocus() {
 // control functions
 
 function hideMagicLens() {
-    a = false;
+    isMagicLensVisible = false;
     magicLensWrapper.jQ.hide();
 }
 
 function showMagicLens() {
-    a = true;
+    isMagicLensVisible = true;
     magicLensWasMoved = false;
     magicLensWrapper.jQ.show();
 }
 
 function getMagicLensVisibility() {
-    return a;
+    return isMagicLensVisible;
 }
 
 // onEvents
@@ -517,7 +518,7 @@ function onMouseUp(event) {
         dragging = false;
         magicLensWasMoved = false;
 
-        if (a) {
+        if (isMagicLensVisible) {
             animateToWord(wordId);
         } else {
             jumpToWordAndShowMagicLens(wordId);
