@@ -4,7 +4,7 @@
 // $(document).ready(function () {
 
 // Sound effects
-const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/music_marimba_on.m4a');
+const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
 
 // Text elements
 const articleContainer = $('.article-container');
