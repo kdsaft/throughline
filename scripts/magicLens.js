@@ -154,7 +154,6 @@ function updateMagicLens(event) {
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
     const magicLensX = clientX - offsetTouchX;
     const magicLensY = clientY - offsetTouchY;
-    console.log('magicLensX: ' + magicLensX + ' magicLensY: ' + magicLensY);
 
     const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
 
@@ -166,15 +165,18 @@ function updateMagicLens(event) {
         magicLens.jQ.css({ width: '50px', height: '54px' });
     }
 
+    console.log('speedbumped: ' + speedbumped.left + ', ' + speedbumped.top);
+    console.log('magicLens: ' + magicLensX + ', ' + magicLensY);
     wordId = speedbumped.id;
-    magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
+    magicLensWrapper.jQ.css({ left: magicLensX + 'px', top: magicLensY + 'px' });
+    //magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
+
 }
 
 
 function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     const verticalSnapThreshold = 12;
     const horizontalSnapThreshold = 10;
-    let heightOffset = 0;
 
     const midpointX = currentLeft + (currentWidth / 2);
     const midpointY = currentTop + (currentHeight / 2);
@@ -198,15 +200,10 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             bottom: $(this).offset().top - articleContainer.offset().top + $(this).height()
         };
 
-        console.log('clause width: ' + clause.left + ' - ' + midpointX + ' - ' + clause.right);
-        console.log('clause height: ' + clause.top + ' - ' + midpointY + ' - ' + clause.right);
-
         if (midpointX > clause.left && midpointX < clause.right && midpointY > clause.top && midpointY < clause.bottom) {
             activeClauseId = $(this).attr("id").split("-")[1];
         }
     });
-
-    console.log('active clause: ' + activeClauseId);
 
     // Are the points over a word?
     if (activeClauseId > 0) {
@@ -241,8 +238,6 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             }
         });
     }
-
-    console.log('active word: ' + activeWordId);
 
     // Constrain to article container
     newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
@@ -538,8 +533,6 @@ magicLensHandle.jQ.on('mousedown', function (event) {
 
     offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
     offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
-
-    console.log('mousedown on magicLensHandle' + wordId);
 
     wordFocus();
     dragging = true;
