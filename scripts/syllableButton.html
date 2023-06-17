@@ -15,7 +15,7 @@
     function handleInteractionStart(event) {
         event.preventDefault();
 
-        if (megicLensIsVisible) {
+        if (getMagicLensVisibility()) {
             syllableButtonIcon.src = syllableOffIcon;
         } else {
             syllableButtonIcon.src = syllableOnIcon;
@@ -29,13 +29,13 @@
     function handelInteractionEnd(event) {
         event.preventDefault();
 
-        if (megicLensIsVisible) {
-            syllableButtonIcon.setAttribute('aria-label', 'MagicLens activated');
-            showMagicLens();
-        } else {
+        if (getMagicLensVisibility()) {
             syllableButtonIcon.setAttribute('aria-label', 'MagicLens deactivated');
             hideMagicLens();
             resetsyllableButton()
+        } else {
+            syllableButtonIcon.setAttribute('aria-label', 'MagicLens activated');
+            showMagicLens();
         };
 
     }
@@ -43,6 +43,14 @@
     function resetsyllableButton() {
         syllableButtonIcon.src = syllableOffIcon;
         document.getElementById('syllableShortPressFeedback').style.display = 'none';
+    }
+
+    function turnSyllableButtonOn() {
+        if (syllableButtonIcon.src != syllableOnIcon) {
+        syllableButtonIcon.src = syllableOnIcon;
+        syllableButtonIcon.setAttribute('aria-label', 'MagicLens activated');
+        document.getElementById('syllableShortPressFeedback').style.display = 'block';
+        }
     }
 
 </script>

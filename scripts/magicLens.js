@@ -630,5 +630,6 @@ articleContainer.on('mousedown touchstart', '.word', function (event) {
 
     wordFocus();
     wordId = parseInt(elementID, 10);
+    turnSyllableButtonOn();
 });
 
