@@ -536,6 +536,8 @@ magicLensHandle.jQ.on('mousedown', function (event) {
     offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
     offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
 
+    console.log('mousedown on magicLensHandle' + wordId);
+
     wordFocus();
     dragging = true;
     magicLensHandle.jQ.addClass('grabbed');
