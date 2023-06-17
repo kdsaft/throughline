@@ -193,6 +193,9 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     const right = rect.right;
     const bottom = rect.bottom;
 
+    console.log('left:', left + ' - ' + midpointX + ' - ' + right);
+    console.log('top:', top + ' - ' + midpointY + ' - ' + bottom);
+
     if (midpointX > left && midpointX < right && midpointY > top && midpointY < bottom) {
         activeClauseId = parseInt(clauseEl.getAttribute("id").split("-")[1]);
         break;
