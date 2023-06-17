@@ -171,13 +171,14 @@ function updateMagicLens(event) {
 }
 
 function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
-    console.log('left: ' + currentLeft + ', top: ' + currentTop);
     const verticalSnapThreshold = 12;
     const horizontalSnapThreshold = 10;
 
     const midpointX = currentLeft + (currentWidth / 2);
     const midpointY = currentTop + (currentHeight / 2);
 
+    console.log('midpointX:', midpointX, 'midpointY:', midpointY);
+    
     let activeClauseId = 0;
     let activeWordId = 0;
     let newLeft = currentLeft;
@@ -192,24 +193,22 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
     clauses.forEach(clauseEl => {
         const rect = clauseEl.getBoundingClientRect();
-        const centerY = articleContainerOffset.top + rect.top + rect.height / 2;
-        console.log('centerY: ' + centerY);
+        const centerY = rect.top + rect.height / 2;
         const distanceY = Math.abs(midpointY - centerY);
-        console.log('distanceY: ' + distanceY);
 
         if (distanceY < minDistanceY) {
             minDistanceY = distanceY;
             activeClause = {
                 el: clauseEl,
-                left: articleContainerOffset.left + rect.left,
-                top: articleContainerOffset.top + rect.top,
-                right: articleContainerOffset.left + rect.right,
-                bottom: articleContainerOffset.top + rect.bottom
+                left: rect.left,
+                top: rect.top,
+                right: rect.right,
+                bottom: rect.bottom
             };
         }
     });
 
-    console.log('closest clause (pre): ' + parseInt(activeClause.el.getAttribute("id").split("-")[1]));
+    console.log('closest clause (pre):', parseInt(activeClause.el.getAttribute("id").split("-")[1]));
 
     // Check if the midpoint is in the activeClause
     if (
@@ -219,11 +218,9 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         midpointY < activeClause.bottom
     ) {
         activeClauseId = parseInt(activeClause.el.getAttribute("id").split("-")[1]);
-        console.log('activeClause: ' + activeClause.el);
-
     }
 
-    console.log('activeClauseId: ' + activeClauseId);
+    console.log('activeClauseId:', activeClauseId);
 
     // Are the points over a word?
     if (activeClauseId > 0) {
@@ -235,20 +232,22 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
         words.forEach(wordEl => {
             const rect = wordEl.getBoundingClientRect();
-            const centerX = articleContainerOffset.left + rect.left + rect.width / 2;
+            const centerX = rect.left + rect.width / 2;
             const distanceX = Math.abs(midpointX - centerX);
 
             if (distanceX < minDistanceX) {
                 minDistanceX = distanceX;
                 activeWord = {
                     el: wordEl,
-                    left: articleContainerOffset.left + rect.left,
-                    top: articleContainerOffset.top + rect.top,
-                    right: articleContainerOffset.left + rect.right,
-                    bottom: articleContainerOffset.top + rect.bottom
+                    left: rect.left,
+                    top: rect.top,
+                    right: rect.right,
+                    bottom: rect.bottom
                 };
             }
         });
+
+        console.log('closest word (pre):', parseInt(activeWord.el.getAttribute("id").split("-")[1]));
 
         // Check if the midpoint is in the activeWord
         if (
@@ -258,11 +257,10 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             midpointY < activeWord.bottom
         ) {
             activeWordId = parseInt(activeWord.el.getAttribute("id").split("-")[1]);
-            
         }
     }
 
-    console.log('activeWord: ' + activeWordId);
+    console.log('activeWordId:', activeWordId);
 
     // Constrain to article container
     newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
