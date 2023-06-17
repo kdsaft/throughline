@@ -34,9 +34,6 @@ let offsetTouchY;
 articleContainer.css({
     height: syllableText.jQ.height() + parseInt(syllableText.jQ.css('marginTop')) + parseInt(syllableText.jQ.css('marginBottom')) + 20
 });
-
-hideMagicLens();
-
 // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
 
 
@@ -206,6 +203,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             activeClauseId = $(this).attr("id").split("-")[1];
         }
     });
+
+    console.log('active clause: ' + activeClauseId);
 
     // Are the points over a word?
     if (activeClauseId > 0) {
