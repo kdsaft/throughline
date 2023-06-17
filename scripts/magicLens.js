@@ -491,7 +491,7 @@ function hideMagicLens() {
 function showMagicLens() {
     isMagicLensVisible = true;
     magicLensWasMoved = false;
-    wordFocus();
+    //wordFocus();
     magicLensWrapper.jQ.show();
 }
 
