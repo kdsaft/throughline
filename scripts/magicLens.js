@@ -168,7 +168,7 @@ function updateMagicLens(event) {
     console.log('speedbumped: ' + speedbumped.left + ', ' + speedbumped.top);
  */    
     console.log('magicLens: ' + magicLensX + ', ' + magicLensY);
-    wordId = speedbumped.id;
+    //wordId = speedbumped.id;
     magicLensWrapper.jQ.css({ left: magicLensX + 'px', top: magicLensY + 'px' });
     //magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
 
