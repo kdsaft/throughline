@@ -514,6 +514,12 @@ function getMagicLensVisibility() {
     return isMagicLensVisible;
 }
 
+function turnMagicLensOn() {
+    isMagicLensVisible = true;
+    magicLensWasMoved = false;
+    jumpToWordAndShowMagicLens(wordId);
+}
+
 // onEvents
 
 function onMouseUp(event) {
