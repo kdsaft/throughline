@@ -136,6 +136,8 @@ async function startListening() {
 
                         const nBestPhonemes = wordDetails.properties.getProperty("nBestPhonemes"); 
 
+                        console.log("nBest: ", nBestPhonemes);
+
 
                         handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment, nBestPhonemes);
                     }
