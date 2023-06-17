@@ -155,13 +155,10 @@ function updateMagicLens(event) {
     const magicLensX = clientX - offsetTouchX;
     const magicLensY = clientY - offsetTouchY;
 
-    const currentWord = $('#word-' + wordId);
-    const currentSyllable = $('#syllable-' + wordId);
-
     const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
 
     if (speedbumped.id !== 0) {
-        const snapPositions = getSnapPosition(speedbumped.id);
+        //const snapPositions = getSnapPosition(speedbumped.id);
 
         magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' });
     } else {
