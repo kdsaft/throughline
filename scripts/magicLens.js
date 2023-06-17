@@ -216,108 +216,15 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         for (const wordEl of words) {
             const rect = wordEl.getBoundingClientRect();
             const left = rect.left - containerOffsetLeft - 6;
-            const top = rect.top - containerOffsetTop;
+            const top = rect.top - containerOffsetTop - 6;
             const right = rect.right - containerOffsetLeft + 6;
-            const bottom = rect.bottom - containerOffsetTop;
+            const bottom = rect.bottom - containerOffsetTop + 6;
 
             if (midpointX > left && midpointX < right && midpointY > top && midpointY < bottom) {
                 activeWordId = parseInt(wordEl.getAttribute("id").split("-")[1]);
                 break;
             }
         }
-    }
-
-    console.log('activeWordId:', activeWordId);
-
-    // Constrain to article container
-    newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
-    newLeft = containWithinLeftRight(newLeft, articleContainer.width(), currentWidth);
-
-    // Apply speed bumps
-    snapPositions = getSnapPosition(activeWordId);
-
-    // Apply a horizontal speed bump
-    const leftThreshold = snapPositions.left - horizontalSnapThreshold / 2;
-    const rightThreshold = snapPositions.left + horizontalSnapThreshold / 2;
-
-    if ((currentLeft > leftThreshold) && (currentLeft < rightThreshold)) {
-        newLeft = snapPositions.left;
-    }
-
-    // Apply a vertical speed bump
-    const upperThreshold = snapPositions.top + verticalSnapThreshold / 2;
-    const lowerThreshold = snapPositions.top - verticalSnapThreshold / 2;
-
-    if ((currentTop > lowerThreshold) && (currentTop < upperThreshold)) {
-        newTop = snapPositions.top;
-    }
-
-    return { left: newLeft, top: newTop, id: activeWordId };
-}
-
-function applySpeedBumpPrev(currentLeft, currentTop, currentHeight, currentWidth) {
-    const verticalSnapThreshold = 12;
-    const horizontalSnapThreshold = 10;
-
-    const midpointX = currentLeft + (currentWidth / 2);
-    const midpointY = currentTop + (currentHeight / 2);
-
-
-    let activeClauseId = 0;
-    let activeWordId = 0;
-    let newLeft = currentLeft;
-    let newTop = currentTop;
-
-    // Are the points in a clause?
-    const clauses = standardText.jQ.find(".clause");
-
-    clauses.each(function () {
-        const clause = {
-            height: $(this).height(),
-            width: $(this).width(),
-            left: $(this).offset().left - articleContainer.offset().left,
-            right: $(this).offset().left - articleContainer.offset().left + $(this).width(),
-            top: $(this).offset().top - articleContainer.offset().top,
-            bottom: $(this).offset().top - articleContainer.offset().top + $(this).height()
-        };
-
-        if (midpointX > clause.left && midpointX < clause.right && midpointY > clause.top && midpointY < clause.bottom) {
-            activeClauseId = $(this).attr("id").split("-")[1];
-        }
-    });
-
-    // Are the points over a word?
-    if (activeClauseId > 0) {
-        const words = $(`#clause-${activeClauseId}`).find('.word');
-        words.each(function () {
-            const wordLeft = $(this).offset().left - articleContainer.offset().left;
-            const wordRight = wordLeft + $(this).width();
-            const wordTop = $(this).offset().top - articleContainer.offset().top;
-            const wordBottom = wordTop + $(this).height();
-            const wordId = parseInt($(this).attr("id").split("-")[1]);
-            const wordIndex = words.index(this);
-            const prevWord = words.eq(wordIndex - 1);
-            const nextWord = words.eq(wordIndex + 1);
-
-            let leftBound = wordLeft - 6;
-            let rightBound = wordRight + 6;
-
-            if (wordIndex !== 0) {
-                if (prevWord.length) {
-                    const prevWordRight = prevWord.offset().left - articleContainer.offset().left + prevWord.width();
-                    leftBound = wordLeft - (wordLeft - prevWordRight) / 2;
-                }
-            }
-
-            if (nextWord.length) {
-                const nextWordLeft = nextWord.offset().left - articleContainer.offset().left;
-                rightBound = wordRight + (nextWordLeft - wordRight) / 2;
-            }
-
-            if (midpointX > leftBound && midpointX < rightBound && midpointY > wordTop - 6 && midpointY < wordBottom + 6) {
-                activeWordId = wordId;
-            }
-        });
     }
 
     // Constrain to article container
@@ -350,23 +257,29 @@ function applySpeedBumpPrev(currentLeft, currentTop, currentHeight, currentWidth
 // Helper functions
 
 function getNearestWord(posX, posY) {
-    const allWords = $(".word");
-    let nearestWord = null;
+    const allWords = Array.from(document.querySelectorAll('.word'));
     let nearestDistance = Infinity;
+    let nearestWordId;
 
-    allWords.each(function () {
-        const elementOffset = $(this).offset();
-        const articleContainerOffset = $("#standard-text").offset();
-        const elementPosX = elementOffset.left - articleContainerOffset.left;
-        const elementPosY = elementOffset.top - articleContainerOffset.top;
+    // Adjusting the bounding box coordinates to be relative to articleContainer
+    const containerOffsetLeft = articleContainer.getBoundingClientRect().left;
+    const containerOffsetTop = articleContainer.getBoundingClientRect().top;
+
+    allWords.forEach(wordEl => {
+        const rect = wordEl.getBoundingClientRect();
+        const elementPosX = rect.left - containerOffsetLeft;
+        const elementPosY = rect.top - containerOffsetTop;
+
+        const centerX = elementPosX + rect.width / 2;
+        const centerY = elementPosY + rect.height / 2;
 
         const distance = Math.sqrt(
-            Math.pow(posX - elementPosX, 2) + Math.pow(posY - elementPosY, 2)
+            Math.pow(posX - centerX, 2) + Math.pow(posY - centerY, 2)
         );
 
         if (distance < nearestDistance) {
             nearestDistance = distance;
-            nearestWordId = $(this).attr("id").split('-')[1];
+            nearestWordId = parseInt(wordEl.getAttribute("id").split("-")[1]);
         }
     });
 
