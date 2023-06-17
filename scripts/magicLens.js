@@ -3,6 +3,9 @@
 
 // $(document).ready(function () {
 
+// Sound effects
+const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/music_marimba_on.m4a');
+
 // Text elements
 const articleContainer = $('.article-container');
 const articleContainerOffset = articleContainer.offset();
@@ -631,5 +634,6 @@ articleContainer.on('mousedown touchstart', '.word', function (event) {
     wordFocus();
     wordId = parseInt(elementID, 10);
     turnSyllableButtonOn();
+    touchWord.play();
 });
 

@@ -17,10 +17,11 @@
 
         if (getMagicLensVisibility()) {
             syllableButtonIcon.src = syllableOffIcon;
+            buttonOff.play();
         } else {
             syllableButtonIcon.src = syllableOnIcon;
+            buttonOn.play();
         };
-        buttonDownSound.play();
         document.getElementById('syllableShortPressFeedback').style.display = 'block';
     }
 
