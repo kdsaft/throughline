@@ -162,7 +162,6 @@ function updateMagicLens(event) {
 
     if (speedbumped.id !== 0) {
         const snapPositions = getSnapPosition(speedbumped.id);
-        const newWidth = snapPositions.width.word;
 
         magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' });
     } else {
@@ -445,53 +444,56 @@ function wordFocus() {
     const wordWidth = getPaddedDimensions(wordId).width.word;
     const wordWidthString = `${wordWidth}px`;
 
+    const toWordFocusTimeline = anime.timeline();
 
-    console.log("word focus");
-    
-    anime({
+    toWordFocusTimeline
+        .add({
         targets: magicLensDisplay.native,
         backdropFilter: 'blur(0px)',
         duration: 100,
         easing: 'easeOutExpo'
     });
 
-    anime({
+    add({
         targets: seperatorText.native,
         color: 'rgba(181, 204, 255, 0)',
         duration: 200,
         easing: 'easeOutExpo'
-    });
+    }, 0);
 
-    anime({
+    add({
         targets: magicLensDisplay.native,
         borderColor: 'rgba(0, 84, 153, 1)',
         backgroundColor: 'rgba(255, 255, 255, 0)',
         color: 'rgba(0, 84, 153, 0)',
         duration: 200,
         easing: 'easeOutExpo'
-    });
+    }, 0);
 
-    anime({
+    add({
         targets: magicLensHandle.native,
         borderColor: 'rgba(0, 84, 153, 1)',
         backgroundColor: 'rgba(0, 84, 153, 1)',
         duration: 200,
         easing: 'easeOutExpo'
-    });
+    }, 0);
 
-    anime({
+    add({
         targets: magicLens.native,
         width: wordWidthString,
         duration: 200,
         easing: 'easeOutExpo'
-    });
+    }, 0);
 
-    anime({
+    add({
         targets: magicLensWrapper.native,
         scale: 1.0,
         duration: 200,
         easing: 'easeOutExpo'
-    });
+    }, 0);
+
+        // Play the timeline
+        toWordFocusTimeline.play();
 }
 
 
