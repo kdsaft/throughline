@@ -61,8 +61,7 @@ function initSpeechSDK() {
             gradingSystem: "HundredMark",
             granularity: "Phoneme",
             enableMiscue: true,
-            phonemeAlphabet: "IPA",
-            nBestPhonemeCount: 5
+            phonemeAlphabet: "IPA"
         };
 
         
