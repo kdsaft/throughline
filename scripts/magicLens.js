@@ -134,6 +134,7 @@ function jumpToWordAndShowMagicLens(id) {
         // Get the new position of the syllableText
         const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
         const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
+        console.log('destinationSyllable:', destinationSyllable);
         console.log('delta: ' + deltaLeft, deltaTop);
         console.log('Left Syllable, word: ' + destinationSyllable.offset().left, destinationWord.offset().left);
         const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
