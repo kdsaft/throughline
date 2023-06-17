@@ -208,6 +208,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         }
     });
 
+    console.log('activeClauseID pre: ' + parseInt(activeClause.el.getAttribute("id").split("-")[1]));
+
     // Check if the midpoint is in the activeClause
     if (
         midpointX > activeClause.left &&
