@@ -132,7 +132,8 @@ async function startListening() {
                             accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore
                         }));
 
-                         console.log("word details: ", wordDetails.Phonemes.PronunciationAssessment.NBestPhonemes);
+                        console.log("word details: ", wordDetails);
+                         //console.log("word details: ", wordDetails.Phonemes.PronunciationAssessment.NBestPhonemes);
 
 
                         handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
