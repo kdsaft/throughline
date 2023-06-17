@@ -104,7 +104,7 @@ function animateToWord(id) {
     }
 }
 
-function jumpToWordAndShow(id) {
+function jumpToWordAndShowMagicLens(id) {
     let destinationId = id;
 
     if (id === 0) {
@@ -503,7 +503,7 @@ function onMouseUp(event) {
         } else {
             jumpToWordAndShowMagicLens(wordId);
         }
-        
+
         $(document).off('mousemove touchmove', updateMagicLens);
     }
 }
