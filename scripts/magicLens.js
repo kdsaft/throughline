@@ -20,7 +20,8 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 // tracking variables
 let dragging = false;
 let isAnimating = false;
-let isMoving = false;
+let magicLensWasMoved = false;
+let megicLensIsVisible = false;
 let wordId = 1;
 
 let offsetTouchX;
@@ -103,6 +104,39 @@ function animateToWord(id) {
     }
 }
 
+function jumpToWordAndShow(id) {
+    let destinationId = id;
+
+    if (id === 0) {
+        // funcation to find nearest word
+        const magicLensCenterX = magicLens.jQ.offset().left + (magicLens.jQ.width() / 2) - articleContainerOffset.left;
+        const magicLensCenterY = magicLens.jQ.offset().top + (magicLens.jQ.height() / 2) - articleContainerOffset.top;
+
+        destinationId = getNearestWord(magicLensCenterX, magicLensCenterY);
+        wordId = destinationId;
+    }
+
+    const destinationWord = $('#word-' + destinationId);
+    const destinationSyllable = $('#syllable-' + destinationId);
+
+
+    if (destinationWord.length && destinationSyllable.length) {
+        // Get the final positions, height and width of the MagicLens
+        snapPositions = getSnapPosition(destinationId);
+        const newLeftString = `${snapPositions.left}px`;
+        const newTopString = `${snapPositions.top}px`;
+        const newWidthString = `${snapPositions.width.word}px`;
+        const newHeightString = `${snapPositions.height}px`;
+
+        magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
+        magicLens.jQ.css({ width: newWidthString, height: newHeightString });
+        syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
+
+        isAnimating = false;
+        showMagicLens();
+        syllableFocus();
+    }
+}
 
 function updateMagicLens(event) {
     if (isAnimating) return;
@@ -444,11 +478,13 @@ function wordFocus() {
 // control functions
 
 function hideMagicLens() {
+    isMagicLensVisible = false;
     magicLensWrapper.jQ.hide();
 }
 
 function showMagicLens() {
-    isMoving = true;
+    isMagicLensVisible = true;
+    magicLensWasMoved = false;
     wordFocus();
     magicLensWrapper.jQ.show();
 }
@@ -457,17 +493,23 @@ function showMagicLens() {
 
 function onMouseUp(event) {
 
-    if (isMoving) {
+    if (magicLensWasMoved) {
         magicLensHandle.jQ.removeClass('grabbed');
         dragging = false;
-        isMoving = false;
-        animateToWord(wordId);
+        magicLensWasMoved = false;
+
+        if (isMagicLensVisible) {
+            animateToWord(wordId);
+        } else {
+            jumpToWordAndShowMagicLens(wordId);
+        }
+        
         $(document).off('mousemove touchmove', updateMagicLens);
     }
 }
 
 magicLensHandle.jQ.on('mousedown', function (event) {
-    isMoving = true;
+    magicLensWasMoved = true;
     const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
 
@@ -482,7 +524,7 @@ magicLensHandle.jQ.on('mousedown', function (event) {
 
 
 grabHandleArea.jQ.on('touchstart', function (event) {
-    isMoving = true;
+    magicLensWasMoved = true;
 
     const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
@@ -499,7 +541,7 @@ grabHandleArea.jQ.on('touchstart', function (event) {
 });
 
 magicLensDisplay.jQ.on('mousedown', function (event) {
-    isMoving = true;
+    magicLensWasMoved = true;
 
     event.preventDefault();
     const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
@@ -524,7 +566,7 @@ magicLensDisplay.jQ.on('mousedown', function (event) {
 
 
 magicLensDisplay.jQ.on('touchstart', function (event) {
-    isMoving = true;
+    magicLensWasMoved = true;
 
     const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
     const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
@@ -566,7 +608,7 @@ articleContainer.on('mousemove touchmove', function (event) {
 $(document).on('mouseup touchend', onMouseUp);
 
 articleContainer.on('mousedown touchstart', '.word', function (event) {
-    isMoving = true;
+    magicLensWasMoved = true;
 
     if (event.type === 'touchstart') {
         event.preventDefault();
