@@ -445,6 +445,9 @@ function wordFocus() {
     const wordWidth = getPaddedDimensions(wordId).width.word;
     const wordWidthString = `${wordWidth}px`;
 
+
+    console.log("word focus");
+    
     anime({
         targets: magicLensDisplay.native,
         backdropFilter: 'blur(0px)',
