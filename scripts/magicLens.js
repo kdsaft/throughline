@@ -165,11 +165,7 @@ function updateMagicLens(event) {
         magicLens.jQ.css({ width: '50px', height: '54px' });
     }
 
-    console.log('speedbumped: ' + speedbumped.left + ', ' + speedbumped.top);
-
-    console.log('magicLens: ' + magicLensX + ', ' + magicLensY);
     wordId = speedbumped.id;
-    //magicLensWrapper.jQ.css({ left: magicLensX + 'px', top: magicLensY + 'px' });
     magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
 
 }
@@ -220,6 +216,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         activeClauseId = parseInt(activeClause.el.id.split("-")[1]);
     }
 
+    console.log('activeClause: ' + activeClauseId);
+
     // Are the points over a word?
     if (activeClauseId > 0) {
         const words = Array.from(activeClause.el.querySelectorAll(".word"));
@@ -256,6 +254,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         }
     }
 
+    console.log('activeWord: ' + activeWordId);
 
     // Constrain to article container
     newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
