@@ -136,8 +136,8 @@ function jumpToWordAndShowMagicLens(id) {
         const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
         console.log('delta: ' + deltaLeft, deltaTop);
         console.log('syllableText: ' + syllableText.jQ.position().left, syllableText.jQ.position().top);
-        const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
-        const newSyllableTop = syllableText.jQ.position().top - deltaTop
+        const newSyllableLeft = syllableText.jQ.position().left + deltaLeft
+        const newSyllableTop = syllableText.jQ.position().top + deltaTop
         syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
 
         isAnimating = false;

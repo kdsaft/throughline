@@ -15,7 +15,7 @@
     function handleInteractionStart(event) {
         event.preventDefault();
 
-        if (syllableButtonIcon.src == syllableOnIcon) {
+        if (megicLensIsVisible) {
             syllableButtonIcon.src = syllableOffIcon;
         } else {
             syllableButtonIcon.src = syllableOnIcon;
@@ -29,7 +29,7 @@
     function handelInteractionEnd(event) {
         event.preventDefault();
 
-        if (syllableButtonIcon.src == syllableOnIcon) {
+        if (megicLensIsVisible) {
             syllableButtonIcon.setAttribute('aria-label', 'MagicLens activated');
             showMagicLens();
         } else {
