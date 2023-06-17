@@ -184,6 +184,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
     // Are the points in a clause?
     const clauses = Array.from(standardText.native.querySelectorAll('.clause'));
+    console.log(clauses);
 
     // Find a clause closest to the current Y position
     let minDistanceY = Number.MAX_VALUE;
@@ -218,7 +219,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
     }
 
-    console.log('activeClause: ' + activeClauseId);
+    console.log('activeClauseId: ' + activeClauseId);
 
     // Are the points over a word?
     if (activeClauseId > 0) {
