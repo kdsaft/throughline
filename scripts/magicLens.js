@@ -24,7 +24,7 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 let dragging = false;
 let isAnimating = false;
 let magicLensWasMoved = false;
-let magicLensIsVisible = false;
+let isMagicLensVisible = false;
 let wordId = 1;
 
 let offsetTouchX;
