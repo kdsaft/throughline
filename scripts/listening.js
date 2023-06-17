@@ -132,7 +132,7 @@ async function startListening() {
                             accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore
                         }));
 
-                        console.log("nbest: ", wordDetails.properties.getProperty("NBest"));
+                        //console.log("nbest: ", wordDetails.properties.getProperty("NBest"));
 
                         handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
                     }
