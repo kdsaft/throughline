@@ -61,7 +61,8 @@ function initSpeechSDK() {
             gradingSystem: "HundredMark",
             granularity: "Phoneme",
             enableMiscue: true,
-            phonemeAlphabet: "IPA"
+            phonemeAlphabet: "IPA",
+            nBestPhonemeCount: 3
         };
         const pronunciationAssessmentConfig = SpeechSDK.PronunciationAssessmentConfig.fromJSON(JSON.stringify(pronunciationAssessmentConfigJson));
 
