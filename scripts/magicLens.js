@@ -36,7 +36,8 @@ articleContainer.css({
 });
 // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
 
-hideMagicLens();
+
+initPositionMagicLens();
 
 
 function animateToWord(id) {
@@ -255,6 +256,17 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
 
 // Helper functions
+
+function initPositionMagicLens() {
+    hideMagicLens();
+
+    if (wordId === 0) {
+        wordId = 1;
+    }
+    const snapPositions = getSnapPosition(wordId);
+    magicLensWrapper.jQ.css({ left: getSnapPosition.left + 'px', top: getSnapPosition.top + 'px' });
+    magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' });
+}
 
 function getNearestWord(posX, posY) {
     const allWords = Array.from(document.querySelectorAll('.word'));
