@@ -496,6 +496,10 @@ function showMagicLens() {
     magicLensWrapper.jQ.show();
 }
 
+function getMagicLensVisibility() {
+    return isMagicLensVisible;
+}
+
 // onEvents
 
 function onMouseUp(event) {
