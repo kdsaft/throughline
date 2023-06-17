@@ -208,6 +208,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         }
     }
 
+    console.log('activeClauseId:', activeClauseId);
+
     // Are the points over a word?
     if (activeClauseId > 0) {
         const words = Array.from(document.querySelectorAll(`#clause-${activeClauseId} .word`));
@@ -226,7 +228,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             }
         }
     }
-    
+
     console.log('activeWordId:', activeWordId);
 
     // Constrain to article container
