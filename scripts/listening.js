@@ -129,12 +129,11 @@ async function startListening() {
 
                         const phonemesAssessment = wordDetails.Phonemes.map(phonemeDetails => ({
                             phoneme: phonemeDetails.Phoneme,
-                            accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore
+                            accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore,
+                            nBestPhonemes: phonemeDetails.PronunciationAssessment.NBestPhonemes
                         }));
-
-                        console.log("word details: ", wordDetails);
-                         //console.log("word details: ", wordDetails.Phonemes.PronunciationAssessment.NBestPhonemes);
-
+                        
+                        console.log("phoneme: ", phonemesAssessment);
 
                         handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
                     }
