@@ -24,7 +24,7 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 let dragging = false;
 let isAnimating = false;
 let magicLensWasMoved = false;
-let isMagicLensVisible = false;
+let a = false;
 let wordId = 1;
 
 let offsetTouchX;
@@ -181,8 +181,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     const midpointX = currentLeft + (currentWidth / 2);
     const midpointY = currentTop + (currentHeight / 2);
 
-    let activeClause = 0;
-    let overWord = 0;
+    let activeClauseId = 0;
+    let activeWordId = 0;
     let newLeft = currentLeft;
     let newTop = currentTop;
 
@@ -235,17 +235,19 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             }
 
             if (midpointX > leftBound && midpointX < rightBound && midpointY > wordTop - 6 && midpointY < wordBottom + 6) {
-                overWord = wordId;
+                activeWordId = wordId;
             }
         });
     }
+
+    console.log('active word: ' + activeWordId);
 
     // Constrain to article container
     newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
     newLeft = containWithinLeftRight(newLeft, articleContainer.width(), currentWidth);
 
     // Apply speed bumps
-    snapPositions = getSnapPosition(overWord);
+    snapPositions = getSnapPosition(activeWordId);
 
     // Apply a horizontal speed bump
     const leftThreshold = snapPositions.left - horizontalSnapThreshold / 2;
@@ -263,7 +265,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         newTop = snapPositions.top;
     }
 
-    return { left: newLeft, top: newTop, id: overWord };
+    return { left: newLeft, top: newTop, id: activeWordId };
 }
 
 
@@ -488,18 +490,18 @@ function wordFocus() {
 // control functions
 
 function hideMagicLens() {
-    isMagicLensVisible = false;
+    a = false;
     magicLensWrapper.jQ.hide();
 }
 
 function showMagicLens() {
-    isMagicLensVisible = true;
+    a = true;
     magicLensWasMoved = false;
     magicLensWrapper.jQ.show();
 }
 
 function getMagicLensVisibility() {
-    return isMagicLensVisible;
+    return a;
 }
 
 // onEvents
@@ -511,7 +513,7 @@ function onMouseUp(event) {
         dragging = false;
         magicLensWasMoved = false;
 
-        if (isMagicLensVisible) {
+        if (a) {
             animateToWord(wordId);
         } else {
             jumpToWordAndShowMagicLens(wordId);
