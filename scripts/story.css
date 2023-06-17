@@ -94,7 +94,6 @@ body {
     left: 0;
     width: 100%;
     top: 120px;
-    border: 1px solid #e7f2fb;
 }
 
 .standard-text-container {
@@ -246,7 +245,6 @@ body {
     padding-left: 2px;
     white-space: nowrap;
     height: 50px;
-    border: 1px solid #fbfae7;
 }
 
 .article-body {
