@@ -258,14 +258,15 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 // Helper functions
 
 function initPositionMagicLens() {
-    hideMagicLens();
 
     if (wordId === 0) {
         wordId = 1;
     }
     const snapPositions = getSnapPosition(wordId);
-    magicLensWrapper.jQ.css({ left: snapPositions.left + 'px', top: snapPositions.top + 'px' });
+    magicLensWrapper.jQ.css({ left: snapPositions.left + 'px', top: getSnapPosition.top + 'px' });
     magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' });
+    hideMagicLens();
+
 }
 
 function getNearestWord(posX, posY) {
