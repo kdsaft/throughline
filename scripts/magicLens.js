@@ -155,7 +155,7 @@ function updateMagicLens(event) {
     const magicLensX = clientX - offsetTouchX;
     const magicLensY = clientY - offsetTouchY;
 
-/*     const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
+    const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
 
     if (speedbumped.id !== 0) {
         const snapPositions = getSnapPosition(speedbumped.id);
@@ -166,16 +166,124 @@ function updateMagicLens(event) {
     }
 
     console.log('speedbumped: ' + speedbumped.left + ', ' + speedbumped.top);
- */    
+
     console.log('magicLens: ' + magicLensX + ', ' + magicLensY);
-    //wordId = speedbumped.id;
-    magicLensWrapper.jQ.css({ left: magicLensX + 'px', top: magicLensY + 'px' });
-    //magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
+    wordId = speedbumped.id;
+    //magicLensWrapper.jQ.css({ left: magicLensX + 'px', top: magicLensY + 'px' });
+    magicLensWrapper.jQ.css({ left: speedbumped.left + 'px', top: speedbumped.top + 'px' });
 
 }
 
-
 function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
+    const verticalSnapThreshold = 12;
+    const horizontalSnapThreshold = 10;
+
+    const midpointX = currentLeft + (currentWidth / 2);
+    const midpointY = currentTop + (currentHeight / 2);
+
+    let activeClauseId = 0;
+    let activeWordId = 0;
+    let newLeft = currentLeft;
+    let newTop = currentTop;
+
+    // Are the points in a clause?
+    const clauses = Array.from(standardText.querySelectorAll('.clause'));
+
+    // Find a clause closest to the current Y position
+    let minDistanceY = Number.MAX_VALUE;
+    let activeClause;
+
+    clauses.forEach(clauseEl => {
+        const rect = clauseEl.getBoundingClientRect();
+        const centerY = articleContainerOffset.top + rect.top + rect.height / 2;
+        const distanceY = Math.abs(midpointY - centerY);
+
+        if (distanceY < minDistanceY) {
+            minDistanceY = distanceY;
+            activeClause = {
+                el: clauseEl,
+                left: articleContainerOffset.left + rect.left,
+                top: articleContainerOffset.top + rect.top,
+                right: articleContainerOffset.left + rect.right,
+                bottom: articleContainerOffset.top + rect.bottom
+            };
+        }
+    });
+
+    // Check if the midpoint is in the activeClause
+    if (
+        midpointX > activeClause.left &&
+        midpointX < activeClause.right &&
+        midpointY > activeClause.top &&
+        midpointY < activeClause.bottom
+    ) {
+        activeClauseId = parseInt(activeClause.el.id.split("-")[1]);
+    }
+
+    // Are the points over a word?
+    if (activeClauseId > 0) {
+        const words = Array.from(activeClause.el.querySelectorAll(".word"));
+
+        // Find a word closest to the current X position
+        let minDistanceX = Number.MAX_VALUE;
+        let activeWord;
+
+        words.forEach(wordEl => {
+            const rect = wordEl.getBoundingClientRect();
+            const centerX = articleContainerOffset.left + rect.left + rect.width / 2;
+            const distanceX = Math.abs(midpointX - centerX);
+
+            if (distanceX < minDistanceX) {
+                minDistanceX = distanceX;
+                activeWord = {
+                    el: wordEl,
+                    left: articleContainerOffset.left + rect.left,
+                    top: articleContainerOffset.top + rect.top,
+                    right: articleContainerOffset.left + rect.right,
+                    bottom: articleContainerOffset.top + rect.bottom
+                };
+            }
+        });
+
+        // Check if the midpoint is in the activeWord
+        if (
+            midpointX > activeWord.left &&
+            midpointX < activeWord.right &&
+            midpointY > activeWord.top &&
+            midpointY < activeWord.bottom
+        ) {
+            activeWordId = parseInt(activeWord.el.id.split("-")[1]);
+        }
+    }
+
+
+    // Constrain to article container
+    newTop = containWithinTopBottom(newTop, articleContainer.height(), currentHeight);
+    newLeft = containWithinLeftRight(newLeft, articleContainer.width(), currentWidth);
+
+    // Apply speed bumps
+    snapPositions = getSnapPosition(activeWordId);
+
+    // Apply a horizontal speed bump
+    const leftThreshold = snapPositions.left - horizontalSnapThreshold / 2;
+    const rightThreshold = snapPositions.left + horizontalSnapThreshold / 2;
+
+    if ((currentLeft > leftThreshold) && (currentLeft < rightThreshold)) {
+        newLeft = snapPositions.left;
+    }
+
+    // Apply a vertical speed bump
+    const upperThreshold = snapPositions.top + verticalSnapThreshold / 2;
+    const lowerThreshold = snapPositions.top - verticalSnapThreshold / 2;
+
+    if ((currentTop > lowerThreshold) && (currentTop < upperThreshold)) {
+        newTop = snapPositions.top;
+    }
+
+    return { left: newLeft, top: newTop, id: activeWordId };
+}
+
+function applySpeedBumpPrev(currentLeft, currentTop, currentHeight, currentWidth) {
     const verticalSnapThreshold = 12;
     const horizontalSnapThreshold = 10;
 
