@@ -262,8 +262,8 @@ function getNearestWord(posX, posY) {
     let nearestWordId;
 
     // Adjusting the bounding box coordinates to be relative to articleContainer
-    const containerOffsetLeft = articleContainer.getBoundingClientRect().left;
-    const containerOffsetTop = articleContainer.getBoundingClientRect().top;
+    const containerOffsetLeft = articleContainer.offset().left;
+    const containerOffsetTop = articleContainer.offset().top;
 
     allWords.forEach(wordEl => {
         const rect = wordEl.getBoundingClientRect();
