@@ -185,28 +185,28 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     // Are the points in a clause?
     const clauses = Array.from(standardText.native.querySelectorAll('.clause'));
 
-  // Find the active clause
-  for (const clauseEl of clauses) {
-    const rect = clauseEl.getBoundingClientRect();
-    const left = rect.left;
-    const top = rect.top;
-    const right = rect.right;
-    const bottom = rect.bottom;
+    // Adjusting the bounding box coordinates to be relative to articleContainer
+    const containerOffsetLeft = articleContainer.getBoundingClientRect().left;
+    const containerOffsetTop = articleContainer.getBoundingClientRect().top;
 
-    console.log('left:', left + ' - ' + midpointX + ' - ' + right);
-    console.log('top:', top + ' - ' + midpointY + ' - ' + bottom);
+    // Find the active clause
+    for (const clauseEl of clauses) {
+        const rect = clauseEl.getBoundingClientRect();
+        const left = rect.left - containerOffsetLeft;
+        const top = rect.top - containerOffsetTop;
+        const right = rect.right - containerOffsetLeft;
+        const bottom = rect.bottom - containerOffsetTop;
 
-    if (midpointX > left && midpointX < right && midpointY > top && midpointY < bottom) {
-        activeClauseId = parseInt(clauseEl.getAttribute("id").split("-")[1]);
-        break;
+        if (midpointX > left && midpointX < right && midpointY > top && midpointY < bottom) {
+            activeClauseId = parseInt(clauseEl.getAttribute("id").split("-")[1]);
+            break;
+        }
+
+        // If the midpointY is smaller than the top of the current clause, exit the loop
+        if (midpointY < top) {
+            break;
+        }
     }
-
-    // If the midpointY is smaller than the top of the current clause, exit the loop
-    if (midpointY < top) {
-        break;
-    }
-}
-    console.log('activeClauseId:', activeClauseId);
 
     // Are the points over a word?
     if (activeClauseId > 0) {
@@ -215,10 +215,10 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         // Find the active word
         for (const wordEl of words) {
             const rect = wordEl.getBoundingClientRect();
-            const left = rect.left;
-            const top = rect.top;
-            const right = rect.right;
-            const bottom = rect.bottom;
+            const left = rect.left - containerOffsetLeft;
+            const top = rect.top - containerOffsetTop;
+            const right = rect.right - containerOffsetLeft;
+            const bottom = rect.bottom - containerOffsetTop;
 
             if (midpointX > left && midpointX < right && midpointY > top && midpointY < bottom) {
                 activeWordId = parseInt(wordEl.getAttribute("id").split("-")[1]);
@@ -226,7 +226,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             }
         }
     }
-
+    
     console.log('activeWordId:', activeWordId);
 
     // Constrain to article container
