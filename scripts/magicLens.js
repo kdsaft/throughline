@@ -155,7 +155,7 @@ function updateMagicLens(event) {
     const magicLensX = clientX - offsetTouchX;
     const magicLensY = clientY - offsetTouchY;
 
-    const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
+    //const speedbumped = applySpeedBump(magicLensX, magicLensY, magicLens.jQ.height(), magicLens.jQ.width());
 
     if (speedbumped.id !== 0) {
         const snapPositions = getSnapPosition(speedbumped.id);
@@ -165,7 +165,7 @@ function updateMagicLens(event) {
         magicLens.jQ.css({ width: '50px', height: '54px' });
     }
 
-    console.log('speedbumped: ' + speedbumped.left + ', ' + speedbumped.top);
+    //console.log('speedbumped: ' + speedbumped.left + ', ' + speedbumped.top);
     console.log('magicLens: ' + magicLensX + ', ' + magicLensY);
     wordId = speedbumped.id;
     magicLensWrapper.jQ.css({ left: magicLensX + 'px', top: magicLensY + 'px' });
