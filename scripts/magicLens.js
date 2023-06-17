@@ -202,6 +202,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     });
 
     activeClauseId = parseInt(closestClause.getAttribute("id").split("-")[1]);
+    console.log('activeClauseId:', activeClauseId);
 
     // Find a word with the smallest distance in the closest clause
     const words = Array.from(closestClause.querySelectorAll(".word"));
