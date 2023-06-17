@@ -61,8 +61,11 @@ function initSpeechSDK() {
             gradingSystem: "HundredMark",
             granularity: "Phoneme",
             enableMiscue: true,
-            phonemeAlphabet: "IPA"
+            phonemeAlphabet: "IPA",
+            nBestPhonemeCount: 5
         };
+
+        
         const pronunciationAssessmentConfig = SpeechSDK.PronunciationAssessmentConfig.fromJSON(JSON.stringify(pronunciationAssessmentConfigJson));
 
         // Create a speech config
@@ -131,8 +134,10 @@ async function startListening() {
                             accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore
                         }));
 
+                        const nBestPhonemes = wordDetails.properties.getProperty("nBestPhonemes"); 
 
-                        handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
+
+                        handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment, nBestPhonemes);
                     }
                 }
             };
@@ -227,7 +232,7 @@ function highlightNextWord(wordsSpoken) {
     })
 }
 
-function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAccuracyScores, phonemesAccuracyScores) {
+function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAccuracyScores, phonemesAccuracyScores, nBestPhonemes) {
     const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
     const wordsToCheck = Array.from(wordsToReadMap.values()).filter(word => word.state === "checking");
 
@@ -246,6 +251,9 @@ function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syll
             } else {
                 console.log("Pronunciation score is below 80:", wordAccuracyScore);
                 troubleWithWord(wordInstance.wordId, syllablesAccuracyScores, phonemesAccuracyScores);
+
+                console.log("nBestPhonemes:", nBestPhonemes);
+
             }
             break; // End the loop since a match is found
         }
