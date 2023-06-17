@@ -171,6 +171,7 @@ function updateMagicLens(event) {
 }
 
 function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
+    console.log('left: ' + currentLeft + ', top: ' + currentTop);
     const verticalSnapThreshold = 12;
     const horizontalSnapThreshold = 10;
 
@@ -208,7 +209,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         }
     });
 
-    console.log('activeClauseID pre: ' + parseInt(activeClause.el.getAttribute("id").split("-")[1]));
+    console.log('closest clause (pre): ' + parseInt(activeClause.el.getAttribute("id").split("-")[1]));
 
     // Check if the midpoint is in the activeClause
     if (
