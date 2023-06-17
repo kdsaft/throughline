@@ -208,8 +208,6 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         }
     }
 
-    console.log('activeClauseId:', activeClauseId);
-
     // Are the points over a word?
     if (activeClauseId > 0) {
         const words = Array.from(document.querySelectorAll(`#clause-${activeClauseId} .word`));
@@ -217,9 +215,9 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         // Find the active word
         for (const wordEl of words) {
             const rect = wordEl.getBoundingClientRect();
-            const left = rect.left - containerOffsetLeft;
+            const left = rect.left - containerOffsetLeft - 6;
             const top = rect.top - containerOffsetTop;
-            const right = rect.right - containerOffsetLeft;
+            const right = rect.right - containerOffsetLeft + 6;
             const bottom = rect.bottom - containerOffsetTop;
 
             if (midpointX > left && midpointX < right && midpointY > top && midpointY < bottom) {
