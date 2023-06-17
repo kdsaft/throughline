@@ -186,8 +186,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     const clauses = Array.from(standardText.native.querySelectorAll('.clause'));
 
     // Adjusting the bounding box coordinates to be relative to articleContainer
-    const containerOffsetLeft = articleContainer.getBoundingClientRect().left;
-    const containerOffsetTop = articleContainer.getBoundingClientRect().top;
+    const containerOffsetLeft = articleContainer.offset().left;
+    const containerOffsetTop = articleContainer.offset().top;
 
     // Find the active clause
     for (const clauseEl of clauses) {
