@@ -213,7 +213,9 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
         midpointY > activeClause.top &&
         midpointY < activeClause.bottom
     ) {
-        activeClauseId = parseInt(activeClause.el.id.split("-")[1]);
+        activeClauseId = parseInt(activeClause.el.getAttribute("id").split("-")[1]);
+        console.log('activeClause: ' + activeClause.el);
+
     }
 
     console.log('activeClause: ' + activeClauseId);
@@ -250,7 +252,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             midpointY > activeWord.top &&
             midpointY < activeWord.bottom
         ) {
-            activeWordId = parseInt(activeWord.el.id.split("-")[1]);
+            activeWordId = parseInt(activeWord.el.getAttribute("id").split("-")[1]);
+            
         }
     }
 
