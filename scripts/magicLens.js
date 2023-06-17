@@ -200,8 +200,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             bottom: $(this).offset().top - articleContainer.offset().top + $(this).height()
         };
 
-        console.log('clause width: ' + clause.left  + ' - ' + midpointX + ' - ' + clause.right );
-        console.log('clause height: ' + clause.top  + ' - ' + midpointY + ' - ' + clause.right );
+        console.log('clause width: ' + clause.left + ' - ' + midpointX + ' - ' + clause.right);
+        console.log('clause height: ' + clause.top + ' - ' + midpointY + ' - ' + clause.right);
 
         if (midpointX > clause.left && midpointX < clause.right && midpointY > clause.top && midpointY < clause.bottom) {
             activeClauseId = $(this).attr("id").split("-")[1];
@@ -448,52 +448,52 @@ function wordFocus() {
 
     toWordFocusTimeline
         .add({
-        targets: magicLensDisplay.native,
-        backdropFilter: 'blur(0px)',
-        duration: 100,
-        easing: 'easeOutExpo'
-    });
+            targets: magicLensDisplay.native,
+            backdropFilter: 'blur(0px)',
+            duration: 100,
+            easing: 'easeOutExpo'
+        })
 
-    add({
-        targets: seperatorText.native,
-        color: 'rgba(181, 204, 255, 0)',
-        duration: 200,
-        easing: 'easeOutExpo'
-    }, 0);
+        .add({
+            targets: seperatorText.native,
+            color: 'rgba(181, 204, 255, 0)',
+            duration: 200,
+            easing: 'easeOutExpo'
+        }, 0)
 
-    add({
-        targets: magicLensDisplay.native,
-        borderColor: 'rgba(0, 84, 153, 1)',
-        backgroundColor: 'rgba(255, 255, 255, 0)',
-        color: 'rgba(0, 84, 153, 0)',
-        duration: 200,
-        easing: 'easeOutExpo'
-    }, 0);
+        .add({
+            targets: magicLensDisplay.native,
+            borderColor: 'rgba(0, 84, 153, 1)',
+            backgroundColor: 'rgba(255, 255, 255, 0)',
+            color: 'rgba(0, 84, 153, 0)',
+            duration: 200,
+            easing: 'easeOutExpo'
+        }, 0)
 
-    add({
-        targets: magicLensHandle.native,
-        borderColor: 'rgba(0, 84, 153, 1)',
-        backgroundColor: 'rgba(0, 84, 153, 1)',
-        duration: 200,
-        easing: 'easeOutExpo'
-    }, 0);
+        .add({
+            targets: magicLensHandle.native,
+            borderColor: 'rgba(0, 84, 153, 1)',
+            backgroundColor: 'rgba(0, 84, 153, 1)',
+            duration: 200,
+            easing: 'easeOutExpo'
+        }, 0)
 
-    add({
-        targets: magicLens.native,
-        width: wordWidthString,
-        duration: 200,
-        easing: 'easeOutExpo'
-    }, 0);
+        .add({
+            targets: magicLens.native,
+            width: wordWidthString,
+            duration: 200,
+            easing: 'easeOutExpo'
+        }, 0)
 
-    add({
-        targets: magicLensWrapper.native,
-        scale: 1.0,
-        duration: 200,
-        easing: 'easeOutExpo'
-    }, 0);
+        .add({
+            targets: magicLensWrapper.native,
+            scale: 1.0,
+            duration: 200,
+            easing: 'easeOutExpo'
+        }, 0);
 
-        // Play the timeline
-        toWordFocusTimeline.play();
+    // Play the timeline
+    toWordFocusTimeline.play();
 }
 
 
