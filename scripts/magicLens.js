@@ -177,8 +177,6 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     const midpointX = currentLeft + (currentWidth / 2);
     const midpointY = currentTop + (currentHeight / 2);
 
-    console.log('midpointX:', midpointX, 'midpointY:', midpointY);
-    
     let activeClauseId = 0;
     let activeWordId = 0;
     let newLeft = currentLeft;
@@ -187,78 +185,43 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     // Are the points in a clause?
     const clauses = Array.from(standardText.native.querySelectorAll('.clause'));
 
-    // Find a clause closest to the current Y position
-    let minDistanceY = Number.MAX_VALUE;
-    let activeClause;
+    // Calculate the distance for all clauses and find the one with the smallest distance
+    let minDistance = Number.MAX_VALUE;
+    let closestClause;
 
     clauses.forEach(clauseEl => {
         const rect = clauseEl.getBoundingClientRect();
         const centerY = rect.top + rect.height / 2;
-        const distanceY = Math.abs(midpointY - centerY);
+        const centerX = rect.left + rect.width / 2;
+        const distance = Math.sqrt(Math.pow(midpointX - centerX, 2) + Math.pow(midpointY - centerY, 2));
 
-        if (distanceY < minDistanceY) {
-            minDistanceY = distanceY;
-            activeClause = {
-                el: clauseEl,
-                left: rect.left,
-                top: rect.top,
-                right: rect.right,
-                bottom: rect.bottom
-            };
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestClause = clauseEl;
         }
     });
 
-    console.log('closest clause (pre):', parseInt(activeClause.el.getAttribute("id").split("-")[1]));
+    activeClauseId = parseInt(closestClause.getAttribute("id").split("-")[1]);
 
-    // Check if the midpoint is in the activeClause
-    if (
-        midpointX > activeClause.left &&
-        midpointX < activeClause.right &&
-        midpointY > activeClause.top &&
-        midpointY < activeClause.bottom
-    ) {
-        activeClauseId = parseInt(activeClause.el.getAttribute("id").split("-")[1]);
-    }
+    // Find a word with the smallest distance in the closest clause
+    const words = Array.from(closestClause.querySelectorAll(".word"));
 
-    console.log('activeClauseId:', activeClauseId);
+    let minWordDistance = Number.MAX_VALUE;
+    let closestWord;
 
-    // Are the points over a word?
-    if (activeClauseId > 0) {
-        const words = Array.from(activeClause.el.querySelectorAll(".word"));
+    words.forEach(wordEl => {
+        const rect = wordEl.getBoundingClientRect();
+        const centerY = rect.top + rect.height / 2;
+        const centerX = rect.left + rect.width / 2;
+        const distance = Math.sqrt(Math.pow(midpointX - centerX, 2) + Math.pow(midpointY - centerY, 2));
 
-        // Find a word closest to the current X position
-        let minDistanceX = Number.MAX_VALUE;
-        let activeWord;
-
-        words.forEach(wordEl => {
-            const rect = wordEl.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const distanceX = Math.abs(midpointX - centerX);
-
-            if (distanceX < minDistanceX) {
-                minDistanceX = distanceX;
-                activeWord = {
-                    el: wordEl,
-                    left: rect.left,
-                    top: rect.top,
-                    right: rect.right,
-                    bottom: rect.bottom
-                };
-            }
-        });
-
-        console.log('closest word (pre):', parseInt(activeWord.el.getAttribute("id").split("-")[1]));
-
-        // Check if the midpoint is in the activeWord
-        if (
-            midpointX > activeWord.left &&
-            midpointX < activeWord.right &&
-            midpointY > activeWord.top &&
-            midpointY < activeWord.bottom
-        ) {
-            activeWordId = parseInt(activeWord.el.getAttribute("id").split("-")[1]);
+        if (distance < minWordDistance) {
+            minWordDistance = distance;
+            closestWord = wordEl;
         }
-    }
+    });
+
+    activeWordId = parseInt(closestWord.getAttribute("id").split("-")[1]);
 
     console.log('activeWordId:', activeWordId);
 
