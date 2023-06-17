@@ -36,7 +36,7 @@ articleContainer.css({
 });
 // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
 
-hideMagicLens();
+//hideMagicLens();
 
 
 function animateToWord(id) {

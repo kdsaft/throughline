@@ -144,6 +144,7 @@ body {
     height: 50px;
     transform: scale(1.055, 1.055);
     perspective: (1px);
+    display: hidden;
 }
 
 
