@@ -63,8 +63,6 @@ function initSpeechSDK() {
             enableMiscue: true,
             phonemeAlphabet: "IPA"
         };
-
-        
         const pronunciationAssessmentConfig = SpeechSDK.PronunciationAssessmentConfig.fromJSON(JSON.stringify(pronunciationAssessmentConfigJson));
 
         // Create a speech config
@@ -132,10 +130,6 @@ async function startListening() {
                             phoneme: phonemeDetails.Phoneme,
                             accuracyScore: phonemeDetails.PronunciationAssessment.AccuracyScore
                         }));
-
-                        //const nBestPhonemes = wordDetails.properties.getProperty("nBestPhonemes"); 
-
-                        console.log("nBest: ", nBestPhonemes);
 
 
                         handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
@@ -252,9 +246,6 @@ function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syll
             } else {
                 console.log("Pronunciation score is below 80:", wordAccuracyScore);
                 troubleWithWord(wordInstance.wordId, syllablesAccuracyScores, phonemesAccuracyScores);
-
-                //console.log("nBestPhonemes:", nBestPhonemes);
-
             }
             break; // End the loop since a match is found
         }
