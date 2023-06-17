@@ -180,6 +180,7 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
     const midpointX = currentLeft + (currentWidth / 2);
     const midpointY = currentTop + (currentHeight / 2);
+    console.log('midpoint x,y: '+ midpointX, midpointY);
 
     let activeClauseId = 0;
     let activeWordId = 0;
@@ -198,6 +199,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
             top: $(this).offset().top - articleContainer.offset().top,
             bottom: $(this).offset().top - articleContainer.offset().top + $(this).height()
         };
+
+        console.log('clause: ' + clause.left, clause.right, clause.top, clause.bottom);
 
         if (midpointX > clause.left && midpointX < clause.right && midpointY > clause.top && midpointY < clause.bottom) {
             activeClauseId = $(this).attr("id").split("-")[1];
