@@ -316,7 +316,7 @@ function calculateConfidence(syllableAccuracyScore, phonemeAccuracyScore) {
     const positionWeights = [1, 0.5, 0.25];
     const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
     const correctPhonemeScore = nBestPhonemes[correctPositionIndex]?.Score || 0;
-    const scoreDiffPercentage = nBestPhonemes.reduce((sum, item, index) => {
+    const scoreDiffPercentage = correctPhonemeScore === 0 ? 0 : nBestPhonemes.reduce((sum, item, index) => {
       if (index === correctPositionIndex) return sum;
       return sum + Math.abs(correctPhonemeScore - item.Score) / 2;
     }, 0) / correctPhonemeScore;
