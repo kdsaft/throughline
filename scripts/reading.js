@@ -318,7 +318,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
   console.log("syllablesAssessment:", syllablesAssessment);
-  console.log("phonemesAssessment:", syllablesAssessment);
+  console.log("phonemesAssessment:", phonemesAssessment);
 
 
   // For each syllable
