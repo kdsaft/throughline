@@ -294,14 +294,16 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
       // Display the syllable and its average phoneme confidence
       wordList.innerHTML += `${syllable}➔${avgPhonemeConfidence}<br>`;
 
-      // Loop through the phonemes of the current syllable
-      syllableData.phonemes.forEach(phonemeData => {
-        const phoneme = phonemeData.phoneme;
-        const confidence = phonemeData.confidence;
+      if (avgPhonemeConfidence < 80) {
+        // Loop through the phonemes of the current syllable
+        syllableData.phonemes.forEach(phonemeData => {
+          const phoneme = phonemeData.phoneme;
+          const confidence = phonemeData.confidence;
 
-        // Display the confidence and the phoneme
-        wordList.innerHTML += `  ${confidence} ${phoneme}<br>`;
-      });
+          // Display the confidence and the phoneme
+          wordList.innerHTML += `  ${confidence} ${phoneme}<br>`;
+        });
+      }
     });
 
   } else {
@@ -364,7 +366,7 @@ function calculateConfidencePrevious(syllablesAssessment, phonemesAssessment) {
     // Extract the phonemes that belong to the current syllable
     while (phonemeIndex < phonemesAssessment.length) {
       const { phoneme, nBestPhonemes } = phonemesAssessment[phonemeIndex];
-      
+
       if (!remainingSyllable.startsWith(phoneme)) break;
 
       remainingSyllable = remainingSyllable.slice(phoneme.length);
