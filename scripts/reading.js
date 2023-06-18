@@ -328,13 +328,12 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
             confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
             break;
           default:
-            confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
+            confidence = 0; // any differentiating value/text to indicate none of the phonemes were correct
             break;
         }
 
         syllablePhonemes.push({
           phoneme: phoneme,
-          accuracyScore: accuracyScore,
           confidence: confidence,
         });
 
