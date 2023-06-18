@@ -395,7 +395,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
 
       if (!remainingSyllable.startsWith(phoneme)) break;
 
-      remainingSyllable = remainingSyllable.slice(phoneme.length);'
+      remainingSyllable = remainingSyllable.slice(phoneme.length);
       console.log("remainingSyllable:", remainingSyllable);
 
       // Find the correct phoneme position
