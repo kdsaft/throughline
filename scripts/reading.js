@@ -297,7 +297,7 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 }
 
 
-  
+
 
 function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
@@ -310,7 +310,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
     // Extract the phonemes that belong to the current syllable
     while (phonemeIndex < phonemesAssessment.length) {
       const { phoneme, nBestPhonemes } = phonemesAssessment[phonemeIndex];
-      
+
       if (!remainingSyllable.startsWith(phoneme)) break;
 
       remainingSyllable = remainingSyllable.slice(phoneme.length);
@@ -318,6 +318,26 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
       // Find the correct phoneme position
       const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
 
+      // Define weights for each position
+      const positionWeights = [1, 0.8, 0.5];
+
+      // Calculate normalized difference between the correct phoneme score and the highest guess
+      const maxScore = Math.max(nBestPhonemes[0].Score, nBestPhonemes[1].Score, nBestPhonemes[2].Score);
+      const correctPhonemeScore = nBestPhonemes[correctPositionIndex].Score;
+      const normalizedDifference = (maxScore - correctPhonemeScore) / maxScore;
+
+      // Calculate confidence by combining normalized difference with position weight
+      let confidence = (1 - normalizedDifference) * positionWeights[correctPositionIndex] * 100;
+
+      // Ensure confidence is within the range of 0 to 100
+      confidence = Math.max(0, Math.min(100, confidence));
+
+      // In case the correct phoneme is not in any of the guesses, set confidence to 0
+      if (correctPositionIndex === -1) {
+        confidence = 0;
+      }
+
+/* 
       // Calculate phoneme confidence for the correct position
       let confidence;
       switch (correctPositionIndex) {
@@ -333,7 +353,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
         default:
           confidence = 0; // any differentiating value/text to indicate none of the phonemes were correct
           break;
-      }
+      } */
 
       syllablePhonemes.push({
         phoneme: phoneme,
