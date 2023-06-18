@@ -131,26 +131,25 @@ function jumpToWordAndShowMagicLens(id) {
         const newHeightString = `${snapPositions.height}px`;
 
         // check to see if the magicLens needs to be moved
+        magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
+        magicLens.jQ.css({ width: newWidthString, height: newHeightString });
+        
+        wordFocus();
+        showMagicLens();
+
         console.log('magicLens.jQ.offset().left: ' + magicLens.jQ.offset().left + ' magicLens.jQ.offset().top: ' + magicLens.jQ.offset().top);
         console.log('snapPositions.left: ' + snapPositions.left + ' snapPositions.top: ' + snapPositions.top);
-        if (magicLens.jQ.offset().left === snapPositions.left && magicLens.jQ.offset().top === snapPositions.top) {
-            showMagicLens();
 
-        } else {
-            // Move the magicLens to the new position
-            magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
-            magicLens.jQ.css({ width: newWidthString, height: newHeightString });
-            
-            wordFocus();
-            showMagicLens();
+        // Check to see if the syllableText needs to be updated
 
+        if (magicLens.jQ.offset().left !== snapPositions.left && magicLens.jQ.offset().top !== snapPositions.top) {
             // Update the position of the syllableText
             const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
             const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
             const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
             const newSyllableTop = syllableText.jQ.position().top - deltaTop
             syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
-        }
+        } 
 
         isAnimating = false;
         syllableFocus();
