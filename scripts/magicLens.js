@@ -639,14 +639,18 @@ articleContainer.on('mousemove touchmove', function (event) {
 $(document).on('mouseup touchend', onMouseUp);
 
 articleContainer.on('mousedown touchstart', '.word', function (event) {
-    magicLensWasMoved = true;
-
     if (event.type === 'touchstart') {
         event.preventDefault();
     }
 
     // Get the id from the clicked word element
     const elementID = $(this).attr('id').split('-')[1];
+
+    if (elementID === wordId) {
+        magicLensWasMoved = false;
+    } else {
+        magicLensWasMoved = true;
+    }
 
     wordFocus();
     wordId = parseInt(elementID, 10);
