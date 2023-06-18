@@ -131,6 +131,8 @@ function jumpToWordAndShowMagicLens(id) {
         const newHeightString = `${snapPositions.height}px`;
 
         // check to see if the magicLens needs to be moved
+        console.log('magicLens.jQ.offset().left: ' + magicLens.jQ.offset().left + ' magicLens.jQ.offset().top: ' + magicLens.jQ.offset().top);
+        console.log('snapPositions.left: ' + snapPositions.left + ' snapPositions.top: ' + snapPositions.top);
         if (magicLens.jQ.offset().left === snapPositions.left && magicLens.jQ.offset().top === snapPositions.top) {
             showMagicLens();
 
