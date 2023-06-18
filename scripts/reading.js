@@ -312,7 +312,7 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 }
 
 
-function calculateConfidence(syllablesAssessment, phonemesAssessment) {
+function calculateConfidence2(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
   // For each syllable
@@ -371,7 +371,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
 }
 
 
-function calculateConfidence2(syllablesAssessment, phonemesAssessment) {
+function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
   console.log("syllablesAssessment:", syllablesAssessment);
@@ -391,9 +391,12 @@ function calculateConfidence2(syllablesAssessment, phonemesAssessment) {
       console.log("phoneme:", phoneme);
       console.log("nBestPhonemes:", nBestPhonemes);
 
+      console.log("remainingSyllable.startsWith(phoneme):", remainingSyllable.startsWith(phoneme));
+
       if (!remainingSyllable.startsWith(phoneme)) break;
 
-      remainingSyllable = remainingSyllable.slice(phoneme.length);
+      remainingSyllable = remainingSyllable.slice(phoneme.length);'
+      console.log("remainingSyllable:", remainingSyllable);
 
       // Find the correct phoneme position
       const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
@@ -418,6 +421,7 @@ function calculateConfidence2(syllablesAssessment, phonemesAssessment) {
 
       // Ensure confidence is within the range of 0 to 100
       confidence = Math.max(0, Math.min(100, confidence));
+      console.log("confidence:", confidence);
 
       // In case the correct phoneme is not in any of the guesses, set confidence to 0
       if (correctPositionIndex === -1) {
