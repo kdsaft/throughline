@@ -297,53 +297,50 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 }
 
 
+  
+
 function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
-  // Create an ordered array of phonemes based on the syllables
-  const orderedPhonemes = syllablesAssessment
-    .map(({ syllable }) => syllable.split(' '))
-    .reduce((acc, phonemes) => acc.concat(phonemes), []);
-
   // For each syllable
-  const confidenceBySyllable = syllablesAssessment.map(({ syllable }, syllableIndex) => {
+  const confidenceBySyllable = syllablesAssessment.map(({ syllable }) => {
     const syllablePhonemes = [];
-
-    const currentSyllablePhonemes = syllable.split(' ');
+    const syllableSymbols = syllable.split(' ');
 
     // Extract the phonemes that belong to the current syllable
-    currentSyllablePhonemes.forEach(() => {
+    for (let i = 0; i < syllableSymbols.length; i++) {
       const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
+      if (phoneme === syllableSymbols[i]) {
+        // Find the correct phoneme position (a, b, c, or d)
+        const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
+        const correctPosition = correctPositionIndex !== -1 ? ['first', 'second', 'third'][correctPositionIndex] : 'none';
 
-      // Find the correct phoneme position (a, b, c, or d)
-      const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
-      const correctPosition = correctPositionIndex !== -1 ? ['first', 'second', 'third'][correctPositionIndex] : 'none';
+        // Calculate phoneme confidence for the correct position
+        let confidence;
+        switch (correctPosition) {
+          case 'first':
+            confidence = nBestPhonemes[0].Score - (nBestPhonemes[1].Score + nBestPhonemes[2].Score) / 2;
+            break;
+          case 'second':
+            confidence = nBestPhonemes[1].Score - (nBestPhonemes[0].Score + nBestPhonemes[2].Score) / 2;
+            break;
+          case 'third':
+            confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
+            break;
+          case 'none':
+            confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
+            break;
+        }
 
-      // Calculate phoneme confidence for the correct position
-      let confidence;
-      switch (correctPosition) {
-        case 'first':
-          confidence = nBestPhonemes[0].Score - (nBestPhonemes[1].Score + nBestPhonemes[2].Score) / 2;
-          break;
-        case 'second':
-          confidence = nBestPhonemes[1].Score - (nBestPhonemes[0].Score + nBestPhonemes[2].Score) / 2;
-          break;
-        case 'third':
-          confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
-          break;
-        case 'none':
-          confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
-          break;
+        syllablePhonemes.push({
+          phoneme: phoneme,
+          accuracyScore: accuracyScore,
+          confidence: confidence,
+        });
+
+        phonemeIndex++;
       }
-
-      syllablePhonemes.push({
-        phoneme: phoneme,
-        accuracyScore: accuracyScore,
-        confidence: confidence,
-      });
-
-      phonemeIndex++;
-    });
+    }
 
     // Calculate the average confidence of phonemes in the syllable
     const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
@@ -358,6 +355,10 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
   console.log("new confidence:", confidenceBySyllable);
   //return confidenceBySyllable;
 }
+
+
+
+
 
 // Functions to handle JSON data
 
