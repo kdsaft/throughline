@@ -133,6 +133,7 @@ async function startListening() {
                             nBestPhonemes: phonemeDetails.PronunciationAssessment.NBestPhonemes
                         }));
                         
+                        console.log("syllable: ", syllableAssessment);
                         console.log("phoneme: ", phonemesAssessment);
 
                         handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
