@@ -274,8 +274,9 @@ function updateWordStyle(wordId, mode) {
 
 function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) {
   const showPhonemes = true;
+  
+  const confidenceData = calculateConfidence(syllablesAssessment, phonemesAssessment);
 
-  const confidenceData = calculateConfidence(syllablesAssessment, phonemesAssessment)
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
@@ -301,7 +302,7 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
         wordList.innerHTML += `  ${confidence} ${phoneme}<br>`;
       });
     });
-    
+
   } else {
     syllablesAssessment.forEach(syllableResult => {
       wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
