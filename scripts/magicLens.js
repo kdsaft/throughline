@@ -21,11 +21,11 @@ const magicLensHandle = { jQ: $('.grab-handle-top'), native: $('.grab-handle-top
 const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handle-grab-area').get(0) }
 
 // tracking variables
-let dragging = false;
-let isAnimating = false;
-let magicLensWasMoved = false;
-let isMagicLensVisible = false;
-let wordId = 1;
+let dragging = false; // is the magicLens being dragged?
+let isAnimating = false; // is the magicLens being animated?
+let magicLensWasMoved = false; // was the magicLens moved since the last word was shown?
+let isMagicLensVisible = false; // is the magicLens visible?
+let wordId = 1; // the id of the magicLen's current word
 
 let offsetTouchX;
 let offsetTouchY;
@@ -146,6 +146,8 @@ function jumpToWordAndShowMagicLens(id) {
             const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
             const newSyllableTop = syllableText.jQ.position().top - deltaTop
             syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
+
+            showMagicLens();
         }
 
         isAnimating = false;
