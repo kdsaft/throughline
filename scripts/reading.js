@@ -275,7 +275,7 @@ function updateWordStyle(wordId, mode) {
 function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) {
   const showPhonemes = true;
 
-  calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAssessment)
+  calculateConfidence(syllablesAssessment, phonemesAssessment)
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
@@ -299,7 +299,7 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 
   
 
-function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAssessment) {
+function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
   // For each syllable
@@ -311,23 +311,21 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
     for (let i = 0; i < syllableSymbols.length; i++) {
       const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
       if (phoneme === syllableSymbols[i]) {
-        // Find the correct phoneme position (a, b, c, or d)
         const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
-        const correctPosition = correctPositionIndex !== -1 ? ['first', 'second', 'third'][correctPositionIndex] : 'none';
 
         // Calculate phoneme confidence for the correct position
         let confidence;
-        switch (correctPosition) {
-          case 'first':
+        switch (correctPositionIndex) {
+          case 0:
             confidence = nBestPhonemes[0].Score - (nBestPhonemes[1].Score + nBestPhonemes[2].Score) / 2;
             break;
-          case 'second':
+          case 1:
             confidence = nBestPhonemes[1].Score - (nBestPhonemes[0].Score + nBestPhonemes[2].Score) / 2;
             break;
-          case 'third':
+          case 2:
             confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
             break;
-          case 'none':
+          default:
             confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
             break;
         }
@@ -353,9 +351,8 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
   });
 
   console.log("new confidence:", confidenceBySyllable);
-  //return confidenceBySyllable;
+ // return confidenceBySyllable;
 }
-
 
 
 
