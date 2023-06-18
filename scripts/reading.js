@@ -326,6 +326,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
     const syllablePhonemes = [];
     let remainingSyllable = syllable;
     console.log("remainingSyllable:", remainingSyllable);
+    console.log(`phonemeIndex: ${phonemeIndex}, phonemesAssessment.length: ${phonemesAssessment.length}`);
 
     // Extract the phonemes that belong to the current syllable
     while (phonemeIndex < phonemesAssessment.length) {
