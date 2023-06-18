@@ -292,7 +292,7 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
       const avgPhonemeConfidence = syllableData.avgPhonemeConfidence;
 
       // Display the syllable and its average phoneme confidence
-      wordList.innerHTML += `<br>${syllable} - ${avgPhonemeConfidence}<br>`;
+      wordList.innerHTML += `${syllable}➔${avgPhonemeConfidence}<br>`;
 
       // Loop through the phonemes of the current syllable
       syllableData.phonemes.forEach(phonemeData => {
