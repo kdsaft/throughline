@@ -315,47 +315,35 @@ function calculateConfidence(syllableAccuracyScore, phonemeAccuracyScore) {
   const confidenceByPhoneme = phonemeAccuracyScore.map(({ phoneme, nBestPhonemes }) => {
     const positionWeights = [1, 0.5, 0.25];
     const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
-
-    if (correctPositionIndex === -1) {
-      return {
-        phoneme: phoneme,
-        confidence: 0,
-      };
-    }
-
-    const correctPhonemeScore = nBestPhonemes[correctPositionIndex].Score;
-    const otherGuessIndices = [0, 1, 2].filter(idx => idx !== correctPositionIndex);
-    const scoreDifference1 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[0]].Score);
-    const scoreDifference2 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[1]].Score);
-    const averageScoreDifference = (scoreDifference1 + scoreDifference2) / 2;
-    const scoreDiffPercentage = averageScoreDifference / correctPhonemeScore;
-    const confidence = positionWeights[correctPositionIndex] * (1 + scoreDiffPercentage) * 50;
-
+    const correctPhonemeScore = nBestPhonemes[correctPositionIndex]?.Score || 0;
+    const scoreDiffPercentage = nBestPhonemes.reduce((sum, item, index) => {
+      if (index === correctPositionIndex) return sum;
+      return sum + Math.abs(correctPhonemeScore - item.Score) / 2;
+    }, 0) / correctPhonemeScore;
+    const confidence = (positionWeights[correctPositionIndex] || 0) * (1 + scoreDiffPercentage) * 50;
     return {
       phoneme: phoneme,
-      confidence: Math.max(0, Math.min(100, confidence)),
+      confidence: Math.max(0, Math.min(100, Math.round(confidence))),
     };
   });
 
   let phonemeIndex = 0;
   const confidenceBySyllable = syllableAccuracyScore.map(({ syllable }) => {
+    const syllableCopy = syllable.slice();
     const syllablePhonemes = [];
 
     while (phonemeIndex < confidenceByPhoneme.length) {
       const { phoneme, confidence } = confidenceByPhoneme[phonemeIndex];
-
       if (!syllable.startsWith(phoneme)) break;
-
       syllable = syllable.slice(phoneme.length);
       syllablePhonemes.push({ phoneme, confidence });
-      
       phonemeIndex++;
     }
 
-    const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
+    const avgPhonemeConfidence = Math.round(syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length);
 
     return {
-      syllable: syllable,
+      syllable: syllableCopy,
       phonemes: syllablePhonemes,
       avgPhonemeConfidence: avgPhonemeConfidence,
     };
