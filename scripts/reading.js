@@ -305,12 +305,14 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   // For each syllable
   const confidenceBySyllable = syllablesAssessment.map(({ syllable }) => {
     const syllablePhonemes = [];
-    const syllableSymbols = syllable.split(' ');
+    const syllableSymbols = syllable; // removed split(' ')
 
     // Extract the phonemes that belong to the current syllable
     for (let i = 0; i < syllableSymbols.length; i++) {
       const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
       if (phoneme === syllableSymbols[i]) {
+
+        // Find the correct phoneme position
         const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
 
         // Calculate phoneme confidence for the correct position
@@ -351,7 +353,7 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   });
 
   console.log("new confidence:", confidenceBySyllable);
- // return confidenceBySyllable;
+  //return confidenceBySyllable;
 }
 
 
