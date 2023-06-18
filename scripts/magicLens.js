@@ -23,8 +23,9 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 // tracking variables
 let dragging = false; // is the magicLens being dragged?
 let isAnimating = false; // is the magicLens being animated?
-let magicLensWasMoved = false; // was the magicLens moved since the last word was shown?
+let magicLensInteraction = false; // is it an interaction that involves the magicLens?
 let isMagicLensVisible = false; // is the magicLens visible?
+let magicLensSamePosition = false; // is the magicLens moving?
 let wordId = 1; // the id of the magicLen's current word
 
 let offsetTouchX;
@@ -270,9 +271,11 @@ function initPositionMagicLens() {
     if (wordId === 0) {
         wordId = 1;
     }
-    const snapPositions = getSnapPosition(wordId);
+ /*    const snapPositions = getSnapPosition(wordId);
     magicLensWrapper.jQ.css({ left: snapPositions.left + 'px', top: getSnapPosition.top + 'px' });
-    magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' });
+    magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' }); */
+    
+    jumpToWordAndShowMagicLens(wordId);
     hideMagicLens();
 
 }
@@ -514,7 +517,7 @@ function hideMagicLens() {
 
 function showMagicLens() {
     isMagicLensVisible = true;
-    magicLensWasMoved = false;
+    magicLensInteraction = false;
     magicLensWrapper.jQ.show();
 }
 
@@ -524,7 +527,7 @@ function getMagicLensVisibility() {
 
 function turnMagicLensOn() {
     isMagicLensVisible = true;
-    magicLensWasMoved = false;
+    magicLensInteraction = false;
     jumpToWordAndShowMagicLens(wordId);
 }
 
@@ -532,10 +535,10 @@ function turnMagicLensOn() {
 
 function onMouseUp(event) {
 
-    if (magicLensWasMoved) {
+    if (magicLensInteraction) {
         magicLensHandle.jQ.removeClass('grabbed');
         dragging = false;
-        magicLensWasMoved = false;
+        magicLensInteraction = false;
 
         if (isMagicLensVisible) {
             animateToWord(wordId);
@@ -548,7 +551,7 @@ function onMouseUp(event) {
 }
 
 magicLensHandle.jQ.on('mousedown', function (event) {
-    magicLensWasMoved = true;
+    magicLensInteraction = true;
     const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
 
@@ -563,7 +566,7 @@ magicLensHandle.jQ.on('mousedown', function (event) {
 
 
 grabHandleArea.jQ.on('touchstart', function (event) {
-    magicLensWasMoved = true;
+    magicLensInteraction = true;
 
     const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
@@ -580,7 +583,7 @@ grabHandleArea.jQ.on('touchstart', function (event) {
 });
 
 magicLensDisplay.jQ.on('mousedown', function (event) {
-    magicLensWasMoved = true;
+    magicLensInteraction = true;
 
     event.preventDefault();
     const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
@@ -605,7 +608,7 @@ magicLensDisplay.jQ.on('mousedown', function (event) {
 
 
 magicLensDisplay.jQ.on('touchstart', function (event) {
-    magicLensWasMoved = true;
+    magicLensInteraction = true;
 
     const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
     const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
@@ -647,7 +650,7 @@ articleContainer.on('mousemove touchmove', function (event) {
 $(document).on('mouseup touchend', onMouseUp);
 
 articleContainer.on('mousedown touchstart', '.word', function (event) {
-    magicLensWasMoved = true;
+    magicLensInteraction = true;
 
     if (event.type === 'touchstart') {
         event.preventDefault();
@@ -655,6 +658,10 @@ articleContainer.on('mousedown touchstart', '.word', function (event) {
 
     // Get the id from the clicked word element
     const elementID = $(this).attr('id').split('-')[1];
+
+    if (elementID === wordId) {
+        magicLensSamePosition = true;
+    }
 
     wordFocus();
     wordId = parseInt(elementID, 10);
