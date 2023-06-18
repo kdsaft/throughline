@@ -319,24 +319,31 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
       const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
 
       // Define weights for each position
-      const positionWeights = [1, 0.8, 0.5];
+      const positionWeights = [1, 0.5, 0.25];
 
-      // Calculate normalized difference between the correct phoneme score and the highest guess
-      const maxScore = Math.max(nBestPhonemes[0].Score, nBestPhonemes[1].Score, nBestPhonemes[2].Score);
+      // Calculate the score differences
       const correctPhonemeScore = nBestPhonemes[correctPositionIndex].Score;
-      const normalizedDifference = (maxScore - correctPhonemeScore) / maxScore;
-
-      // Calculate confidence by combining normalized difference with position weight
-      let confidence = (1 - normalizedDifference) * positionWeights[correctPositionIndex] * 100;
-
+      const otherGuessIndices = [0, 1, 2].filter((idx) => idx !== correctPositionIndex);
+      const scoreDifference1 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[0]].Score);
+      const scoreDifference2 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[1]].Score);
+      
+      // Calculate the average score difference
+      const averageScoreDifference = (scoreDifference1 + scoreDifference2) / 2;
+      
+      // Calculate the percentage contribution to confidence from score differences
+      const scoreDiffPercentage = averageScoreDifference / correctPhonemeScore;
+      
+      // Calculate confidence by combining the position weight, and considering the score differences
+      let confidence = positionWeights[correctPositionIndex] * (1 + scoreDiffPercentage) * 50;
+      
       // Ensure confidence is within the range of 0 to 100
       confidence = Math.max(0, Math.min(100, confidence));
-
+      
       // In case the correct phoneme is not in any of the guesses, set confidence to 0
       if (correctPositionIndex === -1) {
         confidence = 0;
       }
-
+      
 /* 
       // Calculate phoneme confidence for the correct position
       let confidence;
