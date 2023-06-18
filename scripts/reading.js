@@ -311,8 +311,53 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
   }
 }
 
+function calculateConfidence(syllableAccuracyScore, phonemeAccuracyScore) {
+  const confidenceByPhoneme = [];
 
-function calculateConfidence2(syllablesAssessment, phonemesAssessment) {
+  // Calculate confidence for each phoneme
+  phonemeAccuracyScore.forEach(({ phoneme, nBestPhonemes }) => {
+    const positionWeights = [1, 0.5, 0.25];
+    const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
+
+    if (correctPositionIndex === -1) {
+      confidenceByPhoneme.push({
+        phoneme: phoneme,
+        confidence: 0,
+      });
+      return;
+    }
+
+    const correctPhonemeScore = nBestPhonemes[correctPositionIndex].Score;
+    const otherGuessIndices = [0, 1, 2].filter((idx) => idx !== correctPositionIndex);
+    const scoreDifference1 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[0]].Score);
+    const scoreDifference2 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[1]].Score);
+    const averageScoreDifference = (scoreDifference1 + scoreDifference2) / 2;
+    const scoreDiffPercentage = averageScoreDifference / correctPhonemeScore;
+    const confidence = positionWeights[correctPositionIndex] * (1 + scoreDiffPercentage) * 50;
+
+    confidenceByPhoneme.push({
+      phoneme: phoneme,
+      confidence: Math.max(0, Math.min(100, confidence)),
+    });
+  });
+
+  // Group phonemes by syllable
+  const confidenceBySyllable = syllableAccuracyScore.map(({ syllable }) => {
+    const syllablePhonemes = confidenceByPhoneme.filter(({ phoneme }) => syllable.includes(phoneme));
+
+    const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
+
+    return {
+      syllable: syllable,
+      phonemes: syllablePhonemes,
+      avgPhonemeConfidence: avgPhonemeConfidence,
+    };
+  });
+
+  return confidenceBySyllable;
+}
+
+function calculateConfidencePrevious(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
   // For each syllable
@@ -371,7 +416,7 @@ function calculateConfidence2(syllablesAssessment, phonemesAssessment) {
 }
 
 
-function calculateConfidence(syllablesAssessment, phonemesAssessment) {
+function calculateConfidenceNotWorking(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
   console.log("syllablesAssessment:", syllablesAssessment);
