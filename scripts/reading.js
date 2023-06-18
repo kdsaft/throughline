@@ -275,7 +275,7 @@ function updateWordStyle(wordId, mode) {
 function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) {
   const showPhonemes = true;
 
-  const troubledWordAssessment = calculateConfidence(syllablesAssessment, phonemesAssessment)
+  const confidenceData = calculateConfidence(syllablesAssessment, phonemesAssessment)
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
@@ -285,10 +285,23 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
   wordList.innerHTML += '<br>';
 
   if (showPhonemes) {
-    phonemesAssessment.forEach(phonemeResult => {
-      wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
-    });
+    let syllableIndex = 0;
 
+    confidenceData.forEach((phonemeResult, index) => {
+      // Check if the current index is the start of a new syllable (by checking if the index is a multiple of 2)
+      if (index % 2 === 0) {
+        // Add the syllable and its score to the output
+        // Format the score as a 2-digit string using padStart()
+        const syllableScore = syllablesAssessment[syllableIndex].AccuracyScore.toString().padStart(2, '0');
+        wordList.innerHTML += `<br>${syllablesAssessment[syllableIndex].Syllable} - ${syllableScore}<br>`;
+        syllableIndex++;
+      }
+    
+      // Add the confidence and phoneme to the output
+      // Format the confidence value as a 2-digit string using padStart()
+      const confidence = phonemeResult.confidence.toString().padStart(2, '0');
+      wordList.innerHTML += `  ${confidence} ${phonemeResult.phoneme}<br>`;
+    });
   } else {
     syllablesAssessment.forEach(syllableResult => {
       wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
