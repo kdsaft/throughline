@@ -301,7 +301,7 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
   let phonemeIndex = 0;
 
   // For each syllable
-  const syllableConfidence = syllablesAssessment.map(({ syllable }) => {
+  const confidenceBySyllable = syllablesAssessment.map(({ syllable }) => {
       const syllablePhonemes = [];
 
       // Extract the phonemes that belong to the current syllable
@@ -348,8 +348,8 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
       };
   });
 
-  console.log('new confidence: ' + syllableConfidence);
-  //return syllableConfidence;
+  console.log('new confidence:', confidenceBySyllable);
+  //return confidenceBySyllable;
 }
 
 
