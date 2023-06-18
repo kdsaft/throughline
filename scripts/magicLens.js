@@ -130,18 +130,23 @@ function jumpToWordAndShowMagicLens(id) {
         const newWidthString = `${snapPositions.width.word}px`;
         const newHeightString = `${snapPositions.height}px`;
 
-        magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
-        magicLens.jQ.css({ width: newWidthString, height: newHeightString });
+        // check to see if the magicLens needs to be moved
+        if (magicLens.jQ.offset().left === snapPositions.left && magicLens.jQ.offset().top === snapPositions.top) {
+            showMagicLens();
 
-        wordFocus();
-        showMagicLens();
+        } else {
+            // Move the magicLens to the new position
+            magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
+            magicLens.jQ.css({ width: newWidthString, height: newHeightString });
+            wordFocus();
 
-        // Get the new position of the syllableText
-        const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
-        const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
-        const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
-        const newSyllableTop = syllableText.jQ.position().top - deltaTop
-        syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
+            // Update the position of the syllableText
+            const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
+            const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
+            const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
+            const newSyllableTop = syllableText.jQ.position().top - deltaTop
+            syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
+        }
 
         isAnimating = false;
         syllableFocus();
@@ -639,18 +644,14 @@ articleContainer.on('mousemove touchmove', function (event) {
 $(document).on('mouseup touchend', onMouseUp);
 
 articleContainer.on('mousedown touchstart', '.word', function (event) {
+    magicLensWasMoved = true;
+
     if (event.type === 'touchstart') {
         event.preventDefault();
     }
 
     // Get the id from the clicked word element
     const elementID = $(this).attr('id').split('-')[1];
-
-    if (elementID === wordId) {
-        magicLensWasMoved = false;
-    } else {
-        magicLensWasMoved = true;
-    }
 
     wordFocus();
     wordId = parseInt(elementID, 10);
