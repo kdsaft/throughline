@@ -273,10 +273,10 @@ function updateWordStyle(wordId, mode) {
 }
 
 function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) {
+  console.log("updateTroubleWordList");
   const showPhonemes = true;
 
   const confidenceData = calculateConfidence(syllablesAssessment, phonemesAssessment);
-
   console.log("confidenceData:", confidenceData);
 
   var wordList = document.getElementById("word-list");
