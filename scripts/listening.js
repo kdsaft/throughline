@@ -120,7 +120,7 @@ async function startListening() {
 
                         const word = wordDetails.Word;
 
-                        const wordAssessment = wordDetails.PronunciationAssessment.AccuracyScore
+                        const wordwordAccuracyScore = wordDetails.PronunciationAssessment.wordAccuracyScore
 
                         const syllableAssessment = wordDetails.Syllables.map(syllableDetails => ({
                             syllable: syllableDetails.Syllable,
@@ -136,7 +136,7 @@ async function startListening() {
                         console.log("syllable: ", syllableAssessment);
                         console.log("phoneme: ", phonemesAssessment);
 
-                        handlePronunciationAssessmentResult(word, wordAssessment, syllableAssessment, phonemesAssessment);
+                        handlePronunciationAssessmentResult(word, wordwordAccuracyScore, syllableAssessment, phonemesAssessment);
                     }
                 }
             };
@@ -231,7 +231,7 @@ function highlightNextWord(wordsSpoken) {
     })
 }
 
-function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAccuracyScores, phonemesAccuracyScores) {
+function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syllablesAssessment, phonemesAssessment) {
     const lowercaseWordSpoken = wordSpoken.trim().toLowerCase();
     const wordsToCheck = Array.from(wordsToReadMap.values()).filter(word => word.state === "checking");
 
@@ -249,7 +249,7 @@ function handlePronunciationAssessmentResult(wordSpoken, wordAccuracyScore, syll
                 correctPronunciationOfWord(wordInstance.wordId);
             } else {
                 console.log("Pronunciation score is below 80:", wordAccuracyScore);
-                troubleWithWord(wordInstance.wordId, syllablesAccuracyScores, phonemesAccuracyScores);
+                troubleWithWord(wordInstance.wordId, syllablesAssessment, phonemesAssessment);
             }
             break; // End the loop since a match is found
         }

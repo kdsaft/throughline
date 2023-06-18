@@ -272,8 +272,10 @@ function updateWordStyle(wordId, mode) {
   wordsToReadMap.get(wordId).svgElement.animation[mode].opacity.beginElement();
 }
 
-function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracyScores) {
+function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) {
   const showPhonemes = true;
+
+  calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAssessment)
 
   var wordList = document.getElementById("word-list");
   if (wordList.innerHTML.trim() !== "") {
@@ -283,15 +285,71 @@ function updateTroubleWordList(wordId, syllablesAccuracyScores, phonemesAccuracy
   wordList.innerHTML += '<br>';
 
   if (showPhonemes) {
-    phonemesAccuracyScores.forEach(phonemeResult => {
+    phonemesAssessment.forEach(phonemeResult => {
       wordList.innerHTML += phonemeResult.accuracyScore + " " + phonemeResult.phoneme + '<br>';
     });
 
   } else {
-    syllablesAccuracyScores.forEach(syllableResult => {
+    syllablesAssessment.forEach(syllableResult => {
       wordList.innerHTML += syllableResult.accuracyScore + " " + syllableResult.syllable + '<br>';
     });
   }
+}
+
+
+function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAssessment) {
+  let phonemeIndex = 0;
+
+  // For each syllable
+  const syllableConfidence = syllablesAssessment.map(({ syllable }) => {
+      const syllablePhonemes = [];
+
+      // Extract the phonemes that belong to the current syllable
+      while (phonemeIndex < phonemesAssessment.length && phonemesAssessment[phonemeIndex].phoneme !== syllable) {
+          const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
+
+          // Find the correct phoneme position (a, b, c, or d)
+          const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
+          const correctPosition = correctPositionIndex !== -1 ? ['first', 'second', 'third'][correctPositionIndex] : 'none';
+
+          // Calculate phoneme confidence for the correct position
+          let confidence;
+          switch (correctPosition) {
+              case 'first':
+                  confidence = nBestPhonemes[0].Score - (nBestPhonemes[1].Score + nBestPhonemes[2].Score) / 2;
+                  break;
+              case 'second':
+                  confidence = nBestPhonemes[1].Score - (nBestPhonemes[0].Score + nBestPhonemes[2].Score) / 2;
+                  break;
+              case 'third':
+                  confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
+                  break;
+              case 'none':
+                  confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
+                  break;
+          }
+
+          syllablePhonemes.push({
+              phoneme: phoneme,
+              accuracyScore: accuracyScore,
+              confidence: confidence
+          });
+
+          phonemeIndex++;
+      }
+
+      // Calculate the average confidence of phonemes in the syllable
+      const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
+
+      return {
+          syllable: syllable,
+          phonemes: syllablePhonemes,
+          avgPhonemeConfidence: avgPhonemeConfidence
+      };
+  });
+
+  console.log(syllableConfidence);
+  //return syllableConfidence;
 }
 
 
