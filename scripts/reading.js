@@ -301,51 +301,51 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
   let phonemeIndex = 0;
 
   // For each syllable
-  const confidenceBySyllable = syllablesAssessment.map(({ syllable }) => {
-      const syllablePhonemes = [];
+  const confidenceBySyllable = syllablesAssessment.map(({ syllable, lastPhonemeIndex }) => {
+    const syllablePhonemes = [];
 
-      // Extract the phonemes that belong to the current syllable
-      while (phonemeIndex < phonemesAssessment.length && phonemesAssessment[phonemeIndex].phoneme !== syllable) {
-          const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
+    // Extract the phonemes that belong to the current syllable
+    while (phonemeIndex <= lastPhonemeIndex) {
+      const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
 
-          // Find the correct phoneme position (a, b, c, or d)
-          const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
-          const correctPosition = correctPositionIndex !== -1 ? ['first', 'second', 'third'][correctPositionIndex] : 'none';
+      // Find the correct phoneme position (a, b, c, or d)
+      const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
+      const correctPosition = correctPositionIndex !== -1 ? ['first', 'second', 'third'][correctPositionIndex] : 'none';
 
-          // Calculate phoneme confidence for the correct position
-          let confidence;
-          switch (correctPosition) {
-              case 'first':
-                  confidence = nBestPhonemes[0].Score - (nBestPhonemes[1].Score + nBestPhonemes[2].Score) / 2;
-                  break;
-              case 'second':
-                  confidence = nBestPhonemes[1].Score - (nBestPhonemes[0].Score + nBestPhonemes[2].Score) / 2;
-                  break;
-              case 'third':
-                  confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
-                  break;
-              case 'none':
-                  confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
-                  break;
-          }
-
-          syllablePhonemes.push({
-              phoneme: phoneme,
-              accuracyScore: accuracyScore,
-              confidence: confidence
-          });
-
-          phonemeIndex++;
+      // Calculate phoneme confidence for the correct position
+      let confidence;
+      switch (correctPosition) {
+        case 'first':
+          confidence = nBestPhonemes[0].Score - (nBestPhonemes[1].Score + nBestPhonemes[2].Score) / 2;
+          break;
+        case 'second':
+          confidence = nBestPhonemes[1].Score - (nBestPhonemes[0].Score + nBestPhonemes[2].Score) / 2;
+          break;
+        case 'third':
+          confidence = nBestPhonemes[2].Score - (nBestPhonemes[0].Score + nBestPhonemes[1].Score) / 2;
+          break;
+        case 'none':
+          confidence = -1; // any differentiating value/text to indicate none of the phonemes were correct
+          break;
       }
 
-      // Calculate the average confidence of phonemes in the syllable
-      const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
+      syllablePhonemes.push({
+        phoneme: phoneme,
+        accuracyScore: accuracyScore,
+        confidence: confidence
+      });
 
-      return {
-          syllable: syllable,
-          phonemes: syllablePhonemes,
-          avgPhonemeConfidence: avgPhonemeConfidence
-      };
+      phonemeIndex++;
+    }
+
+    // Calculate the average confidence of phonemes in the syllable
+    const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
+
+    return {
+      syllable: syllable,
+      phonemes: syllablePhonemes,
+      avgPhonemeConfidence: avgPhonemeConfidence
+    };
   });
 
   console.log('new confidence:', confidenceBySyllable);
@@ -389,7 +389,7 @@ async function initWordsToReadMap() {
     for (const wordData of clause.words) {
       const wordId = wordData.id;
       const word = new Word(wordData);
-      
+
       word.drawLine();
       word.createAnimationElements();
 
