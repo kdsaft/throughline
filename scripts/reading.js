@@ -290,15 +290,15 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
     confidenceData.forEach(syllableData => {
       const syllable = syllableData.syllable;
       const avgPhonemeConfidence = syllableData.avgPhonemeConfidence;
-    
+
       // Display the syllable and its average phoneme confidence
       wordList.innerHTML += `<br>${syllable} - ${avgPhonemeConfidence}<br>`;
-    
+
       // Loop through the phonemes of the current syllable
       syllableData.phonemes.forEach(phonemeData => {
         const phoneme = phonemeData.phoneme;
         const confidence = phonemeData.confidence;
-    
+
         // Display the confidence and the phoneme
         wordList.innerHTML += `  ${confidence} ${phoneme}<br>`;
       });
@@ -325,10 +325,13 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   const confidenceBySyllable = syllablesAssessment.map(({ syllable }) => {
     const syllablePhonemes = [];
     let remainingSyllable = syllable;
+    console.log("remainingSyllable:", remainingSyllable);
 
     // Extract the phonemes that belong to the current syllable
     while (phonemeIndex < phonemesAssessment.length) {
       const { phoneme, nBestPhonemes } = phonemesAssessment[phonemeIndex];
+      console.log("phoneme:", phoneme);
+      console.log("nBestPhonemes:", nBestPhonemes);
 
       if (!remainingSyllable.startsWith(phoneme)) break;
 
@@ -345,19 +348,19 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
       const otherGuessIndices = [0, 1, 2].filter((idx) => idx !== correctPositionIndex);
       const scoreDifference1 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[0]].Score);
       const scoreDifference2 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[1]].Score);
-      
+
       // Calculate the average score difference
       const averageScoreDifference = (scoreDifference1 + scoreDifference2) / 2;
-      
+
       // Calculate the percentage contribution to confidence from score differences
       const scoreDiffPercentage = averageScoreDifference / correctPhonemeScore;
-      
+
       // Calculate confidence by combining the position weight, and considering the score differences
       let confidence = positionWeights[correctPositionIndex] * (1 + scoreDiffPercentage) * 50;
-      
+
       // Ensure confidence is within the range of 0 to 100
       confidence = Math.max(0, Math.min(100, confidence));
-      
+
       // In case the correct phoneme is not in any of the guesses, set confidence to 0
       if (correctPositionIndex === -1) {
         confidence = 0;
@@ -369,10 +372,12 @@ function calculateConfidence(syllablesAssessment, phonemesAssessment) {
       });
 
       phonemeIndex++;
+      console.log("phonemeIndex:", phonemeIndex);
     }
 
     // Calculate the average confidence of phonemes in the syllable
     const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
+    console.log("avgPhonemeConfidence:", avgPhonemeConfidence);
 
     return {
       syllable: syllable,
