@@ -317,6 +317,10 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 function calculateConfidence(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
+  console.log("syllablesAssessment:", syllablesAssessment);
+  console.log("phonemesAssessment:", syllablesAssessment);
+
+
   // For each syllable
   const confidenceBySyllable = syllablesAssessment.map(({ syllable }) => {
     const syllablePhonemes = [];
