@@ -120,7 +120,7 @@ async function startListening() {
 
                         const word = wordDetails.Word;
 
-                        const wordwordAccuracyScore = wordDetails.PronunciationAssessment.wordAccuracyScore
+                        const wordAccuracyScore = wordDetails.PronunciationAssessment.wordAccuracyScore
 
                         const syllableAssessment = wordDetails.Syllables.map(syllableDetails => ({
                             syllable: syllableDetails.Syllable,
@@ -135,8 +135,9 @@ async function startListening() {
                         
                         console.log("syllable: ", syllableAssessment);
                         console.log("phoneme: ", phonemesAssessment);
+                        console.log("wordAccuracyScore: ", wordAccuracyScore);
 
-                        handlePronunciationAssessmentResult(word, wordwordAccuracyScore, syllableAssessment, phonemesAssessment);
+                        handlePronunciationAssessmentResult(word, wordAccuracyScore, syllableAssessment, phonemesAssessment);
                     }
                 }
             };

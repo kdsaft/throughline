@@ -348,7 +348,7 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
       };
   });
 
-  console.log(syllableConfidence);
+  console.log('new confidence: ' + syllableConfidence);
   //return syllableConfidence;
 }
 
