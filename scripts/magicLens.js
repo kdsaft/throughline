@@ -138,7 +138,9 @@ function jumpToWordAndShowMagicLens(id) {
             // Move the magicLens to the new position
             magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
             magicLens.jQ.css({ width: newWidthString, height: newHeightString });
+            
             wordFocus();
+            showMagicLens();
 
             // Update the position of the syllableText
             const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
@@ -146,8 +148,6 @@ function jumpToWordAndShowMagicLens(id) {
             const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
             const newSyllableTop = syllableText.jQ.position().top - deltaTop
             syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
-
-            showMagicLens();
         }
 
         isAnimating = false;
