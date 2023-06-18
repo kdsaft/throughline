@@ -120,7 +120,7 @@ async function startListening() {
 
                         const word = wordDetails.Word;
 
-                        const wordAccuracyScore = wordDetails.PronunciationAssessment.wordAccuracyScore
+                        const wordAccuracyScore = wordDetails.PronunciationAssessment.AccuracyScore
 
                         const syllableAssessment = wordDetails.Syllables.map(syllableDetails => ({
                             syllable: syllableDetails.Syllable,
@@ -133,6 +133,7 @@ async function startListening() {
                             nBestPhonemes: phonemeDetails.PronunciationAssessment.NBestPhonemes
                         }));
                         
+                        console.log("wordDetails: ", wordDetails);
                         console.log("syllable: ", syllableAssessment);
                         console.log("phoneme: ", phonemesAssessment);
                         console.log("wordAccuracyScore: ", wordAccuracyScore);
