@@ -25,7 +25,6 @@ let dragging = false; // is the magicLens being dragged?
 let isAnimating = false; // is the magicLens being animated?
 let magicLensInteraction = false; // is it an interaction that involves the magicLens?
 let isMagicLensVisible = false; // is the magicLens visible?
-let magicLensSamePosition = false; // is the magicLens moving?
 let wordId = 1; // the id of the magicLen's current word
 
 let offsetTouchX;
@@ -134,23 +133,16 @@ function jumpToWordAndShowMagicLens(id) {
         // check to see if the magicLens needs to be moved
         magicLensWrapper.jQ.css({ left: newLeftString, top: newTopString });
         magicLens.jQ.css({ width: newWidthString, height: newHeightString });
-        
+
         wordFocus();
         showMagicLens();
 
-        console.log('magicLens.jQ.offset().left: ' + magicLens.jQ.offset().left + ' magicLens.jQ.offset().top: ' + magicLens.jQ.offset().top);
-        console.log('snapPositions.left: ' + snapPositions.left + ' snapPositions.top: ' + snapPositions.top);
-
-        // Check to see if the syllableText needs to be updated
-
-        if (magicLens.jQ.offset().left !== snapPositions.left && magicLens.jQ.offset().top !== snapPositions.top) {
-            // Update the position of the syllableText
-            const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
-            const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
-            const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
-            const newSyllableTop = syllableText.jQ.position().top - deltaTop
-            syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
-        } 
+        // Update the position of the syllableText
+        const deltaLeft = destinationSyllable.offset().left - destinationWord.offset().left;
+        const deltaTop = destinationSyllable.offset().top - destinationWord.offset().top;
+        const newSyllableLeft = syllableText.jQ.position().left - deltaLeft
+        const newSyllableTop = syllableText.jQ.position().top - deltaTop
+        syllableText.jQ.css({ top: newSyllableTop, left: newSyllableLeft });
 
         isAnimating = false;
         syllableFocus();
@@ -265,20 +257,6 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
 
 // Helper functions
-
-function initPositionMagicLens() {
-
-    if (wordId === 0) {
-        wordId = 1;
-    }
- /*    const snapPositions = getSnapPosition(wordId);
-    magicLensWrapper.jQ.css({ left: snapPositions.left + 'px', top: getSnapPosition.top + 'px' });
-    magicLens.jQ.css({ width: snapPositions.width.word + 'px', height: snapPositions.height + 'px' }); */
-    
-    jumpToWordAndShowMagicLens(wordId);
-    hideMagicLens();
-
-}
 
 function getNearestWord(posX, posY) {
     const allWords = Array.from(document.querySelectorAll('.word'));
@@ -510,6 +488,16 @@ function wordFocus() {
 
 // control functions
 
+function initPositionMagicLens() {
+
+    if (wordId === 0) {
+        wordId = 1;
+    }
+   
+    jumpToWordAndShowMagicLens(wordId);
+    hideMagicLens();
+}
+
 function hideMagicLens() {
     isMagicLensVisible = false;
     magicLensWrapper.jQ.hide();
@@ -525,11 +513,6 @@ function getMagicLensVisibility() {
     return isMagicLensVisible;
 }
 
-function turnMagicLensOn() {
-    isMagicLensVisible = true;
-    magicLensInteraction = false;
-    jumpToWordAndShowMagicLens(wordId);
-}
 
 // onEvents
 
@@ -658,10 +641,6 @@ articleContainer.on('mousedown touchstart', '.word', function (event) {
 
     // Get the id from the clicked word element
     const elementID = $(this).attr('id').split('-')[1];
-
-    if (elementID === wordId) {
-        magicLensSamePosition = true;
-    }
 
     wordFocus();
     wordId = parseInt(elementID, 10);
