@@ -312,7 +312,7 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 }
 
 function calculateConfidence(syllableAccuracyScore, phonemeAccuracyScore) {
-  const confidenceByPhoneme = [];
+  const confidenceByPhoneme = {};
 
   // Calculate confidence for each phoneme
   phonemeAccuracyScore.forEach(({ phoneme, nBestPhonemes }) => {
@@ -320,30 +320,47 @@ function calculateConfidence(syllableAccuracyScore, phonemeAccuracyScore) {
     const correctPositionIndex = nBestPhonemes.findIndex(item => item.Phoneme === phoneme);
 
     if (correctPositionIndex === -1) {
-      confidenceByPhoneme.push({
-        phoneme: phoneme,
+      confidenceByPhoneme[phoneme] = {
         confidence: 0,
-      });
+        duplicatesCount: 0,
+      };
       return;
     }
 
     const correctPhonemeScore = nBestPhonemes[correctPositionIndex].Score;
-    const otherGuessIndices = [0, 1, 2].filter((idx) => idx !== correctPositionIndex);
+    const otherGuessIndices = [0, 1, 2].filter(idx => idx !== correctPositionIndex);
     const scoreDifference1 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[0]].Score);
     const scoreDifference2 = Math.abs(correctPhonemeScore - nBestPhonemes[otherGuessIndices[1]].Score);
     const averageScoreDifference = (scoreDifference1 + scoreDifference2) / 2;
     const scoreDiffPercentage = averageScoreDifference / correctPhonemeScore;
     const confidence = positionWeights[correctPositionIndex] * (1 + scoreDiffPercentage) * 50;
 
-    confidenceByPhoneme.push({
-      phoneme: phoneme,
-      confidence: Math.max(0, Math.min(100, confidence)),
-    });
+    if (confidenceByPhoneme[phoneme]) {
+      confidenceByPhoneme[phoneme].confidence += confidence;
+      confidenceByPhoneme[phoneme].duplicatesCount++;
+    } else {
+      confidenceByPhoneme[phoneme] = {
+        confidence: confidence,
+        duplicatesCount: 0,
+      };
+    }
   });
 
-  // Group phonemes by syllable
   const confidenceBySyllable = syllableAccuracyScore.map(({ syllable }) => {
-    const syllablePhonemes = confidenceByPhoneme.filter(({ phoneme }) => syllable.includes(phoneme));
+    const syllablePhonemes = [];
+    
+    for (let i = 0; i < syllable.length; i++) {
+      const phoneme = syllable[i];
+      
+      if (confidenceByPhoneme[phoneme]) {
+        const confidence = confidenceByPhoneme[phoneme].confidence / (confidenceByPhoneme[phoneme].duplicatesCount + 1);
+        
+        syllablePhonemes.push({
+          phoneme: phoneme,
+          confidence: Math.max(0, Math.min(100, confidence)),
+        });
+      }
+    }
 
     const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
 
@@ -356,6 +373,7 @@ function calculateConfidence(syllableAccuracyScore, phonemeAccuracyScore) {
 
   return confidenceBySyllable;
 }
+
 
 function calculateConfidencePrevious(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
