@@ -300,12 +300,19 @@ function updateTroubleWordList(wordId, syllablesAssessment, phonemesAssessment) 
 function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAssessment) {
   let phonemeIndex = 0;
 
+  // Create an ordered array of phonemes based on the syllables
+  const orderedPhonemes = syllablesAssessment
+    .map(({ syllable }) => syllable.split(' '))
+    .reduce((acc, phonemes) => acc.concat(phonemes), []);
+
   // For each syllable
-  const confidenceBySyllable = syllablesAssessment.map(({ syllable, lastPhonemeIndex }) => {
+  const confidenceBySyllable = syllablesAssessment.map(({ syllable }, syllableIndex) => {
     const syllablePhonemes = [];
 
+    const currentSyllablePhonemes = syllable.split(' ');
+
     // Extract the phonemes that belong to the current syllable
-    while (phonemeIndex <= lastPhonemeIndex) {
+    currentSyllablePhonemes.forEach(() => {
       const { phoneme, accuracyScore, nBestPhonemes } = phonemesAssessment[phonemeIndex];
 
       // Find the correct phoneme position (a, b, c, or d)
@@ -332,11 +339,11 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
       syllablePhonemes.push({
         phoneme: phoneme,
         accuracyScore: accuracyScore,
-        confidence: confidence
+        confidence: confidence,
       });
 
       phonemeIndex++;
-    }
+    });
 
     // Calculate the average confidence of phonemes in the syllable
     const avgPhonemeConfidence = syllablePhonemes.reduce((sum, { confidence }) => sum + confidence, 0) / syllablePhonemes.length;
@@ -344,14 +351,13 @@ function calculateConfidenceBySyllableAndPhoneme(syllablesAssessment, phonemesAs
     return {
       syllable: syllable,
       phonemes: syllablePhonemes,
-      avgPhonemeConfidence: avgPhonemeConfidence
+      avgPhonemeConfidence: avgPhonemeConfidence,
     };
   });
 
-  console.log('new confidence:', confidenceBySyllable);
+  console.log("new confidence:", confidenceBySyllable);
   //return confidenceBySyllable;
 }
-
 
 // Functions to handle JSON data
 
