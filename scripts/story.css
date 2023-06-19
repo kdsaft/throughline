@@ -321,7 +321,8 @@ body {
 
 
 .pictograph-container {
-    bottom: 50px;
+    bottom: 150px;
+    left: -50px;
     box-sizing: border-box;
     width: min-content;
     height: min-content;
