@@ -6,6 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
@@ -15,18 +16,41 @@
         // Audio
 
         const pictogramPhonemeSounds = new Howl({
-            src: ['sounds.mp3'],
+            src: ['https://kdsaft.github.io/throughline/audio/phonemeSounds.m4a'],
             sprite: {
-                hat: [0, 930], 
+                hat: [0, 930],
+                h: [0, 450],
                 eye: [1180, 1260],
+                ahy: [1180, 715],
                 asleep: [2900, 1300],
+                uh: [2900, 622],
                 rabbit: [4400, 1020],
+                r: [4400, 542],
                 arch: [5760, 1150],
+                ah: [5760, 527],
                 cat: [7070, 770],
+                k: [7070, 290],
                 igloo: [8000, 1210],
-                lion: [9510, 1250]
+                ee: [8000, 559],
+                lion: [9510, 1250],
+                l: [9510, 562]
             }
         });
+
+        // Function to handle click event
+        function playPhonemeSound() {
+            pictogramPhonemeSounds.play(this.id);
+        }
+
+        // Get all elements with class 'pictograph-tile'
+        const pictographTilesImage = document.getElementsByClassName('pictograph-image-container');
+        const pictographTilesText = document.getElementsByClassName('pictograph-text-container');
+
+        // Attach the click event listener to all the elements
+        for (let i = 0; i < pictographTilesImage.length; i++) {
+            pictographTilesImage[i].addEventListener('click', playPhonemeSound);
+            pictographTilesText[i].addEventListener('click', playPhonemeSound);
+        }
 
 
         // Text elements
@@ -983,13 +1007,6 @@
         align-content: center;
         flex-wrap: nowrap;
         gap: 0;
-        border-radius: 0px 0px 0px 0px;
-        border-color: var(--Grey_300, #e3e4e6);
-        border-style: dotted;
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-        border-left-width: 0px;
-        border-right-width: 1px;
     }
 
     .pictograph-image-container {
@@ -1070,7 +1087,7 @@
 
                 <div id="h-ahy" class="syllable-group">
                     <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
+                        <div id="h" class="pictograph-text-container">
                             <div class="slot-1">
                                 <div class="pictograph-text-wrapper">
                                     <span class="pictograph-text">h</span>
@@ -1079,13 +1096,13 @@
                             <div class="slot-2"></div>
                             <div class="slot-3"></div>
                         </div>
-                        <div class="pictograph-image-container">
+                        <div id="hat" class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
                                 style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
+                        <div id="ahy" class="pictograph-text-container">
                             <div class="slot-1">
                                 <div class="pictograph-text-wrapper">
                                     <span class="pictograph-text">ahy</span>
@@ -1094,126 +1111,15 @@
                             <div class="slot-2"></div>
                             <div class="slot-3"></div>
                         </div>
-                        <div class="pictograph-image-container">
+                        <div id="eye" class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
                                 style="position: absolute; top: 2px; left: -60px" aria-label="eye icon" />
                         </div>
                     </div>
                 </div>
-                <div id="e-r" class="syllable-group">
+                <div id="uh-r" class="syllable-group">
                     <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">e</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -120px" aria-label="hat icon" />
-                        </div>
-                    </div>
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">r</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
-                        </div>
-                    </div>
-                </div>
-                <div id="ah-r" class="syllable-group">
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">ah</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
-                        </div>
-                    </div>
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">r</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
-                        </div>
-                    </div>
-                </div>
-                <div id="k-ee" class="syllable-group">
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">k</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -300px" aria-label="hat icon" />
-                        </div>
-                    </div>
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">ee</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -360px" aria-label="eye icon" />
-                        </div>
-                    </div>
-                </div>
-                <div id="k-uh-l" class="syllable-group">
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">k</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -300px" aria-label="kat icon" />
-                        </div>
-                    </div>
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
+                        <div id="uh" class="pictograph-text-container">
                             <div class="slot-1">
                                 <div class="pictograph-text-wrapper">
                                     <span class="pictograph-text">uh</span>
@@ -1222,13 +1128,124 @@
                             <div class="slot-2"></div>
                             <div class="slot-3"></div>
                         </div>
-                        <div class="pictograph-image-container">
+                        <div id="asleep" class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                                style="position: absolute; top: 2px; left: -240px" aria-label="asleep icon" />
+                                style="position: absolute; top: 2px; left: -120px" aria-label="hat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
+                        <div id="r" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">r</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="rabbit" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="ah-r" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div id="ah" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">ah</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="arch" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -240px" aria-label="hat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div id="r" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">r</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="rabbit" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="k-ee" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div id="k" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">k</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="cat" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -300px" aria-label="hat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div id="ee" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">ee</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="igloo" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -360px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="k-uh-l" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div id="k" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">k</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="cat" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -300px" aria-label="kat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div id="uh" class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">uh</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div id="asleep" class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                                style="position: absolute; top: 2px; left: -120px" aria-label="asleep icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div id="l" class="pictograph-text-container">
                             <div class="slot-1">
                                 <div class="pictograph-text-wrapper">
                                     <span class="pictograph-text">l</span>
@@ -1237,7 +1254,7 @@
                             <div class="slot-2"></div>
                             <div class="slot-3"></div>
                         </div>
-                        <div class="pictograph-image-container">
+                        <div id="lion" class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
                                 style="position: absolute; top: 2px; left: -420px" aria-label="lion icon" />
                         </div>

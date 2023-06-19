@@ -57,14 +57,24 @@
 </script>
 
 <style>
-    button {
-        width: 64px;
-        height: 64px;
-        padding: 0;
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-    }
+
+button {
+            width: 72px;
+            height: 72px;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            appearance: none; /* remove button styles from Safari and other browsers */
+            margin: 0; /* reset margin for Safari */
+            overflow: hidden; /* hide overflowing content from circle */
+        }
+
+        img {
+            display: block; /* remove default margin from img element on Safari*/
+            margin: 0; /* reset margin for img element */
+            padding: 0; /* reset padding for img element */
+        }
 </style>
 
 <body>
@@ -75,6 +85,5 @@
             style="position: absolute; top: 2px; left: 2px; display: none;">
             <circle cx="34" cy="34" r="32" stroke="#1A79C7" stroke-width="2" fill="transparent" />
         </svg>
-
     </button>
 </body>
