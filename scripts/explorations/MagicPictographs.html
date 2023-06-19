@@ -5,10 +5,29 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
 <script>
     $(document).ready(function () {
+
+        // Audio
+
+        const pictogramPhonemeSounds = new Howl({
+            src: ['sounds.mp3'],
+            sprite: {
+                hat: [0, 930], 
+                eye: [1180, 1260],
+                asleep: [2900, 1300],
+                rabbit: [4400, 1020],
+                arch: [5760, 1150],
+                cat: [7070, 770],
+                igloo: [8000, 1210],
+                lion: [9510, 1250]
+            }
+        });
+
 
         // Text elements
         const articleContainer = $('.article-container');
@@ -917,7 +936,7 @@
         white-space: pre;
         position: relative;
         font-family: "SF-Mono-Bold", monospace;
-        color:  #0e0e0e;
+        color: #0e0e0e;
         font-size: 17px;
         line-height: 18px;
         text-align: center;
@@ -1062,7 +1081,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
+                                style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
@@ -1077,7 +1096,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -60px" aria-label="eye icon" />
+                                style="position: absolute; top: 2px; left: -60px" aria-label="eye icon" />
                         </div>
                     </div>
                 </div>
@@ -1094,7 +1113,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -120px" aria-label="hat icon" />
+                                style="position: absolute; top: 2px; left: -120px" aria-label="hat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
@@ -1109,7 +1128,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
+                                style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
                         </div>
                     </div>
                 </div>
@@ -1126,7 +1145,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
+                                style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
@@ -1141,7 +1160,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
+                                style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
                         </div>
                     </div>
                 </div>
@@ -1158,7 +1177,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -300px" aria-label="hat icon" />
+                                style="position: absolute; top: 2px; left: -300px" aria-label="hat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
@@ -1173,7 +1192,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -360px" aria-label="eye icon" />
+                                style="position: absolute; top: 2px; left: -360px" aria-label="eye icon" />
                         </div>
                     </div>
                 </div>
@@ -1190,7 +1209,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -300px" aria-label="kat icon" />
+                                style="position: absolute; top: 2px; left: -300px" aria-label="kat icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
@@ -1205,7 +1224,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -240px" aria-label="asleep icon" />
+                                style="position: absolute; top: 2px; left: -240px" aria-label="asleep icon" />
                         </div>
                     </div>
                     <div class="pictograph-tile">
@@ -1220,7 +1239,7 @@
                         </div>
                         <div class="pictograph-image-container">
                             <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
-                            style="position: absolute; top: 2px; left: -420px" aria-label="lion icon" />
+                                style="position: absolute; top: 2px; left: -420px" aria-label="lion icon" />
                         </div>
                     </div>
                 </div>
