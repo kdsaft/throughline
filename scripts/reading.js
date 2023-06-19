@@ -160,7 +160,7 @@ function turnOffAutoPlay() {
 }
 
 function turnOnAutoPlay() {
-  autoPlay = false;
+  autoPlay = true;
 }
 
 

@@ -11,18 +11,20 @@
 
     // Button icons
 
-    const autoPlayOnIcon = "https://kdsaft.github.io/throughline/icons/Read-on.svg";
+    const autoPlayOnIcon = "https://kdsaft.github.io/throughline/icons/Read-word.svg";
     const autoPlayOffIcon = "https://kdsaft.github.io/throughline/icons/Read-normal.svg";
 
 
-    playButton.addEventListener("mousedown", handleInteractionStart);
-    playButton.addEventListener("mouseup", handelInteractionEnd);
+    autoPlayButton.addEventListener("mousedown", handleInteractionStart);
+    autoPlayButton.addEventListener("mouseup", handelInteractionEnd);
 
-    playButton.addEventListener("touchstart", handleInteractionStart);
-    playButton.addEventListener("touchend", handelInteractionEnd);
+    autoPlayButton.addEventListener("touchstart", handleInteractionStart);
+    autoPlayButton.addEventListener("touchend", handelInteractionEnd);
 
     function handleInteractionStart(event) {
         event.preventDefault();
+
+        console.log("autoPlayButton: " + getAutoPlay());
 
         if (getAutoPlay()) {
             autoPlayButtonIcon.src = autoPlayOffIcon;
@@ -44,6 +46,8 @@
             autoPlayButtonIcon.setAttribute('aria-label', 'Auto-Play activated');
             turnOnAutoPlay();
         };
+        console.log("autoPlayButton: " + getAutoPlay());
+
     };
 
     function resetPlaybutton() {
