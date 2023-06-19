@@ -27,7 +27,8 @@ async function thingsToLoad() {
         'https://kdsaft.github.io/throughline/scripts/visualizer.js',
         'https://kdsaft.github.io/throughline/scripts/listening.js',
         'https://kdsaft.github.io/throughline/scripts/sammy.js',
-        'https://kdsaft.github.io/throughline/scripts/magicLens.js'
+        'https://kdsaft.github.io/throughline/scripts/magicLens.js',
+        'https://kdsaft.github.io/throughline/scripts/pictogram.js'
     ];
 
     try {
