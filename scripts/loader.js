@@ -38,6 +38,7 @@ async function thingsToLoad() {
         initReading();
         initListening();
         initSammy();
+        initPositionMagicLens();
 
     } catch (error) {
         console.error('Error loading scripts:', error);

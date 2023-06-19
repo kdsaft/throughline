@@ -37,8 +37,6 @@ articleContainer.css({
 // width: syllableText.jQ.width() + parseInt(syllableText.jQ.css('marginLeft')) + parseInt(syllableText.jQ.css('marginRight')) + 20
 
 
-initPositionMagicLens();
-
 
 function animateToWord(id) {
     // The magicLens stays in word view
