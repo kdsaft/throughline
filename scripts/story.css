@@ -46,7 +46,9 @@ body {
 }
 
 #pictogram-bubble {
-    z-index: 500 !important;
+    z-index: 1500 !important;
+    bottom: 150px !important;
+    background-color: sandybrown !important;
 }
 
 
@@ -325,8 +327,6 @@ body {
 
 
 .pictograph-container {
-    bottom: 150px;
-    left: -50px;
     box-sizing: border-box;
     width: min-content;
     height: min-content;
