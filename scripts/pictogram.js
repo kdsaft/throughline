@@ -1,4 +1,4 @@
-pictogram.js
+// pictogram.js
 
 
 // Audio
