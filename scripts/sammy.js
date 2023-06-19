@@ -37,7 +37,7 @@ function handleInteractionStart(event) {
         longPress = true;
         uiSounds.play('erase');
       
-        buttonIcon.setAttribute('aria-label', 'Long press activated');
+        //buttonIcon.setAttribute('aria-label', 'Long press activated');
         resetText();
         resetTimer = setTimeout(() => {
             wakeUp();
@@ -49,7 +49,7 @@ function handleInteractionStart(event) {
 function handelInteractionEnd(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     clearTimeout(timer);
-    buttonIcon.setAttribute('aria-label', 'Short press activated');
+   // buttonIcon.setAttribute('aria-label', 'Short press activated');
 
     if (longPress) {
         longPress = false;
