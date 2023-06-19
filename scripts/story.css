@@ -349,6 +349,7 @@ body {
     border: 2px solid #E7F2FB;
     -webkit-user-select: none;
     user-select: none;
+    box-shadow: 0px 0px 10px 0px var(--Grey_200, #edeef0) /* {"name":"Grey 200"} */;
 }
 
 .syllable-group {
