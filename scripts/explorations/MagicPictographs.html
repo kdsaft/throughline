@@ -770,6 +770,10 @@
         cursor: pointer;
     }
 
+    .syllable {
+        font-family: "SF-Mono-Medium", monospace;
+    }
+
 
     .syllable-separator {
         flex-shrink: 0;
@@ -786,7 +790,7 @@
 
 
     .pictograph-container {
-        top: 60px;
+        top: 56px;
         box-sizing: border-box;
         width: min-content;
         height: min-content;
@@ -799,11 +803,13 @@
         overflow: hidden;
         align-content: center;
         flex-wrap: nowrap;
-        gap: 16;
+        gap: 16px;
         position: absolute;
         border-radius: 8px;
-        z-index: 5;
+        z-index: 4;
         border: 2px solid #E7F2FB;
+        -webkit-user-select: none;
+        user-select: none;
     }
 
     .syllable-group {
@@ -910,7 +916,7 @@
         height: auto;
         white-space: pre;
         position: relative;
-        font-family: "SF Mono Bold", monospace;
+        font-family: "SF-Mono-Bold", monospace;
         color:  #0e0e0e;
         font-size: 17px;
         line-height: 18px;
@@ -1042,20 +1048,8 @@
             <!-- PICTOGRAM -->
 
             <div class="pictograph-container">
-                <div class="syllable-group">
-                    <div class="pictograph-tile">
-                        <div class="pictograph-text-container">
-                            <div class="slot-1">
-                                <div class="pictograph-text-wrapper">
-                                    <span class="pictograph-text">ahy</span>
-                                </div>
-                            </div>
-                            <div class="slot-2"></div>
-                            <div class="slot-3"></div>
-                        </div>
-                        <div class="pictograph-image-container">
-                        </div>
-                    </div>
+
+                <div id="h-ahy" class="syllable-group">
                     <div class="pictograph-tile">
                         <div class="pictograph-text-container">
                             <div class="slot-1">
@@ -1067,6 +1061,166 @@
                             <div class="slot-3"></div>
                         </div>
                         <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">ahy</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -60px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="e-r" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">e</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -120px" aria-label="hat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">r</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="ah-r" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">ah</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: 0px" aria-label="hat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">r</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -180px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="k-ee" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">k</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -300px" aria-label="hat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">ee</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -360px" aria-label="eye icon" />
+                        </div>
+                    </div>
+                </div>
+                <div id="k-uh-l" class="syllable-group">
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">k</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -300px" aria-label="kat icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">uh</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -240px" aria-label="asleep icon" />
+                        </div>
+                    </div>
+                    <div class="pictograph-tile">
+                        <div class="pictograph-text-container">
+                            <div class="slot-1">
+                                <div class="pictograph-text-wrapper">
+                                    <span class="pictograph-text">l</span>
+                                </div>
+                            </div>
+                            <div class="slot-2"></div>
+                            <div class="slot-3"></div>
+                        </div>
+                        <div class="pictograph-image-container">
+                            <img src="https://kdsaft.github.io/throughline/icons/pictograms.svg" height="57"
+                            style="position: absolute; top: 2px; left: -420px" aria-label="lion icon" />
                         </div>
                     </div>
                 </div>
