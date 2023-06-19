@@ -45,6 +45,10 @@ body {
     padding-right: 0px;
 }
 
+#pictogram-bubble {
+    z-index: 500 !important;
+}
+
 
 .content {
     position: relative;
@@ -318,9 +322,7 @@ body {
 
 
 
-#pictogram-bubble{
-    z-index: 100 !important;
-}
+
 
 .pictograph-container {
     bottom: 150px;
