@@ -47,8 +47,11 @@ body {
 
 #pictogram-bubble {
     z-index: 1500 !important;
-    bottom: 150px !important;
-    background-color: sandybrown !important;
+    bottom: 200px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 
