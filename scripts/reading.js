@@ -9,6 +9,8 @@ let content;
 let uiSounds;
 let scrollingTimeout;
 
+let autoPlay = false;
+
 function initReading() {
   content = document.querySelector('.content');
   initWordsToReadMap().then(() => {
@@ -148,6 +150,19 @@ function readNextWord() {
 
 
 // Audio functions
+
+function getAutoPlay() {
+  return autoPlay;
+}
+
+function turnOffAutoPlay() {
+  autoPlay = false;
+}
+
+function turnOnAutoPlay() {
+  autoPlay = false;
+}
+
 
 function playWordById(wordId) {
   const wordStartTime = wordsToReadMap.get(wordId).audioElement.startTime;

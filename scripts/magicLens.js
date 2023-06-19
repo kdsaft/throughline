@@ -529,6 +529,10 @@ function onMouseUp(event) {
             jumpToWordAndShowMagicLens(wordId);
         }
 
+        if (getAutoPlay()) {
+            playWordById(wordId);
+        }
+
         $(document).off('mousemove touchmove', updateMagicLens);
     }
 }
@@ -644,7 +648,6 @@ articleContainer.on('mousedown touchstart', '.word', function (event) {
 
     wordFocus();
     wordId = parseInt(elementID, 10);
-    playWordById(wordId)
     turnSyllableButtonOn();
     touchWord.play();
 });

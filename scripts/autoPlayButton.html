@@ -1,0 +1,82 @@
+<script>
+    const autoPlayButton = document.getElementById("autoPlayButton");
+    const autoPlayButtonIcon = document.getElementById("autoPlayButtonIcon");
+
+    // Create the audio objects for the sound effects
+    const buttonDownSound = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
+    const pressAndHoldSound = new Audio('https://kdsaft.github.io/throughline/audio/PressAndHold.m4a');
+
+    const buttonOn = new Audio('https://kdsaft.github.io/throughline/audio/music_marimba_doorbell_up.m4a');
+    const buttonOff = new Audio('https://kdsaft.github.io/throughline/audio/music_marimba_doorbell_down.m4a');
+
+    // Button icons
+
+    const autoPlayOnIcon = "https://kdsaft.github.io/throughline/icons/Read-on.svg";
+    const autoPlayOffIcon = "https://kdsaft.github.io/throughline/icons/Read-normal.svg";
+
+
+    playButton.addEventListener("mousedown", handleInteractionStart);
+    playButton.addEventListener("mouseup", handelInteractionEnd);
+
+    playButton.addEventListener("touchstart", handleInteractionStart);
+    playButton.addEventListener("touchend", handelInteractionEnd);
+
+    function handleInteractionStart(event) {
+        event.preventDefault();
+
+        if (getAutoPlay()) {
+            autoPlayButtonIcon.src = autoPlayOffIcon;
+            buttonOff.play();
+        } else {
+            autoPlayButtonIcon.src = autoPlayOnIcon;
+            buttonOn.play();
+        };
+    }
+
+    function handelInteractionEnd(event) {
+        event.preventDefault();
+
+        if (getAutoPlay()) {
+            autoPlayButtonIcon.setAttribute('aria-label', 'Auto-Play deactivated');
+            turnOffAutoPlay();
+            resetsyllableButton()
+        } else {
+            autoPlayButtonIcon.setAttribute('aria-label', 'Auto-Play activated');
+            turnOnAutoPlay();
+        };
+    };
+
+    function resetPlaybutton() {
+        autoPlayButtonIcon.src = autoPlayOffIcon;
+
+    };
+
+</script>
+
+<style>
+    button {
+            width: 72px;
+            height: 72px;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            appearance: none; /* remove button styles from Safari and other browsers */
+            margin: 0; /* reset margin for Safari */
+            overflow: hidden; /* hide overflowing content from circle */
+        }
+
+        img {
+            display: block; /* remove default margin from img element on Safari*/
+            margin: 0; /* reset margin for img element */
+            padding: 0; /* reset padding for img element */
+        }
+</style>
+
+<body>
+    <button id="autoPlayButton" style="position: relative;">
+        <img id="autoPlayButtonIcon" src="https://kdsaft.github.io/throughline/icons/Read-normal.svg" width="64"
+            height="64" style="position: absolute; top: 4px; left: 4px" aria-label="Auto-Play button" />
+
+    </button>
+</body>
