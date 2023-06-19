@@ -4,7 +4,6 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    overflow: visible;
 }
 
 
@@ -339,7 +338,7 @@ body {
     gap: 16px;
     position: absolute;
     border-radius: 8px;
-    z-index: 4;
+    z-index: 10;
     border: 2px solid #E7F2FB;
     -webkit-user-select: none;
     user-select: none;
