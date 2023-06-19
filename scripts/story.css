@@ -318,7 +318,9 @@ body {
 
 
 
-
+#pictogram-bubble{
+    z-index: 100 !important;
+}
 
 .pictograph-container {
     bottom: 150px;
