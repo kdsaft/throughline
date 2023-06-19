@@ -16,44 +16,24 @@
 
 
     autoPlayButton.addEventListener("mousedown", handleInteractionStart);
-    autoPlayButton.addEventListener("mouseup", handelInteractionEnd);
-
     autoPlayButton.addEventListener("touchstart", handleInteractionStart);
-    autoPlayButton.addEventListener("touchend", handelInteractionEnd);
 
     function handleInteractionStart(event) {
         event.preventDefault();
 
-        console.log("autoPlayButton: " + getAutoPlay());
-
-        if (getAutoPlay()) {
-            autoPlayButtonIcon.src = autoPlayOffIcon;
-            buttonOff.play();
-        } else {
-            autoPlayButtonIcon.src = autoPlayOnIcon;
-            buttonOn.play();
-        };
-    }
-
-    function handelInteractionEnd(event) {
-        event.preventDefault();
 
         if (getAutoPlay()) {
             autoPlayButtonIcon.setAttribute('aria-label', 'Auto-Play deactivated');
+            autoPlayButtonIcon.src = autoPlayOffIcon;
+            buttonOff.play();
             turnOffAutoPlay();
-            resetsyllableButton()
         } else {
             autoPlayButtonIcon.setAttribute('aria-label', 'Auto-Play activated');
+            autoPlayButtonIcon.src = autoPlayOnIcon;
+            buttonOn.play();
             turnOnAutoPlay();
         };
-        console.log("autoPlayButton: " + getAutoPlay());
-
-    };
-
-    function resetPlaybutton() {
-        autoPlayButtonIcon.src = autoPlayOffIcon;
-
-    };
+    }
 
 </script>
 

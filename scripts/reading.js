@@ -181,7 +181,7 @@ function playWordById(wordId) {
   sound.play('word');
 
   sound.once('end', () => {
-    resetPlaybutton();
+    //resetPlaybutton();
     sound.unload();
   });
 }
@@ -204,7 +204,7 @@ function playCurrentWord() {
   sound.play('word');
 
   sound.once('end', () => {
-    resetPlaybutton();
+    //resetPlaybutton();
     sound.unload();
   });
 }
@@ -263,7 +263,7 @@ function playCurrentLine() {
     }); */
 
   sound.once('end', () => {
-    resetPlaybutton();
+    //resetPlaybutton();
 
     // Reset word elements to their original classes
     /*     pathElement.style.opacity = 1; // Set highlight line's opacity to 100%
