@@ -149,6 +149,29 @@ function readNextWord() {
 
 // Audio functions
 
+function playWordById(wordId) {
+  const wordStartTime = wordsToReadMap.get(wordId).audioElement.startTime;
+  const wordDuration = wordsToReadMap.get(wordId).audioElement.duration;
+  console.log("wordStartTime:", wordStartTime);
+  console.log("duration:", wordDuration);
+  console.log("play word:", wordId);
+
+  const sound = new Howl({
+    src: ['https://kdsaft.github.io/throughline/audio/PieThatConquered.mp3'],
+    sprite: {
+      word: [wordStartTime * 100, wordDuration * 100]
+    }
+  });
+
+  sound.play('word');
+
+  sound.once('end', () => {
+    resetPlaybutton();
+    sound.unload();
+  });
+}
+
+
 function playCurrentWord() {
   const wordStartTime = wordsToReadMap.get(currentWordNumber).audioElement.startTime;
   const wordDuration = wordsToReadMap.get(currentWordNumber).audioElement.duration;

@@ -644,6 +644,7 @@ articleContainer.on('mousedown touchstart', '.word', function (event) {
 
     wordFocus();
     wordId = parseInt(elementID, 10);
+    playWordById(wordId)
     turnSyllableButtonOn();
     touchWord.play();
 });
