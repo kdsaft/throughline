@@ -267,7 +267,7 @@ function createSyllableFocusView() {
     createSyllableFocusViewTimeline
         .add({
             targets: contentContainer.native,
-            scale: 0.9,
+            scale: 1,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
@@ -275,6 +275,7 @@ function createSyllableFocusView() {
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
+            scale: 0.9,
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -283,6 +284,7 @@ function createSyllableFocusView() {
         .add({
             targets: highLightArea.native,
             filter: 'blur(15px)',
+            scale: 0.9,
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -313,6 +315,7 @@ function removeSyllableFocusView() {
             targets: standardText.native,
             filter: 'blur(0px)',
             opacity: 1,
+            scale: 1,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
@@ -321,6 +324,7 @@ function removeSyllableFocusView() {
             targets: highLightArea.native,
             filter: 'blur(0px)',
             opacity: 1,
+            scale: 1,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
