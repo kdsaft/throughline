@@ -265,28 +265,30 @@ function createSyllableFocusView() {
     const toSyllableFocusViewTimeline = anime.timeline();
 
     toSyllableFocusViewTimeline
-    .add({
-        targets: contentContainer,
-        scale: 0.9,
-        duration: 200,
-        easing: 'easeOutExpo',
-    }, 0)
+        .add({
+            targets: contentContainer,
+            scale: 0.9,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 0)
 
-    .add({
-        targets: standardText.native,
-        backdropFilter: 'blur(15px)',
-        opacity: 0.5,
-        duration: 200,
-        easing: 'easeOutExpo',
-    }, 0)
+        .add({
+            targets: standardText.native,
+            backdropFilter: 'blur(15px)',
+            opacity: 0.5,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 0)
 
-    .add({
-        targets: highLightArea,
-        backdropFilter: 'blur(15px)',
-        opacity: 0.5,
-        duration: 200,
-        easing: 'easeOutExpo',
-    }, 0)
+        .add({
+            targets: highLightArea,
+            backdropFilter: 'blur(15px)',
+            opacity: 0.5,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 0)
+        
+    createSyllableFocusView.play();
 }
 
 
