@@ -625,8 +625,8 @@ function handleTapStart(event) {
 
         clearTimeout(magicLensLongPressTimer);
 
-        if (longPress) {
-            longPress = false;
+        if (magicLensLongPress) {
+            magicLensLongPress = false;
         } else {
             if (relativeClickPointX < 24) {
                 if (!(isFirstWord && isFirstClause)) {
