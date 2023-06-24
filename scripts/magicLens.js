@@ -598,6 +598,10 @@ function handleTapStart(event) {
     event.preventDefault();
 
     magicLensLongPress = false;
+
+    const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+    const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
+
     wordFocus();
 
     magicLensLongPressTimer = setTimeout(() => {
@@ -606,7 +610,7 @@ function handleTapStart(event) {
     }, 1500);
 
     function handleTapEnd(event) {
-        handelInteractionEnd();
+        handelInteractionEnd(relativeClickPointX);
         $(document).off('mouseup touchend', handleTapEnd);
     }
 
@@ -615,21 +619,20 @@ function handleTapStart(event) {
 
 
 
-    function handelInteractionEnd() {
+    function handelInteractionEnd(relativeClickPointX) {
         const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
         const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
-        const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
 
         clearTimeout(magicLensLongPressTimer);
 
         if (longPress) {
             longPress = false;
         } else {
-            if (relativeClickPointX < 16) {
+            if (relativeClickPointX < 24) {
                 if (!(isFirstWord && isFirstClause)) {
                     wordId -= 1;
                 }
-            } else if (relativeClickPointX > (magicLens.jQ.width() - 16)) {
+            } else if (relativeClickPointX > (magicLens.jQ.width() - 24)) {
                 if (!(isLastWord && isLastClause)) {
                     wordId += 1;
                 }
