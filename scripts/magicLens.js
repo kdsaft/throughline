@@ -626,6 +626,7 @@ function handelInteractionEnd(relativeClickPointX) {
     if (magicLensLongPress) {
         magicLensLongPress = false;
     } else {
+        wordFocus();
         if (relativeClickPointX < 24) {
             if (!(isFirstWord && isFirstClause)) {
                 wordId -= 1;
