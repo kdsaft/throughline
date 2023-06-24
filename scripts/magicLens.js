@@ -617,28 +617,25 @@ function handleTapStart(event) {
 
 
 
-    function handelInteractionEnd(relativeClickPointX) {
-        const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
-        const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+function handelInteractionEnd(relativeClickPointX) {
+    const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+    const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
 
-        clearTimeout(magicLensLongPressTimer);
+    clearTimeout(magicLensLongPressTimer);
 
-        if (magicLensLongPress) {
-            magicLensLongPress = false;
-        } else {
-            if (relativeClickPointX < 24) {
-                if (!(isFirstWord && isFirstClause)) {
-                    wordId -= 1;
-                    handleMovementEnd();
-                }
-            } else if (relativeClickPointX > (magicLens.jQ.width() - 24)) {
-                if (!(isLastWord && isLastClause)) {
-                    wordId += 1;
-                    handleMovementEnd();
-                }
-            } else {
-                playWordById(wordId);
+    if (magicLensLongPress) {
+        magicLensLongPress = false;
+    } else {
+        if (relativeClickPointX < 24) {
+            if (!(isFirstWord && isFirstClause)) {
+                wordId -= 1;
+            }
+        } else if (relativeClickPointX > (magicLens.jQ.width() - 24)) {
+            if (!(isLastWord && isLastClause)) {
+                wordId += 1;
             }
         }
+        handleMovementEnd();
     }
+}
 
