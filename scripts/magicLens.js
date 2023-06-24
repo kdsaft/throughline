@@ -262,9 +262,9 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 // function for syllable focus
 
 function createSyllableFocusView() {
-    const toSyllableFocusViewTimeline = anime.timeline();
+    const createSyllableFocusViewTimeline = anime.timeline();
 
-    toSyllableFocusViewTimeline
+    createSyllableFocusViewTimeline
         .add({
             targets: contentContainer,
             scale: 0.9,
@@ -287,8 +287,38 @@ function createSyllableFocusView() {
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
-        
-    createSyllableFocusView.play();
+
+        createSyllableFocusViewTimeline.play();
+}
+
+function removeSyllableFocusView() {
+    const removeSyllableFocusViewTimeline = anime.timeline();
+
+    removeSyllableFocusViewTimeline
+        .add({
+            targets: contentContainer,
+            scale: 0.9,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 0)
+
+        .add({
+            targets: standardText.native,
+            backdropFilter: 'blur(15px)',
+            opacity: 0.5,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 0)
+
+        .add({
+            targets: highLightArea,
+            backdropFilter: 'blur(15px)',
+            opacity: 0.5,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 0)
+
+        removeSyllableFocusViewTimeline.play();
 }
 
 
@@ -661,6 +691,8 @@ function handelInteractionEnd(relativeClickPointX) {
 
     if (magicLensLongPress) {
         magicLensLongPress = false;
+        removeSyllableFocusView();
+
     } else {
         wordFocus();
         if (relativeClickPointX < 24) {
