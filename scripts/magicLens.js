@@ -7,8 +7,8 @@
 const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
 
 // Text elements
-const contentContainer = $('.content');
-const highLightArea = $('.highlight-area');
+const contentContainer = { jQ: $('.content') , native: $('.content').get(0) };
+const highLightArea = { jQ: $('.highlight-area') , native: $('.highlight-area').get(0) };
 const articleContainer = $('.article-container');
 const articleContainerOffset = articleContainer.offset();
 const standardText = { jQ: $('#standard-text'), native: $('#standard-text').get(0) }
@@ -266,7 +266,7 @@ function createSyllableFocusView() {
 
     createSyllableFocusViewTimeline
         .add({
-            targets: contentContainer,
+            targets: contentContainer.native,
             scale: 0.9,
             duration: 200,
             easing: 'easeOutExpo',
@@ -274,15 +274,15 @@ function createSyllableFocusView() {
 
         .add({
             targets: standardText.native,
-            backdropFilter: 'blur(15px)',
+            filter: 'blur(15px)',
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
 
         .add({
-            targets: highLightArea,
-            backdropFilter: 'blur(15px)',
+            targets: highLightArea.native,
+            filter: 'blur(15px)',
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -296,7 +296,7 @@ function removeSyllableFocusView() {
 
     removeSyllableFocusViewTimeline
         .add({
-            targets: contentContainer,
+            targets: contentContainer.native,
             scale: 0.9,
             duration: 200,
             easing: 'easeOutExpo',
@@ -304,15 +304,15 @@ function removeSyllableFocusView() {
 
         .add({
             targets: standardText.native,
-            backdropFilter: 'blur(15px)',
+            filter: 'blur(15px)',
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
 
         .add({
-            targets: highLightArea,
-            backdropFilter: 'blur(15px)',
+            targets: highLightArea.native,
+            filter: 'blur(15px)',
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
