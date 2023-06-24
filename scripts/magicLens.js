@@ -23,7 +23,6 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 // tracking variables
 let dragging = false; // is the magicLens being dragged?
 let isAnimating = false; // is the magicLens being animated?
-let magicLensInteraction = false; // is it an interaction that involves the magicLens?
 let isMagicLensVisible = false; // is the magicLens visible?
 let wordId = 1; // the id of the magicLen's current word
 
@@ -518,10 +517,10 @@ function getMagicLensVisibility() {
 
 // onEvents
 
+// for handling motion events
 magicLensHandle.jQ.on('mousedown', handleDragStart);
 grabHandleArea.jQ.on('touchstart', handleDragStart);
 articleContainer.on('mousedown touchstart', '.word', handleJumpStart);
-
 
 articleContainer.on('mousemove touchmove', function (event) {
     if (dragging) {
@@ -529,8 +528,6 @@ articleContainer.on('mousemove touchmove', function (event) {
         updateMagicLens(event);
     }
 })
-
-
 
 function handleMovementEnd() {
     magicLensHandle.jQ.removeClass('grabbed');
@@ -586,88 +583,59 @@ function handleJumpStart(event) {
     // Define the closure function
     function handleJumpEnd(event) {
         handleMovementEnd();
-        $(document).off('mouseup touchend', handleJumpEnd); // Remove the event listener after it's triggered
+        $(document).off('mouseup touchend', handleJumpEnd);
     }
 
     $(document).on('mouseup touchend', handleJumpEnd);
 }
 
-/* grabHandleArea.jQ.on('touchstart', function (event) {
-    magicLensInteraction = true;
 
-    const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
-    const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
-    if (event.type === 'touchstart') {
-        event.preventDefault();
-    }
-    offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
-    offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
-
-    wordFocus();
-    dragging = true;
-    magicLensHandle.jQ.addClass('grabbed');
-    $(document).on('touchmove', updateMagicLens);
-}); */
-
-/* magicLensDisplay.jQ.on('mousedown', function (event) {
-    magicLensInteraction = true;
-
-    event.preventDefault();
-    const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
-    const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
-
-    const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
-    const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
-    const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
-    wordFocus();
-
-    if (relativeClickPointX < 24) {
-        if (!(isFirstWord && isFirstClause)) {
-            wordId -= 1;
-        }
-
-    } else if (relativeClickPointX > (magicLens.jQ.width() - 24)) {
-        if (!(isLastWord && isLastClause)) {
-            wordId += 1;
-        }
-    }
-}); */
+// for handling click events
+magicLensDisplay.jQ.on('touchstart mousedown', handleTapStart);
 
 
-magicLensDisplay.jQ.on('touchstart mousedown', function (event) {
-    magicLensInteraction = true;
-
+function handleTapStart(event) {
     event.preventDefault();
 
-    const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
-    const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
-
-    offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
-    offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
-
-    const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
-    const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
-    const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
-
+    magicLensLongPress = false;
     wordFocus();
 
-    if (relativeClickPointX < 16) {
-        if (!(isFirstWord && isFirstClause)) {
-            wordId -= 1;
-        }
-    } else if (relativeClickPointX > (magicLens.jQ.width() - 16)) {
-        if (!(isLastWord && isLastClause)) {
-            wordId += 1;
-        }
+    magicLensLongPressTimer = setTimeout(() => {
+        magicLensLongPress = true;
+        pressAndHoldSound.play();
+    }, 1500);
 
-    } else {
-        dragging = true;
-        magicLensHandle.jQ.addClass('grabbed');
-        $(document).on('touchmove', updateMagicLens);
+    function handleTapEnd(event) {
+        handelInteractionEnd();
+        $(document).off('mouseup touchend', handleTapEnd);
     }
-});
+
+    $(document).on('mouseup touchend', handleTapEnd);
+}
 
 
 
+    function handelInteractionEnd() {
+        const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
+        const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
+        const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
 
+        clearTimeout(magicLensLongPressTimer);
+
+        if (longPress) {
+            longPress = false;
+        } else {
+            if (relativeClickPointX < 16) {
+                if (!(isFirstWord && isFirstClause)) {
+                    wordId -= 1;
+                }
+            } else if (relativeClickPointX > (magicLens.jQ.width() - 16)) {
+                if (!(isLastWord && isLastClause)) {
+                    wordId += 1;
+                }
+            } else {
+                playCurrentWord();
+            }
+        }
+    }
 
