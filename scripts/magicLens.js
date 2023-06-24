@@ -13,7 +13,7 @@ const standardText = { jQ: $('#standard-text'), native: $('#standard-text').get(
 const syllableText = { jQ: $('#syllable-text'), native: $('#syllable-text').get(0) }
 const seperatorText = { jQ: $('.syllable-separator'), native: document.querySelectorAll('.syllable-separator') }
 
-// Magic Lens element
+// MagicLens element
 const magicLensWrapper = { jQ: $('.magic-lens-wrapper'), native: $('.magic-lens-wrapper').get(0) }
 const magicLens = { jQ: $('.magic-lens'), native: $('.magic-lens').get(0) }
 const magicLensDisplay = { jQ: $('.syllable-text-wrapper'), native: $('.syllable-text-wrapper').get(0) }
@@ -29,6 +29,10 @@ let wordId = 1; // the id of the magicLen's current word
 
 let offsetTouchX;
 let offsetTouchY;
+
+// long press variables
+let magicLensLongPressTimer = null;
+let magicLensLongPress = false;
 
 // set article bounding box
 articleContainer.css({
@@ -514,12 +518,27 @@ function getMagicLensVisibility() {
 
 // onEvents
 
-function onMouseUp(event) {
+magicLensHandle.jQ.on('mousedown', handleDragStart);
+grabHandleArea.jQ.on('touchstart', handleDragStart);
+articleContainer.on('mousedown touchstart', '.word', handleJumpStart);
 
-    if (magicLensInteraction) {
+magicLensHandle.jQ.on('mouseup', handleDragStart);
+grabHandleArea.jQ.on('touchend', handleDragStart);
+articleContainer.on('mouseup touchend', '.word', handleJumpStart);
+
+
+articleContainer.on('mousemove touchmove', function (event) {
+    if (dragging) {
+        event.preventDefault();
+        updateMagicLens(event);
+    }
+});
+
+
+
+function handleMagicLensMovementEnd(event) {
         magicLensHandle.jQ.removeClass('grabbed');
         dragging = false;
-        magicLensInteraction = false;
 
         if (isMagicLensVisible) {
             animateToWord(wordId);
@@ -533,10 +552,10 @@ function onMouseUp(event) {
 
         $(document).off('mousemove touchmove', updateMagicLens);
     }
-}
 
-magicLensHandle.jQ.on('mousedown', function (event) {
-    magicLensInteraction = true;
+function handleDragStart(event) {
+    event.preventDefault();
+
     const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
     const clientY = (event.type === 'touchmove' ? event.touches[0].pageY : event.pageY) - articleContainer.offset().top;
 
@@ -546,11 +565,22 @@ magicLensHandle.jQ.on('mousedown', function (event) {
     wordFocus();
     dragging = true;
     magicLensHandle.jQ.addClass('grabbed');
-    $(document).on('mousemove', updateMagicLens);
-});
+    $(document).on('mousemove touchmove', updateMagicLens);
+}
 
+function handleJumpStart (event) {
+    event.preventDefault();
 
-grabHandleArea.jQ.on('touchstart', function (event) {
+    // Get the id from the clicked word element
+    const elementID = $(this).attr('id').split('-')[1];
+
+    wordFocus();
+    wordId = parseInt(elementID, 10);
+    turnSyllableButtonOn();
+    touchWord.play();
+}
+
+/* grabHandleArea.jQ.on('touchstart', function (event) {
     magicLensInteraction = true;
 
     const clientX = (event.type === 'touchmove' ? event.touches[0].pageX : event.pageX) - articleContainer.offset().left;
@@ -565,9 +595,9 @@ grabHandleArea.jQ.on('touchstart', function (event) {
     dragging = true;
     magicLensHandle.jQ.addClass('grabbed');
     $(document).on('touchmove', updateMagicLens);
-});
+}); */
 
-magicLensDisplay.jQ.on('mousedown', function (event) {
+/* magicLensDisplay.jQ.on('mousedown', function (event) {
     magicLensInteraction = true;
 
     event.preventDefault();
@@ -589,17 +619,17 @@ magicLensDisplay.jQ.on('mousedown', function (event) {
             wordId += 1;
         }
     }
-});
+}); */
 
 
-magicLensDisplay.jQ.on('touchstart', function (event) {
+magicLensDisplay.jQ.on('touchstart mousedown', function (event) {
     magicLensInteraction = true;
+
+    event.preventDefault();
 
     const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
     const clientY = event.type === 'touchstart' ? event.touches[0].pageY : event.pageY;
-    if (event.type === 'touchstart') {
-        event.preventDefault();
-    }
+
     offsetTouchX = clientX - (magicLensWrapper.jQ.offset().left - articleContainer.offset().left);
     offsetTouchY = clientY - (magicLensWrapper.jQ.offset().top - articleContainer.offset().top);
 
@@ -625,28 +655,7 @@ magicLensDisplay.jQ.on('touchstart', function (event) {
     }
 });
 
-articleContainer.on('mousemove touchmove', function (event) {
-    if (dragging) {
-        event.preventDefault();
-        updateMagicLens(event);
-    }
-});
 
-$(document).on('mouseup touchend', onMouseUp);
 
-articleContainer.on('mousedown touchstart', '.word', function (event) {
-    magicLensInteraction = true;
 
-    if (event.type === 'touchstart') {
-        event.preventDefault();
-    }
-
-    // Get the id from the clicked word element
-    const elementID = $(this).attr('id').split('-')[1];
-
-    wordFocus();
-    wordId = parseInt(elementID, 10);
-    turnSyllableButtonOn();
-    touchWord.play();
-});
 
