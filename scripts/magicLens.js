@@ -275,7 +275,7 @@ function createSyllableFocusView() {
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
-            scale: 0.9,
+            translateZ: 100,
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -284,7 +284,7 @@ function createSyllableFocusView() {
         .add({
             targets: highLightArea.native,
             filter: 'blur(15px)',
-            scale: 0.9,
+            translateZ: 100,
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -292,7 +292,7 @@ function createSyllableFocusView() {
 
         .add({
             targets: magicLensWrapper.native,
-            scale: 1.11,
+            translateZ: -100,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
@@ -315,7 +315,7 @@ function removeSyllableFocusView() {
             targets: standardText.native,
             filter: 'blur(0px)',
             opacity: 1,
-            scale: 1,
+            translateZ: 100,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
@@ -324,14 +324,14 @@ function removeSyllableFocusView() {
             targets: highLightArea.native,
             filter: 'blur(0px)',
             opacity: 1,
-            scale: 1,
+            translateZ: 0,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
 
         .add({
             targets: magicLensWrapper.native,
-            scale: 1,
+            translateZ: 0,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
