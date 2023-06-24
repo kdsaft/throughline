@@ -4,6 +4,9 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
+}
+
+.content {
     perspective: 500px;
 }
 
