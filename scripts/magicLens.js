@@ -266,16 +266,10 @@ function createSyllableFocusView() {
 
     createSyllableFocusViewTimeline
         .add({
-            targets: contentContainer.native,
-            scale: 1,
-            duration: 200,
-            easing: 'easeOutExpo',
-        }, 0)
-
-        .add({
             targets: standardText.native,
             filter: 'blur(15px)',
-            translateZ: 10000,
+            scale: 0.9,
+            translateY: -50,
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -284,15 +278,9 @@ function createSyllableFocusView() {
         .add({
             targets: highLightArea.native,
             filter: 'blur(15px)',
-            translateZ: 100,
+            scale: 0.9,
+            translateY: -50,
             opacity: 0.5,
-            duration: 200,
-            easing: 'easeOutExpo',
-        }, 0)
-
-        .add({
-            targets: magicLensWrapper.native,
-            translateZ: -100,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
@@ -305,17 +293,11 @@ function removeSyllableFocusView() {
 
     removeSyllableFocusViewTimeline
         .add({
-            targets: contentContainer.native,
-            scale: 1,
-            duration: 200,
-            easing: 'easeOutExpo',
-        }, 0)
-
-        .add({
             targets: standardText.native,
             filter: 'blur(0px)',
             opacity: 1,
-            translateZ: 0,
+            scale: 1,
+            translateY: 0,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
@@ -324,14 +306,8 @@ function removeSyllableFocusView() {
             targets: highLightArea.native,
             filter: 'blur(0px)',
             opacity: 1,
-            translateZ: 0,
-            duration: 200,
-            easing: 'easeOutExpo',
-        }, 0)
-
-        .add({
-            targets: magicLensWrapper.native,
-            translateZ: 0,
+            scale: 1,
+            translateY: 0,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
