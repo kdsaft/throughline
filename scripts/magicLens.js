@@ -602,8 +602,6 @@ function handleTapStart(event) {
     const clientX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
     const relativeClickPointX = clientX - magicLensWrapper.jQ.offset().left;
 
-    wordFocus();
-
     magicLensLongPressTimer = setTimeout(() => {
         magicLensLongPress = true;
         pressAndHoldSound.play();
@@ -631,10 +629,12 @@ function handleTapStart(event) {
             if (relativeClickPointX < 24) {
                 if (!(isFirstWord && isFirstClause)) {
                     wordId -= 1;
+                    handleMovementEnd();
                 }
             } else if (relativeClickPointX > (magicLens.jQ.width() - 24)) {
                 if (!(isLastWord && isLastClause)) {
                     wordId += 1;
+                    handleMovementEnd();
                 }
             } else {
                 playWordById(wordId);
