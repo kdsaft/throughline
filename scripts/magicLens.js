@@ -275,7 +275,7 @@ function createSyllableFocusView() {
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
-            translateZ: 100,
+            translateZ: 10000,
             opacity: 0.5,
             duration: 200,
             easing: 'easeOutExpo',
@@ -315,7 +315,7 @@ function removeSyllableFocusView() {
             targets: standardText.native,
             filter: 'blur(0px)',
             opacity: 1,
-            translateZ: 100,
+            translateZ: 0,
             duration: 200,
             easing: 'easeOutExpo',
         }, 0)
