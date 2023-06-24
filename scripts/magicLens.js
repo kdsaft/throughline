@@ -7,6 +7,8 @@
 const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
 
 // Text elements
+const contentContainer = $('.content');
+const highLightArea = $('.highlight-area');
 const articleContainer = $('.article-container');
 const articleContainerOffset = articleContainer.offset();
 const standardText = { jQ: $('#standard-text'), native: $('#standard-text').get(0) }
@@ -254,6 +256,37 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
     }
 
     return { left: newLeft, top: newTop, id: activeWordId };
+}
+
+
+// function for syllable focus
+
+function createSyllableFocusView() {
+    const toSyllableFocusViewTimeline = anime.timeline();
+
+    toSyllableFocusViewTimeline
+    .add({
+        targets: contentContainer,
+        scale: 0.9,
+        duration: 200,
+        easing: 'easeOutExpo',
+    }, 0)
+
+    .add({
+        targets: standardText.native,
+        backdropFilter: 'blur(15px)',
+        opacity: 0.5,
+        duration: 200,
+        easing: 'easeOutExpo',
+    }, 0)
+
+    .add({
+        targets: highLightArea,
+        backdropFilter: 'blur(15px)',
+        opacity: 0.5,
+        duration: 200,
+        easing: 'easeOutExpo',
+    }, 0)
 }
 
 
@@ -605,6 +638,7 @@ function handleTapStart(event) {
     magicLensLongPressTimer = setTimeout(() => {
         magicLensLongPress = true;
         pressAndHoldSound.play();
+        createSyllableFocusView();
     }, 1500);
 
     function handleTapEnd(event) {
