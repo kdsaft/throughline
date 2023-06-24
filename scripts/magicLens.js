@@ -495,7 +495,7 @@ function initPositionMagicLens() {
     if (wordId === 0) {
         wordId = 1;
     }
-   
+
     jumpToWordAndShowMagicLens(wordId);
     hideMagicLens();
 }
@@ -522,36 +522,32 @@ magicLensHandle.jQ.on('mousedown', handleDragStart);
 grabHandleArea.jQ.on('touchstart', handleDragStart);
 articleContainer.on('mousedown touchstart', '.word', handleJumpStart);
 
-magicLensHandle.jQ.on('mouseup', handleMagicLensMovementEnd);
-grabHandleArea.jQ.on('touchend', handleMagicLensMovementEnd);
-articleContainer.on('mouseup touchend', '.word', handleMagicLensMovementEnd);
-
 
 articleContainer.on('mousemove touchmove', function (event) {
     if (dragging) {
         event.preventDefault();
         updateMagicLens(event);
     }
-});
+})
 
 
 
-function handleMagicLensMovementEnd(event) {
-        magicLensHandle.jQ.removeClass('grabbed');
-        dragging = false;
+function handleMovementEnd() {
+    magicLensHandle.jQ.removeClass('grabbed');
+    dragging = false;
 
-        if (isMagicLensVisible) {
-            animateToWord(wordId);
-        } else {
-            jumpToWordAndShowMagicLens(wordId);
-        }
-
-        if (getAutoPlay()) {
-            playWordById(wordId);
-        }
-
-        $(document).off('mousemove touchmove', updateMagicLens);
+    if (isMagicLensVisible) {
+        animateToWord(wordId);
+    } else {
+        jumpToWordAndShowMagicLens(wordId);
     }
+
+    if (getAutoPlay()) {
+        playWordById(wordId);
+    }
+
+    $(document).off('mousemove touchmove', updateMagicLens);
+}
 
 function handleDragStart(event) {
     event.preventDefault();
@@ -565,10 +561,18 @@ function handleDragStart(event) {
     wordFocus();
     dragging = true;
     magicLensHandle.jQ.addClass('grabbed');
+
+    // Define the closure function
+    function handleDragEnd(event) {
+        handleMovementEnd();
+        $(document).off('mouseup touchend', handleDragEnd); // Remove the event listener after it's triggered
+    }
+
     $(document).on('mousemove touchmove', updateMagicLens);
+    $(document).on('mouseup touchend', handleDragEnd);
 }
 
-function handleJumpStart (event) {
+function handleJumpStart(event) {
     event.preventDefault();
 
     // Get the id from the clicked word element
@@ -578,6 +582,14 @@ function handleJumpStart (event) {
     wordId = parseInt(elementID, 10);
     turnSyllableButtonOn();
     touchWord.play();
+
+    // Define the closure function
+    function handleJumpEnd(event) {
+        handleMovementEnd();
+        $(document).off('mouseup touchend', handleJumpEnd); // Remove the event listener after it's triggered
+    }
+
+    $(document).on('mouseup touchend', handleJumpEnd);
 }
 
 /* grabHandleArea.jQ.on('touchstart', function (event) {
