@@ -522,9 +522,9 @@ magicLensHandle.jQ.on('mousedown', handleDragStart);
 grabHandleArea.jQ.on('touchstart', handleDragStart);
 articleContainer.on('mousedown touchstart', '.word', handleJumpStart);
 
-magicLensHandle.jQ.on('mouseup', handleDragStart);
-grabHandleArea.jQ.on('touchend', handleDragStart);
-articleContainer.on('mouseup touchend', '.word', handleJumpStart);
+magicLensHandle.jQ.on('mouseup', handleMagicLensMovementEnd);
+grabHandleArea.jQ.on('touchend', handleMagicLensMovementEnd);
+articleContainer.on('mouseup touchend', '.word', handleMagicLensMovementEnd);
 
 
 articleContainer.on('mousemove touchmove', function (event) {
