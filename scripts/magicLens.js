@@ -637,7 +637,7 @@ function handleTapStart(event) {
                     wordId += 1;
                 }
             } else {
-                playCurrentWord();
+                playWordById(wordId);
             }
         }
     }
