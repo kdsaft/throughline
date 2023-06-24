@@ -11,11 +11,11 @@ function initSammy() {
     let longPress = false;
     sammy = document.getElementById("sammy");
 
-    sammy.addEventListener("mousedown", handleInteractionStart);
-    sammy.addEventListener("mouseup", handelInteractionEnd);
+    sammy.addEventListener("mousedown", handleSammyInteractionStart);
+    sammy.addEventListener("mouseup", handelSammyInteractionEnd);
 
-    sammy.addEventListener("touchstart", handleInteractionStart);
-    sammy.addEventListener("touchend", handelInteractionEnd);
+    sammy.addEventListener("touchstart", handleSammyInteractionStart);
+    sammy.addEventListener("touchend", handelSammyInteractionEnd);
 
 
     positionSammy()
@@ -27,7 +27,7 @@ function initSammy() {
 
 // Functions to handle short and long presses
 
-function handleInteractionStart(event) {
+function handleSammyInteractionStart(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     longPress = false;
     talk()
@@ -46,7 +46,7 @@ function handleInteractionStart(event) {
     }, 750); // 1000ms = 1 second
 };
 
-function handelInteractionEnd(event) {
+function handelSammyInteractionEnd(event) {
     event.preventDefault(); // Prevent default behavior like scrolling on touch devices
     clearTimeout(timer);
    // buttonIcon.setAttribute('aria-label', 'Short press activated');
