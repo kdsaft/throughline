@@ -298,11 +298,11 @@ function createSyllableOverlay() {
             easing: 'easeOutExpo',
             complete: function (anim) {
                 syllableOverlay.jQ.css({ display: "block" });
-                magicLensWrapper.jQ.css({ display: "none" });
+                //magicLensWrapper.jQ.css({ display: "none" });
             }
         }, 0)
 
-        .add({
+/*         .add({
             targets: syllableOverlay.native,
             top: 96,
             left:96,
@@ -310,7 +310,7 @@ function createSyllableOverlay() {
             height: 244,
             duration: 200,
             easing: 'easeOutExpo',
-        }, 150)
+        }, 150) */
 
         createSyllableOverlayTimeline.play();
 }
