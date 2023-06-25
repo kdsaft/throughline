@@ -568,3 +568,220 @@ body {
     position: absolute;
     border-radius: 0px 0px 0px 0px;
 }
+
+
+.phonetic-syllables-container {
+    flex-shrink: 0;
+    width: min-content;
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+
+.phonetic-syllable {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 0px;
+    border-radius: 6px;
+    border: 1px solid var(--Grey_300, #e3e4e6);
+}
+
+.one-pictogram {
+    width: 72px;
+}
+
+.two-pictogram {
+    width: 109px;
+}
+
+.phonetic-text-wrapper {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    height: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 8px 0px 8px;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 0px;
+    border-color: var(--Grey_300, #e3e4e6);
+    border-style: solid;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+.phonetic-text {
+    flex-shrink: 0;
+    width: min-content;
+    height: 20px;
+    display: flex;
+    font-family: "SFMono-Medium", monospace;
+    color: var(--Grey_700, #6b6b6b);
+    font-size: 17px;
+    line-height: 1.2;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.phonetic-symbol {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 4px;
+    height: 20px;
+    font-size: 17px;
+    display: flex;
+    font-family: "SFMono-Medium", monospace;
+    color: var(--Grey_400, #d4d5d7);
+    line-height: 1.2;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+.full-arrow {
+    padding: 3px 1px 0px 1px;
+    width: min-content;
+}
+
+.short-dash {
+    padding: 4px 0px 0px 0px;
+    width: 4px;
+}
+
+
+.pictograms-wrapper {
+    flex-shrink: 0;
+    width: 100%;
+    height: min-content;
+    /* 46px */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Grey_100, #f7f8fa);
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 1px;
+}
+
+.pictogram {
+    flex-shrink: 0;
+    flex: 1 0 0px;
+    width: 1px;
+    height: min-content;
+    /* 46px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 0px;
+}
+
+.pictogram-image {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 0px 0px 0px;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+
+.pictogram-sound-position {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 0px 4px 0px;
+    overflow: hidden;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 2px;
+}
+
+.sound-position-full {
+    flex-shrink: 0;
+    width: 22px;
+    height: 4px;
+    display: block;
+    background-color: var(--Grey_200, #edeef0);
+    overflow: hidden;
+    position: relative;
+    border-radius: 3px;
+}
+
+.sound-position-long {
+    flex-shrink: 0;
+    width: 16px;
+    height: 4px;
+    display: block;
+    background-color: var(--Grey_300, #e3e4e6);
+    overflow: hidden;
+    position: relative;
+    border-radius: 3px;
+}
+
+.sound-position-short {
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    display: block;
+    background-color: var(--Grey_200, #edeef0);
+    overflow: hidden;
+    position: relative;
+    border-radius: 3px;
+}
