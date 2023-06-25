@@ -24,6 +24,8 @@ const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handl
 
 // Syllable overlay
 const overlayWindow = { jQ: $('.overlay-window'), native: $('.overlay-window').get(0) }
+const overlayTitle = { jQ: $('.overlay-title'), native: $('.overlay-title').get(0) }
+
 
 // tracking variables
 let dragging = false; // is the magicLens being dragged?
@@ -311,7 +313,15 @@ function createOverlayWindow() {
             height: 244,
             duration: 200,
             easing: 'easeOutExpo',
-        }, 250) 
+        }, 125) 
+
+        .add({
+            targets: overlayTitle.native,
+            scale: 1.25,
+            duration: 200,
+            easing: 'easeOutExpo',
+        }, 125)
+
 
         createOverlayWindowTimeline.play();
 }
