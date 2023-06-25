@@ -297,7 +297,7 @@ function createSyllableOverlay() {
             duration: 100,
             easing: 'easeOutExpo',
             complete: function (anim) {
-                syllableOverlay.css({ display: "block" });
+                syllableOverlay.jQ.css({ display: "block" });
             }
         }, 0)
 
