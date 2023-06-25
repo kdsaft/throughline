@@ -154,7 +154,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1px 8px 4px 9px;
+    padding: 1px 8px 4px 8px;
     background-color: rgba(255, 255, 255, 0.5);
     overflow: hidden;
     align-content: center;
@@ -179,7 +179,7 @@ body {
   }
 
   .overlay-title .syllable-separator {
-    font-size: 14px;
+    font-size: 10px;
 }
 
   .overlay-title-text {
