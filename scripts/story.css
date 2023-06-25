@@ -143,7 +143,11 @@ body {
     user-select: none;
 }
 
-
+.syllable-overlay {
+    position: absolute;
+    z-index: 500;
+    display: none;
+}
 
 .magic-lens-wrapper {
     position: absolute;

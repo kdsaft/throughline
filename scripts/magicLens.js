@@ -22,6 +22,9 @@ const magicLensDisplay = { jQ: $('.syllable-text-wrapper'), native: $('.syllable
 const magicLensHandle = { jQ: $('.grab-handle-top'), native: $('.grab-handle-top').get(0) }
 const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handle-grab-area').get(0) }
 
+// Syllable overlay
+const syllableOverlay = { jQ: $('.syllable-overlay'), native: $('.syllable-overlay').get(0) }
+
 // tracking variables
 let dragging = false; // is the magicLens being dragged?
 let isAnimating = false; // is the magicLens being animated?
@@ -259,12 +262,12 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 }
 
 
-// function for syllable focus
+// function for syllable overlay
 
-function createSyllableFocusView() {
-    const createSyllableFocusViewTimeline = anime.timeline();
+function createSyllableOverlay() {
+    const createSyllableOverlayTimeline = anime.timeline();
 
-    createSyllableFocusViewTimeline
+    createSyllableOverlayTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
@@ -285,13 +288,20 @@ function createSyllableFocusView() {
             easing: 'easeOutExpo',
         }, 0)
 
-        createSyllableFocusViewTimeline.play();
+        .add({
+            targets: magicLensWrapper.native,
+            scale: 0.97,
+            duration: 50,
+            easing: 'easeOutExpo',
+        }, 150)
+
+        createSyllableOverlayTimeline.play();
 }
 
-function removeSyllableFocusView() {
-    const removeSyllableFocusViewTimeline = anime.timeline();
+function removeSyllableOverlay() {
+    const removeSyllableOverlayTimeline = anime.timeline();
 
-    removeSyllableFocusViewTimeline
+    removeSyllableOverlayTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(0px)',
@@ -312,7 +322,14 @@ function removeSyllableFocusView() {
             easing: 'easeOutExpo',
         }, 0)
 
-        removeSyllableFocusViewTimeline.play();
+        .add({
+            targets: magicLensWrapper.native,
+            scale: 1.055,
+            duration: 50,
+            easing: 'easeOutExpo',
+        }, 0)
+
+        removeSyllableOverlayTimeline.play();
 }
 
 
@@ -664,7 +681,7 @@ function handleTapStart(event) {
     magicLensLongPressTimer = setTimeout(() => {
         magicLensLongPress = true;
         pressAndHoldSound.play();
-        createSyllableFocusView();
+        createSyllableOverlay();
     }, 1500);
 
     function handleTapEnd(event) {
@@ -685,7 +702,7 @@ function handelInteractionEnd(relativeClickPointX) {
 
     if (magicLensLongPress) {
         magicLensLongPress = false;
-        removeSyllableFocusView();
+        removeSyllableOverlay();
 
     } else {
         wordFocus();
