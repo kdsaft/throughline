@@ -166,7 +166,7 @@ body {
 
   .overlay-title {
     flex-shrink: 0;
-    width: 1px;
+    width: 100%;
     height: min-content; /* 30px */
     display: flex;
     flex-direction: column;
