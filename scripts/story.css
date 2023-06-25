@@ -165,20 +165,8 @@ body {
   }
 
   .overlay-title {
-    flex-shrink: 0;
     width: 100%;
     height: min-content; /* 30px */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-    flex: 1 0 0px;
-    position: relative;
-    padding: 0px 0px 0px 0px;
-    align-content: center;
-    flex-wrap: nowrap;
-    gap: 10;
     white-space: nowrap;
   }
 
