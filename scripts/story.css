@@ -329,7 +329,7 @@ body {
 }
 
 .article-title .syllable-separator {
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .paragraph {
@@ -362,7 +362,7 @@ body {
     height: auto;
     white-space: pre;
     position: relative;
-    font-family: "SF-Mono-Medium", monospace;
+    font-family: "SF-Mono-Regular", monospace;
     color: rgba(181, 204, 255, 1);
     text-align: center;
     bottom: 1px;
