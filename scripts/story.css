@@ -163,6 +163,7 @@ body {
     position: absolute;
     border-radius: 8px;
     border: 2px solid var(--Ultramarine_300, #9fadde);
+    z-index: 500;
   }
 
   .overlay-title {
@@ -175,6 +176,10 @@ body {
     line-height: 48px;
     text-align: center;
   }
+
+  .overlay-title .syllable-separator {
+    font-size: 14px;
+}
 
   .overlay-title-text {
     flex-shrink: 0;
