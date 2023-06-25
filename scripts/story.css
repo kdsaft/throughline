@@ -157,6 +157,11 @@ body {
     position: relative;
     width: 100%;
     top: 8px;
+    font-size: 18px;
+    line-height: 48px;
+    font-family: "SF-Mono-Medium";
+    text-align: center;
+    color: #0f2d8a;
 }
 
 .magic-lens-wrapper {
