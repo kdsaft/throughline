@@ -298,20 +298,13 @@ function createSyllableOverlay() {
             easing: 'easeOutExpo',
         }, 0)
 
-        .add({
-            targets: syllableOverlay.native,
-            display: "block",
-            duration: 100,
-            easing: 'easeOutExpo',
-        }, 150)
-
         createSyllableOverlayTimeline.play();
 }
 
 function removeSyllableOverlay() {
     const removeSyllableOverlayTimeline = anime.timeline();
 
-    syllableOverlay.jQ.css({ display: "none" });
+    //syllableOverlay.jQ.css({ display: "none" });
 
     removeSyllableOverlayTimeline
         .add({
