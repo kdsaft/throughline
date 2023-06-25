@@ -58,6 +58,7 @@ body {
 .content {
     position: relative;
     overflow-y: scroll;
+    overflow-x: visible;
     height: 100vh;
     width: 740px;
     padding-right: 20px;
