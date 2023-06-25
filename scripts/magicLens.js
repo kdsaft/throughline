@@ -268,6 +268,7 @@ function createSyllableOverlay() {
     const createSyllableOverlayTimeline = anime.timeline();
 
     syllableOverlay.jQ.css({ top: magicLensWrapper.jQ.position().top, left: magicLensWrapper.jQ.position().left, width: magicLens.jQ.width(), height: magicLens.jQ.height() });
+    console.log('syllableOverlay.top', syllableOverlay.jQ.position().top, '.left', syllableOverlay.jQ.position().left, 'magicLens.width', magicLens.jQ.width(), '.height()', magicLens.jQ.height());
 
     createSyllableOverlayTimeline
         .add({
