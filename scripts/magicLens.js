@@ -296,11 +296,17 @@ function createSyllableOverlay() {
             scale: 0.97,
             duration: 100,
             easing: 'easeOutExpo',
+            complete: function (anim) {
+                syllableOverlay.css({ display: "block" });
+            }
         }, 0)
 
         .add({
             targets: syllableOverlay.native,
-            scale: 200,
+            top: 96,
+            left:96,
+            width: 509,
+            height: 244,
             duration: 200,
             easing: 'easeOutExpo',
         }, 150)
