@@ -304,7 +304,7 @@ function createOverlayWindow() {
         }, 0)
 
          .add({
-            display: "flex",
+            targets: overlayWindow.native,
             top: 96,
             left:96,
             width: 509,
