@@ -166,8 +166,13 @@ body {
 
   .overlay-title {
     width: 100%;
-    height: min-content; /* 30px */
+    height: min-content;
     white-space: nowrap;
+    font-family: "SF-Mono-Regular", monospace;
+    color: var(--Ultramarine_800, #0f2d8a);
+    font-size: 18px;
+    line-height: 48px;
+    text-align: center;
   }
 
   .overlay-title-text {
@@ -176,11 +181,6 @@ body {
     height: auto; /* 29px */
     white-space: pre;
     position: relative;
-    font-family: "SF-Mono-Regular", monospace;
-    color: var(--Ultramarine_800, #0f2d8a);
-    font-size: 18px;
-    line-height: 48px;
-    text-align: center;
     white-space: nowrap;
   }
 
