@@ -267,7 +267,6 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 function createOverlayWindow() {
     const createOverlayWindowTimeline = anime.timeline();
 
-    overlayWindow.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5), width: magicLens.jQ.width(), height: (magicLens.jQ.height() + 1) });
 
     createOverlayWindowTimeline
         .add({
@@ -298,6 +297,7 @@ function createOverlayWindow() {
             complete: function (anim) {
                 magicLensWrapper.jQ.css({ display: "none" });
                 overlayWindow.jQ.css({ transform: "scale(0.93, 0.93)" });
+                overlayWindow.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5), width: magicLens.jQ.width(), height: (magicLens.jQ.height() + 1) });
                 overlayWindow.jQ.css({ display: "flex" });
 
             }
