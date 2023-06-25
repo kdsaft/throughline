@@ -148,11 +148,15 @@ body {
     position: absolute;
     z-index: 500;
     display: block;
-    background-color: #ffffff;
+    background-color: #ffffff33;
     border-radius: 8px;
     border: 2px solid #9FADDE;
     box-shadow: 0px 0.602px 3.010px -0.333px rgba(0, 0, 0, 0.06), 0px 2.288px 11.442px -0.6666px rgba(0, 0, 0, 0.08433), 0px 10px 50px -1px rgba(0, 0, 0, 0.2);
-
+}
+.overlay-text {
+    position: relative;
+    width: 100%;
+    top: 8px;
 }
 
 .magic-lens-wrapper {

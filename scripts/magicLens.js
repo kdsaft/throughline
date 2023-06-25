@@ -319,6 +319,7 @@ function removeSyllableOverlay() {
     const removeSyllableOverlayTimeline = anime.timeline();
 
     syllableOverlay.jQ.css({ display: "none" });
+    magicLensWrapper.jQ.css({ display: "block" });
 
     removeSyllableOverlayTimeline
         .add({
