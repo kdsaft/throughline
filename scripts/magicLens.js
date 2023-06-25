@@ -267,6 +267,8 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 function createSyllableOverlay() {
     const createSyllableOverlayTimeline = anime.timeline();
 
+    syllableOverlay.jQ.css({ top: magicLensWrapper.jQ.position().top, left: magicLensWrapper.jQ.position().left, width: magicLens.jQ.width(), height: magicLens.jQ.height() });
+
     createSyllableOverlayTimeline
         .add({
             targets: standardText.native,
@@ -295,11 +297,20 @@ function createSyllableOverlay() {
             easing: 'easeOutExpo',
         }, 0)
 
+        .add({
+            targets: syllableOverlay.native,
+            display: "block",
+            duration: 100,
+            easing: 'easeOutExpo',
+        }, 150)
+
         createSyllableOverlayTimeline.play();
 }
 
 function removeSyllableOverlay() {
     const removeSyllableOverlayTimeline = anime.timeline();
+
+    syllableOverlay.jQ.css({ display: "none" });
 
     removeSyllableOverlayTimeline
         .add({
