@@ -172,7 +172,7 @@ body {
     width: 100%;
     height: min-content;
     white-space: nowrap;
-    font-family: "SF-Mono-Regular", monospace;
+    font-family: "SF-Mono-Bold", monospace;
     color: var(--Ultramarine_800, #0f2d8a);
     font-size: 18px;
     line-height: 48px;
