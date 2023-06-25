@@ -291,9 +291,9 @@ function createSyllableOverlay() {
         .add({
             targets: magicLensWrapper.native,
             scale: 0.97,
-            duration: 50,
+            duration: 100,
             easing: 'easeOutExpo',
-        }, 150)
+        }, 0)
 
         createSyllableOverlayTimeline.play();
 }
