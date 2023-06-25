@@ -292,24 +292,26 @@ function createOverlayWindow() {
 
         .add({
             targets: magicLensWrapper.native,
-            scale: 0.95,
-            duration: 100,
+            scale: 0.93,
+            duration: 200,
             easing: 'easeOutExpo',
             complete: function (anim) {
-                overlayWindow.jQ.css({ display: "flex" });
                 magicLensWrapper.jQ.css({ display: "none" });
+                overlayWindow.jQ.css({ transform: "scale(0.93, 0.93)" });
+                overlayWindow.jQ.css({ display: "flex" });
+
             }
         }, 0)
 
-/*         .add({
-            targets: overlayWindow.native,
+         .add({
+            display: "flex",
             top: 96,
             left:96,
             width: 509,
             height: 244,
             duration: 200,
             easing: 'easeOutExpo',
-        }, 150) */
+        }, 250) 
 
         createOverlayWindowTimeline.play();
 }

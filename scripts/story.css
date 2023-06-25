@@ -164,7 +164,6 @@ body {
     position: absolute;
     border-radius: 8px;
     border: 2px solid var(--Ultramarine_300, #9fadde);
-    transform: scale(1.055, 1.055);
     z-index: 500;
     box-shadow: 0px 0.602px 3.010px -0.333px rgba(0, 0, 0, 0.06), 0px 2.288px 11.442px -0.6666px rgba(0, 0, 0, 0.08433), 0px 10px 50px -1px rgba(0, 0, 0, 0.2);
   }
