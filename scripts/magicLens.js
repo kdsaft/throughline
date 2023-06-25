@@ -309,6 +309,7 @@ function createOverlayWindow() {
             targets: overlayWindow.native,
             top: 96,
             left:96,
+            paddingtop: 36,
             width: 509,
             height: 244,
             duration: 200,
