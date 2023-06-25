@@ -292,7 +292,7 @@ function createOverlayWindow() {
 
         .add({
             targets: magicLensWrapper.native,
-            scale: 1.055,
+            scale: 0.95,
             duration: 100,
             easing: 'easeOutExpo',
             complete: function (anim) {
