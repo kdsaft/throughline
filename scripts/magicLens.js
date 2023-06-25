@@ -307,11 +307,10 @@ function createOverlayWindow() {
 
          .add({
             targets: overlayWindow.native,
-            translateX: -96,
-            translateY: 96,
+            top: 96,
             left:96,
-            scaleX: 2.6,
-            scaleY: 4.2,
+            width: 509,
+            height: 244,
             duration: 200,
             easing: 'easeOutExpo',
         }, 125) 
