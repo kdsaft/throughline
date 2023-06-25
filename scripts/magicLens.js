@@ -264,12 +264,12 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
 // function for syllable overlay
 
-function createSyllableOverlay() {
-    const createSyllableOverlayTimeline = anime.timeline();
+function createOverlayWindow() {
+    const createOverlayWindowTimeline = anime.timeline();
 
-    syllableOverlay.jQ.css({ top: magicLensWrapper.jQ.position().top, left: magicLensWrapper.jQ.position().left, width: magicLens.jQ.width(), height: magicLens.jQ.height()});
+    overlayWindow.jQ.css({ top: magicLensWrapper.jQ.position().top, left: magicLensWrapper.jQ.position().left, width: magicLens.jQ.width(), height: magicLens.jQ.height()});
 
-    createSyllableOverlayTimeline
+    createOverlayWindowTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
@@ -296,13 +296,13 @@ function createSyllableOverlay() {
             duration: 100,
             easing: 'easeOutExpo',
             complete: function (anim) {
-                syllableOverlay.jQ.css({ display: "flex" });
+                overlayWindow.jQ.css({ display: "flex" });
                 //magicLensWrapper.jQ.css({ display: "none" });
             }
         }, 0)
 
 /*         .add({
-            targets: syllableOverlay.native,
+            targets: overlayWindow.native,
             top: 96,
             left:96,
             width: 509,
@@ -311,16 +311,16 @@ function createSyllableOverlay() {
             easing: 'easeOutExpo',
         }, 150) */
 
-        createSyllableOverlayTimeline.play();
+        createOverlayWindowTimeline.play();
 }
 
-function removeSyllableOverlay() {
-    const removeSyllableOverlayTimeline = anime.timeline();
+function removeOverlayWindow() {
+    const removeOverlayWindowTimeline = anime.timeline();
 
-    syllableOverlay.jQ.css({ display: "none" });
+    overlayWindow.jQ.css({ display: "none" });
     magicLensWrapper.jQ.css({ display: "block" });
 
-    removeSyllableOverlayTimeline
+    removeOverlayWindowTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(0px)',
@@ -348,7 +348,7 @@ function removeSyllableOverlay() {
             easing: 'easeOutExpo',
         }, 0)
 
-        removeSyllableOverlayTimeline.play();
+        removeOverlayWindowTimeline.play();
 }
 
 
@@ -700,7 +700,7 @@ function handlePressStart(event) {
     magicLensLongPressTimer = setTimeout(() => {
         magicLensLongPress = true;
         pressAndHoldSound.play();
-        createSyllableOverlay();
+        createOverlayWindow();
     }, 1500);
 
     function handlePressEnd(event) {
@@ -721,7 +721,7 @@ function handlePressAction(relativeClickPointX) {
 
     if (magicLensLongPress) {
         magicLensLongPress = false;
-        removeSyllableOverlay();
+        removeOverlayWindow();
 
     } else {
         wordFocus();
