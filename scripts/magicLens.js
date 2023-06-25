@@ -299,7 +299,7 @@ function createOverlayWindow() {
                 magicLensWrapper.jQ.css({ display: "none" });
                 overlayWindow.jQ.css({ transform: "scale(0.93, 0.93)" });
                 overlayWindow.jQ.css({ display: "flex" });
-                overlayWindow.jQ.css({ left: overlayWindow.jQ.position().left - 5 });
+                overlayWindow.jQ.css({ left: overlayWindow.jQ.position().left - 15 });
             }
         }, 0)
 
