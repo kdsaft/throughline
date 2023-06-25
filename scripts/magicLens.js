@@ -292,7 +292,7 @@ function createSyllableOverlay() {
 
         .add({
             targets: magicLensWrapper.native,
-            scale: 0.055,
+            scale: 1.055,
             duration: 100,
             easing: 'easeOutExpo',
             complete: function (anim) {
