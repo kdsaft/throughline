@@ -111,7 +111,7 @@ body {
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
- }
+}
 
 .syllable-text-container {
     position: absolute;
@@ -122,6 +122,7 @@ body {
     height: auto;
     overflow: hidden;
 }
+
 .magic-lens {
     width: 50px;
     height: 54px;
@@ -150,6 +151,7 @@ body {
     background-color: #ffffff;
     border-radius: 8px;
     border: 2px solid #9FADDE;
+    box-shadow: 0px 0.602px 3.010px -0.333px rgba(0, 0, 0, 0.06), 0px 2.288px 11.442px -0.6666px rgba(0, 0, 0, 0.08433), 0px 10px 50px -1px rgba(0, 0, 0, 0.2);
 
 }
 
@@ -255,6 +257,7 @@ body {
 .article-title .syllable-separator {
     font-size: 14px;
 }
+
 .paragraph {
     padding-bottom: 32px;
 }
@@ -358,7 +361,9 @@ body {
     border: 2px solid #E7F2FB;
     -webkit-user-select: none;
     user-select: none;
-    box-shadow: 0px 0px 10px 0px var(--Grey_200, #edeef0) /* {"name":"Grey 200"} */;
+    box-shadow: 0px 0px 10px 0px var(--Grey_200, #edeef0)
+    /* {"name":"Grey 200"} */
+    ;
 }
 
 .syllable-group {

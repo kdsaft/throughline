@@ -298,6 +298,7 @@ function createSyllableOverlay() {
             easing: 'easeOutExpo',
             complete: function (anim) {
                 syllableOverlay.jQ.css({ display: "block" });
+                magicLensWrapper.jQ.css({ display: "none" });
             }
         }, 0)
 
@@ -685,10 +686,10 @@ function handleJumpStart(event) {
 
 
 // for handling click events
-magicLensDisplay.jQ.on('touchstart mousedown', handleTapStart);
+magicLensDisplay.jQ.on('touchstart mousedown', handlePressStart);
 
 
-function handleTapStart(event) {
+function handlePressStart(event) {
     event.preventDefault();
 
     magicLensLongPress = false;
@@ -702,17 +703,17 @@ function handleTapStart(event) {
         createSyllableOverlay();
     }, 1500);
 
-    function handleTapEnd(event) {
-        handelInteractionEnd(relativeClickPointX);
-        $(document).off('mouseup touchend', handleTapEnd);
+    function handlePressEnd(event) {
+        handlePressAction(relativeClickPointX);
+        $(document).off('mouseup touchend', handlePressEnd);
     }
 
-    $(document).on('mouseup touchend', handleTapEnd);
+    $(document).on('mouseup touchend', handlePressEnd);
 }
 
 
 
-function handelInteractionEnd(relativeClickPointX) {
+function handlePressAction(relativeClickPointX) {
     const { isFirstWord, isLastWord } = isFirstOrLastWord(wordId);
     const { isFirstClause, isLastClause } = isFirstOrLastClause(wordId);
 
