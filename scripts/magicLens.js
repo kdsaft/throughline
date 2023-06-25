@@ -297,7 +297,7 @@ function createOverlayWindow() {
             easing: 'easeOutExpo',
             complete: function (anim) {
                 overlayWindow.jQ.css({ display: "flex" });
-                //magicLensWrapper.jQ.css({ display: "none" });
+                magicLensWrapper.jQ.css({ display: "none" });
             }
         }, 0)
 
