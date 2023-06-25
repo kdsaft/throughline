@@ -34,6 +34,7 @@ body {
     width: 710px !important;
     height: 100vh !important;
     box-sizing: border-box !important;
+    overflow: visible !important;
 }
 
 #canvas-container {

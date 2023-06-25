@@ -23,7 +23,7 @@ const magicLensHandle = { jQ: $('.grab-handle-top'), native: $('.grab-handle-top
 const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handle-grab-area').get(0) }
 
 // Syllable overlay
-const syllableOverlay = { jQ: $('.syllable-overlay'), native: $('.syllable-overlay').get(0) }
+const overlayWindow = { jQ: $('.overlay-window'), native: $('.overlay-window').get(0) }
 
 // tracking variables
 let dragging = false; // is the magicLens being dragged?
