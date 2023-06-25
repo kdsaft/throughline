@@ -147,6 +147,10 @@ body {
     position: absolute;
     z-index: 500;
     display: none;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2px solid #9FADDE;
+
 }
 
 .magic-lens-wrapper {
