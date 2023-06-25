@@ -156,7 +156,8 @@ body {
 .overlay-text {
     position: relative;
     width: 100%;
-    top: 8px;
+    top: 4px;
+    left: 4px;
     font-size: 18px;
     line-height: 48px;
     font-family: "SF-Mono-Regular";
