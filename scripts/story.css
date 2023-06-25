@@ -146,7 +146,7 @@ body {
 .syllable-overlay {
     position: absolute;
     z-index: 500;
-    display: none;
+    display: block;
     background-color: #ffffff;
     border-radius: 8px;
     border: 2px solid #9FADDE;
