@@ -163,6 +163,7 @@ body {
     position: absolute;
     border-radius: 8px;
     border: 2px solid var(--Ultramarine_300, #9fadde);
+    transform: scale(1.055, 1.055);
     z-index: 500;
   }
 
