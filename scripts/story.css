@@ -148,8 +148,8 @@ body {
 .syllable-overlay {
     box-sizing: border-box;
     flex-shrink: 0;
-    width: min-content;
-    height: min-content;
+    width: 200px;
+    height: 48px;
     display: flex;
     flex-direction: column;
     justify-content: center;
