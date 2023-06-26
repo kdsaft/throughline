@@ -67,8 +67,8 @@ function attachPhonemeSound() {
         phoneticTileImage[i].addEventListener('click', playPhonemeExample);
     }
 
-/*     const overlayWindow = document.getElementsByClassName('overlay-window')
-    overlayWindow[0].addEventListener('click', removePhonemeSound); */
+    const overlayWindowTitle = document.getElementsByClassName('overlay-title')
+    overlayWindowTitle[0].addEventListener('click', removePhonemeSound);
 }
 
 function removePhonemeSound() {
@@ -82,6 +82,8 @@ function removePhonemeSound() {
         phoneticTileImage[i].removeEventListener('click', playPhonemeExample);
     }
 
-/*     const overlayWindow = document.getElementsByClassName('overlay-window')
-    overlayWindow[0].removeEventListener('click', removePhonemeSound); */
+    const overlayWindowTitle = document.getElementsByClassName('overlay-title')
+    overlayWindowTitle[0].removeEventListener('click', removePhonemeSound);
+
+    removeOverlayWindow();
 }
