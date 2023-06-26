@@ -42,7 +42,6 @@ function initListening() {
     drawBars(canvas, canvasContext);
 }
 
-
 function initSpeechSDK() {
     const subscriptionKey = "bdb8bfbfafa74fa39e46d676edf2787b";
     const region = "eastus";

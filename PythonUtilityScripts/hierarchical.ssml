@@ -1,0 +1,8 @@
+<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US">
+<voice name="en-US-SteffanNeural">
+  <bookmark mark='haɪ' /><phoneme alphabet="ipa" ph="haɪˌ">hi</phoneme><break strength="strong" />   <bookmark mark='haɪ as in' />as in: <break strength="medium" /> Hi.<break strength="strong" />
+<phoneme alphabet="ipa" ph=".əɹˈ">er</phoneme><break strength="strong" />  as in the end of: <break strength="medium" />Timber.
+<phoneme alphabet="ipa" ph="ɑˈɹ">ɑr</phoneme><break strength="strong" />  as in the start of: <break strength="medium" />Arch. <break strength="strong" />
+<phoneme alphabet="ipa" ph=".kiˈ">chi</phoneme><break strength="strong" />  as in: <break strength="medium" />Key. <break strength="strong" />
+<phoneme alphabet="ipa" ph="kəl">cal</phoneme><break strength="strong" />  as in the start of:  <break strength="medium" />cat. <break strength="medium" /> and the end of: <break strength="medium" />camel.
+</voice></speak>

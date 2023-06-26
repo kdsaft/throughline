@@ -1,0 +1,50 @@
+{'AudioOffset': 50, 'Duration': 400.0, 'Text': 'hi'}
+{'AudioOffset': 1450, 'Duration': 212.5, 'Text': 'as'}
+{'AudioOffset': 1675, 'Duration': 175.0, 'Text': 'in'}
+{'AudioOffset': 1850, 'Duration': 0.0, 'Text': ':'}
+{'AudioOffset': 2600, 'Duration': 400.0, 'Text': 'Hi'}
+{'AudioOffset': 50, 'Duration': 3552.5, 'Text': 'hi   as in:  Hi.'}
+{'AudioOffset': 3000, 'Duration': 112.5, 'Text': '.'}
+{'AudioOffset': 4653, 'Duration': 287.5, 'Text': 'er'}
+{'AudioOffset': 5940, 'Duration': 200.0, 'Text': 'as'}
+{'AudioOffset': 6153, 'Duration': 75.0, 'Text': 'in'}
+{'AudioOffset': 6240, 'Duration': 100.0, 'Text': 'the'}
+{'AudioOffset': 6353, 'Duration': 200.0, 'Text': 'end'}
+{'AudioOffset': 6565, 'Duration': 150.0, 'Text': 'of'}
+{'AudioOffset': 6815, 'Duration': 125.0, 'Text': ':'}
+{'AudioOffset': 7690, 'Duration': 450.0, 'Text': 'Timber'}
+{'AudioOffset': 4603, 'Duration': 4127.5, 'Text': 'hi   as in:  Hi.\ner  as in the end of: Timber.'}
+{'AudioOffset': 8140, 'Duration': 100.0, 'Text': '.'}
+{'AudioOffset': 8780, 'Duration': 325.0, 'Text': 'ɑr'}
+{'AudioOffset': 10105, 'Duration': 200.0, 'Text': 'as'}
+{'AudioOffset': 10318, 'Duration': 62.5, 'Text': 'in'}
+{'AudioOffset': 10393, 'Duration': 100.0, 'Text': 'the'}
+{'AudioOffset': 10505, 'Duration': 312.5, 'Text': 'start'}
+{'AudioOffset': 10830, 'Duration': 175.0, 'Text': 'of'}
+{'AudioOffset': 11005, 'Duration': 12.5, 'Text': ':'}
+{'AudioOffset': 11768, 'Duration': 437.5, 'Text': 'Arch.'}
+{'AudioOffset': 13205, 'Duration': 337.5, 'Text': 'chi'}
+{'AudioOffset': 14543, 'Duration': 212.5, 'Text': 'as'}
+{'AudioOffset': 14768, 'Duration': 162.5, 'Text': 'in'}
+{'AudioOffset': 14930, 'Duration': 0.0, 'Text': ':'}
+{'AudioOffset': 15680, 'Duration': 362.5, 'Text': 'Key'}
+{'AudioOffset': 8730, 'Duration': 7915.0, 'Text': 'hi   as in:  Hi.\ner  as in the end of: Timber.\nɑr  as in the start of: Arch. \nchi  as in: Key.'}
+{'AudioOffset': 16043, 'Duration': 112.5, 'Text': '.'}
+{'AudioOffset': 17695, 'Duration': 287.5, 'Text': 'cal'}
+{'AudioOffset': 18983, 'Duration': 200.0, 'Text': 'as'}
+{'AudioOffset': 19195, 'Duration': 62.5, 'Text': 'in'}
+{'AudioOffset': 19270, 'Duration': 100.0, 'Text': 'the'}
+{'AudioOffset': 19383, 'Duration': 312.5, 'Text': 'start'}
+{'AudioOffset': 19708, 'Duration': 175.0, 'Text': 'of'}
+{'AudioOffset': 19883, 'Duration': 12.5, 'Text': ':'}
+{'AudioOffset': 20645, 'Duration': 450.0, 'Text': 'cat'}
+{'AudioOffset': 17645, 'Duration': 4040.0, 'Text': 'hi   as in:  Hi.\ner  as in the end of: Timber.\nɑr  as in the start of: Arch. \nchi  as in: Key. \ncal  as in the start of:  cat.'}
+{'AudioOffset': 21095, 'Duration': 100.0, 'Text': '.'}
+{'AudioOffset': 22485, 'Duration': 125.0, 'Text': 'and'}
+{'AudioOffset': 22623, 'Duration': 100.0, 'Text': 'the'}
+{'AudioOffset': 22735, 'Duration': 212.5, 'Text': 'end'}
+{'AudioOffset': 22960, 'Duration': 187.5, 'Text': 'of'}
+{'AudioOffset': 23173, 'Duration': 62.5, 'Text': ':'}
+{'AudioOffset': 23985, 'Duration': 437.5, 'Text': 'camel'}
+{'AudioOffset': 22435, 'Duration': 2787.5, 'Text': 'hi   as in:  Hi.\ner  as in the end of: Timber.\nɑr  as in the start of: Arch. \nchi  as in: Key. \ncal  as in the start of:  cat.  and the end of: camel.'}
+{'AudioOffset': 24423, 'Duration': 100.0, 'Text': '.'}
