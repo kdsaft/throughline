@@ -333,7 +333,7 @@ function createOverlayWindow() {
 function removeOverlayWindow() {
     const removeOverlayWindowTimeline = anime.timeline();
 
-    removePhonemeSound()
+    //removePhonemeSound()
 
     overlayWindow.jQ.css({ display: "none" });
     magicLensWrapper.jQ.css({ display: "block" });

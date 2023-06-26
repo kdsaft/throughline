@@ -68,7 +68,7 @@ function attachPhonemeSound() {
     }
 
     const overlayWindowTitle = document.getElementsByClassName('overlay-title')
-    overlayWindowTitle[0].addEventListener('click', removeOverlayWindow);
+    overlayWindowTitle[0].addEventListener('click', removePhonemeSound);
 }
 
 function removePhonemeSound() {
