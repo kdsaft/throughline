@@ -49,11 +49,11 @@ function playPhonemeSound() {
     console.log('sound: ' + phonemeSound);
 }
 
-function playPhonemeWord() {
-    const phonemeWord = this.parentNode.id + '_word';
+function playPhonemeExample() {
+    const phonemeWord = this.parentNode.id + '_example';
 
     pictogramPhonemeSounds.play(phonemeWord);
-    console.log('word: ' + phonemeWord);
+    console.log('example: ' + phonemeWord);
 }
 
 function attachPhonemeSound() {
@@ -64,7 +64,7 @@ function attachPhonemeSound() {
     // Attach the click event listener to all the elements
     for (let i = 0; i < phoneticTileText.length; i++) {
         phoneticTileText[i].addEventListener('click', playPhonemeSound);
-        phoneticTileImage[i].addEventListener('click', playPhonemeWord);
+        phoneticTileImage[i].addEventListener('click', playPhonemeExample);
     }
 
 /*     const overlayWindow = document.getElementsByClassName('overlay-window')
@@ -79,7 +79,7 @@ function removePhonemeSound() {
     // Attach the click event listener to all the elements
     for (let i = 0; i < phoneticTileText.length; i++) {
         phoneticTileText[i].removeEventListener('click', playPhonemeSound);
-        phoneticTileImage[i].removeEventListener('click', playPhonemeWord);
+        phoneticTileImage[i].removeEventListener('click', playPhonemeExample);
     }
 
 /*     const overlayWindow = document.getElementsByClassName('overlay-window')
