@@ -6,15 +6,15 @@ const pictogramPhonemeSounds = new Howl({
     src: ['https://kdsaft.github.io/throughline/ssml/hierarchical.wav'],
     sprite: {
         h_ahy_sound: [50, 400],
-        h_ahy_example: [1450, 788],
+        h_ahy_example: [1450, 2500],
         uh_r_sound: [4653, 287.5],
-        uh_r_example: [5940, 1300],
+        uh_r_example: [5940, 2512],
         ah_r_sound: [8780, 325],
-        ah_r_example: [10105, 4302],
+        ah_r_example: [10105, 2527],
         k_ee_sound: [13205, 337],
-        k_ee_example: [14543, 739],
+        k_ee_example: [14543, 2000],
         k_uh_l_sound: [17695, 288],
-        k_uh_l_example: [18983, 2140],
+        k_uh_l_example: [18983, 5887],
     }
 });
 
