@@ -312,20 +312,12 @@ function createOverlayWindow() {
             paddingtop: 36,
             width: 509,
             height: 244,
-            duration: 200,
-            easing: 'easeOutExpo',
-        }, 125) 
-
-        .add({
-            targets: overlayTitle.native,
-            scale: 1.25,
-            duration: 200,
+            duration: 400,
             easing: 'easeOutExpo',
             complete: function (anim) {
                 attachPhonemeSound();
             }
-        }, 125)
-
+        }, 125) 
 
         createOverlayWindowTimeline.play();
 }
