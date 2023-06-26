@@ -3,24 +3,18 @@
 
 // Audio
 const pictogramPhonemeSounds = new Howl({
-    src: ['https://kdsaft.github.io/throughline/audio/phonemeSoundsMS.m4a'],
+    src: ['https://kdsaft.github.io/throughline/ssml/hierarchical.wav'],
     sprite: {
-        hat: [0, 1995],
-        h: [0, 493],
-        eye: [2600, 1933],
-        ahy: [2600, 514],
-        asleep: [5111, 2307],
-        uh: [5111, 516],
-        rabbit: [7945, 2037],
-        r: [7945, 563],
-        arch: [10721, 1901],
-        ah: [10721, 498],
-        cat: [13438, 1984],
-        k: [13438, 524],
-        igloo: [16064, 2020],
-        ee: [16064, 464],
-        lion: [18761, 2054],
-        l: [18761, 584]
+        h_ahy_sound: [50, 400],
+        h_ahy_example: [1450, 788],
+        uh_r_sound: [4653, 287.5],
+        uh_r_example: [5940, 1300],
+        ah_r_sound: [8780, 325],
+        ah_r_example: [10105, 4302],
+        k_ee_sound: [13205, 337],
+        k_ee_example: [14543, 739],
+        k_uh_l_sound: [17695, 288],
+        k_uh_l_example: [18983, 2140],
     }
 });
 
@@ -47,16 +41,39 @@ const pictogramPhonemeSounds = new Howl({
 });
  */
 // Function to handle click event
+
+
 function playPhonemeSound() {
-    pictogramPhonemeSounds.play(this.id);
+    const phonemeSound = this.parentNode.id + '_sound';
+    pictogramPhonemeSounds.play(phonemeSound);
 }
 
-// Get all elements with class 'pictograph-tile'
-const pictographTilesImage = document.getElementsByClassName('pictograph-image-container');
-const pictographTilesText = document.getElementsByClassName('pictograph-text-container');
+function playPhonemeWord() {
+    const phonemeWord = this.parentNode.id + '_word';
 
-// Attach the click event listener to all the elements
-for (let i = 0; i < pictographTilesImage.length; i++) {
-    pictographTilesImage[i].addEventListener('click', playPhonemeSound);
-    pictographTilesText[i].addEventListener('click', playPhonemeSound);
+    pictogramPhonemeSounds.play(phonemeWord);
+}
+
+function attachPhonemeSound() {
+    // Get all elements with class 'pictograph-tile'
+    const phoneticTileText = document.getElementsByClassName('phonetic-text-wrapper');
+    const phoneticTileImage = document.getElementsByClassName('pictograms-wrapper');
+
+    // Attach the click event listener to all the elements
+    for (let i = 0; i < phoneticTileText.length; i++) {
+        phoneticTileText[i].addEventListener('click', playPhonemeSound);
+        phoneticTileImage[i].addEventListener('click', playPhonemeWord);
+    }
+}
+
+function removePhonemeSound() {
+    // Get all elements with class 'pictograph-tile'
+    const phoneticTileText = document.getElementsByClassName('phonetic-text-wrapper');
+    const phoneticTileImage = document.getElementsByClassName('pictograms-wrapper');
+
+    // Attach the click event listener to all the elements
+    for (let i = 0; i < phoneticTileText.length; i++) {
+        phoneticTileText[i].removeEventListener('click', playPhonemeSound);
+        phoneticTileImage[i].removeEventListener('click', playPhonemeWord);
+    }
 }

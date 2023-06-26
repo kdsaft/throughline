@@ -321,6 +321,9 @@ function createOverlayWindow() {
             scale: 1.25,
             duration: 200,
             easing: 'easeOutExpo',
+            complete: function (anim) {
+                attachPhonemeSound();
+            }
         }, 125)
 
 
@@ -329,6 +332,8 @@ function createOverlayWindow() {
 
 function removeOverlayWindow() {
     const removeOverlayWindowTimeline = anime.timeline();
+
+    removePhonemeSound()
 
     overlayWindow.jQ.css({ display: "none" });
     magicLensWrapper.jQ.css({ display: "block" });
@@ -734,7 +739,7 @@ function handlePressAction(relativeClickPointX) {
 
     if (magicLensLongPress) {
         magicLensLongPress = false;
-        removeOverlayWindow();
+        //removeOverlayWindow();
 
     } else {
         wordFocus();
