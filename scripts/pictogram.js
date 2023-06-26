@@ -68,7 +68,7 @@ function attachPhonemeSound() {
     }
 
     const overlayWindow = document.getElementsByClassName('overlay-window')
-    overlayWindow.addEventListener('click', removePhonemeSound);
+    overlayWindow[0].addEventListener('click', removePhonemeSound);
 }
 
 function removePhonemeSound() {
@@ -83,5 +83,5 @@ function removePhonemeSound() {
     }
 
     const overlayWindow = document.getElementsByClassName('overlay-window')
-    overlayWindow.removeEventListener('click', removePhonemeSound);
+    overlayWindow[0].removeEventListener('click', removePhonemeSound);
 }
