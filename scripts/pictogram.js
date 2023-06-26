@@ -46,12 +46,14 @@ const pictogramPhonemeSounds = new Howl({
 function playPhonemeSound() {
     const phonemeSound = this.parentNode.id + '_sound';
     pictogramPhonemeSounds.play(phonemeSound);
+    console.log('sound: ' + phonemeSound);
 }
 
 function playPhonemeWord() {
     const phonemeWord = this.parentNode.id + '_word';
 
     pictogramPhonemeSounds.play(phonemeWord);
+    console.log('word: ' + phonemeWord);
 }
 
 function attachPhonemeSound() {
@@ -64,6 +66,9 @@ function attachPhonemeSound() {
         phoneticTileText[i].addEventListener('click', playPhonemeSound);
         phoneticTileImage[i].addEventListener('click', playPhonemeWord);
     }
+
+    const overlayWindow = document.getElementsByClassName('overlay-window')
+    overlayWindow.addEventListener('click', removePhonemeSound);
 }
 
 function removePhonemeSound() {
@@ -76,4 +81,7 @@ function removePhonemeSound() {
         phoneticTileText[i].removeEventListener('click', playPhonemeSound);
         phoneticTileImage[i].removeEventListener('click', playPhonemeWord);
     }
+
+    const overlayWindow = document.getElementsByClassName('overlay-window')
+    overlayWindow.removeEventListener('click', removePhonemeSound);
 }

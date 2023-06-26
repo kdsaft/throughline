@@ -166,6 +166,8 @@ body {
     border: 2px solid var(--Ultramarine_300, #9fadde);
     z-index: 500;
     box-shadow: 0px 0.602px 3.010px -0.333px rgba(0, 0, 0, 0.06), 0px 2.288px 11.442px -0.6666px rgba(0, 0, 0, 0.08433), 0px 10px 50px -1px rgba(0, 0, 0, 0.2);
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .overlay-title {
@@ -177,6 +179,8 @@ body {
     font-size: 18px;
     line-height: 48px;
     text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .overlay-title .syllable-separator {
@@ -191,6 +195,8 @@ body {
     white-space: pre;
     position: relative;
     white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
 
@@ -391,6 +397,8 @@ body {
     align-content: center;
     flex-wrap: nowrap;
     gap: 10px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 
@@ -410,6 +418,8 @@ body {
     gap: 0px;
     border-radius: 6px;
     border: 1px solid var(--Grey_300, #e3e4e6);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .one-pictogram {
@@ -441,6 +451,8 @@ body {
     border-bottom-width: 1px;
     border-left-width: 0px;
     border-right-width: 0px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .phonetic-text {
@@ -460,6 +472,8 @@ body {
     align-content: center;
     flex-wrap: nowrap;
     gap: 10px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .phonetic-symbol {
@@ -479,6 +493,8 @@ body {
     position: relative;
     align-content: center;
     flex-wrap: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .full-arrow {
@@ -507,6 +523,8 @@ body {
     align-content: center;
     flex-wrap: nowrap;
     gap: 1px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .pictogram {
@@ -525,6 +543,8 @@ body {
     align-content: center;
     flex-wrap: nowrap;
     gap: 0px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .pictogram-image {
@@ -542,6 +562,8 @@ body {
     align-content: center;
     flex-wrap: nowrap;
     gap: 8px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .pictogram-sound-position {
@@ -559,6 +581,8 @@ body {
     align-content: center;
     flex-wrap: nowrap;
     gap: 2px;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .sound-position-full {
