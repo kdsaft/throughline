@@ -289,6 +289,8 @@ function createFocusMode() {
 
         console.log('newMenuX: ' + newMenuX, 'newMenuY: ' + newMenuY, 'newCloseX: ' + newCloseX, 'newCloseY: ' + newCloseY);
         console.log('focusPanel.jQ.width(): ' + focusPanel.jQ.width(), 'focusPanel.jQ.height(): ' + focusPanel.jQ.height());
+        console.log('contextMenu.jQ.width(): ' + contextMenu.jQ.width(), 'contextMenu.jQ.height(): ' + contextMenu.jQ.height());
+        console.log('closeFocus.jQ.width(): ' + closeFocus.jQ.width(), 'closeFocus.jQ.height(): ' + closeFocus.jQ.height());
 
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
     closeFocus.jQ.css({ transform: 'translate(' + newCloseX + 'px, ' + newCloseY + 'px)' });
