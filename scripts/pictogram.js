@@ -3,6 +3,75 @@
 const pictogramPath = "https://kdsaft.github.io/throughline/icons/pictogram-";
 const menuIconPath = "https://kdsaft.github.io/throughline/icons/menu-icon-";
 
+// Variables that store focus content
+let phonemeTilesData = [
+    {
+        title: 'hi',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'hi.svg'),
+                phonetics: ['h', 'ahy'],
+                position: "full",
+            },
+        ],
+    },
+    {
+        title: 'er',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'timber.svg'),
+                phonetics: ['uh', 'r'],
+                position: "end",
+            },
+        ],
+    },
+    {
+        title: 'ar',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'arch.svg'),
+                phonetics: ['ah', 'r'],
+                position: "start",
+            },
+        ],
+    },
+    {
+        title: 'chi',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'key.svg'),
+                phonetics: ['k', 'ee'],
+                position: "full",
+            },
+        ],
+    },
+    {
+        title: 'cal',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'cat.svg'),
+                phonetics: ['k'],
+                position: "start",
+            },
+            {
+                icon: (pictogramPath + 'camel.svg'),
+                phonetics: ['uh', 'l'],
+                position: "end",
+            },
+        ],
+    }
+];
+
+let contextMenuItemsData = [
+    {
+        icon: (menuIconPath + 'speak.svg'),
+        title: ['hierarchical']
+    },
+    {
+        icon: (menuIconPath + 'speak.svg'),
+        title: ['hi', 'er', 'ar', 'chi', 'cal']
+    },
+];
 
 
 // Audio
@@ -23,7 +92,11 @@ const pictogramPhonemeSounds = new Howl({
 });
 
 
-function generateTiles(phonemeTiles, focusAreaId) {
+function generateTiles() {
+    const phonemeTiles = phonemeTilesData;
+    const focusAreaId = 'focusMode-panel';
+
+
     const targetDiv = document.getElementById(focusAreaId);
 
     phonemeTiles.forEach(tileInfo => {
@@ -98,7 +171,9 @@ function generateTiles(phonemeTiles, focusAreaId) {
     });
 }
 
-function generateContextMenu(contextMenuItems, menuID) {
+function generateContextMenu() {
+    const contextMenuItems = contextMenuItemsData;
+    const menuID = 'focusMode-menu';
 
     // Get the div using provided ID
     let menuDiv = document.getElementById(menuID);
