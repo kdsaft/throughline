@@ -346,12 +346,12 @@ function createFocusMode() {
      generateContextMenu(contextMenuItems, 'focusMode-menu');
 
     // set the starting position of the focusPanel
+    focusPanel.jQ.css({ display: 'flex' });
     const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
-
     console.log('scaledWidth: ' + scaledWidth + ' focusPanel: ' + focusPanel.jQ.width() + ' magicLens: ' + magicLens.jQ.width());
 
     focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')' });
-    focusPanel.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5), display: 'flex' });
+    focusPanel.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5) });
 
     const createFocusModeTimeline = anime.timeline();
 
