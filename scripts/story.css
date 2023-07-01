@@ -367,6 +367,8 @@ body {
     position: absolute;
     inset: 0;
     z-index: 0;
+    width: min-content;
+    height: min-content;
 }
 
 .tile-container,
