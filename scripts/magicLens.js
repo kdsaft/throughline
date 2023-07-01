@@ -283,14 +283,14 @@ function createFocusMode() {
 
    // set initial position of context menu and close for animation
    let newMenuX =  24; // under first tile
-        let newMenuY = (focusPanel.jQ.height() - contextMenu.jQ.height()); // align bottom of context menu
+        let newMenuY = (focusPanel.jQ.outerHeight() - contextMenu.jQ.outerHeight()); // align bottom of context menu
         let newCloseY = 0; // at top of focus panel
-        let newCloseX = (focusPanel.jQ.width() - closeFocus.jQ.width()); // at right of focus panel
+        let newCloseX = (focusPanel.jQ.outerWidth() - closeFocus.jQ.outerWidth()); // at right of focus panel
 
         console.log('newMenuX: ' + newMenuX, 'newMenuY: ' + newMenuY, 'newCloseX: ' + newCloseX, 'newCloseY: ' + newCloseY);
-        console.log('focusPanel.jQ.width(): ' + focusPanel.jQ.width(), 'focusPanel.jQ.height(): ' + focusPanel.jQ.height());
-        console.log('contextMenu.jQ.width(): ' + contextMenu.jQ.width(), 'contextMenu.jQ.height(): ' + contextMenu.jQ.height());
-        console.log('closeFocus.jQ.width(): ' + closeFocus.jQ.width(), 'closeFocus.jQ.height(): ' + closeFocus.jQ.height());
+        console.log('focusPanel.jQ.width(): ' + focusPanel.jQ.outerWidth(), 'focusPanel.jQ.height(): ' + focusPanel.jQ.outerHeight());
+        console.log('contextMenu.jQ.width(): ' + contextMenu.jQ.outerWidth(), 'contextMenu.jQ.height(): ' + contextMenu.jQ.outerHeight());
+        console.log('closeFocus.jQ.width(): ' + closeFocus.jQ.outerWidth(), 'closeFocus.jQ.height(): ' + closeFocus.jQ.outerHeight());
 
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
     closeFocus.jQ.css({ transform: 'translate(' + newCloseX + 'px, ' + newCloseY + 'px)' });
