@@ -64,10 +64,12 @@ let phonemeTilesData = [
 
 let contextMenuItemsData = [
     {
+        id: 'speakWord',
         icon: (menuIconPath + 'speak.svg'),
         title: ['hierarchical']
     },
     {
+        id: 'speakSyllables',
         icon: (menuIconPath + 'speak.svg'),
         title: ['hi', 'er', 'ar', 'chi', 'cal']
     },
@@ -208,6 +210,7 @@ function generateContextMenu() {
         // Create main item div
         let menuItemDiv = document.createElement('div');
         menuItemDiv.className = 'contextMenu-item';
+        menuItemDiv.id = item.id;
 
         // Create image area div and append icon
         let imageAreaDiv = document.createElement('div');

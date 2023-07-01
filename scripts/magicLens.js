@@ -292,7 +292,6 @@ function createFocusMode() {
 
     let position = magicLensWrapper.jQ.offset();  // relative to the document (here, the body is the offset parent)
 
-    console.log('offset values ', position.top, position.left);
 
 
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
@@ -304,8 +303,6 @@ function createFocusMode() {
 
     focuseModeElements.jQ.css({ top: position.top, left: magicLensWrapper.jQ.position().left });
     //magicLensWrapper.jQ.css({ display: 'none' });
-
-    console.log('top: ' + magicLensWrapper.jQ.position().top, 'left: ' + magicLensWrapper.jQ.position().left);
 
 
     // animate into new position
