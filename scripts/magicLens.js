@@ -311,7 +311,7 @@ function createFocusMode() {
     // animate into new position
     const createFocusModeTimeline = anime.timeline();
 
-   createFocusModeTimeline
+    createFocusModeTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
@@ -333,45 +333,30 @@ function createFocusMode() {
         }, 0)
 
         .add({
-           targets: focuseModeElements.native,
-           scale: 1.0,
-           duration: 400,
-           easing: 'easeOutExpo',
-       }, 0)
+            targets: focuseModeElements.native,
+            scale: 1.0,
+            duration: 400,
+            easing: 'easeOutExpo',
+        }, 0)
 
-       .add({
-        targets: contextMenu.native,
-        translateY: destinationMenuY,
-        duration: 400,
-        easing: 'easeOutExpo',
-    }, 0)
+        .add({
+            targets: contextMenu.native,
+            translateY: destinationMenuY,
+            duration: 400,
+            easing: 'easeOutExpo',
+        }, 0)
 
-    .add({
-        targets: closeFocus.native,
-        translateX: destinationCloseX,
-        duration: 400,
-        easing: 'easeOutExpo',
-    }, 0)
-
-
-
-    /*          .add({
-                targets: overlayWindow.native,
-                top: 96,
-                left:96,
-                paddingtop: 36,
-                width: 509,
-                height: 244,
-                duration: 400,
-                easing: 'easeOutExpo',
-                complete: function (anim) {
-                    attachPhonemeSound();
-                }
-            }, 125) 
- */
+        .add({
+            targets: closeFocus.native,
+            translateX: destinationCloseX,
+            duration: 400,
+            easing: 'easeOutExpo',
+            complete: function (anim) {
+                attachPhonemeSound();
+            }
+        }, 0)
 
     createFocusModeTimeline.play();
-    
 }
 
 function removeFocusMode() {
@@ -407,6 +392,13 @@ function removeFocusMode() {
             targets: magicLensWrapper.native,
             scale: 1.055,
             duration: 50,
+            easing: 'easeOutExpo',
+        }, 0)
+
+        .add({
+            targets: focuseModeElements.native,
+            opacity: 0,
+            duration: 200,
             easing: 'easeOutExpo',
         }, 0)
 
@@ -783,7 +775,6 @@ function handlePressAction(relativeClickPointX) {
 
     if (magicLensLongPress) {
         magicLensLongPress = false;
-        //removeFocusMode();
 
     } else {
         wordFocus();

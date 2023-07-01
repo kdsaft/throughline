@@ -79,15 +79,15 @@ const pictogramPhonemeSounds = new Howl({
     src: ['https://kdsaft.github.io/throughline/ssml/hierarchical.wav'],
     sprite: {
         h_ahy_sound: [50, 400],
-        h_ahy_example: [1450, 2500],
+        h_ahy_example: [50, 3900],
         uh_r_sound: [4653, 287.5],
-        uh_r_example: [5940, 2512],
+        uh_r_example: [4653, 3800],
         ah_r_sound: [8780, 325],
-        ah_r_example: [10105, 2527],
+        ah_r_example: [8780, 3852],
         k_ee_sound: [13205, 337],
-        k_ee_example: [14543, 2000],
+        k_ee_example: [13205, 3338],
         k_uh_l_sound: [17695, 288],
-        k_uh_l_example: [18983, 5887],
+        k_uh_l_example: [17695, 7175],
     }
 });
 
@@ -126,6 +126,9 @@ function generateTiles() {
             const icon = document.createElement('img');
             icon.className = 'phonetic-icon';
             icon.src = pictogramInfo.icon;
+
+            // Here we set the id using the phonetics data
+            tile.id = pictogramInfo.phonetics.join('_');
 
             pictogram.appendChild(icon);
 
@@ -168,9 +171,9 @@ function generateTiles() {
 
         tile.appendChild(pictogramsWrapper);
         targetDiv.appendChild(tile);
-
     });
 }
+
 function clearTiles() {
     const focusAreaId = 'focusMode-panel';
 
@@ -253,6 +256,7 @@ function clearContextMenu() {
     menuDiv.innerHTML = '';
 }
 
+
 // Function to handle click event
 
 function playPhonemeSound() {
@@ -270,8 +274,8 @@ function playPhonemeExample() {
 
 function attachPhonemeSound() {
     // Get all elements with class 'pictograph-tile'
-    const phoneticTileText = document.getElementsByClassName('phonetic-text-wrapper');
-    const phoneticTileImage = document.getElementsByClassName('pictograms-wrapper');
+    const phoneticTileText = document.getElementsByClassName('tile-title-wrapper');
+    const phoneticTileImage = document.getElementsByClassName('tile-pictograms-wrapper');
 
     // Attach the click event listener to all the elements
     for (let i = 0; i < phoneticTileText.length; i++) {
@@ -279,23 +283,22 @@ function attachPhonemeSound() {
         phoneticTileImage[i].addEventListener('click', playPhonemeExample);
     }
 
-    const overlayWindowTitle = document.getElementsByClassName('overlay-title')
-    overlayWindowTitle[0].addEventListener('click', removePhonemeSound);
+    const closeButton = document.getElementsById('focusMode-close')
+    closeButton[0].addEventListener('click', removePhonemeSound);
 }
 
 function removePhonemeSound() {
     // Get all elements with class 'pictograph-tile'
-    const phoneticTileText = document.getElementsByClassName('phonetic-text-wrapper');
-    const phoneticTileImage = document.getElementsByClassName('pictograms-wrapper');
+    const phoneticTileText = document.getElementsByClassName('tile-title-wrapper');
+    const phoneticTileImage = document.getElementsByClassName('tile-pictograms-wrapper');
 
-    // Attach the click event listener to all the elements
+    // Remove the click event listener to all the elements
     for (let i = 0; i < phoneticTileText.length; i++) {
         phoneticTileText[i].removeEventListener('click', playPhonemeSound);
         phoneticTileImage[i].removeEventListener('click', playPhonemeExample);
     }
 
-    const overlayWindowTitle = document.getElementsByClassName('overlay-title')
-    overlayWindowTitle[0].removeEventListener('click', removePhonemeSound);
-
-    removeOverlayWindow();
+    const closeButton = document.getElementsById('focusMode-close')
+    closeButton[0].removeEventListener('click', removePhonemeSound);
+    removeFocusMode()
 }
