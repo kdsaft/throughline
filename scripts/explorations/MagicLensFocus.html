@@ -3,10 +3,9 @@
     const pictogramPath = "https://kdsaft.github.io/throughline/icons/pictogram-";
     const menuIconPath = "https://kdsaft.github.io/throughline/icons/menu-icon-";
 
-    const contextMenu = document.getElementById("focus-menu");
-    const focusContent = document.getElementById("focus-content");
-    const closeFocus = document.getElementById("close-focus");
-
+    const contextMenu = document.getElementById("focusMode-menu");
+    const focusContent = document.getElementById("focusMode-panel");
+    const closeFocus = document.getElementById("focusMode-close");
 
 
     let phonemeTiles = [
@@ -213,30 +212,32 @@
         });
     }
 
-    generateTiles(phonemeTiles, 'focus-content');
-    generateContextMenu(contextMenuItems, 'focus-menu');
+    generateTiles(phonemeTiles, 'focusMode-panel');
+    generateContextMenu(contextMenuItems, 'focusMode-menu');
 
     // set position of context menu
-    let newTop = focusContent.offsetTop + focusContent.offsetHeight + 20;
-    let newLeft = focusContent.offsetLeft + focusContent.offsetWidth + 20;
+    let newMenuTop = focusContent.offsetTop + focusContent.offsetHeight + 20;
+    let newMenuLeft = focusContent.offsetLeft + 24;
+    let newCloseTop = focusContent.offsetTop;
+    let newCloseLeft = focusContent.offsetLeft + focusContent.offsetWidth + 15;
 
-    console.log(newLeft);
-   
-    contextMenu.style.top = newTop + 'px';
-    contextMenu.style.left = '24px';
 
-    closeFocus.style.left = '200px';
 
+    contextMenu.style.top = newMenuTop + 'px';
+    contextMenu.style.left = newMenuLeft + 'px';
+
+    closeFocus.style.top = newCloseTop + 'px';
+    closeFocus.style.left = newCloseLeft + 'px';
 
 </script>
 
 <body>
-    <div id="focus-area" class="focus-wrapper">
-        <div id="focus-menu" class="contextMenu"></div>
+    <div id="focuseMode-Elements" class="focusElements-wrapper">
+        <div id="focusMode-menu" class="contextMenu-container"></div>
 
-        <div id="focus-content" class="tiles-container"></div>
+        <div id="focusMode-panel" class="tiles-container"></div>
 
-        <div id="close-focus" class="close-menu-button">
+        <div id="focusMode-close" class="close-focus-button">
             <img src="https://kdsaft.github.io/throughline/icons/close-menu-icon.svg" class="close-focus-icon" />
         </div>
 
@@ -271,11 +272,14 @@
         --black: #000000;
     }
 
+
+    /* Focus Panel & Tiles styles */
+
     #FocusArea {
         overflow: visible !important;
     }
 
-    .focus-wrapper {
+    .focusElements-wrapper {
         position: absolute;
         inset: 0;
     }
@@ -286,12 +290,12 @@
     }
 
     .tiles-container {
-        background: var(--grey-100, #f7f8fa);
+        background: var(--grey-100);
         width: min-content;
         height: min-content;
         border-radius: 12px;
         border-style: solid;
-        border-color: var(--ultramarine-300, #9fadde);
+        border-color: var(--ultramarine-300);
         border-width: 2.3px;
         padding: 24px;
         display: flex;
@@ -300,14 +304,14 @@
         align-items: flex-start;
         justify-content: flex-start;
         position: absolute;
-        box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.2);
     }
 
     .tile-container {
-        background: var(--white, #ffffff);
+        background: var(--white);
         border-radius: 7.5px;
         border-style: solid;
-        border-color: var(--grey-400, #d4d5d7);
+        border-color: var(--grey-400);
         border-width: 0.5px;
         padding: 8px;
         display: flex;
@@ -323,7 +327,7 @@
 
     .tile-title-wrapper {
         border-style: solid;
-        border-color: var(--grey-400, #d4d5d7);
+        border-color: var(--grey-400);
         border-width: 0px 0px 0.5px 0px;
         padding: 0px 0px 8px 0px;
         display: flex;
@@ -339,7 +343,7 @@
     }
 
     .tile-title {
-        color: var(--grey-900, #0e0e0e);
+        color: var(--grey-900);
         text-align: left;
         font-family: "SFMono-Medium", monospace;
         font-size: 24px;
@@ -366,7 +370,7 @@
     }
 
     .pictogram {
-        background: var(--white, #ffffff);
+        background: var(--white);
         padding: 8px 0px 0px 0px;
         display: flex;
         flex-direction: column;
@@ -400,7 +404,7 @@
     }
 
     .phonetic-ellipsis {
-        color: var(--grey-400, #d4d5d7);
+        color: var(--grey-400);
         text-align: left;
         font-family: "SF-Mono-Regular", monospace;
         font-size: 18px;
@@ -415,7 +419,7 @@
 
     .phonetic-text {
         margin: 0 0 0 0px;
-        color: var(--grey-700, #6b6b6b);
+        color: var(--grey-700);
         text-align: left;
         font-family: "SF-Mono-Regular", monospace;
         font-size: 18px;
@@ -431,7 +435,7 @@
     .phonetic-dash {
         margin-left: -2px;
         margin-right: -2px;
-        color: var(--grey-500, #6b6b6b);
+        color: var(--grey-500);
         text-align: left;
         font-family: "SF-Mono-Regular", monospace;
         transform: scaleX(0.6);
@@ -445,12 +449,14 @@
         user-select: none;
     }
 
-    .contextMenu,
-    .contextMenu * {
+    /* Content Menu styles */
+
+    .contextMenu-container,
+    .contextMenu-container * {
         box-sizing: border-box;
     }
 
-    .contextMenu {
+    .contextMenu-container {
         background: var(--grey-500);
         border-radius: 12px;
         display: flex;
@@ -514,7 +520,7 @@
     }
 
     .contextMenu-text {
-        color: var(--ultramarine-800, #0f2d8a);
+        color: var(--ultramarine-800);
         text-align: left;
         font-family: "SF-Mono-Regular", monospace;
         font-size: 17px;
@@ -540,7 +546,7 @@
     }
 
     .contextMenu-text-separator {
-        color: var(--grey-300, #e3e4e6);
+        color: var(--grey-300);
         text-align: center;
         font-family: "SF-Mono-Regular", monospace;
         font-size: 8px;
@@ -553,18 +559,23 @@
         user-select: none;
     }
 
+    /* Close button styles */
 
-    .close-menu-button {
+    .close-focus-button {
         position: absolute;
         overflow: visible;
         box-sizing: border-box;
+        width: 44px;
+        height: 44px;
+        display: block;
+        border-radius: 22px;
         box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
-        width: 76px;
-        height: 76px;
     }
 
     .close-focus-icon {
         flex-shrink: 0;
         position: relative;
+        width: 44px;
+        height: 44px;
     }
 </style>

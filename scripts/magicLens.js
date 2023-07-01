@@ -15,16 +15,18 @@ const standardText = { jQ: $('#standard-text'), native: $('#standard-text').get(
 const syllableText = { jQ: $('#syllable-text'), native: $('#syllable-text').get(0) }
 const seperatorText = { jQ: $('.syllable-separator'), native: document.querySelectorAll('.syllable-separator') }
 
-// MagicLens element
+// MagicLens elements
 const magicLensWrapper = { jQ: $('.magic-lens-wrapper'), native: $('.magic-lens-wrapper').get(0) }
 const magicLens = { jQ: $('.magic-lens'), native: $('.magic-lens').get(0) }
 const magicLensDisplay = { jQ: $('.syllable-text-wrapper'), native: $('.syllable-text-wrapper').get(0) }
 const magicLensHandle = { jQ: $('.grab-handle-top'), native: $('.grab-handle-top').get(0) }
 const grabHandleArea = { jQ: $('.grab-handle-grab-area'), native: $('.grab-handle-grab-area').get(0) }
 
-// Syllable overlay
-const overlayWindow = { jQ: $('.overlay-window'), native: $('.overlay-window').get(0) }
-const overlayTitle = { jQ: $('.overlay-title'), native: $('.overlay-title').get(0) }
+// Focus mode elements
+const focuseModeElements = { jQ: $('#focuseMode-elements'), native: document.getElementById("focuseMode-elements") }
+const focusPanel = { jQ: $('#focusMode-panel'), native: document.getElementById("focusMode-panel") }
+const contextMenu = { jQ: $('#focusMode-menu'), native: document.getElementById("focusMode-menu") }
+const closeFocus = { jQ: $('#focusMode-close'), native: document.getElementById("focusMode-close") }
 
 
 // tracking variables
@@ -264,14 +266,23 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 }
 
 
-// function for syllable overlay
+// function for Focus Mode
 
-function createOverlayWindow() {
-    const createOverlayWindowTimeline = anime.timeline();
-    overlayWindow.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5), width: magicLens.jQ.width(), height: (magicLens.jQ.height() + 1) });
+function createFocusMode() {
 
+     // add items to the focusPanel and contextMenu
+     generateTiles(phonemeTiles, 'focusMode-panel');
+     generateContextMenu(contextMenuItems, 'focusMode-menu');
 
-    createOverlayWindowTimeline
+    // set the starting position of the focusPanel
+    const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width()) * focusPanel.jQ.width()
+
+    focuseModeElements.jQ.css({ transform: 'scale(scaledWidth)' });
+    focusPanel.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5), display: 'flex' });
+
+    const createFocusModeTimeline = anime.timeline();
+
+    createFocusModeTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
@@ -305,7 +316,7 @@ function createOverlayWindow() {
             }
         }, 0)
 
-         .add({
+/*          .add({
             targets: overlayWindow.native,
             top: 96,
             left:96,
@@ -318,19 +329,19 @@ function createOverlayWindow() {
                 attachPhonemeSound();
             }
         }, 125) 
-
-        createOverlayWindowTimeline.play();
+ */
+        //createFocusModeTimeline.play();
 }
 
-function removeOverlayWindow() {
-    const removeOverlayWindowTimeline = anime.timeline();
+function removeFocusMode() {
+    const removeFocusModeTimeline = anime.timeline();
 
     //removePhonemeSound()
 
     overlayWindow.jQ.css({ display: "none" });
     magicLensWrapper.jQ.css({ display: "block" });
 
-    removeOverlayWindowTimeline
+    removeFocusModeTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(0px)',
@@ -358,7 +369,7 @@ function removeOverlayWindow() {
             easing: 'easeOutExpo',
         }, 0)
 
-        removeOverlayWindowTimeline.play();
+        removeFocusModeTimeline.play();
 }
 
 
@@ -710,7 +721,7 @@ function handlePressStart(event) {
     magicLensLongPressTimer = setTimeout(() => {
         magicLensLongPress = true;
         pressAndHoldSound.play();
-        createOverlayWindow();
+        createFocusMode();
     }, 1500);
 
     function handlePressEnd(event) {
@@ -731,7 +742,7 @@ function handlePressAction(relativeClickPointX) {
 
     if (magicLensLongPress) {
         magicLensLongPress = false;
-        //removeOverlayWindow();
+        //removeFocusMode();
 
     } else {
         wordFocus();
