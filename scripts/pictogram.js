@@ -294,7 +294,7 @@ function playWord() {
 }
 
 function playSyllables() {
-    wordSounds.play('syllable');
+    wordSounds.play('syllables');
 }
 
 function attachPhonemeSound() {
