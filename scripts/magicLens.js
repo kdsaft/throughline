@@ -276,25 +276,25 @@ function createFocusMode() {
      generateTiles();
      generateContextMenu();
 
-    // set the starting position of the focus elements
-
+    // Show on focus elmements
     focusPanel.jQ.css({ display: 'flex' });
     contextMenu.jQ.css({ display: 'flex' });
     closeFocus.jQ.css({ display: 'block' });
-    
-        // set position of context menu
-        let newMenuTop = focusPanel.jQ.position().top + (focusPanel.jQ.height() - contextMenu.jQ.height()); // align bottom of context menu
-        let newMenuLeft = focusPanel.jQ.position().left + 24; // under first tile
-        let newCloseTop = focusPanel.jQ.position().top; // at top of focus panel
-        let newCloseLeft = focusPanel.jQ.position().left + (focusPanel.jQ.width() - closeFocus.jQ.width()); // at right of focus panel
 
-    contextMenu.jQ.css({ top: newMenuTop, left: newMenuLeft });
-    closeFocus.jQ.css({ top: newCloseTop, left: newCloseLeft });
+   // set initial position of context menu and close for animation
+   let newMenuX =  24; // under first tile
+        let newMenuY = (focusPanel.jQ.height() - contextMenu.jQ.height()); // align bottom of context menu
+        let newCloseY = 0; // at top of focus panel
+        let newCloseX = (focusPanel.jQ.width() - closeFocus.jQ.width()); // at right of focus panel
 
+    contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
+    closeFocus.jQ.css({ transform: 'translate(' + newCloseX + 'px, ' + newCloseY + 'px)' });
 
+    // scaled focus elments for animation
     const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
     focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')',  'z-index': 150});
     focuseModeElements.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left) });
+
 
     // animate into new position
     const createFocusModeTimeline = anime.timeline();
