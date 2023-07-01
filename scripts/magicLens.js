@@ -351,7 +351,7 @@ function createFocusMode() {
     console.log('scaledWidth: ' + scaledWidth + ' focusPanel: ' + focusPanel.jQ.width() + ' magicLens: ' + magicLens.jQ.width());
 
     focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')' });
-    focusPanel.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5) });
+    //focusPanel.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5) });
 
     const createFocusModeTimeline = anime.timeline();
 

@@ -366,6 +366,7 @@ body {
 .focusElements-wrapper {
     position: absolute;
     inset: 0;
+    z-index: 100;
 }
 
 .tile-container,
