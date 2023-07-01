@@ -284,7 +284,7 @@ function attachPhonemeSound() {
     }
 
     const closeButton = document.getElementById('focusMode-close')
-    closeButton[0].addEventListener('click', removePhonemeSound);
+    closeButton.addEventListener('click', removePhonemeSound);
 }
 
 function removePhonemeSound() {
