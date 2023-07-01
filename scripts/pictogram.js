@@ -96,8 +96,10 @@ function generateTiles() {
     const phonemeTiles = phonemeTilesData;
     const focusAreaId = 'focusMode-panel';
 
-
     const targetDiv = document.getElementById(focusAreaId);
+
+    // Clear the targetDiv content
+    targetDiv.innerHTML = '';
 
     phonemeTiles.forEach(tileInfo => {
         const tile = document.createElement('div');
@@ -119,6 +121,9 @@ function generateTiles() {
         const width = 108 + ((tileInfo.pictogram.length - 1) * 60.5);
         tile.style.width = `${width}px`;
 
+        // Create an array to store the ids for each pictogram
+        let ids = [];
+
         tileInfo.pictogram.forEach(pictogramInfo => {
             const pictogram = document.createElement('div');
             pictogram.className = 'pictogram';
@@ -127,8 +132,8 @@ function generateTiles() {
             icon.className = 'phonetic-icon';
             icon.src = pictogramInfo.icon;
 
-            // Here we set the id using the phonetics data
-            tile.id = pictogramInfo.phonetics.join('_');
+            // Push the id for each pictogram into the ids array
+            ids.push(pictogramInfo.phonetics.join('_'));
 
             pictogram.appendChild(icon);
 
@@ -168,6 +173,9 @@ function generateTiles() {
             pictogram.appendChild(textWrapper);
             pictogramsWrapper.appendChild(pictogram);
         });
+
+        // Join the ids with an underscore and set the id of tile
+        tile.id = ids.join('_');
 
         tile.appendChild(pictogramsWrapper);
         targetDiv.appendChild(tile);
@@ -299,6 +307,6 @@ function removePhonemeSound() {
     }
 
     const closeButton = document.getElementById('focusMode-close')
-    closeButton[0].removeEventListener('click', removePhonemeSound);
+    closeButton.removeEventListener('click', removePhonemeSound);
     removeFocusMode()
 }
