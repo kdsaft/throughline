@@ -364,7 +364,6 @@ function removeFocusMode() {
 
     //removePhonemeSound()
 
-    overlayWindow.jQ.css({ display: "none" });
     magicLensWrapper.jQ.css({ display: "block" });
 
     removeFocusModeTimeline
@@ -400,6 +399,12 @@ function removeFocusMode() {
             opacity: 0,
             duration: 200,
             easing: 'easeOutExpo',
+            complete: function (anim) {
+                focusPanel.jQ.css({ display: 'none' });
+                contextMenu.jQ.css({ display: 'none' });
+                closeFocus.jQ.css({ display: 'none' });
+                focuseModeElements.jQ.css({ opacity: 1 });
+            }
         }, 0)
 
     removeFocusModeTimeline.play();
