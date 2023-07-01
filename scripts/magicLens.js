@@ -7,8 +7,6 @@
 const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
 
 // Text elements
-const bodyContainer = { jQ: $('.body'), native: $('.body').get(0) };
-
 const contentContainer = { jQ: $('.content'), native: $('.content').get(0) };
 const highLightArea = { jQ: $('.highlight-area'), native: $('.highlight-area').get(0) };
 const articleContainer = $('.article-container');
@@ -291,6 +289,10 @@ function createFocusMode() {
 
     const destinationMenuY = contextMenu.jQ.outerHeight() + 15;
     const destinationCloseX = closeFocus.jQ.outerWidth() + 15;
+
+    let position = magicLensWrapper.jQ.offset();  // relative to the document (here, the body is the offset parent)
+
+    console.log('offset values ', position.top, position.left);
 
 
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
