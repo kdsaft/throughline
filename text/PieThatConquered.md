@@ -1,20 +1,6 @@
 
 ## As oral narrative
-The Pie That Conquered the Canopy
-
-Deep within the heart of the jungle,
-a hierarchical society of big-eyed birds
-thrived in the dense canopy.
-Among these birds, an annual pie-making contest
-determined the social standing of each family.
-Those who ranked higher gained access
-to better resources, education, and opportunities.
-The competition was fierce, with families gathering
-in the Great Banyan Clearing to present their pies.
-The goal was to impress the judges and claim
-the esteemed title of Pie Master,
-which granted the winners the most luxurious nests
-in the highest branches.
+kdsaft
 
 One day, a young and ambitious bird named Sammy
 fluttered through the lush jungle,
