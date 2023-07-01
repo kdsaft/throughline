@@ -311,7 +311,7 @@ function createFocusMode() {
     // animate into new position
     const createFocusModeTimeline = anime.timeline();
 
- /*    createFocusModeTimeline
+   createFocusModeTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
@@ -368,9 +368,10 @@ function createFocusMode() {
                     attachPhonemeSound();
                 }
             }, 125) 
+ */
 
     createFocusModeTimeline.play();
-     */
+    
 }
 
 function removeFocusMode() {

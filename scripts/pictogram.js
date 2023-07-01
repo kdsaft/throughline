@@ -168,8 +168,18 @@ function generateTiles() {
 
         tile.appendChild(pictogramsWrapper);
         targetDiv.appendChild(tile);
+
     });
 }
+function clearTiles() {
+    const focusAreaId = 'focusMode-panel';
+
+    const targetDiv = document.getElementById(focusAreaId);
+
+    // Clear the targetDiv content
+    targetDiv.innerHTML = '';
+}
+
 
 function generateContextMenu() {
     const contextMenuItems = contextMenuItemsData;
@@ -231,6 +241,16 @@ function generateContextMenu() {
         // Append the main item div to the menu div
         menuDiv.appendChild(menuItemDiv);
     });
+}
+
+function clearContextMenu() {
+    const menuID = 'focusMode-menu';
+
+    // Get the div using provided ID
+    let menuDiv = document.getElementById(menuID);
+
+    // Clear the targetDiv content
+    menuDiv.innerHTML = '';
 }
 
 // Function to handle click event
