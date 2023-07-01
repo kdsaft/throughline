@@ -7,8 +7,8 @@
 const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
 
 // Text elements
-const contentContainer = { jQ: $('.content') , native: $('.content').get(0) };
-const highLightArea = { jQ: $('.highlight-area') , native: $('.highlight-area').get(0) };
+const contentContainer = { jQ: $('.content'), native: $('.content').get(0) };
+const highLightArea = { jQ: $('.highlight-area'), native: $('.highlight-area').get(0) };
 const articleContainer = $('.article-container');
 const articleContainerOffset = articleContainer.offset();
 const standardText = { jQ: $('#standard-text'), native: $('#standard-text').get(0) }
@@ -272,33 +272,27 @@ function applySpeedBump(currentLeft, currentTop, currentHeight, currentWidth) {
 
 function createFocusMode() {
 
-     // add items to the focusPanel and contextMenu
-     generateTiles();
-     generateContextMenu();
+    // add items to the focusPanel and contextMenu
+    generateTiles();
+    generateContextMenu();
 
     // Show on focus elmements
     focusPanel.jQ.css({ display: 'flex' });
     contextMenu.jQ.css({ display: 'flex' });
     closeFocus.jQ.css({ display: 'block' });
 
-   // set initial position of context menu and close for animation
-   let newMenuX =  24; // under first tile
-        let newMenuY = (focusPanel.jQ.outerHeight() - contextMenu.jQ.outerHeight()); // align bottom of context menu
-        let newCloseY = 0; // at top of focus panel
-        let newCloseX = (focusPanel.jQ.outerWidth() - closeFocus.jQ.outerWidth()); // at right of focus panel
-
-        console.log('newMenuX: ' + newMenuX, 'newMenuY: ' + newMenuY, 'newCloseX: ' + newCloseX, 'newCloseY: ' + newCloseY);
-        console.log('focusPanel.jQ.width(): ' + focusPanel.jQ.outerWidth(), 'focusPanel.jQ.height(): ' + focusPanel.jQ.outerHeight());
-        console.log('contextMenu.jQ.width(): ' + contextMenu.jQ.outerWidth(), 'contextMenu.jQ.height(): ' + contextMenu.jQ.outerHeight());
-        console.log('closeFocus.jQ.width(): ' + closeFocus.jQ.outerWidth(), 'closeFocus.jQ.height(): ' + closeFocus.jQ.outerHeight());
+    // set initial position of context menu and close for animation
+    let newMenuX = 24; // under first tile
+    let newMenuY = (focusPanel.jQ.outerHeight() - contextMenu.jQ.outerHeight()); // align bottom of context menu
+    let newCloseY = 0; // at top of focus panel
+    let newCloseX = (focusPanel.jQ.outerWidth() - closeFocus.jQ.outerWidth()); // at right of focus panel
 
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
     closeFocus.jQ.css({ transform: 'translate(' + newCloseX + 'px, ' + newCloseY + 'px)' });
 
     // scaled focus elments for animation
-    const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
-   // focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')',  'z-index': 150});
-    focuseModeElements.jQ.css({  'z-index': 150});
+    const scaledWidth = (magicLens.jQ.width() / focusPanel.jQ.width());
+    focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')', 'z-index': 150 });
 
     focuseModeElements.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left) });
 
@@ -327,34 +321,34 @@ function createFocusMode() {
             easing: 'easeOutExpo',
         }, 0)
 
-     /*    .add({
-            targets: magicLensWrapper.native,
-            scale: 0.93,
-            duration: 100,
-            easing: 'easeOutExpo',
-            complete: function (anim) {
-                magicLensWrapper.jQ.css({ display: "none" });
-                overlayWindow.jQ.css({ transform: "scale(0.93, 0.93)" });
-                overlayWindow.jQ.css({ display: "flex" });
-                overlayWindow.jQ.css({ left: overlayWindow.jQ.position().left - 15, top: overlayWindow.jQ.position().top - 1});
-            }
-        }, 0)
- */
-/*          .add({
-            targets: overlayWindow.native,
-            top: 96,
-            left:96,
-            paddingtop: 36,
-            width: 509,
-            height: 244,
-            duration: 400,
-            easing: 'easeOutExpo',
-            complete: function (anim) {
-                attachPhonemeSound();
-            }
-        }, 125) 
- */
-        //createFocusModeTimeline.play();
+    /*    .add({
+           targets: magicLensWrapper.native,
+           scale: 0.93,
+           duration: 100,
+           easing: 'easeOutExpo',
+           complete: function (anim) {
+               magicLensWrapper.jQ.css({ display: "none" });
+               overlayWindow.jQ.css({ transform: "scale(0.93, 0.93)" });
+               overlayWindow.jQ.css({ display: "flex" });
+               overlayWindow.jQ.css({ left: overlayWindow.jQ.position().left - 15, top: overlayWindow.jQ.position().top - 1});
+           }
+       }, 0)
+*/
+    /*          .add({
+                targets: overlayWindow.native,
+                top: 96,
+                left:96,
+                paddingtop: 36,
+                width: 509,
+                height: 244,
+                duration: 400,
+                easing: 'easeOutExpo',
+                complete: function (anim) {
+                    attachPhonemeSound();
+                }
+            }, 125) 
+     */
+    //createFocusModeTimeline.play();
 }
 
 function removeFocusMode() {
@@ -393,7 +387,7 @@ function removeFocusMode() {
             easing: 'easeOutExpo',
         }, 0)
 
-        removeFocusModeTimeline.play();
+    removeFocusModeTimeline.play();
 }
 
 
