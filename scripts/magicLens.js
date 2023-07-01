@@ -278,6 +278,10 @@ function createFocusMode() {
 
     // set the starting position of the focusPanel
     focusPanel.jQ.css({ display: 'flex' });
+    contextMenu.jQ.css({ display: 'flex' });
+    closeFocus.jQ.css({ display: 'block' });
+    magicLensWrapper.jQ.css({ display: 'none' });
+    
     const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
     focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')',  'z-index': 150});
     focuseModeElements.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left) });
