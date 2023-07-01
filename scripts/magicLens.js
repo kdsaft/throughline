@@ -276,11 +276,17 @@ function createFocusMode() {
      generateTiles();
      generateContextMenu();
 
-    // set the starting position of the focusPanel
+    // set the starting position of the focus elements
+        // set position of context menu
+        let newMenuTop = focusPanel.jQ.position().top + (focusPanel.jQ.height() - contextMenu.jQ.heigh()); // align bottom of context menu
+        let newMenuLeft = focusPanel.jQ.position().left + 24; // under first tile
+        let newCloseTop = focusPanel.jQ.position().top; // at top of focus panel
+        let newCloseLeft = focusPanel.jQ.position().left + (focusPanel.jQ.width() - closeFocus.jQ.width()); // at right of focus panel
+
     focusPanel.jQ.css({ display: 'flex' });
-    contextMenu.jQ.css({ display: 'flex' });
-    closeFocus.jQ.css({ display: 'block' });
-    //magicLensWrapper.jQ.css({ display: 'none' });
+    contextMenu.jQ.css({ display: 'flex', top: newMenuTop, left: newMenuLeft });
+    closeFocus.jQ.css({ display: 'block', top: newCloseTop, left: newCloseLeft });
+
 
     const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
     focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')',  'z-index': 150});
