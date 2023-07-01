@@ -348,7 +348,7 @@ function createFocusMode() {
     // set the starting position of the focusPanel
     const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width()) * focusPanel.jQ.width()
 
-    focuseModeElements.jQ.css({ transform: 'scale(scaledWidth)' });
+    focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')' });
     focusPanel.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left + 5), display: 'flex' });
 
     const createFocusModeTimeline = anime.timeline();
@@ -374,7 +374,7 @@ function createFocusMode() {
             easing: 'easeOutExpo',
         }, 0)
 
-        .add({
+     /*    .add({
             targets: magicLensWrapper.native,
             scale: 0.93,
             duration: 100,
@@ -386,7 +386,7 @@ function createFocusMode() {
                 overlayWindow.jQ.css({ left: overlayWindow.jQ.position().left - 15, top: overlayWindow.jQ.position().top - 1});
             }
         }, 0)
-
+ */
 /*          .add({
             targets: overlayWindow.native,
             top: 96,
