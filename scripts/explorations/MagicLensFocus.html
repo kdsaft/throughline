@@ -1,0 +1,570 @@
+<script>
+
+    const pictogramPath = "https://kdsaft.github.io/throughline/icons/pictogram-";
+    const menuIconPath = "https://kdsaft.github.io/throughline/icons/menu-icon-";
+
+    const contextMenu = document.getElementById("focus-menu");
+    const focusContent = document.getElementById("focus-content");
+    const closeFocus = document.getElementById("close-focus");
+
+
+
+    let phonemeTiles = [
+        {
+            title: 'hi',
+            pictogram: [
+                {
+                    icon: (pictogramPath + 'hi.svg'),
+                    phonetics: ['h', 'ahy'],
+                    position: "full",
+                },
+            ],
+        },
+        {
+            title: 'er',
+            pictogram: [
+                {
+                    icon: (pictogramPath + 'timber.svg'),
+                    phonetics: ['uh', 'r'],
+                    position: "end",
+                },
+            ],
+        },
+        {
+            title: 'ar',
+            pictogram: [
+                {
+                    icon: (pictogramPath + 'arch.svg'),
+                    phonetics: ['ah', 'r'],
+                    position: "start",
+                },
+            ],
+        },
+        {
+            title: 'chi',
+            pictogram: [
+                {
+                    icon: (pictogramPath + 'key.svg'),
+                    phonetics: ['k', 'ee'],
+                    position: "full",
+                },
+            ],
+        },
+        {
+            title: 'cal',
+            pictogram: [
+                {
+                    icon: (pictogramPath + 'cat.svg'),
+                    phonetics: ['k'],
+                    position: "start",
+                },
+                {
+                    icon: (pictogramPath + 'camel.svg'),
+                    phonetics: ['uh', 'l'],
+                    position: "end",
+                },
+            ],
+        }
+    ];
+
+    let contextMenuItems = [
+        {
+            icon: (menuIconPath + 'speak.svg'),
+            title: ['hierarchical']
+        },
+        {
+            icon: (menuIconPath + 'speak.svg'),
+            title: ['hi', 'er', 'ar', 'chi', 'cal']
+        },
+    ];
+
+    function generateTiles(phonemeTiles, focusAreaId) {
+        const targetDiv = document.getElementById(focusAreaId);
+
+        phonemeTiles.forEach(tileInfo => {
+            const tile = document.createElement('div');
+            tile.className = 'tile-container';
+
+            const titleWrapper = document.createElement('div');
+            titleWrapper.className = 'tile-title-wrapper';
+
+            const title = document.createElement('div');
+            title.className = 'tile-title';
+            title.innerText = tileInfo.title;
+
+            titleWrapper.appendChild(title);
+            tile.appendChild(titleWrapper);
+
+            const pictogramsWrapper = document.createElement('div');
+            pictogramsWrapper.className = 'tile-pictograms-wrapper';
+
+            const width = 108 + ((tileInfo.pictogram.length - 1) * 60.5);
+            tile.style.width = `${width}px`;
+
+            tileInfo.pictogram.forEach(pictogramInfo => {
+                const pictogram = document.createElement('div');
+                pictogram.className = 'pictogram';
+
+                const icon = document.createElement('img');
+                icon.className = 'phonetic-icon';
+                icon.src = pictogramInfo.icon;
+
+                pictogram.appendChild(icon);
+
+                const textWrapper = document.createElement('div');
+                textWrapper.className = 'phonetic-text-wrapper';
+
+                if (tileInfo.pictogram.length > 1) {
+                    textWrapper.style.paddingLeft = '8px';
+                    textWrapper.style.paddingRight = '8px';
+                }
+
+                if (pictogramInfo.position === 'start') {
+                    textWrapper.style.justifyContent = "flex-start";
+                }
+                else if (pictogramInfo.position === 'end') {
+                    textWrapper.style.justifyContent = "flex-end";
+                    textWrapper.innerHTML = "<span class='phonetic-ellipsis'>…</span>";
+                }
+                else if (pictogramInfo.position === 'mid') {
+                    textWrapper.style.justifyContent = "center";
+                    textWrapper.innerHTML = "<span class='phonetic-ellipsis'>…</span>";
+                }
+                else {
+                    textWrapper.style.justifyContent = "center";
+                }
+
+                const combinedText = pictogramInfo.phonetics.map((text, idx, phoneticsArr) =>
+                    `<span class="phonetic-text">${text}</span>${idx < phoneticsArr.length - 1 ? '<span class="phonetic-dash">-</span>' : ''}`
+                );
+
+                textWrapper.innerHTML += combinedText.join('');
+
+                if (pictogramInfo.position === 'start' || pictogramInfo.position === 'mid') {
+                    textWrapper.innerHTML += "<span class='phonetic-ellipsis'>…</span>";
+                }
+
+                pictogram.appendChild(textWrapper);
+                pictogramsWrapper.appendChild(pictogram);
+            });
+
+            tile.appendChild(pictogramsWrapper);
+            targetDiv.appendChild(tile);
+        });
+    }
+
+    function generateContextMenu(contextMenuItems, menuID) {
+
+        // Get the div using provided ID
+        let menuDiv = document.getElementById(menuID);
+
+        // Clear the current contents
+        menuDiv.innerHTML = '';
+
+        // Loop over each menu item
+        contextMenuItems.forEach((item) => {
+
+            // Create main item div
+            let menuItemDiv = document.createElement('div');
+            menuItemDiv.className = 'contextMenu-item';
+
+            // Create image area div and append icon
+            let imageAreaDiv = document.createElement('div');
+            imageAreaDiv.className = 'contextMenu-image-area';
+            let img = document.createElement('img');
+            img.src = item.icon;
+            img.className = 'menu-icon';
+            imageAreaDiv.appendChild(img);
+
+            // Create text area div
+            let textAreaDiv = document.createElement('div');
+            textAreaDiv.className = 'contextMenu-text-area';
+
+            // Create clause div
+            let clauseDiv = document.createElement('div');
+            clauseDiv.className = 'contextMenu-clause';
+
+            // Loop over each title (multiple if array)
+            for (let i = 0; i < item.title.length; i++) {
+                // Create span for title
+                let textSpan = document.createElement('span');
+                textSpan.className = 'contextMenu-text';
+                textSpan.textContent = item.title[i];
+                clauseDiv.appendChild(textSpan);
+
+                // If not the last title, append separator
+                if (i < item.title.length - 1) {
+                    let separatorSpan = document.createElement('span');
+                    separatorSpan.className = 'contextMenu-text-separator';
+                    separatorSpan.textContent = '•';
+                    clauseDiv.appendChild(separatorSpan);
+                }
+            }
+
+            // Append clause div to text Area div
+            textAreaDiv.appendChild(clauseDiv);
+
+            // Append image and text divs to main item div
+            menuItemDiv.appendChild(imageAreaDiv);
+            menuItemDiv.appendChild(textAreaDiv);
+
+            // Append the main item div to the menu div
+            menuDiv.appendChild(menuItemDiv);
+        });
+    }
+
+    generateTiles(phonemeTiles, 'focus-content');
+    generateContextMenu(contextMenuItems, 'focus-menu');
+
+    // set position of context menu
+    let newTop = focusContent.offsetTop + focusContent.offsetHeight + 20;
+    let newLeft = focusContent.offsetLeft + focusContent.offsetWidth + 20;
+
+    console.log(newLeft);
+   
+    contextMenu.style.top = newTop + 'px';
+    contextMenu.style.left = '24px';
+
+    closeFocus.style.left = '200px';
+
+
+</script>
+
+<body>
+    <div id="focus-area" class="focus-wrapper">
+        <div id="focus-menu" class="contextMenu"></div>
+
+        <div id="focus-content" class="tiles-container"></div>
+
+        <div id="close-focus" class="close-menu-button">
+            <img src="https://kdsaft.github.io/throughline/icons/close-menu-icon.svg" class="close-focus-icon" />
+        </div>
+
+</body>
+
+<style>
+    :root {
+        /* Colors */
+        --ultramarine-100: #ebeff9;
+        --ultramarine-300: #9fadde;
+        --ultramarine-500: #445dbe;
+        --ultramarine-800: #0f2d8a;
+        --blue-100: #e7f2fb;
+        --blue-300: #8fbce1;
+        --blue-500: #1a79c7;
+        --blue-800: #015498;
+        --purple-100: #f6e6f2;
+        --purple-300: #d190bd;
+        --purple-500: #9f0f7b;
+        --purple-800: #74125d;
+        --white: #ffffff;
+        --grey-100: #f7f8fa;
+        --grey-150: #f3f4f6;
+        --grey-200: #edeef0;
+        --grey-300: #e3e4e6;
+        --grey-400: #d4d5d7;
+        --grey-500: #c1c1c1;
+        --grey-600: #9d9ea0;
+        --grey-700: #6b6b6b;
+        --grey-800: #333436;
+        --grey-900: #0e0e0e;
+        --black: #000000;
+    }
+
+    #FocusArea {
+        overflow: visible !important;
+    }
+
+    .focus-wrapper {
+        position: absolute;
+        inset: 0;
+    }
+
+    .tile-container,
+    .tile-container * {
+        box-sizing: border-box;
+    }
+
+    .tiles-container {
+        background: var(--grey-100, #f7f8fa);
+        width: min-content;
+        height: min-content;
+        border-radius: 12px;
+        border-style: solid;
+        border-color: var(--ultramarine-300, #9fadde);
+        border-width: 2.3px;
+        padding: 24px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: absolute;
+        box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .tile-container {
+        background: var(--white, #ffffff);
+        border-radius: 7.5px;
+        border-style: solid;
+        border-color: var(--grey-400, #d4d5d7);
+        border-width: 0.5px;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        width: 108px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tile-title-wrapper {
+        border-style: solid;
+        border-color: var(--grey-400, #d4d5d7);
+        border-width: 0px 0px 0.5px 0px;
+        padding: 0px 0px 8px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tile-title {
+        color: var(--grey-900, #0e0e0e);
+        text-align: left;
+        font-family: "SFMono-Medium", monospace;
+        font-size: 24px;
+        line-height: 24px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .tile-pictograms-wrapper {
+        background: var(--grey-400, #d4d5d7);
+        display: flex;
+        flex-direction: row;
+        gap: 0.5px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: 72px;
+        position: relative;
+    }
+
+    .pictogram {
+        background: var(--white, #ffffff);
+        padding: 8px 0px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex: 1;
+        position: relative;
+        overflow: visible;
+    }
+
+    .phonetic-icon {
+        flex-shrink: 0;
+        width: 34px;
+        height: 34px;
+        position: relative;
+    }
+
+    .phonetic-text-wrapper {
+        padding: 0px 16px 0px 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-end;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: 18px;
+        position: relative;
+        overflow: visible;
+    }
+
+    .phonetic-ellipsis {
+        color: var(--grey-400, #d4d5d7);
+        text-align: left;
+        font-family: "SF-Mono-Regular", monospace;
+        font-size: 18px;
+        line-height: 18px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .phonetic-text {
+        margin: 0 0 0 0px;
+        color: var(--grey-700, #6b6b6b);
+        text-align: left;
+        font-family: "SF-Mono-Regular", monospace;
+        font-size: 18px;
+        line-height: 18px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .phonetic-dash {
+        margin-left: -2px;
+        margin-right: -2px;
+        color: var(--grey-500, #6b6b6b);
+        text-align: left;
+        font-family: "SF-Mono-Regular", monospace;
+        transform: scaleX(0.6);
+        font-size: 18px;
+        line-height: 18px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .contextMenu,
+    .contextMenu * {
+        box-sizing: border-box;
+    }
+
+    .contextMenu {
+        background: var(--grey-500);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        width: min-content;
+        height: min-content;
+        gap: 0.5px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .contextMenu-item {
+        background: var(--white);
+        padding: 0px 32px 0px 16px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: 60px;
+        min-width: 100%;
+        width: min-content;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contextMenu-image-area {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .icon {
+        flex-shrink: 0;
+        position: relative;
+        overflow: visible;
+    }
+
+    .contextMenu-text-area {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex: 1;
+        min-width: 100px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contextMenu-text {
+        color: var(--ultramarine-800, #0f2d8a);
+        text-align: left;
+        font-family: "SF-Mono-Regular", monospace;
+        font-size: 17px;
+        line-height: 18px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+
+
+    .contextMenu-clause {
+        display: flex;
+        flex-direction: row;
+        gap: 1px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .contextMenu-text-separator {
+        color: var(--grey-300, #e3e4e6);
+        text-align: center;
+        font-family: "SF-Mono-Regular", monospace;
+        font-size: 8px;
+        line-height: 20px;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+
+    .close-menu-button {
+        position: absolute;
+        overflow: visible;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+        width: 76px;
+        height: 76px;
+    }
+
+    .close-focus-icon {
+        flex-shrink: 0;
+        position: relative;
+    }
+</style>
