@@ -297,7 +297,9 @@ function createFocusMode() {
 
     // scaled focus elments for animation
     const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
-    focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')',  'z-index': 150});
+   // focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')',  'z-index': 150});
+    focuseModeElements.jQ.css({  'z-index': 150});
+
     focuseModeElements.jQ.css({ top: magicLensWrapper.jQ.position().top, left: (magicLensWrapper.jQ.position().left) });
 
 
