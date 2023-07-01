@@ -287,6 +287,9 @@ function createFocusMode() {
         let newCloseY = 0; // at top of focus panel
         let newCloseX = (focusPanel.jQ.width() - closeFocus.jQ.width()); // at right of focus panel
 
+        console.log('newMenuX: ' + newMenuX, 'newMenuY: ' + newMenuY, 'newCloseX: ' + newCloseX, 'newCloseY: ' + newCloseY);
+        console.log('focusPanel.jQ.width(): ' + focusPanel.jQ.width(), 'focusPanel.jQ.height(): ' + focusPanel.jQ.height());
+
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
     closeFocus.jQ.css({ transform: 'translate(' + newCloseX + 'px, ' + newCloseY + 'px)' });
 
