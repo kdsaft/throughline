@@ -287,6 +287,10 @@ function createFocusMode() {
     let newCloseY = 0; // at top of focus panel
     let newCloseX = (focusPanel.jQ.outerWidth() - closeFocus.jQ.outerWidth()); // at right of focus panel
 
+    const destinationMenuY = contextMenu.jQ.outerHeight() + 15;
+    const destinationCloseX = closeFocus.jQ.outerWidth() + 15;
+
+
     contextMenu.jQ.css({ transform: 'translate(' + newMenuX + 'px, ' + newMenuY + 'px)' });
     closeFocus.jQ.css({ transform: 'translate(' + newCloseX + 'px, ' + newCloseY + 'px)' });
 
@@ -321,19 +325,29 @@ function createFocusMode() {
             easing: 'easeOutExpo',
         }, 0)
 
-    /*    .add({
-           targets: magicLensWrapper.native,
-           scale: 0.93,
+        .add({
+           targets: focuseModeElements.native,
+           scale: 1.0,
            duration: 100,
            easing: 'easeOutExpo',
-           complete: function (anim) {
-               magicLensWrapper.jQ.css({ display: "none" });
-               overlayWindow.jQ.css({ transform: "scale(0.93, 0.93)" });
-               overlayWindow.jQ.css({ display: "flex" });
-               overlayWindow.jQ.css({ left: overlayWindow.jQ.position().left - 15, top: overlayWindow.jQ.position().top - 1});
-           }
        }, 0)
-*/
+
+       .add({
+        targets: contextMenu.native,
+        translateY: destinationMenuY,
+        duration: 100,
+        easing: 'easeOutExpo',
+    }, 0)
+
+    .add({
+        targets: closeFocus.native,
+        translateX: destinationCloseX,
+        duration: 100,
+        easing: 'easeOutExpo',
+    }, 0)
+
+
+
     /*          .add({
                 targets: overlayWindow.native,
                 top: 96,
@@ -348,7 +362,7 @@ function createFocusMode() {
                 }
             }, 125) 
      */
-    //createFocusModeTimeline.play();
+    createFocusModeTimeline.play();
 }
 
 function removeFocusMode() {
