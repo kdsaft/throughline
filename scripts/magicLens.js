@@ -363,7 +363,7 @@ function createFocusMode() {
                     attachPhonemeSound();
                 }
             }, 125) 
-     */
+
     createFocusModeTimeline.play();
      */
 }
