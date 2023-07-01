@@ -283,7 +283,7 @@ function attachPhonemeSound() {
         phoneticTileImage[i].addEventListener('click', playPhonemeExample);
     }
 
-    const closeButton = document.getElementsById('focusMode-close')
+    const closeButton = document.getElementById('focusMode-close')
     closeButton[0].addEventListener('click', removePhonemeSound);
 }
 
@@ -298,7 +298,7 @@ function removePhonemeSound() {
         phoneticTileImage[i].removeEventListener('click', playPhonemeExample);
     }
 
-    const closeButton = document.getElementsById('focusMode-close')
+    const closeButton = document.getElementById('focusMode-close')
     closeButton[0].removeEventListener('click', removePhonemeSound);
     removeFocusMode()
 }
