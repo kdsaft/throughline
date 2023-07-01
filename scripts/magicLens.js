@@ -302,7 +302,7 @@ function createFocusMode() {
     const scaledWidth = (magicLens.jQ.width() / focusPanel.jQ.width());
     focuseModeElements.jQ.css({ transform: 'scale(' + scaledWidth + ')', 'z-index': 150 });
 
-    focuseModeElements.jQ.css({ top: position.top, left: position.left });
+    focuseModeElements.jQ.css({ top: position.top, left: magicLensWrapper.jQ.position().left });
     //magicLensWrapper.jQ.css({ display: 'none' });
 
     console.log('top: ' + magicLensWrapper.jQ.position().top, 'left: ' + magicLensWrapper.jQ.position().left);
