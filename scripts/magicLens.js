@@ -42,6 +42,77 @@ let offsetTouchY;
 let magicLensLongPressTimer = null;
 let magicLensLongPress = false;
 
+// focus mode variables
+// Variables that store focus content
+let phonemeTiles = [
+    {
+        title: 'hi',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'hi.svg'),
+                phonetics: ['h', 'ahy'],
+                position: "full",
+            },
+        ],
+    },
+    {
+        title: 'er',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'timber.svg'),
+                phonetics: ['uh', 'r'],
+                position: "end",
+            },
+        ],
+    },
+    {
+        title: 'ar',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'arch.svg'),
+                phonetics: ['ah', 'r'],
+                position: "start",
+            },
+        ],
+    },
+    {
+        title: 'chi',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'key.svg'),
+                phonetics: ['k', 'ee'],
+                position: "full",
+            },
+        ],
+    },
+    {
+        title: 'cal',
+        pictogram: [
+            {
+                icon: (pictogramPath + 'cat.svg'),
+                phonetics: ['k'],
+                position: "start",
+            },
+            {
+                icon: (pictogramPath + 'camel.svg'),
+                phonetics: ['uh', 'l'],
+                position: "end",
+            },
+        ],
+    }
+];
+
+let contextMenuItems = [
+    {
+        icon: (menuIconPath + 'speak.svg'),
+        title: ['hierarchical']
+    },
+    {
+        icon: (menuIconPath + 'speak.svg'),
+        title: ['hi', 'er', 'ar', 'chi', 'cal']
+    },
+];
+
 // set article bounding box
 articleContainer.css({
     height: syllableText.jQ.height() + parseInt(syllableText.jQ.css('marginTop')) + parseInt(syllableText.jQ.css('marginBottom')) + 20
