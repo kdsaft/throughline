@@ -93,6 +93,14 @@ const pictogramPhonemeSounds = new Howl({
     }
 });
 
+const wordSounds = new Howl({
+    src: ['https://kdsaft.github.io/throughline/sounds/hierarchical.mp3'],
+    sprite: {
+        word: [0, 1011],
+        syllables: [1611, 3900],
+    }
+});
+
 
 function generateTiles() {
     const phonemeTiles = phonemeTilesData;
@@ -273,14 +281,20 @@ function clearContextMenu() {
 function playPhonemeSound() {
     const phonemeSound = this.parentNode.id + '_sound';
     pictogramPhonemeSounds.play(phonemeSound);
-    console.log('sound: ' + phonemeSound);
 }
 
 function playPhonemeExample() {
     const phonemeWord = this.parentNode.id + '_example';
 
     pictogramPhonemeSounds.play(phonemeWord);
-    console.log('example: ' + phonemeWord);
+}
+
+function playWord() {
+    wordSounds.play('word');
+}
+
+function playSyllables() {
+    wordSounds.play('syllable');
 }
 
 function attachPhonemeSound() {
@@ -294,9 +308,18 @@ function attachPhonemeSound() {
         phoneticTileImage[i].addEventListener('click', playPhonemeExample);
     }
 
+    // menu items
+    const speakWord = document.getElementById('speakWord');
+    const speakSyllables = document.getElementById('speakSyllables');
+    speakWord.addEventListener('click', playWord);
+    speakSyllables.addEventListener('click', playSyllables);
+
+    // close button
     const closeButton = document.getElementById('focusMode-close')
     closeButton.addEventListener('click', removePhonemeSound);
 }
+
+
 
 function removePhonemeSound() {
     // Get all elements with class 'pictograph-tile'
@@ -309,6 +332,13 @@ function removePhonemeSound() {
         phoneticTileImage[i].removeEventListener('click', playPhonemeExample);
     }
 
+        // menu items
+        const speakWord = document.getElementById('speakWord');
+        const speakSyllables = document.getElementById('speakSyllables');
+        speakWord.removeEventListener('click', playWord);
+        speakSyllables.removeEventListener('click', playSyllables);
+    
+        // close button
     const closeButton = document.getElementById('focusMode-close')
     closeButton.removeEventListener('click', removePhonemeSound);
     removeFocusMode()
