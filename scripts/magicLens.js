@@ -346,7 +346,7 @@ function createFocusMode() {
      generateContextMenu(contextMenuItems, 'focusMode-menu');
 
     // set the starting position of the focusPanel
-    const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width()) * focusPanel.jQ.width();
+    const scaledWidth =  (magicLens.jQ.width() / focusPanel.jQ.width());
 
     console.log('scaledWidth: ' + scaledWidth + ' focusPanel: ' + focusPanel.jQ.width() + ' magicLens: ' + magicLens.jQ.width());
 
