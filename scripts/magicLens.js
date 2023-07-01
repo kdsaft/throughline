@@ -301,17 +301,19 @@ function createFocusMode() {
     focuseModeElements.jQ.css({ top: magicLensWrapper.jQ.offset().top, left: (magicLensWrapper.jQ.offset().left) });
     magicLensWrapper.jQ.css({ display: 'none' });
 
+    console.log('top: ' + magicLensWrapper.jQ.offset().top, 'left: ' + magicLensWrapper.jQ.offset().left);
+
     // animate into new position
     const createFocusModeTimeline = anime.timeline();
 
-    createFocusModeTimeline
+ /*    createFocusModeTimeline
         .add({
             targets: standardText.native,
             filter: 'blur(15px)',
             scale: 0.9,
             translateY: -100,
             opacity: 0.5,
-            duration: 2000,
+            duration: 400,
             easing: 'easeOutExpo',
         }, 0)
 
@@ -321,28 +323,28 @@ function createFocusMode() {
             scale: 0.9,
             translateY: -100,
             opacity: 0.5,
-            duration: 2000,
+            duration: 400,
             easing: 'easeOutExpo',
         }, 0)
 
         .add({
            targets: focuseModeElements.native,
            scale: 1.0,
-           duration: 2000,
+           duration: 400,
            easing: 'easeOutExpo',
        }, 0)
 
        .add({
         targets: contextMenu.native,
         translateY: destinationMenuY,
-        duration: 2000,
+        duration: 400,
         easing: 'easeOutExpo',
     }, 0)
 
     .add({
         targets: closeFocus.native,
         translateX: destinationCloseX,
-        duration: 2000,
+        duration: 400,
         easing: 'easeOutExpo',
     }, 0)
 
@@ -363,6 +365,7 @@ function createFocusMode() {
             }, 125) 
      */
     createFocusModeTimeline.play();
+     */
 }
 
 function removeFocusMode() {
