@@ -311,7 +311,7 @@ function createFocusMode() {
             scale: 0.9,
             translateY: -100,
             opacity: 0.5,
-            duration: 400,
+            duration: 2000,
             easing: 'easeOutExpo',
         }, 0)
 
@@ -321,28 +321,28 @@ function createFocusMode() {
             scale: 0.9,
             translateY: -100,
             opacity: 0.5,
-            duration: 400,
+            duration: 2000,
             easing: 'easeOutExpo',
         }, 0)
 
         .add({
            targets: focuseModeElements.native,
            scale: 1.0,
-           duration: 400,
+           duration: 2000,
            easing: 'easeOutExpo',
        }, 0)
 
        .add({
         targets: contextMenu.native,
         translateY: destinationMenuY,
-        duration: 400,
+        duration: 2000,
         easing: 'easeOutExpo',
     }, 0)
 
     .add({
         targets: closeFocus.native,
         translateX: destinationCloseX,
-        duration: 400,
+        duration: 2000,
         easing: 'easeOutExpo',
     }, 0)
 
