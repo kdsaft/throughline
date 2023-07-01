@@ -94,7 +94,7 @@ const pictogramPhonemeSounds = new Howl({
 });
 
 const wordSounds = new Howl({
-    src: ['https://kdsaft.github.io/throughline/sounds/hierarchical.mp3'],
+    src: ['https://kdsaft.github.io/throughline/audio/hierarachical.mp3'],
     sprite: {
         word: [0, 1011],
         syllables: [1611, 3900],
