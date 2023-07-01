@@ -7,6 +7,8 @@
 const touchWord = new Audio('https://kdsaft.github.io/throughline/audio/ButtonDown.m4a');
 
 // Text elements
+const bodyContainer = { jQ: $('.body'), native: $('.body').get(0) };
+
 const contentContainer = { jQ: $('.content'), native: $('.content').get(0) };
 const highLightArea = { jQ: $('.highlight-area'), native: $('.highlight-area').get(0) };
 const articleContainer = $('.article-container');
@@ -302,6 +304,8 @@ function createFocusMode() {
     //magicLensWrapper.jQ.css({ display: 'none' });
 
     console.log('top: ' + magicLensWrapper.jQ.position().top, 'left: ' + magicLensWrapper.jQ.position().left);
+    console.log('body: ' + bodyContainer.jQ.position().top, 'left: ' + bodyContainer.jQ.position().left);
+
 
     // animate into new position
     const createFocusModeTimeline = anime.timeline();
