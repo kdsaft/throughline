@@ -41,7 +41,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 90px 400px 0px 180px;
-    background-color: #7b6aac;
+    background-color: #ffffff;
     overflow: hidden;
     align-content: flex-start;
     flex-wrap: nowrap;
@@ -63,7 +63,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px 0px 30px;
-    background-color: #ecf2f1;
+    background-color: #ffffff;
     min-width: 780px;
     overflow: hidden;
     z-index: 1;
@@ -72,7 +72,7 @@
     border-color: var(--Grey_400, #d2d4d9);
     border-style: solid;
     border-top-width: 0px;
-    border-bottom-width: 1px;
+    border-bottom-width: 0.5px;
     border-left-width: 0px;
     border-right-width: 0px;
 }
@@ -87,7 +87,7 @@
     justify-content: center;
     align-items: flex-start;
     padding: 40px 0px 0px 0px;
-    background-color: #c1f0b5;
+    background-color: #ffffff;
     overflow: hidden;
     position: relative;
     align-content: flex-start;
@@ -109,7 +109,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--Grey_600, #f8f9fb);
+    background-color: var(--Grey_100, #f8f9fb);
     overflow: visible;
     z-index: 1;
     padding: 0px 0px 0px 0px;
@@ -211,7 +211,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 100px 0px 40px 30px;
-    background-color: #c46969;
+    background-color: #ffffff;
     overflow: visible;
     z-index: 1;
     align-content: flex-start;
