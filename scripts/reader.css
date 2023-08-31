@@ -77,6 +77,42 @@
     border-right-width: 0px;
 }
 
+.rol-toggle {
+    flex-shrink: 0;
+    width: 215px;
+    height: min-content; /* 28px */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: visible;
+    z-index: 1;
+    padding: 0px 0px 0px 0px;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 4;
+    position: absolute;
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  .rol-button-text {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: min-content; /* 181px */
+    height: min-content; /* 28px */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2px 0px 2px 0px;
+    overflow: visible;
+    position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 8;
+    border-radius: 0px 0px 0px 0px;
+  }
+
 .article {
     box-sizing: border-box;
     flex-shrink: 0;
