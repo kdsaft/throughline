@@ -199,9 +199,9 @@
 
 .leftbuttons {
     position: fixed;
-    top: 90;
-    left: 0;
-    bottom: 0;
+    top: 90px;
+    left: 0px;
+    bottom: 0px;
     box-sizing: border-box;
     flex-shrink: 0;
     width: 180px;
