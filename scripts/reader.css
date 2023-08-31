@@ -54,14 +54,14 @@
     right: 400;
     box-sizing: border-box;
     flex-shrink: 0;
-    width: 1389px;
+    width: 100%;
     height: 90px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px 0px 30px;
-    background-color: #86e9e6;
+    background-color: #e9f7f6;
     min-width: 780px;
     overflow: hidden;
     z-index: 1;
@@ -203,7 +203,7 @@
     box-sizing: border-box;
     flex-shrink: 0;
     width: 180px;
-    height: 862px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
