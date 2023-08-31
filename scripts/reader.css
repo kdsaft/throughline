@@ -104,7 +104,7 @@
     box-sizing: border-box;
     flex-shrink: 0;
     width: 400px;
-    height: 798px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
