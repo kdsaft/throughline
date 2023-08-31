@@ -44,6 +44,7 @@
     gap: 10;
     position: absolute;
     border-radius: 0px 0px 0px 0px;
+    border: #d2d4d9, 1px;
 }
 
 .titlebar {
@@ -225,4 +226,4 @@
     flex-wrap: nowrap;
     position: fixed;
     border-radius: 0px 0px 0px 0px;
-  }
+}
