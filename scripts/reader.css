@@ -48,6 +48,10 @@
 }
 
 .titlebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 400;
     box-sizing: border-box;
     flex-shrink: 0;
     width: 1389px;
@@ -63,33 +67,12 @@
     z-index: 1;
     align-content: center;
     flex-wrap: nowrap;
-    position: fixed;
-    border-radius: 0px 0px 0px 0px;
     border-color: var(--Grey_400, #d2d4d9);
     border-style: solid;
     border-top-width: 0px;
     border-bottom-width: 1px;
     border-left-width: 0px;
     border-right-width: 0px;
-}
-
-.r-o-l-toggle {
-    flex-shrink: 0;
-    width: 215px;
-    height: min-content;
-    /* 28px */
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: visible;
-    z-index: 1;
-    padding: 0px 0px 0px 0px;
-    align-content: center;
-    flex-wrap: nowrap;
-    gap: 4;
-    position: absolute;
-    border-radius: 0px 0px 0px 0px;
 }
 
 .article {
@@ -112,6 +95,10 @@
 }
 
 .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
     box-sizing: border-box;
     flex-shrink: 0;
     width: 400px;
@@ -127,7 +114,6 @@
     align-content: center;
     flex-wrap: nowrap;
     gap: 30;
-    position: fixed;
     border-radius: 0px 0px 0px 0px;
     border-color: var(--Grey_200, #ecedf1);
     border-style: solid;
@@ -210,6 +196,10 @@
 }
 
 .leftbuttons {
+    position: fixed;
+    top: 90;
+    left: 0;
+    bottom: 0;
     box-sizing: border-box;
     flex-shrink: 0;
     width: 180px;
@@ -224,6 +214,5 @@
     z-index: 1;
     align-content: flex-start;
     flex-wrap: nowrap;
-    position: fixed;
     border-radius: 0px 0px 0px 0px;
 }
