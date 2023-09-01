@@ -80,12 +80,10 @@
     border-right-width: 0px;
 }
 
-.rol-toggle-frame {
+.rol-toggle {
     flex-shrink: 0;
-    font-family:
-        width: 215px;
-    height: min-content;
-    /* 28px */
+    width: 215px;
+    height: min-content; /* 28px */
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -98,15 +96,13 @@
     gap: 4;
     position: absolute;
     border-radius: 0px 0px 0px 0px;
-}
+  }
 
-.rol-toggle-label {
+  .rol-toggle-frame {
     box-sizing: border-box;
     flex-shrink: 0;
-    width: min-content;
-    /* 181px */
-    height: min-content;
-    /* 28px */
+    width: min-content; /* 181px */
+    height: min-content; /* 28px */
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -118,7 +114,7 @@
     flex-wrap: nowrap;
     gap: 8;
     border-radius: 0px 0px 0px 0px;
-}
+  }
 
 .rol-toggle-text {
     flex-shrink: 0;
