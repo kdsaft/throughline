@@ -138,6 +138,52 @@
     text-align: center;
 }
 
+.toggle-off {
+    flex-shrink: 0;
+    width: 56px;
+    height: 24px;
+    display: block;
+    overflow: visible;
+    position: relative;
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  .toggle-handle {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-color: var(--Ultramarine_300, #9fadde);
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    border-radius: 12px;
+    border: 2px solid #ffffff;
+  }
+  
+  .toggle-label {
+    width: auto; /* 24px */
+    height: auto; /* 21px */
+    white-space: pre;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Readex Pro", "Readex Pro Placeholder", sans-serif;
+    color: var(--Ultramarine_300, #9fadde);
+    font-size: 12px;
+    letter-spacing: 0em;
+    line-height: 20.98px;
+    text-align: center;
+    position: absolute;
+  }
+  
+  .toggle-background {
+    width: 54px;
+    height: 24px;
+    display: block;
+    background-color: var(--Ultramarine_100, #ebeff9);
+    position: absolute;
+    border-radius: 12px;
+  }
+
 .article {
     box-sizing: border-box;
     flex-shrink: 0;
