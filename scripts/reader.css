@@ -83,7 +83,8 @@
 .rol-toggle {
     flex-shrink: 0;
     width: 215px;
-    height: min-content; /* 28px */
+    height: min-content;
+    /* 28px */
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -96,13 +97,15 @@
     gap: 4;
     position: absolute;
     border-radius: 0px 0px 0px 0px;
-  }
+}
 
-  .rol-toggle-frame {
+.rol-toggle-frame {
     box-sizing: border-box;
     flex-shrink: 0;
-    width: min-content; /* 181px */
-    height: min-content; /* 28px */
+    width: min-content;
+    /* 181px */
+    height: min-content;
+    /* 28px */
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -114,7 +117,7 @@
     flex-wrap: nowrap;
     gap: 8;
     border-radius: 0px 0px 0px 0px;
-  }
+}
 
 .rol-toggle-text {
     flex-shrink: 0;
@@ -128,9 +131,9 @@
     font-style: normal;
     font-family: 'Readex Pro', sans-serif;
     color: #0f2d8a;
-    font-size: 17.48px;
+    font-size: 18px;
     letter-spacing: 0em;
-    line-height: 20.98px;
+    line-height: 21px;
     text-align: center;
 }
 
@@ -142,9 +145,9 @@
     overflow: visible;
     position: relative;
     border-radius: 0px 0px 0px 0px;
-  }
+}
 
-  .toggle-handle {
+.toggle-handle {
     box-sizing: border-box;
     width: 24px;
     height: 24px;
@@ -154,31 +157,33 @@
     position: absolute;
     border-radius: 12px;
     border: 2px solid #ffffff;
-  }
-  
-  .toggle-label {
-    width: auto; /* 24px */
-    height: auto; /* 21px */
+}
+
+.toggle-label {
+    width: auto;
+    /* 24px */
+    height: auto;
+    /* 21px */
     white-space: pre;
     font-weight: 400;
     font-style: normal;
-    font-family:  'Readex Pro', sans-serif;
+    font-family: 'Readex Pro', sans-serif;
     color: var(--Ultramarine_300, #9fadde);
     font-size: 12px;
     letter-spacing: 0em;
-    line-height: 20.98px;
+    line-height: 21px;
     text-align: center;
     position: absolute;
-  }
-  
-  .toggle-background {
+}
+
+.toggle-background {
     width: 54px;
     height: 24px;
     display: block;
     background-color: var(--Ultramarine_100, #ebeff9);
     position: absolute;
     border-radius: 12px;
-  }
+}
 
 .article {
     box-sizing: border-box;
