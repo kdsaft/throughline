@@ -83,8 +83,7 @@
 .rol-toggle {
     flex-shrink: 0;
     width: 215px;
-    height: min-content;
-    /* 28px */
+    height: 28px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -95,7 +94,7 @@
     align-content: center;
     flex-wrap: nowrap;
     gap: 4;
-    position: absolute;
+    position: relative;
     border-radius: 0px 0px 0px 0px;
 }
 
