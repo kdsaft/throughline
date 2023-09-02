@@ -37,13 +37,11 @@
     right: 0px;
     bottom: 0px;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 90px 0px 0px 0px;
+    padding: 90px 0px 0px 110px;
     background-color: #ffffff;
     overflow: hidden;
     align-content: flex-start;
@@ -65,8 +63,7 @@
     justify-content: flex-start;
     flex-shrink: 0;
     width: 100%;
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
@@ -194,7 +191,7 @@
     justify-content: flex-start;
     flex: 1;
     height: 100%;
-    width:100%;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
@@ -213,16 +210,17 @@
 
 .ca-content-column {
     flex-shrink: 0;
-    width: 600px;
-    height: 100%;
+    width: 610px;
+    height: 800px;
     position: relative;
-    overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.article, .article * {
+.article,
+.article * {
     box-sizing: border-box;
-    }
+}
 
 .article {
     display: flex;
@@ -232,7 +230,7 @@
     justify-content: flex-start;
     height: 1668px;
     position: relative;
-    }
+}
 
 .title {
     color: var(--grey-800, #333436);
