@@ -197,7 +197,6 @@
 }
 
 .ca-content {
-    padding: 120px 0px 0px 0px;
     display: flex;
     flex-direction: row;
     gap: 0px;
@@ -209,6 +208,7 @@
 }
 
 .ca-content-column {
+    padding: 120px 0px 0px 0px;
     flex-shrink: 0;
     width: 610px;
     height: 800px;
