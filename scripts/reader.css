@@ -161,7 +161,7 @@
 .article {
     box-sizing: border-box;
     flex-shrink: 0;
-    width: 100%;
+    width: 75%;
     height: 862px;
     display: flex;
     flex-direction: row;
@@ -188,12 +188,14 @@
     align-items: center;
     justify-content: flex-start;
     flex-shrink: 0;
-    width: 400px;
-    position: fixed;
-    right: 0px;
+    width: 25%;
+    min-width: 350px;
+    max-width: 400px;
+    position: absolute;
     top: 0px;
     bottom: 0px;
-   }
+    right: 0px;
+}
 
 .header {
    padding: 0px 20px 0px 20px;
@@ -201,8 +203,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    flex-shrink: 0;
-    width: 402px;
+    align-self: stretch;
+   flex-shrink: 0;
     height: 90px;
     position: relative;
    }
@@ -234,7 +236,7 @@
 .word {
    color: var(--ultramarine-800, #0f2d8a);
     text-align: left;
-    font: 700 30px/16px 'Readex Pro', sans-serif;
+    font: var(--focus-word, 700 24px/24px 'Readex Pro', sans-serif);
     position: relative;
     display: flex;
    align-items: center;
@@ -253,13 +255,14 @@
    }
 
 .section {
-   display: flex;
+   padding: 0px 20px 0px 20px;
+    display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-shrink: 0;
-    width: 363px;
+    align-self: stretch;
+   flex-shrink: 0;
     position: relative;
    }
 
@@ -278,7 +281,8 @@
 .label {
    color: var(--grey-600, #9d9ea0);
     text-align: left;
-    font: 400 14px/16px 'Readex Pro', sans-serif;
+    font: var(--section-title, 400 14px/16px 'Readex Pro', sans-serif);
+    text-transform: uppercase;
     position: relative;
     display: flex;
    align-items: center;
@@ -292,8 +296,8 @@
     gap: 10px;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-shrink: 0;
-    width: 363px;
+    align-self: stretch;
+   flex-shrink: 0;
     position: relative;
     overflow: hidden;
    }
@@ -336,7 +340,7 @@
     position: relative;
    }
 
-.frame-61 {
+.label2 {
    display: flex;
     flex-direction: row;
     gap: 8px;
@@ -347,13 +351,13 @@
     position: relative;
    }
 
-.play-pause-auto {
+.icon {
    flex-shrink: 0;
     position: relative;
     overflow: visible;
    }
 
-.frame-60 {
+.text-frame {
    display: flex;
     flex-direction: row;
     gap: 8.74px;
@@ -364,41 +368,53 @@
     position: relative;
    }
 
-.hear-it {
+.text {
    color: var(--grey-700, #6b6b6b);
     text-align: center;
-    font: 600 18px/20.98px 'Readex Pro', sans-serif;
+    font: var(--action-text, 600 16px/18px 'Readex Pro', sans-serif);
     position: relative;
-   }
+    display: flex;
+   align-items: center;
+   justify-content: center}
 
-.circle-ellipsis-3 {
+.menu {
    flex-shrink: 0;
     position: relative;
     overflow: visible;
    }
 
-.frame-612 {
+.label3 {
    display: flex;
     flex-direction: row;
     gap: 8px;
     align-items: center;
     justify-content: flex-start;
     flex-shrink: 0;
-    width: 88.74px;
     height: 29.72px;
     position: relative;
    }
 
-.frame-613 {
+.icon2 {
    flex-shrink: 0;
     position: relative;
     overflow: visible;
    }
 
-.practice-it {
+.text-fram {
+   display: flex;
+    flex-direction: row;
+    gap: 8.74px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    height: 29.72px;
+    position: relative;
+   }
+
+.text2 {
    color: var(--grey-700, #6b6b6b);
     text-align: center;
-    font: 600 18px/20.98px 'Readex Pro', sans-serif;
+    font: var(--action-text, 600 16px/18px 'Readex Pro', sans-serif);
     position: relative;
    }
 
@@ -432,10 +448,11 @@
     position: relative;
    }
 
-.label2 {
+.label4 {
    color: var(--grey-600, #9d9ea0);
     text-align: left;
-    font: 400 14px/16px 'Readex Pro', sans-serif;
+    font: var(--section-title, 400 14px/16px 'Readex Pro', sans-serif);
+    text-transform: uppercase;
     position: relative;
     flex: 1;
     display: flex;
@@ -455,6 +472,14 @@
    flex-shrink: 0;
     position: relative;
     overflow: hidden;
+   }
+
+.definition {
+   color: var(--grey-700, #6b6b6b);
+    text-align: left;
+    font: var(--definition-text, 400 16px/24px 'Readex Pro', sans-serif);
+    position: relative;
+    align-self: stretch;
    }
 
 .section3 {
@@ -517,7 +542,7 @@
 .tag-title {
    color: #0580a4;
     text-align: left;
-    font: 500 17.48px/20.98px 'Readex Pro', sans-serif;
+    font: var(--word-listtagtitle, 500 17.48px/20.98px 'Readex Pro', sans-serif);
     position: relative;
    }
 
@@ -539,6 +564,8 @@
     position: relative;
     overflow: visible;
    }
+
+
 
 
 .leftbuttons {
