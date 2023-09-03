@@ -238,21 +238,21 @@
     gap: 24px;
     align-items: flex-start;
     justify-content: flex-start;
-    height: 1668px;
     position: relative;
 }
 
 .title {
     color: var(--grey-800, #333436);
     text-align: left;
-    font: var(--articletitle, 700 22px/44px 'Readex Pro', sans-serif);
+    font: var(--articletitle, 700 17px/36px 'Readex Pro', sans-serif);
     position: relative;
     width: 600px;
 }
 
 .paragraph {
+    color: var(--grey-800, #333436);
     text-align: left;
-    font: var(--articlebody, 400 18px/48px 'Readex Pro', sans-serif);
+    font: var(--articlebody, 400 14px/36px 'Readex Pro', sans-serif);
     position: relative;
     width: 600px;
 }
