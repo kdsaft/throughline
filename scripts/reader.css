@@ -314,7 +314,7 @@
 
 .layout-button {
     flex-shrink: 0;
-    position: absolute;
+    position: fixed;
     left: 40px;
     bottom: 40px;
     overflow: visible;
