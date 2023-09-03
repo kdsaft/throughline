@@ -172,7 +172,7 @@
 }
 
 
-.tb-spacer {
+.sidebar-spacer {
     flex-shrink: 0;
     width: 25%;
     height: 60px;
@@ -257,7 +257,7 @@
     width: 600px;
 }
 
-.ca-spacer {
+.wordlist-spacer {
     flex-shrink: 0;
     width: 160px;
     position: relative;
@@ -278,8 +278,7 @@
     width: 120px;
     position: fixed;
     top: 156px;
-    left: 40px
-    overflow: hidden;
+    left: 40px overflow: hidden;
 }
 
 .wl-icon {
