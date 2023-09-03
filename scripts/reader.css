@@ -88,31 +88,33 @@
     overflow: hidden;
 }
 
-.button-back, .button-back * {
+.button-back,
+.button-back * {
     box-sizing: border-box;
-    }
+}
+
 .button-back {
-   flex-shrink: 0;
+    flex-shrink: 0;
     width: 40.25px;
     height: 24px;
     position: static;
-   }
+}
 
 .back-to-library {
-   position: absolute;
+    position: absolute;
     left: 20px;
-   top: 18px;
+    top: 18px;
     overflow: visible;
-   }
+}
 
 .angle-left {
-   width: 12px;
+    width: 12px;
     height: 24px;
     position: absolute;
     left: 35.71px;
-   top: 18px;
+    top: 18px;
     overflow: hidden;
-   }
+}
 
 
 
@@ -231,26 +233,22 @@
 }
 
 .ca-content {
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    align-items: flex-start;
-    justify-content: center;
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-}
-
-.ca-content-column {
-    padding: 120px 0px 0px 0px;
+    box-sizing: border-box;
     flex-shrink: 0;
     width: 610px;
-    top:0px;
-    bottom:0px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 0px 0px 0px;
+    overflow: auto;
     position: relative;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    align-content: flex-start;
+    flex-wrap: nowrap;
 }
+
+
 
 .article,
 .article * {
@@ -258,12 +256,19 @@
 }
 
 .article {
+    flex-shrink: 0;
+    width: 600px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    align-items: flex-start;
     justify-content: flex-start;
+    align-items: center;
+    overflow: visible;
+    flex: 1 0 0px;
     position: relative;
+    align-content: center;
+    flex-wrap: nowrap;
+    gap: 24;
 }
 
 .title {
@@ -333,15 +338,15 @@
     font: var(--word-list-active, 600 13px/24px 'Readex Pro', sans-serif);
     position: relative;
     align-self: stretch;
-    }
+}
 
-    .wl-word-text {
+.wl-word-text {
     color: var(--grey-700, #6b6b6b);
     text-align: left;
     font: var(--word-list-text, 300 12px/24px 'Readex Pro', sans-serif);
     position: relative;
     align-self: stretch;
-    }
+}
 
 .layout-button {
     flex-shrink: 0;
