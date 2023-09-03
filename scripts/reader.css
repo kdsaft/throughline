@@ -289,12 +289,14 @@
 }
 
 .wl-frame {
+    padding: 0px 0px 0px 12px;
     display: flex;
     flex-direction: column;
     gap: 0px;
     align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
+    width: 120px;
     position: relative;
     overflow: hidden;
 }
@@ -302,22 +304,24 @@
 .wl-word-active {
     color: var(--grey-700, #6b6b6b);
     text-align: left;
-    font: var(--word-list-active, 700 13px/24px 'Readex Pro', sans-serif);
+    font: var(--word-list-active, 600 13px/24px 'Readex Pro', sans-serif);
     position: relative;
+    align-self: stretch;
 }
 
 .wl-word-text {
     color: var(--grey-700, #6b6b6b);
     text-align: left;
-    font: var(--word-list-text, 400 13px/24px 'Readex Pro', sans-serif);
+    font: var(--word-list-text, 300 12px/24px 'Readex Pro', sans-serif);
     position: relative;
+    align-self: stretch;
 }
 
 .layout-button {
     flex-shrink: 0;
     position: fixed;
-    left: 40px;
-    bottom: 40px;
+    left: 25px;
+    bottom: 30px;
     overflow: visible;
 }
 
