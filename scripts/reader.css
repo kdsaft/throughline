@@ -618,6 +618,21 @@
     position: relative;
    }
 
+   .sb-section-content-list {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px 20px 20px 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    }
+    
 
 .sb-list-icon {
    flex-shrink: 0;
