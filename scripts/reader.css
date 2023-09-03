@@ -146,7 +146,7 @@
 .toggle-label {
     color: var(--ultramarine-800, #0f2d8a);
     text-align: center;
-    font: 400 14px/20.98px 'Readex Pro', sans-serif;
+    font: 400 13px/24px 'Readex Pro', sans-serif;
     position: relative;
 }
 
@@ -182,11 +182,11 @@
 }
 
 .toggle-state-text {
-    color: rgba(68, 93, 190, 0.50);
+    color: var(--ultramarine-500, #445dbe);
     text-align: center;
-    font: var(--switchlabel, 400 12px/12px 'Readex Pro', sans-serif);
+    font: var(--switchlabel, 400 10px/12px 'Readex Pro', sans-serif);
     position: absolute;
-    left: 9px;
+    left: 11px;
     top: 6px;
     display: flex;
     align-items: center;
@@ -331,7 +331,7 @@
     position: relative;
     align-self: stretch;
     }
-    
+
     .wl-word-text {
     color: var(--grey-700, #6b6b6b);
     text-align: left;
