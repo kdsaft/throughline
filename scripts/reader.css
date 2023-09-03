@@ -587,13 +587,13 @@
 }
 
 
-.sb-section-content {
+.sb-def-section-content {
     background: #ffffff;
     border-radius: 16px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: flex-start;
     justify-content: flex-start;
     align-self: stretch;
