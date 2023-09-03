@@ -110,7 +110,7 @@
     overflow: visible;
 }
 
-.rol-frame {
+.toggle-frame {
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -120,7 +120,7 @@
     position: relative;
 }
 
-.label {
+.toggle-label {
     color: var(--ultramarine-800, #0f2d8a);
     text-align: center;
     font: 400 14px/20.98px 'Readex Pro', sans-serif;
@@ -158,7 +158,7 @@
     top: 0px;
 }
 
-.rol-state-text {
+.toggle-state-text {
     color: rgba(68, 93, 190, 0.50);
     text-align: center;
     font: var(--switchlabel, 400 12px/12px 'Readex Pro', sans-serif);
