@@ -359,12 +359,12 @@
 
 /* SIDEBAR */
 
-.sidebar,
-.sidebar * {
+.sb-sidebar,
+.sb-sidebar * {
     box-sizing: border-box;
 }
 
-.sidebar {
+.sb-sidebar {
     background: var(--grey-100, #f8f9fb);
     display: flex;
     flex-direction: column;
