@@ -222,9 +222,11 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex: 1;
-    height: 100%;
-    width: 100%;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     overflow: hidden;
 }
 
@@ -243,7 +245,8 @@
     padding: 120px 0px 0px 0px;
     flex-shrink: 0;
     width: 610px;
-    height: 800px;
+    top:0px;
+    bottom:0px;
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
