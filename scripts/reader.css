@@ -88,11 +88,33 @@
     overflow: hidden;
 }
 
+.button-back, .button-back * {
+    box-sizing: border-box;
+    }
 .button-back {
-    flex-shrink: 0;
-    position: relative;
+   flex-shrink: 0;
+    width: 40.25px;
+    height: 24px;
+    position: static;
+   }
+
+.back-to-library {
+   position: absolute;
+    left: 20px;
+   top: 18px;
     overflow: visible;
-}
+   }
+
+.angle-left {
+   width: 12px;
+    height: 24px;
+    position: absolute;
+    left: 35.71px;
+   top: 18px;
+    overflow: hidden;
+   }
+
+
 
 .rol-toggle {
     display: flex;
