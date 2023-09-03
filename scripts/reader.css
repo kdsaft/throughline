@@ -478,7 +478,7 @@
     border-radius: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     align-items: flex-start;
     justify-content: flex-start;
     align-self: stretch;
@@ -554,7 +554,7 @@
     position: relative;
    }
 
-.text {
+.sb-action-text-label {
    color: var(--grey-700, #6b6b6b);
     text-align: center;
     font: var(--action-text, 600 12px/18px 'Readex Pro', sans-serif);
@@ -569,43 +569,12 @@
     overflow: visible;
    }
 
-.ab-action-label {
-   display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
-    justify-content: flex-start;
-    flex-shrink: 0;
-    height: 30px;
-    position: relative;
-   }
-
-.sb-action-icon2 {
-   flex-shrink: 0;
-    position: relative;
-    overflow: visible;
-   }
-
-.text2 {
-   color: var(--grey-700, #6b6b6b);
-    text-align: center;
-    font: var(--action-text, 600 14px/18px 'Readex Pro', sans-serif);
-    position: relative;
-   }
-
-.sb-action-menu2 {
-   flex-shrink: 0;
-    width: 21px;
-    height: 24px;
-    position: relative;
-    overflow: hidden;
-   }
 
 .sb-section-definition {
    padding: 0px 20px 0px 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     align-items: flex-start;
     justify-content: flex-start;
     align-self: stretch;
@@ -613,16 +582,6 @@
     position: relative;
    }
 
-.sb-section-title2 {
-   display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-   flex-shrink: 0;
-    position: relative;
-   }
 
 .sb-section-content {
    background: #ffffff;
@@ -659,42 +618,6 @@
     position: relative;
    }
 
-.sb-section-title3 {
-   display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: flex-end;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 363px;
-    position: relative;
-   }
-
-.sb-section-title-text2 {
-   color: var(--grey-600, #9d9ea0);
-    text-align: left;
-    font: var(--section-title, 400 13px/16px 'Readex Pro', sans-serif);
-    text-transform: uppercase;
-    position: relative;
-    flex: 1;
-    display: flex;
-   align-items: center;
-   justify-content: flex-start}
-
-.sb-section-content2 {
-   background: #ffffff;
-    border-radius: 16px;
-    padding: 20px 20px 20px 15px;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-    align-self: stretch;
-   flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-   }
 
 .sb-list-icon {
    flex-shrink: 0;
