@@ -52,11 +52,13 @@
 
 /* TITLE BAR */
 
-.tb-title-bar, .tb-title-bar * {
+.tb-title-bar,
+.tb-title-bar * {
     box-sizing: border-box;
-    }
+}
+
 .tb-title-bar {
-   display: flex;
+    display: flex;
     flex-direction: row;
     gap: 0px;
     align-items: flex-start;
@@ -68,10 +70,10 @@
     left: 0px;
     right: 0px;
     overflow: hidden;
-   }
+}
 
 .tb-content {
-   border-style: solid;
+    border-style: solid;
     border-color: var(--grey-200, #ecedf1);
     border-width: 0px 0px 0.5px 0px;
     padding: 0px 20px 0px 20px;
@@ -83,16 +85,16 @@
     height: 60px;
     position: relative;
     overflow: hidden;
-   }
+}
 
 .button-back {
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
     overflow: visible;
-   }
+}
 
 .rol-toggle {
-   display: flex;
+    display: flex;
     flex-direction: row;
     gap: 4px;
     align-items: center;
@@ -100,50 +102,51 @@
     flex-shrink: 0;
     width: 191px;
     position: relative;
-   }
+}
 
 .state-icon {
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
     overflow: visible;
-   }
+}
 
 .rol-frame {
-   display: flex;
+    display: flex;
     flex-direction: row;
     gap: 8px;
     align-items: center;
     justify-content: flex-start;
     flex-shrink: 0;
     position: relative;
-   }
+}
 
 .label {
-   color: var(--ultramarine-800, #0f2d8a);
+    color: var(--ultramarine-800, #0f2d8a);
     text-align: center;
     font: 400 14px/20.98px 'Readex Pro', sans-serif;
     position: relative;
-   }
+}
 
 .toggle-on {
-   flex-shrink: 0;
+    flex-shrink: 0;
     width: 56px;
     height: 24px;
-    position: static;
-   }
+    position: relative;
+    overflow: hidden;
+}
 
 .toggle-background {
-   background: var(--ultramarine-100, #ebeff9);
+    background: var(--ultramarine-100, #ebeff9);
     border-radius: 12px;
     width: 56px;
     height: 24px;
     position: absolute;
-    left: 102px;
-   top: 0px;
-   }
+    left: 0px;
+    top: 0px;
+}
 
 .toggle-thumb {
-   background: var(--ultramarine-500, #445dbe);
+    background: var(--ultramarine-500, #445dbe);
     border-radius: 12px;
     border-style: solid;
     border-color: #ffffff;
@@ -152,28 +155,32 @@
     height: 24px;
     position: absolute;
     right: 0px;
-   top: 0px;
-   }
+    top: 0px;
+}
 
 .rol-state-text {
-   color: rgba(68, 93, 190, 0.50);
+    color: rgba(68, 93, 190, 0.50);
     text-align: center;
-    font: 400 12px/20.98px 'Readex Pro', sans-serif;
+    font: var(--switchlabel, 400 12px/12px 'Readex Pro', sans-serif);
     position: absolute;
-    left: 111.23px;
-   top: 1.5px;
+    left: 9.23px;
+    top: calc(50% - 4px);
     width: 19.5px;
-   }
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
 
 .tb-spacer {
-   flex-shrink: 0;
+    flex-shrink: 0;
     width: 25%;
     height: 60px;
     min-width: 350px;
     max-width: 400px;
     position: relative;
     overflow: hidden;
-   }
+}
 
 
 
