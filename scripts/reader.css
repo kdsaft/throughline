@@ -278,7 +278,8 @@
     width: 120px;
     position: fixed;
     top: 156px;
-    left: 40px overflow: hidden;
+    left: 40px;
+    overflow: hidden;
 }
 
 .wl-icon {
