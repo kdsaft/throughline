@@ -268,26 +268,6 @@
 
 /* LEFT SIDE TOOLS */
 
-.left-side-tools,
-.left-side-tools * {
-    box-sizing: border-box;
-}
-
-.left-side-tools {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    align-self: stretch;
-    flex-shrink: 0;
-    width: 160px;
-    position: fixed;
-    top: 156px;
-    left: 40px;
-    overflow: hidden;
-}
-
 .wl-word-list-area {
     display: flex;
     flex-direction: column;
@@ -296,7 +276,9 @@
     justify-content: flex-start;
     flex-shrink: 0;
     width: 120px;
-    position: relative;
+    position: fixed;
+    top: 156px;
+    left: 40px
     overflow: hidden;
 }
 
