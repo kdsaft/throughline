@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Through Line Reader</title>
@@ -309,9 +310,15 @@
 
     <script>
         const element = document.querySelector('.ca-content');
-    
+
         element.addEventListener('scroll', () => {
             element.classList.add('scrolling');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (!element.contains(document.activeElement)) {
+                element.classList.remove('scrolling');
+            }
         });
     </script>
 
