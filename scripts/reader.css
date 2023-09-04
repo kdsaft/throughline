@@ -250,12 +250,12 @@
 
 
 .ca-content::-webkit-scrollbar {
-    width: 0;
+    width: 4px;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-.ca-content::-webkit-scrollbar {
+.ca-content.scrolling::-webkit-scrollbar {
     width: 4px;
     opacity: 1;
 }
