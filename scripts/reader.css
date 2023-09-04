@@ -250,7 +250,7 @@
 
 
 .ca-content::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
     opacity: 0;
     transition: opacity 0.3s;
 }
