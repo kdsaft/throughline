@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
 
+<script>
+    const element = document.querySelector('.element');
+
+    element.addEventListener('scroll', () => {
+        element.classList.add('scrollable');
+    });
+</script>
+
 <head>
     <link rel="stylesheet" href="https://kdsaft.github.io/throughline/scripts/reader.css">
 </head>
+
 
 <body>
     <div class="application">
