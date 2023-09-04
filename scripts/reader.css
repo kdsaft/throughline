@@ -250,13 +250,8 @@
 
 .ca-content::-webkit-scrollbar {
   width: 4px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.ca-content.scrolling::-webkit-scrollbar {
-  width: 4px;
   opacity: 1;
+  transition: opacity 0.3s;
 }
 
 .ca-content::-webkit-scrollbar-track{
@@ -265,9 +260,15 @@
 }
 
 .ca-content::-webkit-scrollbar-thumb{
-  background: var(--grey-200, #ecedf1);
+  background: var(--grey-200, #ecedf100);
   border-radius: 100vw;
 }
+
+.ca-content.scrolling::-webkit-scrollbar-thumb{
+    background: var(--grey-200, #ecedf1);
+    border-radius: 100vw;
+  }
+  
 
 
 .article,
