@@ -255,7 +255,7 @@
     transition: opacity 0.3s;
 }
 
-.ca-content::-webkit-scrollbar {
+.ca-content.scrolling::-webkit-scrollbar {
     width: 4px;
     opacity: 1;
 }
@@ -263,11 +263,11 @@
 .ca-content::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 100vw;
-    margin-block: 60px 0px;
+    margin-block: 80px 20px;
 }
 
 .ca-content::-webkit-scrollbar-thumb {
-    background: #EBEFF9;
+    background: var(--grey-200, #ecedf1);
     border-radius: 100vw;
 }
 
