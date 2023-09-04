@@ -309,17 +309,18 @@
     </div>
 
     <script>
-        const element = document.querySelector('.ca-content');
+        const caContent = document.querySelector('.ca-content');
+        let scrollingTimeout;
 
-        element.addEventListener('scroll', () => {
-            element.classList.add('scrolling');
+        caContent.addEventListener('scroll', () => {
+            clearTimeout(scrollingTimeout);
+            caContent.classList.add('scrolling');
+
+            scrollingTimeout = setTimeout(() => {
+                caContent.classList.remove('scrolling');
+            }, 1000)
         });
 
-        window.addEventListener('scroll', () => {
-            if (!element.contains(document.activeElement)) {
-                element.classList.remove('scrolling');
-            }
-        });
     </script>
 
 </body>
