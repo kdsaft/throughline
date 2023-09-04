@@ -241,10 +241,34 @@
     justify-content: flex-start;
     align-items: center;
     padding: 90px 0px 0px 0px;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: visible;
     position: relative;
     align-content: flex-start;
     flex-wrap: nowrap;
+}
+
+
+.ca-content::-webkit-scrollbar {
+    width: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.ca-content::-webkit-scrollbar {
+    width: 4px;
+    opacity: 1;
+}
+
+.ca-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100vw;
+    margin-block: 60px 0px;
+}
+
+.ca-content::-webkit-scrollbar-thumb {
+    background: #EBEFF9;
+    border-radius: 100vw;
 }
 
 
@@ -620,24 +644,26 @@
 }
 
 
-.sb-section-word-lists, .sb-section-word-lists * {
+.sb-section-word-lists,
+.sb-section-word-lists * {
     box-sizing: border-box;
-    }
+}
+
 .sb-section-word-lists {
-   padding: 0px 20px 0px 20px;
+    padding: 0px 20px 0px 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
     justify-content: center;
     align-self: stretch;
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
-   }
+}
 
 
 .sb-wl-section-content {
-   background: #ffffff;
+    background: #ffffff;
     border-radius: 16px;
     padding: 20px 20px 20px 15px;
     display: flex;
@@ -646,28 +672,28 @@
     align-items: center;
     justify-content: flex-start;
     align-self: stretch;
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
     overflow: hidden;
-   }
+}
 
 .sb-list-icon {
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
     overflow: visible;
-   }
+}
 
 .sb-wl-lists {
-   display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     flex: 1;
     position: relative;
-   }
+}
 
 .list-tag {
-   background: #eef9ff;
+    background: #eef9ff;
     border-radius: 3.5px;
     padding: 7px 8px 7px 8px;
     display: flex;
@@ -678,26 +704,26 @@
     flex-shrink: 0;
     height: 24px;
     position: relative;
-   }
+}
 
 .tag-title {
-   color: #0580a4;
+    color: #0580a4;
     text-align: left;
     font: var(--word-listtagtitle, 500 14px/16px 'Readex Pro', sans-serif);
     position: relative;
     display: flex;
-   align-items: center;
-   justify-content: flex-start}
+    align-items: center;
+    justify-content: flex-start
+}
 
 .delete-icon {
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
     overflow: visible;
-   }
+}
 
 .add-icon {
-   flex-shrink: 0;
+    flex-shrink: 0;
     position: relative;
     overflow: visible;
-   }
-
+}
