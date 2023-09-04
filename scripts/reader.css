@@ -70,6 +70,7 @@
     right: 0px;
     overflow: hidden;
     z-index: 1;
+    -webkit-transform: translateZ(0);
 }
 
 .tb-content {
@@ -250,12 +251,12 @@
 
 
 .ca-content::-webkit-scrollbar {
-    width: 2px;
+    width: 0px;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-.ca-content.scrolling::-webkit-scrollbar  {
+.ca-content:hover::-webkit-scrollbar  {
     width: 4px;
     opacity: 1;
 }
