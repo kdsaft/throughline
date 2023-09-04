@@ -70,7 +70,6 @@
     right: 0px;
     overflow: hidden;
     z-index: 1;
-    -webkit-transform: translateZ(0);
 }
 
 .tb-content {
@@ -262,15 +261,15 @@
   opacity: 1;
 }
 
-.ca-content::-webkit-scrollbar-track,
-.ca-content::-moz-scrollbar-track {
+.ca-content.scrolling::-webkit-scrollbar-track,
+.ca-content.scrolling::-moz-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 100vw;
   margin-block: 80px 20px;
 }
 
-.ca-content::-webkit-scrollbar-thumb,
-.ca-content::-moz-scrollbar-thumb {
+.ca-content.scrolling::-webkit-scrollbar-thumb,
+.ca-content.scrolling::-moz-scrollbar-thumb {
   background: var(--grey-200, #ecedf1);
   border-radius: 100vw;
 }
