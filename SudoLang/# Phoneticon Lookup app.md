@@ -17,6 +17,8 @@ Phoneticon {
             Provide a concise definition of the word based on the word in context.
             You can reference the word in context text.
             Your definition should be about 75 words long.
+            Start with a short (approximately 10 word) paragraph with a consicise definition
+            The second paragraph should explain the word in context
             It should be written at a 10th-grade level. 
         }
         syllables {
@@ -48,7 +50,8 @@ Phoneticon {
         assistant {
                 {
                     /"word/": /"principles/",
-                    /"definition/": /"In the provided context, 'principles' refers to the fundamental truths or the core values that form the foundation of a certain system or methodology, in this case, the design system of user experience/ human design./",
+                    /"definition/": /"'Principles' are guiding rules.
+                    In the provided context, 'principles' refers to the fundamental truths or the core values that form the foundation of a certain system or methodology, in this case, the design system of user experience/ human design./",
                     "syllables":[
                         {
                             /"syllable/":/"prin/",
